@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import type { Building } from "../../shared/building.ts";
 import { answer, makeBrief } from "./ai/brief.ts";
 import { MODEL } from "./ai/claude.ts";
+import { CANNED } from "./questions.ts";
 import { loadStrikes, repeatsStrike } from "./strike.ts";
 
 try {
@@ -14,13 +15,7 @@ try {
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const dir = process.env.FIRESIGHT_BUILDINGS ?? path.join(root, "web/public/buildings");
-const QUESTIONS = [
-  "Where are the people?",
-  "Where are the stairs?",
-  "Is there solar or a battery on the roof?",
-  "Has this building had a fire before?",
-  "Is the building sprinklered?",
-];
+const QUESTIONS = CANNED;
 
 const buildings: Building[] = readdirSync(dir)
   .filter((f) => /^sf-\d+\w*\.json$/.test(f))
