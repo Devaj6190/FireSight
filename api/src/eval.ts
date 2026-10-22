@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import type { Building } from "../../shared/building.ts";
 import { answer, makeBrief } from "./ai/brief.ts";
 import { MODEL } from "./ai/claude.ts";
-import { CANNED } from "./questions.ts";
+import { CANNED } from "../../shared/questions.ts";
 import { loadStrikes, repeatsStrike } from "./strike.ts";
 
 try {

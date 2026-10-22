@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Building } from "../../shared/building.ts";
 import { answer, makeBrief } from "./ai/brief.ts";
-import { CANNED } from "./questions.ts";
+import { CANNED } from "../../shared/questions.ts";
 import { loadStrikes } from "./strike.ts";
 
 try {
