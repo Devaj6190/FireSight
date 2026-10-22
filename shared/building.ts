@@ -146,6 +146,10 @@ export interface FloorFacts {
   unitWork?: { unit: string; kind: string; date: string; open: boolean; datasetId: string; recordId: string }[];
   openPermits?: number; // permits naming this floor that are filed/issued but not complete: expect open walls
   recentKinds?: string[]; // work categories on this floor in the last 2 years, e.g. ["Fire alarm work", "Tenant remodel"]
+  // additive: what occupies the floor, by type only (never business names), from business licenses and OSM indoor tags
+  occupants?: { kind: string; hazard: string | null; unit: string | null; source: string; datasetId: string; recordId: string; url: string }[];
+  // additive: Planning Department records naming this floor (category only), with a public PIM link
+  planning?: { date: string; kind: string; recordId: string; url: string }[];
 }
 
 // Compliance strip (Lane C owns the logic, Lane D renders).
