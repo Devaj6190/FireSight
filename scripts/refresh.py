@@ -120,7 +120,7 @@ def refresh_one(bid):
         old_bytes = f.read()
     old = json.loads(old_bytes.decode("utf-8"))
     t0 = time.time()
-    at = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    at = datetime.now(timezone.utc).isoformat(timespec="seconds")  # UTC everywhere, same as CI
     entry = {"at": at, "buildingId": bid, "sourcesQueried": 0, "sourcesFailed": 0, "ms": 0,
              "added": [], "removed": [], "changed": [], "note": ""}
     try:

@@ -217,6 +217,21 @@ UNIT_RE = re.compile(r"(?:\bunit|\bapt\.?|\bapartment|\bsuite|\bste\.?|#)\s*#?\s
 FLR_RE = re.compile(r"\b(\d)(?:st|nd|rd|th)\s*(?:fl(?:oo)?r?\b|flr\b)", re.I)
 
 
+FLOOR_WORDS = {"main": 1, "ground": 1, "first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5, "sixth": 6}
+
+
+def nov_summary(n):
+    """One plain phrase from a DBI NOV row: category if present, else the violation text minus boilerplate."""
+    if n.get("nov_category_description"):
+        return n["nov_category_description"]
+    t = clean(n.get("code_violation_desc") or n.get("nov_item_description") or "")
+    if re.search(r"fa.ade inspection", t, re.I):
+        return "facade inspection report overdue"
+    t = re.sub(r"^.*(observed during [a-z ]*inspection\.|following [a-z ]*violations?:)\s*", "", t, flags=re.I)
+    t = re.split(r"[.(]", t)[0].strip()
+    return t[:80].lower() if t else ""
+
+
 def own_address(addr, nums):
     """True when a free-text address has no street number or one of this parcel's numbers."""
     m = re.match(r"^\s*(\d+)", addr or "")
@@ -546,8 +561,19 @@ def build(bid):
             anc, rule = floor(1), "permit text 'main/ground floor' -> floor 1"
         if re.search(r"assembly", desc, re.I):
             occ = re.search(r"occupant load of (\d+)", cond)
-            P.add("fire_permit", fpm["permit_number"], "caution", f"ASSEMBLY: {occ.group(1) if occ else '?'} PEOPLE" + (f", FLOOR {anc['floor']}" if anc["kind"] == "floor" else ""),
-                  f"SFFD place-of-assembly permit {fpm['permit_number']} ({st} {when}) for up to {occ.group(1) if occ else 'an unstated number of'} occupants: crowded floor, check exits.", anc, e(rule))
+            total = occ.group(1) if occ else None
+            # "location: main floor - 257 persons; second floor - 68 persons" -> one pin per floor
+            parts = [(FLOOR_WORDS.get(w.lower()) or num(re.sub(r"\D", "", w)), int(n_))
+                     for w, n_ in re.findall(r"(main|ground|first|second|third|fourth|fifth|sixth|\d{1,2}(?:st|nd|rd|th)?)\s+floor\s*[-:]\s*(\d+)\s*persons", cond, re.I)]
+            parts = [(f_, n_) for f_, n_ in parts if f_ and 1 <= f_ <= floors]
+            if len(parts) > 1:
+                for f_, n_ in parts:
+                    P.add("fire_permit", f"{fpm['permit_number']}-f{f_}", "caution", f"ASSEMBLY: {n_} PEOPLE, FLOOR {f_}",
+                          f"SFFD place-of-assembly permit {fpm['permit_number']} ({st} {when}): up to {n_} occupants on floor {f_} ({total} total across floors): crowded floor, check exits.",
+                          floor(f_), e(f"permit text '{n_} persons' on floor {f_} -> floor {f_}"))
+                continue
+            P.add("fire_permit", fpm["permit_number"], "caution", f"ASSEMBLY: {total or '?'} PEOPLE" + (f", FLOOR {anc['floor']}" if anc["kind"] == "floor" else ""),
+                  f"SFFD place-of-assembly permit {fpm['permit_number']} ({st} {when}) for up to {total or 'an unstated number of'} occupants: crowded floor, check exits.", anc, e(rule))
         elif re.search(r"tank", desc, re.I):
             gal = re.findall(r"(\d[\d,]*)\s*gallon\s*([a-z ]*?)(?:day )?tank", cond, re.I)
             what = ", ".join(f"{g} gal {k.strip()}".strip() for g, k in gal[:2]) or desc
@@ -612,8 +638,12 @@ def build(bid):
     nov = rows(bdir, "dbi_nov")
     unsafe = [n for n in nov if (n.get("unsafe_building") or "").upper() == "Y"]
     for n in unsafe[:2]:
-        P.add("nov", n["primary_key"], "danger", f"UNSAFE BUILDING NOTICE {iso(n['date_filed'])[:4]}",
-              f"DBI notice of violation filed {iso(n['date_filed'])} flagged the building unsafe (category: {n.get('nov_category_description')}).", BLDG,
+        active = (n.get("status") or "").lower() == "active"
+        what = nov_summary(n)
+        P.add("nov", n["primary_key"], "danger" if active else "caution",
+              f"UNSAFE NOTICE {iso(n['date_filed'])[:4]}" + ("" if active else " (CLOSED)") + (f": {what.split(',')[0][:24]}" if what else ""),
+              f"DBI notice filed {iso(n['date_filed'])} flagged the building unsafe" + (f" ({what})" if what else "")
+              + f"; handled by {n.get('assigned_division') or n.get('receiving_division') or 'DBI'}, status {n.get('status')}.", BLDG,
               [ev("nbtm-fbw5", n["primary_key"], soda_url("nbtm-fbw5", "primary_key", n["primary_key"]), iso(n["date_filed"]), "block + lot, unsafe_building = Y")])
     open_nov = {n["complaint_number"] for n in nov if (n.get("status") or "").lower() == "active"}
     if open_nov:
