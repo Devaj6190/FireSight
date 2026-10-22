@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { Brief, BriefLine, Building } from '../../../../shared/building.ts'
 import { fetchBrief, strike, type Dropped, type Source } from '../../../../shared/client.ts'
 import { sourceTail } from './sources.ts'
@@ -19,26 +19,42 @@ export function BriefSheet({ building, onSend, onSelectPins }: Props) {
   const [status, setStatus] = useState<Record<string, BriefLine['status']>>({})
   const [saved, setSaved] = useState<Record<string, 'saved' | 'local'>>({})
   const [loading, setLoading] = useState(false)
+  const [upgrading, setUpgrading] = useState(false)
   const [error, setError] = useState<string>()
+  const touched = useRef(false)
 
+  function show(res: { brief: Brief; dropped: Dropped[]; source: Source }) {
+    setBrief(res.brief)
+    setSource(res.source)
+    setDropped(res.dropped)
+    setStatus(Object.fromEntries(res.brief.lines.map((l) => [l.id, l.status])))
+    setSaved({})
+  }
+
+  // The saved brief shows at once; the model brief replaces it when it arrives, unless the officer has started reviewing.
   async function generate() {
-    setLoading(true)
     setError(undefined)
+    touched.current = false
+    const saved = building.fallback?.brief
+    if (saved) {
+      show({ brief: saved, dropped: [], source: 'fallback' })
+      setUpgrading(true)
+    } else setLoading(true)
     try {
       const res = await fetchBrief(building)
-      setBrief(res.brief)
-      setSource(res.source)
-      setDropped(res.dropped)
-      setStatus(Object.fromEntries(res.brief.lines.map((l) => [l.id, l.status])))
-      setSaved({})
+      if (res.source === 'model' || !saved) {
+        if (!touched.current) show(res)
+      }
     } catch {
-      setError('No connection and no saved brief for this building.')
+      if (!saved) setError('No connection and no saved brief for this building.')
     } finally {
       setLoading(false)
+      setUpgrading(false)
     }
   }
 
   function setLine(line: BriefLine, next: BriefLine['status']) {
+    touched.current = true
     const value = status[line.id] === next ? 'pending' : next
     setStatus((s) => ({ ...s, [line.id]: value }))
     if (value === 'struck') {
@@ -55,7 +71,7 @@ export function BriefSheet({ building, onSend, onSelectPins }: Props) {
     <section className="fsb" aria-label="Size-up brief">
       <div className="fsb-eyebrow">
         <span>Size-up brief</span>
-        {source === 'fallback' && <span className="fsb-tag offline">OFFLINE BRIEF</span>}
+        {source === 'fallback' && <span className="fsb-tag offline">{upgrading ? 'SAVED BRIEF · CHECKING FOR NEWER…' : 'SAVED BRIEF'}</span>}
         {source === 'records' && <span className="fsb-tag offline">FROM RECORDS · NO AI</span>}
         {brief && source === 'model' && <span className="fsb-tag">{lines.length} LINES · CHECKED</span>}
       </div>
