@@ -39,7 +39,7 @@ Dispatch in: "Structure fire, 140 New Montgomery St, smoke reported 22nd floor".
 
 <!-- IMG 2: arrival brief beside the floor panel for floor 22. Save as docs/img/brief.jpg, then replace this comment with: ![Arrival brief and floor panel](docs/img/brief.jpg) -->
 
-**Voice.** The brief is spoken in a natural voice (ElevenLabs), and each sentence lights the floors it names. A spoken update such as "people trapped on floor 23" becomes a dispatch report: floor 23 lights up and FireSight reads what the records say about it. Hands-free intent through TypeSafe Jev (a typed decision with a confidence score, "Say again?" below a threshold, keyword fallback) is being integrated.
+**Voice.** The brief is spoken in a natural voice (ElevenLabs), and each sentence lights the floors it names. A spoken update such as "people trapped on floor 23" becomes a dispatch report: floor 23 lights up and FireSight reads what the records say about it. Hands-free commands go through TypeSafe Jev: what the officer said becomes one typed decision (dispatch, report, question, explode, collapse, brief, stop) with a confidence score in about 0.1 to 0.5 s. Below 0.5 FireSight asks "Say again?" instead of guessing, and without a Jev key it falls back to keyword rules. The caption shows the decision ("JEV · report · 0.98").
 
 <!-- IMG 3: voice caption on screen while the brief is spoken, with the named floor lit. Save as docs/img/voice.jpg, then replace this comment with: ![Spoken brief with live caption](docs/img/voice.jpg) -->
 
@@ -151,7 +151,7 @@ Needs Node 22 and Python 3.
 # API (Hono): brief, ask, strike, compliance, speech
 cd api && npm ci && cp .env.example .env && npm start
 # In api/.env: ANTHROPIC_API_KEY (model-written brief), ELEVENLABS_API_KEY (spoken brief).
-# TYPESAFE_API_KEY is optional (for the voice intent work in progress). Never commit the file.
+# TYPESAFE_API_KEY is optional (hands-free voice intent via Jev; keyword rules without it). Never commit the file.
 
 # Web app (Vite + React + react-three-fiber)
 cd web && npm ci && npm run dev

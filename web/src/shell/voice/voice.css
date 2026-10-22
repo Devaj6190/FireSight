@@ -23,3 +23,4 @@
 @keyframes voice-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
 @keyframes voice-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .voice-mic, .voice-bars i, .voice-caption { animation: none !important; } }
+.voice-jev { margin-left: 8px; padding: 1px 6px; border-radius: 6px; border: 1px solid var(--fs-line, #2a2f37); color: var(--fs-muted, #9aa3ad); font-weight: 500; }
