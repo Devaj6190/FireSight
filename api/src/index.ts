@@ -3,7 +3,7 @@ import { Hono } from "hono";
 import type { BriefLine, Building } from "../../shared/building.ts";
 import { evaluateCompliance } from "../../shared/compliance.ts";
 import { answer, makeBrief } from "./ai/brief.ts";
-import { saveStrike } from "./strike.ts";
+import { loadStrikes, saveStrike } from "./strike.ts";
 
 try {
   process.loadEnvFile(); // api/.env (gitignored)
@@ -21,7 +21,8 @@ app.post("/api/brief", async (c) => {
   const { building } = await c.req.json<{ building: unknown }>();
   if (!isBuilding(building)) return c.json({ error: "building required" }, 400);
   try {
-    const { brief, dropped } = await makeBrief(building);
+    const struck = (await loadStrikes(building.id)).map((s) => s.line.text);
+    const { brief, dropped } = await makeBrief(building, struck);
     return c.json({ brief, dropped, source: "model" });
   } catch (err) {
     console.error("brief failed:", err);

@@ -63,3 +63,18 @@ describe("validateAnswer", () => {
     expect(dropped?.reason).toBe("uncited");
   });
 });
+
+import { repeatsStrike, type StrikeCase } from "../src/strike.ts";
+
+describe("repeatsStrike", () => {
+  const c: StrikeCase = { id: "x", buildingId: "sf-0874003", reason: null, struckAt: "", line: { id: "b3", text: "Solar hot water on roof.", pinIds: ["permit-solar"], claim: "verified", status: "struck" } };
+  it("matches the same text ignoring case and punctuation", () => {
+    expect(repeatsStrike({ id: "b1", text: "solar hot water on roof", pinIds: [], claim: "unverifiable", status: "pending" }, c)).toBe(true);
+  });
+  it("matches the same claim on the same pins", () => {
+    expect(repeatsStrike({ id: "b1", text: "Roof: 3,000 gal tank.", pinIds: ["permit-solar"], claim: "verified", status: "pending" }, c)).toBe(true);
+  });
+  it("does not match a different line", () => {
+    expect(repeatsStrike({ id: "b1", text: "Type 5, 4 stories.", pinIds: ["construction-mode"], claim: "verified", status: "pending" }, c)).toBe(false);
+  });
+});

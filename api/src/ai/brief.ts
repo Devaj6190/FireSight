@@ -1,11 +1,11 @@
 import type { Answer, Brief, Building } from "../../../shared/building.ts";
 import { callStructured } from "./claude.ts";
-import { BRIEF_TASK, askTask } from "./prompt.ts";
+import { askTask, briefTask } from "./prompt.ts";
 import { DraftAnswer, DraftBrief } from "./schema.ts";
 import { validateAnswer, validateBrief, type Dropped } from "./validate.ts";
 
-export async function makeBrief(b: Building): Promise<{ brief: Brief; dropped: Dropped[] }> {
-  const { data, model } = await callStructured(b, BRIEF_TASK, DraftBrief, "medium");
+export async function makeBrief(b: Building, struck: string[] = []): Promise<{ brief: Brief; dropped: Dropped[] }> {
+  const { data, model } = await callStructured(b, briefTask(struck), DraftBrief, "medium");
   const { lines, dropped } = validateBrief(b, data.lines);
   return {
     brief: { buildingId: b.id, lines, unknowns: data.unknowns, model, createdAt: new Date().toISOString() },
