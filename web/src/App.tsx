@@ -3,7 +3,7 @@ import { OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
-import { collapse, explode, focus, reduce, type Ctx, type Pose } from './explode'
+import { collapse, explode, focus, frame, near, reduce, t, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { Rooms, RoomsOverlay } from './Rooms.tsx'
 import { useStore, type Phase } from './store'
@@ -28,11 +28,12 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, lit, rooms, setPhase, toggleRooms } = useStore()
+  const { phase, target, lit, rooms, view, setPhase, toggleRooms } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
   const home = useRef<Pose>(null)
+  const start = useRef<Pose>(null) // the hero framing the intro lands on: where Reset view returns an assembled building
   const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
 
@@ -91,9 +92,11 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   const intro = useRef<{ tl: gsap.core.Tween; end: Pose } | null>(null)
   useEffect(() => {
     const c = controls.current
-    if (reduce || !c) return
+    if (!c) return
     const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(c.target))
     const end: Pose = { r: s.radius, phi: s.phi, theta: s.theta, tx: c.target.x, ty: c.target.y, tz: c.target.z }
+    start.current = end
+    if (reduce) return
     const pose = { ...end, r: Math.max(6 * end.r, 1400), phi: 0.42, theta: end.theta - 1.1, ty: 0 }
     const apply = () => {
       c.target.set(pose.tx, pose.ty, pose.tz)
@@ -161,6 +164,14 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     }
   }, [phase, target, lit]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Reset view: back to the framing for the current phase, from wherever the officer dragged the camera
+  useEffect(() => {
+    if (!view || rooms !== 'off') return
+    if (phase === 'exploded') return play(target !== null || lit.length ? focus : frame)
+    const end = start.current
+    if (phase === 'assembled' && end) return play((c) => void c.tl.to(c.pose, { ...end, theta: near(c.pose.theta, end.theta), duration: t(1.1), ease: 'power3.inOut' }, 0))
+  }, [view]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
     <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} /></group>
   )
@@ -214,7 +225,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
 }
 
 export default function App() {
-  const { building: b, phase, target, setBuilding: setB, setPhase, focus, highlight, lit, explode, collapse } = useStore()
+  const { building: b, phase, setBuilding: setB, setPhase, focus, highlight, explode, collapse } = useStore()
   const [buildingId, setBuildingId] = useState(() => {
     const id = new URLSearchParams(location.search).get('building')
     return BUILDINGS.some(v => v.id === id) ? id! : 'sf-3722080'
@@ -275,13 +286,12 @@ export default function App() {
   const d = 2.2 * Math.max(b.heightM, span)
   const mid = b.heightM / 2
 
-  return <PhoneShell key={b.id} building={b} phase={phase} selectedPin={selectedPin} focusedFloors={[...new Set(target === null ? lit : [target, ...lit])]}
-    onBuilding={changeBuilding} onDispatch={handleDispatch}
+  return <PhoneShell key={b.id} building={b} phase={phase} selectedPin={selectedPin}
+    onBuilding={changeBuilding} onDispatch={handleDispatch} onFocusFloor={focus}
     onToggle={() => { if (phase === 'exploded') collapse(); else explode() }}
     onSelectPin={setSelectedPin}
     onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
     onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
-    <p className="phone-credit">DataSF footprints · © OpenStreetMap contributors</p>
     <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, far: 8000, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
       <color attach="background" args={[fs.sky]} />
       <fog attach="fog" args={[fs.sky, d * 1.2, d * 5]} />
