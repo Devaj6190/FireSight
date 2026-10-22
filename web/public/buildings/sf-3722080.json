@@ -1101,11 +1101,11 @@
    "layer": "wind",
    "origin": "public",
    "severity": "caution",
-   "label": "WIND 5 MPH FROM SSE, SMOKE TO NNW",
-   "detail": "Model wind at 2026-10-22 13:00 local: 5.4 mph from the SSE (157 deg), gusts 7.4 mph, humidity 92%. Smoke and fire spread push toward the NNW: that side is the exposure. Next 6 h: gusts up to 18.8 mph; direction shifts by 45 deg or more. Forecast model, not a station reading.",
+   "label": "WIND 4 MPH FROM SSE, SMOKE TO NNW",
+   "detail": "Model wind at 2026-10-22 13:30 local: 4.1 mph from the SSE (158 deg), gusts 5.6 mph, humidity 89%. Smoke and fire spread push toward the NNW: that side is the exposure. Next 6 h: gusts up to 18.1 mph; direction shifts by 45 deg or more. Forecast model, not a station reading.",
    "anchor": {
     "kind": "ground",
-    "bearingDeg": 337,
+    "bearingDeg": 338,
     "distanceM": 30
    },
    "claim": "verified",
@@ -1113,7 +1113,7 @@
     {
      "source": "Open-Meteo",
      "datasetId": "open-meteo",
-     "recordId": "2026-10-22T13:00",
+     "recordId": "2026-10-22T13:30",
      "url": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph",
      "asOf": "2026-10-22",
      "rule": "model forecast at the centroid; anchor points downwind"
@@ -1625,8 +1625,8 @@
     {
      "source": "DataSF SFFD Fire Violations",
      "datasetId": "4zuq-2cbe",
-     "recordId": "2112-047219PEN22",
-     "url": "https://data.sf.gov/resource/4zuq-2cbe.json?violation_id=2112-047219PEN22",
+     "recordId": "2112-047219DOR08",
+     "url": "https://data.sf.gov/resource/4zuq-2cbe.json?violation_id=2112-047219DOR08",
      "asOf": "2021-12-30",
      "rule": "EAS id match, newest violation"
     }
@@ -1758,7 +1758,7 @@
   {
    "layer": "assessor",
    "status": "ok",
-   "ms": 471,
+   "ms": 464,
    "datasetId": "wv5m-vpq2",
    "source": "Assessor secured property tax roll",
    "records": 3,
@@ -1768,7 +1768,7 @@
   {
    "layer": "footprint",
    "status": "ok",
-   "ms": 782,
+   "ms": 463,
    "datasetId": "ynuv-fyni",
    "source": "Building footprints + 2010 LiDAR heights",
    "records": 1,
@@ -1778,7 +1778,7 @@
   {
    "layer": "landuse",
    "status": "ok",
-   "ms": 508,
+   "ms": 409,
    "datasetId": "c5ge-t6pj",
    "source": "Land use (residential units by parcel)",
    "records": 1,
@@ -1788,7 +1788,7 @@
   {
    "layer": "historic",
    "status": "ok",
-   "ms": 477,
+   "ms": 409,
    "datasetId": "3tsw-4idn",
    "source": "Historic resource status by parcel",
    "records": 1,
@@ -1798,7 +1798,7 @@
   {
    "layer": "energy",
    "status": "ok",
-   "ms": 457,
+   "ms": 536,
    "datasetId": "96ck-qcfe",
    "source": "Existing buildings energy performance",
    "records": 3,
@@ -1808,7 +1808,7 @@
   {
    "layer": "tall_building",
    "status": "ok",
-   "ms": 491,
+   "ms": 472,
    "datasetId": "5kya-mfst",
    "source": "Tall building inventory",
    "records": 1,
@@ -1818,7 +1818,7 @@
   {
    "layer": "rentboard",
    "status": "ok",
-   "ms": 1338,
+   "ms": 1217,
    "datasetId": "gdc7-dmcn",
    "source": "Rent Board housing inventory (block level)",
    "records": 103,
@@ -1828,7 +1828,7 @@
   {
    "layer": "zoning_height",
    "status": "ok",
-   "ms": 556,
+   "ms": 459,
    "datasetId": "h9wh-cg3m",
    "source": "Zoning height and bulk district",
    "records": 1,
@@ -1838,7 +1838,7 @@
   {
    "layer": "permits",
    "status": "ok",
-   "ms": 7357,
+   "ms": 2219,
    "datasetId": "i98e-djp9",
    "source": "DBI building permits (legacy)",
    "records": 331,
@@ -1848,7 +1848,7 @@
   {
    "layer": "permitsf",
    "status": "ok",
-   "ms": 738,
+   "ms": 8822,
    "datasetId": "tyz3-vt28",
    "source": "PermitSF permits (new system)",
    "records": 16,
@@ -1858,7 +1858,7 @@
   {
    "layer": "electrical",
    "status": "ok",
-   "ms": 1733,
+   "ms": 972,
    "datasetId": "ftty-kx6y",
    "source": "Electrical permits",
    "records": 179,
@@ -1868,7 +1868,7 @@
   {
    "layer": "plumbing",
    "status": "ok",
-   "ms": 1084,
+   "ms": 761,
    "datasetId": "a6aw-rudh",
    "source": "Plumbing permits",
    "records": 130,
@@ -1878,7 +1878,7 @@
   {
    "layer": "boiler",
    "status": "ok",
-   "ms": 611,
+   "ms": 589,
    "datasetId": "5dp4-gtxk",
    "source": "Boiler permits",
    "records": 39,
@@ -1888,7 +1888,7 @@
   {
    "layer": "sec604",
    "status": "no_records",
-   "ms": 803,
+   "ms": 411,
    "datasetId": "75h8-2zhw",
    "source": "Section 604 elevated elements affidavits",
    "records": 0,
@@ -1898,7 +1898,7 @@
   {
    "layer": "building_inspections",
    "status": "ok",
-   "ms": 1680,
+   "ms": 1150,
    "datasetId": "vckc-dh2h",
    "source": "DBI building inspections",
    "records": 200,
@@ -1908,7 +1908,7 @@
   {
    "layer": "dbi_complaints",
    "status": "ok",
-   "ms": 1102,
+   "ms": 473,
    "datasetId": "gm2e-bten",
    "source": "DBI complaints (all divisions)",
    "records": 5,
@@ -1918,7 +1918,7 @@
   {
    "layer": "dbi_nov",
    "status": "ok",
-   "ms": 571,
+   "ms": 525,
    "datasetId": "nbtm-fbw5",
    "source": "DBI notices of violation",
    "records": 2,
@@ -1928,7 +1928,7 @@
   {
    "layer": "softstory_padded",
    "status": "no_records",
-   "ms": 860,
+   "ms": 8391,
    "datasetId": "beah-shgi",
    "source": "Soft-story program list (padded lot)",
    "records": 0,
@@ -1938,7 +1938,7 @@
   {
    "layer": "fire_incidents",
    "status": "ok",
-   "ms": 1689,
+   "ms": 926,
    "datasetId": "wr8u-xric",
    "source": "SFFD fire incidents",
    "records": 112,
@@ -1948,7 +1948,7 @@
   {
    "layer": "fire_violations",
    "status": "ok",
-   "ms": 631,
+   "ms": 8323,
    "datasetId": "4zuq-2cbe",
    "source": "SFFD fire code violations",
    "records": 41,
@@ -1958,7 +1958,7 @@
   {
    "layer": "fire_inspections",
    "status": "ok",
-   "ms": 1803,
+   "ms": 1451,
    "datasetId": "wb4c-6hwj",
    "source": "SFFD fire inspections",
    "records": 200,
@@ -1968,7 +1968,7 @@
   {
    "layer": "fire_permits",
    "status": "ok",
-   "ms": 698,
+   "ms": 592,
    "datasetId": "893e-xam6",
    "source": "SFFD fire permits (ESS, tanks, hazmat, ERRCS)",
    "records": 23,
@@ -1978,7 +1978,7 @@
   {
    "layer": "fire_complaints",
    "status": "ok",
-   "ms": 555,
+   "ms": 617,
    "datasetId": "2wsq-7wmv",
    "source": "SFFD fire safety complaints",
    "records": 15,
@@ -1988,7 +1988,7 @@
   {
    "layer": "fire_calls",
    "status": "ok",
-   "ms": 1345,
+   "ms": 1299,
    "datasetId": "nuek-vuh3",
    "source": "SFFD/EMS dispatched calls near the block",
    "records": 392,
@@ -1998,7 +1998,7 @@
   {
    "layer": "burn_1906",
    "status": "ok",
-   "ms": 1526,
+   "ms": 508,
    "datasetId": "ff3a-iqhv",
    "source": "Area burned after the 1906 earthquake",
    "records": 1,
@@ -2008,7 +2008,7 @@
   {
    "layer": "liquefaction",
    "status": "ok",
-   "ms": 520,
+   "ms": 9632,
    "datasetId": "i4t7-35u3",
    "source": "Soil liquefaction hazard zone",
    "records": 1,
@@ -2018,7 +2018,7 @@
   {
    "layer": "schools",
    "status": "no_records",
-   "ms": 796,
+   "ms": 499,
    "datasetId": "7e7j-59qk",
    "source": "Schools within 150 m",
    "records": 0,
@@ -2028,7 +2028,7 @@
   {
    "layer": "storm_inlets",
    "status": "ok",
-   "ms": 6114,
+   "ms": 635,
    "datasetId": "jtgq-b7c5",
    "source": "Storm drain inlets within 60 m (runoff path)",
    "records": 7,
@@ -2038,7 +2038,7 @@
   {
    "layer": "entertainment",
    "status": "ok",
-   "ms": 5203,
+   "ms": 479,
    "datasetId": "86e8-rfem",
    "source": "Places of entertainment within 60 m",
    "records": 1,
@@ -2048,7 +2048,7 @@
   {
    "layer": "businesses",
    "status": "ok",
-   "ms": 663,
+   "ms": 442,
    "datasetId": "g8m3-pdis",
    "source": "Registered businesses at the address (counts/types only)",
    "records": 32,
@@ -2058,7 +2058,7 @@
   {
    "layer": "police_calls",
    "status": "no_records",
-   "ms": 771,
+   "ms": 9824,
    "datasetId": "gnap-fj3t",
    "source": "SFPD calls near the corner (count only)",
    "records": 0,
@@ -2068,7 +2068,7 @@
   {
    "layer": "esf4_stations",
    "status": "ok",
-   "ms": 260,
+   "ms": 187,
    "datasetId": "Firefighting_ESF_4/0",
    "source": "SF DEM fire stations",
    "records": 12,
@@ -2078,7 +2078,7 @@
   {
    "layer": "esf4_cisterns",
    "status": "ok",
-   "ms": 687,
+   "ms": 315,
    "datasetId": "Firefighting_ESF_4/2",
    "source": "SF DEM cisterns",
    "records": 1,
@@ -2088,7 +2088,7 @@
   {
    "layer": "esf4_hydrants_hp",
    "status": "ok",
-   "ms": 1660,
+   "ms": 281,
    "datasetId": "Firefighting_ESF_4/3",
    "source": "SF DEM AWSS high-pressure hydrants",
    "records": 24,
@@ -2098,7 +2098,7 @@
   {
    "layer": "esf4_hydrants_lp",
    "status": "ok",
-   "ms": 341,
+   "ms": 449,
    "datasetId": "Firefighting_ESF_4/4",
    "source": "SF DEM low-pressure hydrants",
    "records": 21,
@@ -2108,7 +2108,7 @@
   {
    "layer": "esf4_callboxes",
    "status": "ok",
-   "ms": 359,
+   "ms": 223,
    "datasetId": "Firefighting_ESF_4/1",
    "source": "SF DEM fire alarm call boxes",
    "records": 5,
@@ -2118,7 +2118,7 @@
   {
    "layer": "esf4_first_run",
    "status": "ok",
-   "ms": 412,
+   "ms": 204,
    "datasetId": "Firefighting_ESF_4/9",
    "source": "First-run station boundary",
    "records": 1,
@@ -2128,7 +2128,7 @@
   {
    "layer": "esf4_battalion",
    "status": "ok",
-   "ms": 281,
+   "ms": 341,
    "datasetId": "Firefighting_ESF_4/6",
    "source": "Fire battalion",
    "records": 1,
@@ -2138,7 +2138,7 @@
   {
    "layer": "trolley_wires",
    "status": "ok",
-   "ms": 322,
+   "ms": 274,
    "datasetId": "Public Works Emergency Response Layers/5",
    "source": "Muni overhead trolley wires",
    "records": 4,
@@ -2148,7 +2148,7 @@
   {
    "layer": "subsidewalk_yes",
    "status": "ok",
-   "ms": 274,
+   "ms": 260,
    "datasetId": "ClaritiMapLayers2_WFL1/61",
    "source": "Sub-sidewalk basements (confirmed)",
    "records": 9,
@@ -2158,7 +2158,7 @@
   {
    "layer": "subsidewalk_maybe",
    "status": "no_records",
-   "ms": 211,
+   "ms": 174,
    "datasetId": "ClaritiMapLayers2_WFL1/60",
    "source": "Sub-sidewalk basements (maybe)",
    "records": 0,
@@ -2168,7 +2168,7 @@
   {
    "layer": "dpw_trees",
    "status": "no_records",
-   "ms": 300,
+   "ms": 571,
    "datasetId": "ClaritiMapLayers2_WFL1/57",
    "source": "DPW-maintained street trees",
    "records": 0,
@@ -2178,7 +2178,7 @@
   {
    "layer": "undergrounded",
    "status": "ok",
-   "ms": 200,
+   "ms": 272,
    "datasetId": "ClaritiMapLayers2_WFL1/63",
    "source": "Undergrounded streets (no overhead utility wires)",
    "records": 3,
@@ -2188,7 +2188,7 @@
   {
    "layer": "sro_city",
    "status": "no_records",
-   "ms": 259,
+   "ms": 529,
    "datasetId": "City_Funded_or_Operated_SROs_List_/0",
    "source": "City SRO list (elevator flag)",
    "records": 0,
@@ -2198,7 +2198,7 @@
   {
    "layer": "sro_cmtl",
    "status": "no_records",
-   "ms": 237,
+   "ms": 726,
    "datasetId": "CMTL_SROs/0",
    "source": "SRO unit counts (2016)",
    "records": 0,
@@ -2208,7 +2208,7 @@
   {
    "layer": "sro_all",
    "status": "no_records",
-   "ms": 223,
+   "ms": 626,
    "datasetId": "all_sro_point_wEHD/0",
    "source": "All SROs (2020)",
    "records": 0,
@@ -2218,7 +2218,7 @@
   {
    "layer": "adult_residential",
    "status": "no_records",
-   "ms": 246,
+   "ms": 238,
    "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/2",
    "source": "Adult residential facilities nearby",
    "records": 0,
@@ -2228,7 +2228,7 @@
   {
    "layer": "rcfe",
    "status": "no_records",
-   "ms": 303,
+   "ms": 483,
    "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/5",
    "source": "Residential care for the elderly nearby",
    "records": 0,
@@ -2238,7 +2238,7 @@
   {
    "layer": "daycare24",
    "status": "no_records",
-   "ms": 294,
+   "ms": 240,
    "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/3",
    "source": "24-hour day care nearby",
    "records": 0,
@@ -2248,7 +2248,7 @@
   {
    "layer": "schools_esf6",
    "status": "no_records",
-   "ms": 289,
+   "ms": 401,
    "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/1",
    "source": "Schools (ESF-6) nearby",
    "records": 0,
@@ -2258,7 +2258,7 @@
   {
    "layer": "hazmat_active",
    "status": "ok",
-   "ms": 296,
+   "ms": 425,
    "datasetId": "Oil_and_Hazards_ESF_10/1",
    "source": "Active hazmat facilities",
    "records": 9,
@@ -2268,7 +2268,7 @@
   {
    "layer": "contaminated_land",
    "status": "no_records",
-   "ms": 227,
+   "ms": 409,
    "datasetId": "Oil_and_Hazards_ESF_10/0",
    "source": "Contaminated land cleanups",
    "records": 0,
@@ -2278,7 +2278,7 @@
   {
    "layer": "gas_stations",
    "status": "no_records",
-   "ms": 244,
+   "ms": 504,
    "datasetId": "Logistics_and_Fuel_ESF_7/0",
    "source": "Gas stations nearby",
    "records": 0,
@@ -2288,7 +2288,7 @@
   {
    "layer": "generators",
    "status": "no_records",
-   "ms": 226,
+   "ms": 296,
    "datasetId": "Water_and_Utilities_ESF_12/0",
    "source": "Registered generators nearby",
    "records": 0,
@@ -2298,7 +2298,7 @@
   {
    "layer": "substations",
    "status": "ok",
-   "ms": 197,
+   "ms": 315,
    "datasetId": "Water_and_Utilities_ESF_12/4",
    "source": "Electrical substations nearby",
    "records": 1,
@@ -2308,7 +2308,7 @@
   {
    "layer": "gas_pipeline",
    "status": "no_records",
-   "ms": 198,
+   "ms": 314,
    "datasetId": "Water_and_Utilities_ESF_12/5",
    "source": "Natural gas pipelines (national scale)",
    "records": 0,
@@ -2318,7 +2318,7 @@
   {
    "layer": "medical",
    "status": "no_records",
-   "ms": 185,
+   "ms": 312,
    "datasetId": "Health_and_Medical_ESF_8/0",
    "source": "Medical facilities nearby",
    "records": 0,
@@ -2328,7 +2328,7 @@
   {
    "layer": "hospitals",
    "status": "ok",
-   "ms": 242,
+   "ms": 274,
    "datasetId": "SF_HOSPITALS/0",
    "source": "Hospitals within 3 km",
    "records": 5,
@@ -2338,7 +2338,7 @@
   {
    "layer": "helipads",
    "status": "ok",
-   "ms": 201,
+   "ms": 282,
    "datasetId": "Transportation_ESF_1/7",
    "source": "Hospital helipads within 3 km",
    "records": 1,
@@ -2348,7 +2348,7 @@
   {
    "layer": "priority_routes",
    "status": "ok",
-   "ms": 440,
+   "ms": 369,
    "datasetId": "Transportation_ESF_1/10",
    "source": "Priority (emergency) routes",
    "records": 6,
@@ -2358,7 +2358,7 @@
   {
    "layer": "traffic_cams",
    "status": "ok",
-   "ms": 424,
+   "ms": 263,
    "datasetId": "Transportation_ESF_1/9",
    "source": "Caltrans traffic cameras within 1.5 km",
    "records": 2,
@@ -2368,7 +2368,7 @@
   {
    "layer": "muni_metro",
    "status": "no_records",
-   "ms": 212,
+   "ms": 408,
    "datasetId": "Transportation_ESF_1/4",
    "source": "Muni Metro light rail lines nearby",
    "records": 0,
@@ -2378,7 +2378,7 @@
   {
    "layer": "softstory_esf3",
    "status": "no_records",
-   "ms": 424,
+   "ms": 440,
    "datasetId": "Public_Works_and_Engineering_ESF_3/3",
    "source": "Soft-story parcels nearby (exposures)",
    "records": 0,
@@ -2388,7 +2388,7 @@
   {
    "layer": "ev_chargers",
    "status": "ok",
-   "ms": 210,
+   "ms": 250,
    "datasetId": "SF_EV_CHARGERS/0",
    "source": "EV chargers nearby",
    "records": 1,
@@ -2398,7 +2398,7 @@
   {
    "layer": "ev_chargeup",
    "status": "no_records",
-   "ms": 602,
+   "ms": 317,
    "datasetId": "ChargeUp_SF_(view)/0",
    "source": "ChargeUp SF curbside chargers",
    "records": 0,
@@ -2408,7 +2408,7 @@
   {
    "layer": "installed_solar",
    "status": "no_records",
-   "ms": 370,
+   "ms": 288,
    "datasetId": "Installed _Solar/0",
    "source": "Installed solar (city layer)",
    "records": 0,
@@ -2418,7 +2418,7 @@
   {
    "layer": "solar_potential",
    "status": "no_records",
-   "ms": 229,
+   "ms": 385,
    "datasetId": "Solar_Potential/0",
    "source": "Rooftop solar potential",
    "records": 0,
@@ -2428,7 +2428,7 @@
   {
    "layer": "cooking_fires",
    "status": "no_records",
-   "ms": 370,
+   "ms": 453,
    "datasetId": "cooking_fires_19/0",
    "source": "Cooking fire locations (city analysis)",
    "records": 0,
@@ -2438,7 +2438,7 @@
   {
    "layer": "hz_tsunami",
    "status": "no_records",
-   "ms": 446,
+   "ms": 407,
    "datasetId": "Explore_Hazards_WFL1/9",
    "source": "Tsunami inundation zone",
    "records": 0,
@@ -2448,7 +2448,7 @@
   {
    "layer": "hz_landslide",
    "status": "ok",
-   "ms": 705,
+   "ms": 382,
    "datasetId": "Explore_Hazards_WFL1/11",
    "source": "Landslide hazard zone",
    "records": 1,
@@ -2458,7 +2458,7 @@
   {
    "layer": "hz_san_andreas",
    "status": "ok",
-   "ms": 249,
+   "ms": 383,
    "datasetId": "Explore_Hazards_WFL1/10",
    "source": "San Andreas M7.8 shaking scenario",
    "records": 1,
@@ -2468,7 +2468,7 @@
   {
    "layer": "hz_hayward",
    "status": "ok",
-   "ms": 610,
+   "ms": 273,
    "datasetId": "Explore_Hazards_WFL1/12",
    "source": "Hayward M7.0 shaking scenario",
    "records": 1,
@@ -2478,7 +2478,7 @@
   {
    "layer": "hz_liquefaction",
    "status": "ok",
-   "ms": 582,
+   "ms": 299,
    "datasetId": "Explore_Hazards_WFL1/13",
    "source": "Soil liquefaction hazard (Explore Hazards)",
    "records": 1,
@@ -2488,7 +2488,7 @@
   {
    "layer": "hz_flood",
    "status": "no_records",
-   "ms": 245,
+   "ms": 261,
    "datasetId": "Explore_Hazards_WFL1/4",
    "source": "100-year storm flood risk",
    "records": 0,
@@ -2498,7 +2498,7 @@
   {
    "layer": "hz_heat",
    "status": "ok",
-   "ms": 434,
+   "ms": 338,
    "datasetId": "Explore_Hazards_WFL1/2",
    "source": "Heat vulnerability index",
    "records": 1,
@@ -2508,7 +2508,7 @@
   {
    "layer": "hz_air",
    "status": "ok",
-   "ms": 502,
+   "ms": 241,
    "datasetId": "Explore_Hazards_WFL1/0",
    "source": "Air pollutant exposure zone",
    "records": 1,
@@ -2518,7 +2518,7 @@
   {
    "layer": "hz_wildfire",
    "status": "ok",
-   "ms": 776,
+   "ms": 310,
    "datasetId": "Wildfire_Hazard_2025/0",
    "source": "Wildfire hazard 2025",
    "records": 1,
@@ -2528,7 +2528,7 @@
   {
    "layer": "hz_reservoir",
    "status": "no_records",
-   "ms": 1356,
+   "ms": 207,
    "datasetId": "Explore_Hazards_WFL1/8",
    "source": "Reservoir inundation hazard",
    "records": 0,
@@ -2538,7 +2538,7 @@
   {
    "layer": "weather",
    "status": "ok",
-   "ms": 1600,
+   "ms": 737,
    "datasetId": "open-meteo",
    "source": "Open-Meteo current conditions",
    "records": 1,
@@ -2548,7 +2548,7 @@
   {
    "layer": "air_quality",
    "status": "ok",
-   "ms": 1662,
+   "ms": 708,
    "datasetId": "open-meteo-aq",
    "source": "Open-Meteo air quality",
    "records": 1,
@@ -2558,7 +2558,7 @@
   {
    "layer": "nws_alerts",
    "status": "no_records",
-   "ms": 877,
+   "ms": 741,
    "datasetId": "nws",
    "source": "NWS active alerts at the point",
    "records": 0,
@@ -2568,7 +2568,7 @@
   {
    "layer": "earthquakes",
    "status": "ok",
-   "ms": 1509,
+   "ms": 472,
    "datasetId": "usgs",
    "source": "USGS earthquakes M2+ within 50 km, last 7 days",
    "records": 2,
@@ -2578,7 +2578,7 @@
   {
    "layer": "epa_frs",
    "status": "ok",
-   "ms": 2073,
+   "ms": 1472,
    "datasetId": "epa-frs",
    "source": "EPA FRS regulated facilities within 0.1 mi",
    "records": 68,
@@ -2588,7 +2588,7 @@
   {
    "layer": "wikipedia",
    "status": "ok",
-   "ms": 467,
+   "ms": 321,
    "datasetId": "wikipedia",
    "source": "Wikipedia articles within 300 m",
    "records": 20,
@@ -2598,7 +2598,7 @@
   {
    "layer": "sanborn",
    "status": "ok",
-   "ms": 1148,
+   "ms": 192,
    "datasetId": "loc-sanborn",
    "source": "Library of Congress Sanborn fire insurance maps, San Francisco",
    "records": 40,
@@ -2607,11 +2607,11 @@
   },
   {
    "layer": "osm",
-   "status": "fetch_failed",
-   "ms": 735,
+   "status": "ok",
+   "ms": 35739,
    "datasetId": "osm-overpass",
    "source": "OpenStreetMap building, entrances and access tags",
-   "records": 0,
+   "records": 37,
    "asOf": "2026-10-22",
    "fetchedAt": "2026-10-22"
   }
@@ -2747,14 +2747,14 @@
    }
   ]
  },
- "fetchedAt": "2026-10-22T13:14:00-0700",
+ "fetchedAt": "2026-10-22T13:32:28-0700",
  "meta": {
   "footprintAsOf": "2023-09-11",
   "heightSource": "2010 LiDAR (hgt_median_m)",
   "footprintAreaM2": 1284,
   "sourcesQueried": 88,
-  "sourcesWithRecords": 58,
-  "fetchWallMs": 7610,
+  "sourcesWithRecords": 59,
+  "fetchWallMs": 38762,
   "lotAreaM2": 2187,
   "buildingAreaM2": 31825
  }
