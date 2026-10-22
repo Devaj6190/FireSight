@@ -1264,6 +1264,11 @@ def build(bid):
         prev = json.load(open(out, encoding="utf-8"))
         if prev.get("fallback"):
             building["fallback"] = prev["fallback"]
+        # OSM lookups can fail on CI: an empty street/entrance result keeps the last good one instead of blanking the site card
+        ps, ns = prev.get("site") or {}, building.get("site") or {}
+        for k in ("sides", "entrances"):
+            if ps.get(k) and not ns.get(k):
+                ns[k] = ps[k]
         for k, v in (prev.get("meta") or {}).items():  # refresh.py's keys (refreshedAt, ...) survive a local rebuild
             building["meta"].setdefault(k, v)
     building["meta"]["lotAreaM2"] = round(num(a0.get("lot_area")) * 0.0929) if num(a0.get("lot_area")) else None

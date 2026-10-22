@@ -18,5 +18,10 @@
   }
  ],
  "hotspots": [],
- "assembledHotspots": []
+ "assembledHotspots": [],
+ "insideFloors": [
+  1,
+  2,
+  3
+ ]
 }

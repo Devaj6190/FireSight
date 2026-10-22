@@ -1840,7 +1840,28 @@
  ],
  "structure": null,
  "site": {
-  "sides": [],
+  "sides": [
+   {
+    "edge": 0,
+    "street": "Haight Street",
+    "bearingDeg": 351
+   },
+   {
+    "edge": 1,
+    "street": "Haight Street",
+    "bearingDeg": 261
+   },
+   {
+    "edge": 12,
+    "street": "Masonic Avenue",
+    "bearingDeg": 171
+   },
+   {
+    "edge": 17,
+    "street": "Haight Street",
+    "bearingDeg": 81
+   }
+  ],
   "entrances": [],
   "floorAreaM2": 310,
   "maxSpanM": 25.8,
