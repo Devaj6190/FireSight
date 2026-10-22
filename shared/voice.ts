@@ -83,6 +83,13 @@ function peopleBeats(b: Building, verified: Pin[], fire: number | null, reports:
     out.push(beat(`Dispatch reports people${f !== null ? `, ${floorName(f)}` : ""}${f !== null && fire !== null && f !== fire ? `, ${Math.abs(f - fire) === 1 ? "one floor" : `${Math.abs(f - fire)} floors`} ${f > fire ? "above" : "below"} the fire` : ""}.`, [r]));
   }
   const counts = verified.filter(isPeople).sort((x, y) => (floorOf(x) ?? 999) - (floorOf(y) ?? 999));
+  // The fire floor and the floors above it first, then the recorded counts for the whole building.
+  if (fire !== null && !counts.some((p) => floorOf(p) === fire)) {
+    const load = officeLoadPerFloor(b);
+    const above = fire < b.floors ? (fire + 1 === b.floors ? `, or on floor ${b.floors} above it` : `, or on floors ${fire + 1} to ${b.floors} above it`) : "";
+    const span = above ? Array.from({ length: b.floors - fire + 1 }, (_, i) => fire + i) : [fire];
+    out.push(beat(`No public headcount on ${floorName(fire)}${above}.${load ? ` Office code allows up to about ${load} people per floor.` : ""}`, [], span));
+  }
   const placed = counts.filter((p) => floorOf(p) !== null).slice(0, 3);
   const loose = counts.filter((p) => floorOf(p) === null).slice(0, 1);
   const count = (p: Pin) => p.label.match(/(\d[\d,]*)\s+(people|persons|occupants|units|rooms)/i);
@@ -97,12 +104,6 @@ function peopleBeats(b: Building, verified: Pin[], fire: number | null, reports:
   if (parts.length) {
     const src = spokenSource(placed[0] ?? loose[0]);
     out.push(beat(`People on record: ${join(parts)}${src ? `, ${src}` : ""}.`, [...placed, ...loose]));
-  }
-  if (fire !== null && !counts.some((p) => floorOf(p) === fire)) {
-    const load = officeLoadPerFloor(b);
-    const above = fire < b.floors ? (fire + 1 === b.floors ? `, or on floor ${b.floors} above it` : `, or on floors ${fire + 1} to ${b.floors} above it`) : "";
-    const span = above ? Array.from({ length: b.floors - fire + 1 }, (_, i) => fire + i) : [fire];
-    out.push(beat(`No public headcount on ${floorName(fire)}${above}.${load ? ` Office code allows up to about ${load} people per floor.` : ""}`, [], span));
   }
   return out;
 }

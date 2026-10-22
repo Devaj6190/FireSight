@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FireSight AR</title>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; background: #0d0f12; color: #f4f3ee; font: 15px/1.4 'IBM Plex Sans', system-ui, sans-serif; }
+  model-viewer { width: 100%; height: 100%; background: radial-gradient(circle at 50% 40%, #1b1f26, #0d0f12 70%); --poster-color: transparent; }
+  .top { position: fixed; top: 0; left: 0; right: 0; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
+  .top > * { pointer-events: auto; }
+  .title b { display: block; font-size: 18px; } .title span { font: 500 11px/1.4 'IBM Plex Mono', monospace; letter-spacing: .08em; color: #9aa0a8; text-transform: uppercase; }
+  a.back { color: #f4f3ee; text-decoration: none; border: 1px solid #2a2f37; background: rgba(13,15,18,.8); border-radius: 10px; padding: 10px 14px; min-height: 44px; box-sizing: border-box; }
+  .legend { position: fixed; left: 16px; bottom: 96px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; background: rgba(13,15,18,.8); border: 1px solid #2a2f37; border-radius: 10px; padding: 10px 12px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
+  button[slot="ar-button"] { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); border: 0; border-radius: 12px; padding: 16px 26px; min-height: 52px; background: #ff9f1c; color: #0d0f12; font: 700 16px/1 'IBM Plex Sans', system-ui, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .note { position: fixed; left: 16px; top: 96px; max-width: 260px; margin: 0; font-size: 12px; color: #9aa0a8; }
+  #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #9aa0a8; }
+</style>
+</head>
+<body>
+<model-viewer id="mv" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1.1" camera-orbit="35deg 70deg auto" alt="140 New Montgomery St, floors separated: fire floor 22 in red, floors above in amber, floors with recorded people in blue">
+  <button slot="ar-button">Place on the table</button>
+  <div id="status" slot="poster">Loading the building…</div>
+</model-viewer>
+<div class="top"><div class="title"><b id="name">140 New Montgomery St</b><span id="sub">Fire floor 22 · 1:300 · from city records</span></div><a class="back" href="/">← Back</a></div>
+<div class="legend"><div><i style="background:#e5261f"></i>Fire floor</div><div><i style="background:#ff9f1c"></i>Floors above the fire</div><div><i style="background:#3b82f6"></i>People on record</div></div>
+<p class="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
+<script>
+  // ?b=<building id>; only buildings with a generated model (web/scripts/ar-model.mts) are linked.
+  const id = (new URLSearchParams(location.search).get('b') || 'sf-3722080').replace(/[^\w-]/g, '');
+  document.getElementById('mv').src = `/ar/${id}.glb`;
+  document.getElementById('mv').addEventListener('error', () => { document.getElementById('status').textContent = 'Could not load the model.'; });
+</script>
+</body>
+</html>
