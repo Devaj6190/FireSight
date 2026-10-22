@@ -107,3 +107,18 @@ describe("briefFromRecords (no network, no saved brief)", () => {
     expect(dropped).toEqual([]);
   });
 });
+
+import { spokenSizeUp, speakable } from "../../shared/voice.ts";
+
+describe("spokenSizeUp (voice readout from cited records)", () => {
+  it("leads with the address, then the dispatch floor and what is near it, ends with unknowns", () => {
+    const lines = spokenSizeUp(hero());
+    expect(lines[0]).toBe("400 Duboce Ave. 4 stories, type 5, built 1905.");
+    expect(lines[1]).toMatch(/^Dispatch reports smoke from unit 311, floor 3\.$/);
+    expect(lines[2]).toContain("Unit 311 structural work, per building permit 2019");
+    expect(lines.at(-1)).toBe("Unverifiable, no public record: stairs, standpipe.");
+  });
+  it("speaks units", () => {
+    expect(speakable("BATTERY ROOM 33.6 GAL")).toBe("Battery room 33.6 gallons");
+  });
+});
