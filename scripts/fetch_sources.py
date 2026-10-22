@@ -27,7 +27,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "r
 PERSONAL = re.compile(
     r"(phone|e_?mail|contact|manager|owner|holder|inspector|taken_by|changed_by|cancelled_by|"
     r"checked_by|mailing|mail_|applicant|licensee|first_?name|last_?name|\bfax\b|website|"
-    r"plan_checked|ownership|dba_name_associated)",
+    r"plan_checked|ownership|dba_name_associated|administrator|created_user|last_edited_user|creator|editor|^inspector$)",
     re.I,
 )
 
