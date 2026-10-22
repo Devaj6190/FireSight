@@ -1,4 +1,3 @@
-import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import type { BriefLine, Building } from "../../shared/building.ts";
 import { evaluateCompliance } from "../../shared/compliance.ts";
@@ -83,8 +82,3 @@ app.post("/api/compliance", async (c) => {
 
 export default app;
 
-if (process.env.NODE_ENV !== "test") {
-  const port = Number(process.env.PORT ?? 8787);
-  serve({ fetch: app.fetch, port });
-  console.log(`FireSight API on http://localhost:${port}`);
-}
