@@ -71,3 +71,4 @@
 .fsa-row.fire .fsa-sec, .fsa-row.bring .fsa-sec { color: var(--b-action); }
 .fsa-row.access button { border-left-color: var(--b-info); }
 .fsa-row.verify button { border-left-style: dashed; }
+.fsa-row.people button, .fsa-row.fire button { font-size: 16px; line-height: 22px; }
