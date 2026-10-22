@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react'
 import type { Building, FloorFacts, Pin, Severity } from '../../../shared/building.ts'
 import { useStore } from '../store.ts'
 import { sourceUrl } from './model.ts'
+import { SiteCard } from './SiteCard.tsx'
 import './floor.css'
 
 const RANK: Record<Severity, number> = { danger: 0, caution: 1, info: 2 }
@@ -129,6 +130,7 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
 
   return (
     <section className="floor-panel" aria-label={`${floorName(floor)} information`}>
+      <SiteCard building={b} floor={floor} />
       <div className="floor-head">
         <h2 className="floor-title">{floorName(floor)}</h2>
         <div className="floor-step">
