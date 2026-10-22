@@ -22,7 +22,7 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b }: { b: Building }) {
-  const { phase, target, setPhase } = useStore()
+  const { phase, target, lit, setPhase } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -99,7 +99,7 @@ function Slabs({ b }: { b: Building }) {
       },
     })
     run({
-      tl, pose, home: home.current!, target, hot,
+      tl, pose, home: home.current!, target, lit, hot,
       slabs: slabs.current, basement: hasB1 ? basement.current : null,
       edges: levels.map((l) => l.edge.color), fades: levels.map((l) => l.fade), pins: groups.map((g) => g.reveal),
       floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b), aspect: size.width / size.height,
@@ -117,10 +117,10 @@ function Slabs({ b }: { b: Building }) {
     }
     if (phase === 'collapsing') return play(collapse, 'assembled')
     if (phase === 'exploded') {
-      if (target !== null) navigator.vibrate?.(20)
+      if (target !== null || lit.length) navigator.vibrate?.(20)
       return play(focus)
     }
-  }, [phase, target]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [phase, target, lit]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
     <PinMarker key={g.key} pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} />
