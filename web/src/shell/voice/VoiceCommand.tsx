@@ -153,10 +153,7 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
   function toggle() {
     if (!canListen) return state === 'speaking' ? (stopSpeaking(), setState('idle')) : say(spokenBrief(b))
     if (state === 'listening') return stopRef.current()
-    if (state === 'speaking') {
-      stopSpeaking()
-      return setState('idle')
-    }
+    // Talking over the readout starts listening straight away, so an update ("people trapped on 23") is never lost.
     stopSpeaking()
     setState('listening')
     setCaption('Listening…')
