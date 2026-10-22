@@ -117,3 +117,5 @@ New (12:45): auto-refresh. The brief leads with "New since last refresh" lines w
 Rebalance (12:57): Lane C also builds `<BriefSheet/>` (approve/strike, claim chips, source tails) and `<EvalScreen/>` in `web/src/shell/brief/`.
 
 13:00: the hero is 140 New Montgomery. Add compliance C5 (energy storage, CFC 1207) and C7 (high-rise annual inspection), show C1 only for R-1/R-2, update the canned questions, and precompute for sf-3722080.
+
+**13:10: read `docs/plan/plan-v4-hero.md` section 2 (your lane) and section 1 (the new demo script).** Floor 0 means B1 (below grade), per the contract.
