@@ -38,14 +38,15 @@ const TOP = 36 // px reserved for the status row
 // Screen-space declutter. Every pin reports its stem top in screen px and its chip width; one pass per frame picks
 // the chip's side (toward screen centre), clamps it on screen, pushes overlapping chips up, and glides them there.
 // Pins read last frame's result: one frame of lag is invisible. ponytail: greedy O(n^2), fine under the 40-pin cap.
-type Slot = { ax: number; ay: number; w: number; on: boolean; x: number; y: number; fresh: boolean } // x, y: chip offset from stem top, px, y up
+type Slot = { ax: number; ay: number; w: number; on: boolean; x: number; y: number; fresh: boolean; show: number; rank: number } // x, y: chip offset from stem top, px, y up; show: 0 when pushed off the top
 const slots = new Map<string, Slot>()
 
 export function Declutter() {
   const size = useThree((s) => s.size)
   useFrame(() => {
     const placed: { x0: number; x1: number; top: number; bottom: number }[] = []
-    for (const s of [...slots.values()].filter((s) => s.on).sort((a, b) => b.ay - a.ay)) {
+    for (const s of [...slots.values()].filter((s) => s.on)
+      .sort((a, b) => a.rank - b.rank || b.ay - a.ay)) { // danger keeps its spot; the rest fit around it
       const x0 = Math.min(Math.max(s.ax < size.width / 2 ? s.ax + 8 : s.ax - 8 - s.w, 8), size.width - 8 - s.w)
       let bottom = s.ay - GAP // screen y grows down; the chip sits just above its stem top
       for (let moved = true; moved; ) {
@@ -56,13 +57,16 @@ export function Declutter() {
             moved = true
           }
       }
-      bottom = Math.max(bottom, TOP + CHIP_H) // stay below the status row
-      placed.push({ x0, x1: x0 + s.w, top: bottom - CHIP_H, bottom })
+      // no room left under the status row: fade the chip out (dot and stem stay) instead of piling chips up there
+      const fits = bottom >= TOP + CHIP_H
+      bottom = Math.max(bottom, TOP + CHIP_H)
+      if (fits) placed.push({ x0, x1: x0 + s.w, top: bottom - CHIP_H, bottom })
       const tx = x0 - s.ax
       const ty = s.ay - bottom
       const k = s.fresh || reduce ? 1 : 0.16 // glide, except on first show
       s.x += (tx - s.x) * k
       s.y += (ty - s.y) * k
+      s.show += ((fits ? 1 : 0) - s.show) * (reduce ? 1 : 0.2)
       s.fresh = false
     }
   })
@@ -105,7 +109,7 @@ const glowMap = (() => {
 
 const overlay = (color: string) => new THREE.MeshBasicMaterial({ color, transparent: true, depthTest: false, depthWrite: false, fog: false, toneMapped: false })
 
-export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, number]; reveal: Reveal }) {
+export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?: number; at: [number, number, number]; reveal: Reveal; fade: { a: number } }) {
   const base = useRef<THREE.Mesh>(null)
   const stem = useRef<THREE.Group>(null)
   const chip = useRef<THREE.Group>(null)
@@ -128,7 +132,7 @@ export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, 
   const dot = useMemo(() => new THREE.CircleGeometry(4, 20), [])
   const world = useMemo(() => new THREE.Vector3(), [])
   const ndc = useMemo(() => new THREE.Vector3(), [])
-  const slot = useMemo<Slot>(() => ({ ax: 0, ay: 0, w: 180, on: false, x: 0, y: 0, fresh: true }), [])
+  const slot = useMemo<Slot>(() => ({ ax: 0, ay: 0, w: 180, on: false, x: 0, y: 0, fresh: true, show: 1, rank: SEVERITY_ORDER[pin.severity] }), [pin.severity])
   // register in the effect, not the memo: StrictMode's mount/unmount/mount would otherwise leave it deleted
   useEffect(() => {
     slots.set(pin.id, slot)
@@ -163,16 +167,17 @@ export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, 
     const pos = leader.geometry.attributes.position as THREE.BufferAttribute
     pos.setXYZ(1, slot.x < 0 ? slot.x + w : slot.x, slot.y, 0)
     pos.needsUpdate = true
-    mats.border.opacity = mats.bg.opacity = mats.dot.opacity = (leader.material as THREE.LineBasicMaterial).opacity = cv
-    label.current!.fillOpacity = sub.current!.fillOpacity = cv
+    const a = cv * fade.a * slot.show // focus dims the chips of faded floors with their slabs
+    mats.border.opacity = mats.bg.opacity = mats.dot.opacity = (leader.material as THREE.LineBasicMaterial).opacity = a
+    label.current!.fillOpacity = sub.current!.fillOpacity = a
     if (glow.current) {
       const beat = reduce ? 0 : Math.sin((clock.elapsedTime * 2 * Math.PI) / 1.2) // design.md: 1.2 s danger pulse
       glow.current.scale.setScalar(16 * (1 + 0.12 * beat) * v)
-      glow.current.material.opacity = (0.8 + 0.2 * beat) * v
+      glow.current.material.opacity = (0.8 + 0.2 * beat) * v * fade.a
     }
   })
 
-  const ev = pin.evidence[0]
+  const ev = pin.evidence[0] as Pin['evidence'][number] | undefined // dispatch and crew pins carry none
   return (
     <group position={at}>
       <mesh ref={base}>
@@ -207,7 +212,8 @@ export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, 
               renderOrder={13}
               onSync={measure(0)}
             >
-              {pin.label}
+              {/* ponytail: fixed cut so a chip fits a 360 px phone; the full label goes on the provenance card */}
+              {pin.label.length > 30 ? `${pin.label.slice(0, 29).trimEnd()}…` : pin.label}
             </Text>
             <Text
               ref={sub}
@@ -221,7 +227,8 @@ export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, 
               renderOrder={13}
               onSync={measure(1)}
             >
-              {`${SOURCE[ev.datasetId] ?? ev.source.toUpperCase()} · ${SNAPSHOT.has(ev.datasetId) ? 'AS OF ' : ''}${date(ev.asOf)}`}
+              {(ev ? `${SOURCE[ev.datasetId] ?? ev.source.toUpperCase()} · ${SNAPSHOT.has(ev.datasetId) ? 'AS OF ' : ''}${date(ev.asOf)}` : pin.origin.toUpperCase()) +
+                (more ? ` · +${more} MORE` : '')}
             </Text>
           </group>
         </group>

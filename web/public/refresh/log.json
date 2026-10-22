@@ -91,5 +91,67 @@
   "removed": [],
   "changed": [],
   "note": "no changes"
+ },
+ {
+  "at": "2026-10-22T20:16:09+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 6,
+  "ms": 42282,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:16:09+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 4,
+  "ms": 42659,
+  "added": [
+   {
+    "pinId": "permit-solar_pv-E202309129299",
+    "label": "ROOFTOP SOLAR PV PERMIT 2023 (ISSUED)"
+   },
+   {
+    "pinId": "permit-structural-EW20130402761",
+    "label": "STRUCTURAL WORK 2013"
+   }
+  ],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "construction-1244030",
+    "label": "TYPE D · 3 STORIES"
+   },
+   {
+    "pinId": "occupancy-units",
+    "label": "4 RESIDENTIAL UNITS"
+   }
+  ],
+  "note": "+2 -0 ~2 pins"
+ },
+ {
+  "at": "2026-10-22T20:16:51+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 60651,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:16:52+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40926,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: build failed: e.py\", line 880, in <module>\n    build(b)\n  File \"/home/runner/work/FireSight/FireSight/scripts/build_fixture.py\", line 264, in build\n    f0 = fp[0]\n         ~~^^^\nIndexError: list index out of range\n"
  }
 ]
