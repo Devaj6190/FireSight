@@ -341,6 +341,19 @@ def footprint_local(shape):
     return pts, lat0, lon0, abs(area) / 2
 
 
+def structure_of(bdir, apn):
+    t = (rows(bdir, "tall_building") or [None])[0]
+    if not t:
+        return None
+    ft = lambda v: (lambda xs: num(xs[-1]) if xs else None)(re.findall(r"\d+(?:\.\d+)?(?=\s*(?:'|ft|feet|$))", str(v or "")))
+    plan = re.findall(r"\d+", str(t.get("base_plan_size") or ""))
+    return {"system": t.get("structural_system"), "material": t.get("structural_material"), "description": t.get("description"),
+            "typicalStoryFt": ft(t.get("typ_story_height")), "firstStoryFt": ft(t.get("attyp_story_height")),
+            "basePlanFt": [int(plan[0]), int(plan[1])] if len(plan) >= 2 else None, "foundation": t.get("foundation_system"),
+            "storiesBelow": num(t.get("stories_below_grade")),
+            "source": {"datasetId": "5kya-mfst", "recordId": apn, "asOf": iso(t.get("collected_on")), "url": soda_url("5kya-mfst", "mapblocklot", apn)}}
+
+
 # ---------------------------------------------------------------- per-floor summary
 ORD = {1: "1st", 2: "2nd", 3: "3rd"}
 ROOM_RX = [(r"computer room|battery room", "Battery / computer room"), (r"server room", "Server room"),
@@ -1188,6 +1201,7 @@ def build(bid):
         "footprint": footprint, "heightM": height, "floors": floors, "floorHeightM": round(height / floors, 2),
         "yearBuilt": year_built, "constructionType": construction, "units": units, "rooms": rooms, "use": use,
         "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers, "floorFacts": floor_facts,
+        "structure": structure_of(bdir, apn),
         "resolution": {"apn": apn, "easBaseId": res.get("eas_baseid"), "aliases": aliases, "links": links},
         "fetchedAt": man["fetchedAt"],
         "meta": {"footprintAsOf": fp_asof, "heightSource": "2010 LiDAR (hgt_median_m)", "footprintAreaM2": round(area_m2),

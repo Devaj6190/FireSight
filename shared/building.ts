@@ -124,6 +124,18 @@ export interface Building {
   fetchedAt: string;
   fallback?: { brief: Brief; answers: Answer[] }; // precomputed, used when offline or slow
   floorFacts?: FloorFacts[]; // additive: one entry per floor (B1 only if a record says basement), bottom to top
+  // additive: structural facts from the Tall Building Inventory (5kya-mfst), null for buildings not in it
+  structure?: {
+    system: string | null; // "Steel Moment Frame - Space"
+    material: string | null; // "Steel"
+    description: string | null; // "L-shaped building; 26 story steel space frame"
+    typicalStoryFt: number | null; // 13
+    firstStoryFt: number | null; // 19
+    basePlanFt: [number, number] | null; // [160, 147]
+    foundation: string | null; // "Pile"
+    storiesBelow: number | null;
+    source: { datasetId: string; recordId: string; asOf: string; url: string };
+  } | null;
 }
 
 // Per-floor summary (additive, Lane B builds it): everything the public record says about one floor,
