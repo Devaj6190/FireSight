@@ -6,6 +6,7 @@ import { ComplianceStrip, LimitsPanel, SourcesDrawer } from './panels/index.ts'
 import { Provenance, ResolutionView } from './Provenance.tsx'
 import { Freshness, useRefreshRuns } from './Freshness.tsx'
 import { BUILDINGS, floorLabel, HERO_DISPATCH, localTime } from './model.ts'
+import { VoiceCommand } from './voice/VoiceCommand.tsx'
 import './phone.css'
 
 type Page = 'sizeup' | 'dispatch' | 'ask' | 'brief' | 'resolution' | 'records' | 'limits' | 'sources' | 'eval' | 'notes' | 'refresh' | 'crew' | 'pin'
@@ -77,6 +78,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
       {children}
       <div className="phone-scene-meta"><span>{phase.toUpperCase()}</span></div>
       <button className="phone-dispatch-shortcut" onClick={() => navigate('dispatch')}>Paste dispatch ↗</button>
+      <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} />
     </main>
     <section className={`phone-sheet ${expanded || selectedPin ? 'expanded' : ''}`} aria-label="Building information">
       <div className="phone-sheet-top"><button className="phone-handle" aria-label={expanded ? 'Collapse information sheet' : 'Expand information sheet'} aria-expanded={expanded} onClick={() => { if (selectedPin) { onSelectPin(undefined); setPage('sizeup') } setExpanded(!expanded) }}><span /></button><div className="phone-row"><span className="phone-eyebrow">{selected === 'pin' ? 'Source record' : tabs.find(t => t[0] === page)?.[1] ?? page}</span><button className="phone-close" onClick={() => { if (selectedPin) onSelectPin(undefined); setExpanded(false); setPage('sizeup') }}>Close ×</button></div></div>
