@@ -115,3 +115,5 @@ Built on `lane-c-ai`: API (section 4), `shared/client.ts` (section 6), complianc
 New (12:45): auto-refresh. The brief leads with "New since last refresh" lines when `meta.changesSinceLast.added` is not empty (`docs/handoff/refresh.md` section 4). Vercel: move `serve()` into `api/src/server.ts` (SETUP.md section 10).
 
 Rebalance (12:57): Lane C also builds `<BriefSheet/>` (approve/strike, claim chips, source tails) and `<EvalScreen/>` in `web/src/shell/brief/`.
+
+13:00: the hero is 140 New Montgomery. Add compliance C5 (energy storage, CFC 1207) and C7 (high-rise annual inspection), show C1 only for R-1/R-2, update the canned questions, and precompute for sf-3722080.

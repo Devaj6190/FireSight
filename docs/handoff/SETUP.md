@@ -6,6 +6,10 @@ Contents: 0 auto-refresh (docs/handoff/refresh.md) · 1 tools · 2 git workflow 
 
 ---
 
+## Decisions at 13:00 (Vidyut)
+- **The hero building is now 140 New Montgomery St** (parcel 3722/080, `web/public/buildings/sf-3722080.json`, 26 floors, 114.8 m). 400 Duboce stays cached. A replanned demo script is coming on the hub.
+- **Devaj owns the Vercel deploy:** `docs/handoff/deploy.md`.
+
 ## Rebalance (12:57, approved by Vidyut)
 Lanes B and C are ahead, so three must-have screens move off Lane D. Each owner edits only their own folder; Rohan places the finished components in his layout.
 
