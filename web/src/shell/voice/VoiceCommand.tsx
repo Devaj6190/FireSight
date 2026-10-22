@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import type { Answer, Building, Pin } from '../../../../shared/building.ts'
 import { ask, SUGGESTED_QUESTIONS } from '../../../../shared/client.ts'
 import { parseDispatchText } from '../../../../shared/dispatch.ts'
-import { reportBeats, spokenBeats, spokenSource, type Beat } from '../../../../shared/voice.ts'
-import { dispatchBuilding } from '../model.ts'
-import { canListen, canSpeak, listen, speak, stopSpeaking } from './speech.ts'
+import { reportBeats, spokenBrief, spokenSource, type Beat } from '../../../../shared/voice.ts'
+import { dispatchBuilding, dispatchPin } from '../model.ts'
+import { ack, canListen, canSpeak, listen, prefetch, speak, stopSpeaking } from './speech.ts'
 import './voice.css'
 
 type Props = {
@@ -39,6 +39,17 @@ function reportPin(text: string, floor: number): Pin {
   }
 }
 
+// The dispatch is parsed: build the brief it will produce and start fetching its audio now, while the model is still exploding.
+async function warmBrief(text: string, target: string | null, current: Building) {
+  try {
+    const base = target && target !== current.id ? ((await (await fetch(`${import.meta.env.BASE_URL}buildings/${target}.json`)).json()) as Building) : current
+    const next = { ...base, pins: [...base.pins.filter((p) => p.origin !== 'dispatch'), dispatchPin(text, base)] }
+    prefetch(spokenBrief(next).map((x) => x.text))
+  } catch {
+    // Prefetch is only an optimisation; the brief is still fetched when it is spoken.
+  }
+}
+
 export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onToggle, onAddPin }: Props) {
   const [state, setState] = useState<'idle' | 'listening' | 'thinking' | 'speaking'>('idle')
   const [caption, setCaption] = useState('')
@@ -65,11 +76,13 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
   useEffect(() => {
     if (pending.readout && b.pins.some((p) => p.origin === 'dispatch')) {
       pending.readout = false
-      say(spokenBeats(b))
+      say(spokenBrief(b))
     }
   }, [b])
 
   useEffect(() => () => stopRef.current(), [])
+  // Have the acknowledgement ready so it plays the instant a dispatch is heard.
+  useEffect(() => prefetch(['Copy.']), [])
 
   // Desktop shortcut for recording: V talks, Escape stops. Ignored while typing in a field.
   const toggleRef = useRef(toggle)
@@ -101,7 +114,7 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
       if (phase === 'assembled') onToggle()
       return say(['Opening the floors.'])
     }
-    if (/\b(size.?up|brief|read it|summary|what do we have)\b/i.test(t)) return say(spokenBeats(b))
+    if (/\b(size.?up|brief|read it|summary|what do we have)\b/i.test(t)) return say(spokenBrief(b))
 
     const target = dispatchBuilding(t)
     const reported = parseDispatchText(t).floor
@@ -116,7 +129,8 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
     if (target !== null || FIRE.test(t)) {
       setState('thinking')
       pending.readout = true
-      speak(['Copy.'])
+      ack('Copy.')
+      void warmBrief(t, target, b)
       try {
         await onDispatch(t)
       } catch (e) {
@@ -137,12 +151,9 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
   }
 
   function toggle() {
-    if (!canListen) return state === 'speaking' ? (stopSpeaking(), setState('idle')) : say(spokenBeats(b))
+    if (!canListen) return state === 'speaking' ? (stopSpeaking(), setState('idle')) : say(spokenBrief(b))
     if (state === 'listening') return stopRef.current()
-    if (state === 'speaking') {
-      stopSpeaking()
-      return setState('idle')
-    }
+    // Talking over the readout starts listening straight away, so an update ("people trapped on 23") is never lost.
     stopSpeaking()
     setState('listening')
     setCaption('Listening…')
@@ -152,7 +163,7 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
       (err) => {
         setState('idle')
         // Electron and some browsers expose the API without a speech service ("network"): read the size-up instead.
-        if (err === 'network' || err === 'service-not-allowed') return say(['Voice input needs Chrome here. Reading the size-up.', ...spokenBeats(b)])
+        if (err === 'network' || err === 'service-not-allowed') return say(['Voice input needs Chrome here. Reading the size-up.', ...spokenBrief(b)])
         setCaption(err === 'not-allowed' ? 'Microphone blocked. Allow it in the browser.' : err === 'no-speech' ? "Didn't catch that. Press V or tap the mic." : `Voice error: ${err}`)
       },
     )

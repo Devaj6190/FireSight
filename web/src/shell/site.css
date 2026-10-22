@@ -1,0 +1,21 @@
+/* Site card. Tokens only (--fs-*), so it follows the current shell and the Night Glass theme. */
+.site-card {
+  margin: 0 0 12px;
+  padding: 12px 14px 4px;
+  border: 1px solid var(--fs-line);
+  border-radius: 14px;
+  background: var(--fs-surface-strong, rgba(12, 15, 20, 0.86));
+  color: var(--fs-ink);
+  font: 400 14px/1.4 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.site-block { padding: 8px 0 10px; border-top: 1px solid var(--fs-line); }
+.site-block:first-child { border-top: 0; padding-top: 0; }
+.site-card h3 { margin: 0 0 6px; font: 600 12px/1.3 'IBM Plex Sans', system-ui, sans-serif; letter-spacing: 0.02em; color: var(--fs-muted); }
+.site-card ul { list-style: none; margin: 0 0 4px; padding: 0; }
+.site-card li { padding: 3px 0; font-size: 14px; }
+.site-card p { margin: 0 0 4px; font-size: 14px; color: var(--fs-muted); }
+.site-card small { display: block; margin-top: 1px; font-size: 12px; line-height: 1.35; color: var(--fs-muted); }
+.site-card li.site-src { padding-top: 0; }
+.site-card .site-flag { margin-top: 2px; }

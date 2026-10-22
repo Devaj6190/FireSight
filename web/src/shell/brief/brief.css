@@ -67,11 +67,12 @@
 .fsa-row button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; background: var(--fs-raise, var(--b-bg)); border: 1px solid transparent; border-left: 3px solid var(--b-muted); color: var(--b-ink); font: 400 14px/19px var(--b-sans); cursor: pointer; }
 .fsa-row button:disabled { cursor: default; opacity: 1; }
 .fsa-sec { font: 600 10px/13px var(--b-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--b-muted); }
-.fsa-row.people button { border-left-color: var(--b-danger); }
-.fsa-row.people .fsa-sec { color: var(--b-danger); }
+.fsa-row.people button { border-left-color: var(--b-info); }
+.fsa-row.people .fsa-sec { color: var(--b-info); }
 .fsa-row.fire button { border-left-color: var(--b-danger); }
 .fsa-row.fire .fsa-sec { color: var(--b-danger); }
-.fsa-row.bring button { border-left-color: var(--b-ink); }
-.fsa-row.access button { border-left-color: var(--b-info); }
+.fsa-row.bring button { border-left-color: var(--b-caution); }
+.fsa-row.bring .fsa-sec { color: var(--b-caution); }
+.fsa-row.access button { border-left-color: var(--b-line); }
 .fsa-row.verify button { border-left-style: dashed; }
 .fsa-row.people button, .fsa-row.fire button { font-size: 16px; line-height: 22px; }
