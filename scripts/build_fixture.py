@@ -261,10 +261,20 @@ def build(bid):
 
     # ---- geometry
     fp = rows(bdir, "footprint") or rows(bdir, "footprint_pt")
-    f0 = fp[0]
-    footprint, clat, clon, area_m2 = footprint_local(f0["shape"])
-    height = round(float(f0["hgt_median_m"]), 1)
-    fp_asof = iso(f0.get("data_as_of"))
+    prev_path = os.path.join(OUT, bid + ".json")
+    if fp:
+        f0 = fp[0]
+        footprint, clat, clon, area_m2 = footprint_local(f0["shape"])
+        height = round(float(f0["hgt_median_m"]), 1)
+        fp_asof = iso(f0.get("data_as_of"))
+    elif os.path.exists(prev_path):  # outline fetch came back empty: keep the last good outline, layer marked fetch_failed
+        prev = json.load(open(prev_path, encoding="utf-8"))
+        footprint, height = prev["footprint"], prev["heightM"]
+        clat, clon = prev["centroid"]["lat"], prev["centroid"]["lon"]
+        area_m2, fp_asof = prev["meta"]["footprintAreaM2"], prev["meta"]["footprintAsOf"]
+        man["sources"]["footprint"]["status"] = "fetch_failed"
+    else:
+        sys.exit(f"{bid}: outline fetch returned no rows and there is no previous {bid}.json to keep")
 
     # ---- assessor + permits: stories, units, type
     ass = rows(bdir, "assessor")
