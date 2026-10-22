@@ -2,13 +2,13 @@
 
 **Size-up starts before the wheels stop.**
 
-FireSight turns a San Francisco address into a cited, floor-by-floor 3D pre-plan on a phone, for the officer on a responding engine.
+FireSight is an **arrival brief** for the officer on a responding engine. From a dispatch line it shows the fire floor in 3D and tells the crew, from cited San Francisco public records, the four things that matter for saving people: **where the people are relative to the fire, what is on the fire floor, what to bring and check, and how to approach.** Everything else is one tap away.
 
 ![Status: prototype](https://img.shields.io/badge/status-prototype-orange)
 ![Built at super{set}, San Francisco, Oct 22 2026](https://img.shields.io/badge/built%20at-super%7Bset%7D%20SF%2C%20Oct%2022%202026-555)
 ![Track 1: Hacking with Public Data APIs](https://img.shields.io/badge/track%201-public%20data%20APIs-1f6feb)
 
-Demo: TBD
+Demo: https://firesight-ten.vercel.app (phone-first; Chrome on Android for voice)
 
 > **Not for operational use.** FireSight is an independent prototype built by a team of four in one day at a San Francisco hackathon. It is not affiliated with, endorsed by or reviewed by SFFD or any public agency. The dispatch line in the demo is simulated. Your eyes, your 360 and your department's pre-plan come first.
 
@@ -26,12 +26,17 @@ In the fire service's own words (published quotes):
 
 ## What it does
 
-1. **Dispatch line in.** "Structure fire, 140 New Montgomery St, smoke reported 22nd floor." FireSight finds the building, even when city records file it under different addresses or names.
-2. **Building in 3D.** The real footprint and measured height, split into floors. The floors separate, and the floor named in the dispatch line comes into focus.
-3. **Facts pinned in place.** Each fact sits on its floor, the roof or the ground around the building. Tap one for its provenance card: dataset id, record id, as-of date and the rule that placed it. Records older than 5 years carry a **STALE** badge.
-4. **Disagreements and gaps said out loud.** When two city records disagree, FireSight shows both. Stairs, standpipes and anything with no public record show as unverifiable. FireSight does not guess.
-5. **Rules checked, with citations.** A compliance strip shows pass, fail or unknown for the rules that apply to this building, and hides the ones that don't.
-6. **Officer approves.** Claude drafts a short size-up from the cited facts only. The officer approves or strikes each line before it goes to the crew, and each struck line becomes a test case.
+1. **Dispatch in.** "Structure fire, 140 New Montgomery St, smoke reported 22nd floor", typed or spoken. FireSight finds the building, even when city records file it under different addresses or names.
+2. **See the fire floor.** The real footprint and measured height in 3D, inside a 2.5 km city context. The floors separate and the fire floor comes into focus, with its floor panel: hazards, what occupies it (by type, never by name), rooms named in records, recent work and what is not on record.
+3. **The arrival brief, life first.** The same cited beats on screen and spoken aloud, each lighting the floors it names:
+   - **People:** recorded counts by floor, reported people, and no headcount on the fire floor and the floors above it, with the office-code ceiling (floor area / 150 sq ft per person) labelled as a ceiling, not a count.
+   - **Fire floor:** what occupies it and the floor above, and hazards on the fire floor and one floor above and below.
+   - **Bring and check:** considerations named by their records (battery and electrolyte, fuel on site, high-rise standpipe operations, elevator rescues, changed layout). Considerations, never orders.
+   - **Water and access:** sprinkler coverage, fire pump, nearest and high-pressure hydrants with distance and direction, wind and where the smoke goes.
+   - **Verify on arrival:** stairs, standpipe and FDC, roof access. No public record has them, so FireSight never draws a route.
+4. **Updates by voice.** "People trapped on floor 23" becomes a dispatch report: floor 23 lights up and FireSight reads what the records say about that floor.
+5. **Ask and approve.** Claude (Opus 5.5) answers questions and drafts a size-up from the cited records only; a validator drops any line whose citation does not hold. The officer approves or strikes each line before it goes to the crew, and each struck line becomes a test case.
+6. **Rules and provenance.** A compliance strip checks the rules that apply to this building, every pin opens its source record, and the data is refreshed from data.sf.gov every 30 minutes.
 
 Every fact carries one of three labels:
 
@@ -183,7 +188,7 @@ docs/plan/              Build plan, data and regulation research
 - Refresh job every 30 minutes that commits only on change.
 
 **Not yet**
-- Public deploy (Demo: TBD).
+- Public deploy (Demo: https://firesight-ten.vercel.app (phone-first; Chrome on Android for voice)).
 - Published eval results; the eval screen reads them once a run is saved.
 - Precomputed fallback answers in the cached building files.
 - Tabletop AR, neighboring buildings (exposures), and coverage beyond four buildings.
