@@ -366,6 +366,79 @@ def floor_mentions(text, floors):
     return out
 
 
+# What occupies a floor, by type only. Business licenses carry "Ste 1200" / "Fl 22"; OSM carries level (ground = 0).
+NAICS = {"72": ("Food service", "Cooking"), "54": ("Office", None), "52": ("Office", None), "51": ("Office", None),
+         "53": ("Office", None), "55": ("Office", None), "56": ("Office", None), "61": ("Classroom / training", "Crowds"),
+         "62": ("Health care", "Occupants may need help"), "44": ("Retail", None), "45": ("Retail", None),
+         "81": ("Personal services", None), "71": ("Assembly / recreation", "Crowds"), "31": ("Light industry", "Industrial materials"),
+         "32": ("Light industry", "Industrial materials"), "33": ("Light industry", "Industrial materials"), "23": ("Contractor", None)}
+OSM_KIND = {"restaurant": ("Restaurant", "Commercial kitchen"), "bar": ("Bar", "Crowds"), "cafe": ("Cafe", "Cooking"),
+            "fast_food": ("Fast food", "Commercial kitchen"), "parking_entrance": ("Parking entrance", "Vehicles and fuel"),
+            "pharmacy": ("Pharmacy", None), "clinic": ("Clinic", "Occupants may need help"), "gym": ("Gym", "Crowds")}
+
+
+def addr_floor(addr, floors):
+    a = (addr or "").lower()
+    m = re.search(r"\bfl(?:oor)?\.?\s*#?\s*(\d{1,2})(?:st|nd|rd|th)?\b", a)
+    if m:
+        n, unit = int(m.group(1)), None
+    else:
+        m = re.search(r"(?:\bste\b|suite|#|\bunit\b|\brm\b)\.?\s*#?\s*(\d{3,4})[a-z]?\b", a)
+        if not m:
+            return None, None
+        n, unit = int(m.group(1)) // 100, m.group(1)
+    return (n, unit) if 1 <= n <= floors else (None, None)
+
+
+def floor_occupants(bdir, floors):
+    occ = {}
+    for r in rows(bdir, "businesses"):
+        f, unit = addr_floor(r.get("full_business_address"), floors)
+        if f is None:
+            continue
+        lic = (r.get("lic_code_description") or "").lower()
+        naics = str(r.get("self_reported_naics_code") or "")[:2]
+        if re.search(r"cafeteria|food prep|restaurant|food", lic):
+            kind, hazard = ("Employee cafeteria (food prep)" if "cafeteria" in lic else "Food service"), "Cooking"
+        elif "assembly" in lic:
+            kind, hazard = "Assembly space", "Crowds"
+        elif naics in NAICS:
+            kind, hazard = NAICS[naics]
+        else:
+            continue
+        rec = str(r.get("uniqueid") or "")
+        occ.setdefault(f, []).append({"kind": kind, "hazard": hazard, "unit": unit, "source": "SF business license",
+                                      "datasetId": "g8m3-pdis", "recordId": rec, "url": soda_url("g8m3-pdis", "uniqueid", rec)})
+    for e in dload(bdir, "osm").get("elements") or []:
+        t = e.get("tags", {})
+        lvl = t.get("level")
+        key = t.get("amenity") or t.get("shop") or t.get("office")
+        if lvl is None or key not in OSM_KIND or not re.fullmatch(r"-?\d+", str(lvl).split(";")[0]):
+            continue
+        n = int(str(lvl).split(";")[0])
+        f = 0 if n < 0 else n + 1  # OSM: ground = level 0
+        if f > floors:
+            continue
+        kind, hazard = OSM_KIND[key]
+        occ.setdefault(f, []).append({"kind": kind, "hazard": hazard, "unit": None, "source": "OpenStreetMap (level %s)" % lvl,
+                                      "datasetId": "osm", "recordId": str(e["id"]), "url": f"https://www.openstreetmap.org/{e['type']}/{e['id']}"})
+    out = {}
+    for f, xs in occ.items():  # one entry per (kind, unit); offices collapse to a count
+        seen, merged = set(), []
+        offices = [x for x in xs if x["kind"] == "Office"]
+        for x in xs:
+            if x["kind"] == "Office":
+                continue
+            k = (x["kind"], x["unit"])
+            if k not in seen:
+                seen.add(k)
+                merged.append(x)
+        if offices:
+            merged.append({**offices[0], "kind": "Office" if len(offices) == 1 else f"Offices ({len(offices)} businesses)"})
+        out[f] = merged
+    return out
+
+
 def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fire_permits, tall_pct=None, residential=False):
     has_b1 = any(p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == 0 for p in pins)
     rank = {"danger": 0, "caution": 1, "info": 2}
@@ -404,6 +477,13 @@ def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fir
             fl = floor_mentions(cond, floors) or ({1} if re.search(r"main floor|ground floor", cond, re.I) else set())
             if m and len(fl) == 1:
                 loads[next(iter(fl))] += int(m.group(1))
+    occupants = floor_occupants(bdir, floors)
+    planning = {}
+    for r in rows(bdir, "planning"):
+        for f in floor_mentions(r.get("description"), floors):
+            link = r.get("pim_link")
+            planning.setdefault(f, []).append({"date": iso(r.get("open_date")), "kind": permit_kind(r.get("description")),
+                                               "recordId": str(r.get("record_id")), "url": (link or {}).get("url", "") if isinstance(link, dict) else str(link or "")})
     facts = []
     for f in range(0 if has_b1 else 1, floors + 1):
         own = [p for p in pins if p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == f]
@@ -432,6 +512,8 @@ def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fir
             "notOnRecord": missing,
             "unitWork": sorted(unit_work.get(f, []), key=lambda w: w["date"], reverse=True)[:40],
             "openPermits": sum(1 for x in ps if x[4]),
+            "occupants": occupants.get(f, []),
+            "planning": sorted(planning.get(f, []), key=lambda x: x["date"], reverse=True)[:8],
             "recentKinds": sorted({k for x in ps if x[0] >= "2024-10-22" for k in x[1].split(" · ") if k != "Permitted work"}),
         })
     return facts

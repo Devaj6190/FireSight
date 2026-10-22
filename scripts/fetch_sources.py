@@ -128,6 +128,7 @@ def sources(b):
     S["energy"] = ("96ck-qcfe", "Existing buildings energy performance", soda("96ck-qcfe", f"parcel_number='{apn_slash}'", "benchmark_year desc", 3))
     S["tall_building"] = ("5kya-mfst", "Tall building inventory", soda("5kya-mfst", f"mapblocklot='{apn}'", limit=5))
     S["rentboard"] = ("gdc7-dmcn", "Rent Board housing inventory (block level)", soda("gdc7-dmcn", f"block_num='{blk}'", "submission_year desc", 300))
+    S["planning"] = ("y673-d69b", "Planning Department records for the parcel", soda("y673-d69b", f"block='{blk}' and lot='{lot}'", "open_date desc", 100, select="record_id,record_type,description,record_status,open_date,pim_link"))
     S["zoning_height"] = ("h9wh-cg3m", "Zoning height and bulk district", soda("h9wh-cg3m", f"intersects(the_geom,{pt})", limit=3, select="height,gen_hght"))
     # --- DataSF: permits and building history ------------------------------------------
     S["permits"] = ("i98e-djp9", "DBI building permits (legacy)", soda("i98e-djp9", f"block='{blk}' and lot='{lot}'", "filed_date desc", 500))
@@ -231,6 +232,7 @@ CRITICAL = {"footprint", "footprint_pt", "assessor", "permits"}  # the model and
 def overpass(lat, lon):
     q = f"""[out:json][timeout:50];
 (way(around:15,{lat},{lon})["building"];
+ nwr(around:45,{lat},{lon})["level"];
  node(around:40,{lat},{lon})["entrance"];
  node(around:60,{lat},{lon})["emergency"];
  node(around:60,{lat},{lon})["highway"="street_lamp"];
