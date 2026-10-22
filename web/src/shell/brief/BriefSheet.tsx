@@ -56,6 +56,7 @@ export function BriefSheet({ building, onSend, onSelectPins }: Props) {
       <div className="fsb-eyebrow">
         <span>Size-up brief</span>
         {source === 'fallback' && <span className="fsb-tag offline">OFFLINE BRIEF</span>}
+        {source === 'records' && <span className="fsb-tag offline">FROM RECORDS · NO AI</span>}
         {brief && source === 'model' && <span className="fsb-tag">{lines.length} LINES · CHECKED</span>}
       </div>
 

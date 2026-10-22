@@ -1,13 +1,15 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
-import { useEffect, useMemo, useRef, type ComponentRef } from 'react'
+import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import { collapse, explode, focus, reduce, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { useStore, type Phase } from './store'
 import { fs } from './tokens'
 import type { Building } from '../../shared/building'
+import { PhoneShell } from './shell/PhoneShell'
+import { BUILDINGS, dispatchBuilding, dispatchPin } from './shell/model'
 
 const GAP = 0.15 // between slabs, plan.md s3
 const SOLID = { a: 1 }
@@ -21,7 +23,7 @@ function spanOf(b: Building) {
 // floor in contract numbering (0 = B1), clamped to the model; building-wide pins cluster on the roof, site pins at grade
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
-function Slabs({ b }: { b: Building }) {
+function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
   const { phase, target, lit, setPhase } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
@@ -59,7 +61,7 @@ function Slabs({ b }: { b: Building }) {
       m.get(k)!.push(p)
     }
     return [...m]
-      .map(([key, ps]) => ({ key, pins: ps, reveal: { v: 0 } }))
+      .map(([key, ps]) => ({ key, pins: ps, reveal: { v: phase === 'exploded' ? 1 : 0 } }))
       .sort((g, h) => SEVERITY_ORDER[g.pins[0].severity] - SEVERITY_ORDER[h.pins[0].severity])
   }, [pins, b.floors])
   // ponytail: no in-floor position in the data yet, so pins sit on the floor's east or west edge, alternating by floor
@@ -123,7 +125,7 @@ function Slabs({ b }: { b: Building }) {
   }, [phase, target, lit]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
-    <PinMarker key={g.key} pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} />
+    <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} /></group>
   )
   const top = b.floorHeightM - GAP
   const onSlab = (f: number, s: number) =>
@@ -169,48 +171,83 @@ function Slabs({ b }: { b: Building }) {
 }
 
 export default function App() {
-  const { building: b, phase, target, setBuilding, explode, collapse } = useStore()
+  const { building: b, phase, target, setBuilding: setB, setPhase, focus, highlight, lit, explode, collapse } = useStore()
+  const [buildingId, setBuildingId] = useState(() => {
+    const id = new URLSearchParams(location.search).get('building')
+    return BUILDINGS.some(v => v.id === id) ? id! : 'sf-3722080'
+  })
+  const [selectedPin, setSelectedPin] = useState<Pin>()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
+  const loadSequence = useRef(0)
+  const queuedDispatch = useRef<string | null>(null)
+  const [retry, setRetry] = useState(0)
+
   useEffect(() => {
-    const q = new URLSearchParams(location.search)
-    const id = q.get('building') ?? 'sf-3722080' // 140 New Montgomery St
-    fetch(`${import.meta.env.BASE_URL}buildings/${id}.json`)
-      .then((r) => r.json())
-      .then(setBuilding)
-  }, [setBuilding])
-  if (!b) return null
+    const controller = new AbortController()
+    const sequence = ++loadSequence.current
+    setLoading(true); setError(''); setSelectedPin(undefined); useStore.setState({ target: null, phase: 'assembled' })
+    fetch(`${import.meta.env.BASE_URL}buildings/${buildingId}.json`, { signal: controller.signal })
+      .then(r => { if (!r.ok) throw Error('Building snapshot is unavailable.'); return r.json() })
+      .then((building: Building) => {
+        if (sequence !== loadSequence.current) return
+        if (!Array.isArray(building.footprint) || !building.footprint.length || !Array.isArray(building.pins)) throw Error('Building snapshot is incomplete.')
+        if (queuedDispatch.current) {
+          const pin = dispatchPin(queuedDispatch.current, building)
+          building = { ...building, pins: [...building.pins, pin] }
+          focus(pin.anchor.kind === 'floor' ? pin.anchor.floor : null)
+          queuedDispatch.current = null
+          setPhase('exploding')
+        }
+        setB(building); setLoading(false)
+      })
+      .catch(e => { if (!controller.signal.aborted) { setError(e.message); setLoading(false); queuedDispatch.current = null } })
+    return () => controller.abort()
+  }, [buildingId, retry])
 
+  function changeBuilding(id: string) {
+    queuedDispatch.current = null
+    const url = new URL(location.href); url.searchParams.set('building', id); history.replaceState(null, '', url)
+    setBuildingId(id)
+  }
+
+  async function handleDispatch(text: string) {
+    if (!b) return
+    if (phase === 'exploding' || phase === 'collapsing') throw Error('Let the model finish moving before resolving another dispatch.')
+    const target = dispatchBuilding(text)
+    if (target === '') throw Error('That address is not cached. Choose one of the available buildings.')
+    if (target && target !== b.id) {
+      changeBuilding(target); queuedDispatch.current = text
+      return
+    }
+    const pin = dispatchPin(text, b)
+    setB({ ...b, pins: [...b.pins.filter(p => p.origin !== 'dispatch'), pin] })
+    setSelectedPin(undefined)
+    focus(pin.anchor.kind === 'floor' ? pin.anchor.floor : null)
+    if (phase === 'assembled') setPhase('exploding')
+  }
+
+  if (loading || !b || error) return <div className="phone-loading"><strong>FIRESIGHT</strong><p role="status">{error || 'Loading cited building snapshot…'}</p>{error && <button onClick={() => setRetry(v => v + 1)}>Retry building</button>}</div>
   const span = spanOf(b)
-  const d = 2.2 * Math.max(b.heightM, span) // design.md s4
+  const d = 2.2 * Math.max(b.heightM, span)
   const mid = b.heightM / 2
-  const busy = phase === 'exploding' || phase === 'collapsing'
-  const out = phase === 'exploded' || phase === 'collapsing'
 
-  return (
-    <>
-      <div className="stage">
-        {/* ponytail: frameloop always (design.md says demand) for the idle drift and damping; demand again if battery bites */}
-        <Canvas dpr={[1, 2]} camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
-          <color attach="background" args={[fs.bg]} />
-          <fog attach="fog" args={[fs.bg, d * 1.2, d * 5]} />
-          <hemisphereLight args={[fs.ink, fs.ground, 0.7]} />
-          <directionalLight position={[60, 90, 40]} intensity={1.4} />
-          <Slabs b={b} />
-          {/* translucent grade so B1 reads as below ground */}
-          <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
-            <circleGeometry args={[1.4 * span, 64]} />
-            <meshStandardMaterial color={fs.ground} transparent opacity={0.75} depthWrite={false} />
-          </mesh>
-        </Canvas>
-        <div className="status">
-          {b.address} · {phase}
-          {target !== null && ` · ${target === 0 ? 'B1' : `FL ${target}`}`}
-        </div>
-      </div>
-      <div className="bar">
-        <button type="button" className="action" disabled={busy} onClick={out ? collapse : explode}>
-          {out ? 'Collapse' : 'Explode'}
-        </button>
-      </div>
-    </>
-  )
+  return <PhoneShell key={b.id} building={b} phase={phase} selectedPin={selectedPin} focusedFloors={[...new Set(target === null ? lit : [target, ...lit])]}
+    onBuilding={changeBuilding} onDispatch={handleDispatch}
+    onToggle={() => { if (phase === 'exploded') collapse(); else explode() }}
+    onSelectPin={setSelectedPin}
+    onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
+    onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
+    <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
+      <color attach="background" args={[fs.bg]} />
+      <fog attach="fog" args={[fs.bg, d * 1.2, d * 5]} />
+      <hemisphereLight args={[fs.ink, fs.ground, 0.7]} />
+      <directionalLight position={[60, 90, 40]} intensity={1.4} />
+      <Slabs b={b} onSelectPin={setSelectedPin} />
+      <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
+        <circleGeometry args={[1.4 * span, 64]} />
+        <meshStandardMaterial color={fs.ground} transparent opacity={0.75} depthWrite={false} />
+      </mesh>
+    </Canvas>
+  </PhoneShell>
 }
