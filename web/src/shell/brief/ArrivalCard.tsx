@@ -27,7 +27,7 @@ export function ArrivalCard({ building, onSelect }: Props) {
           <li key={i} className={`fsa-row ${x.section ?? 'call'}`}>
             <button onClick={() => onSelect(x.floors, x.pinIds)} disabled={!x.floors.length && !x.pinIds.length}>
               <span className="fsa-sec">{TITLE[x.section ?? 'call']}</span>
-              <span className="fsa-text">{x.text.replace(/^(Bring and check|Water and access|No public record, verify on arrival|Near the fire floor|People on record): /, '')}</span>
+              <span className="fsa-text">{x.text.replace(/^(Bring and check|Water and access|No public record, verify on arrival|People on record): /, '')}</span>
             </button>
           </li>
         ))}
