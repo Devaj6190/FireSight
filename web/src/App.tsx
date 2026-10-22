@@ -274,17 +274,17 @@ export default function App() {
     onSelectPin={setSelectedPin}
     onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
     onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
-    <p className="phone-credit">City: DataSF footprints · © OpenStreetMap contributors</p>
+    <p className="phone-credit">DataSF footprints<br />© OpenStreetMap contributors</p>
     <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, far: 8000, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
-      <color attach="background" args={[fs.bg]} />
-      <fog attach="fog" args={[fs.bg, d * 1.2, d * 5]} />
-      <hemisphereLight args={[fs.ink, fs.ground, 0.7]} />
-      <directionalLight position={[60, 90, 40]} intensity={1.4} />
+      <color attach="background" args={[fs.sky]} />
+      <fog attach="fog" args={[fs.sky, d * 1.2, d * 5]} />
+      <hemisphereLight args={['#ffffff', fs.sidewalk, 1.1]} />
+      <directionalLight position={[80, 140, 60]} intensity={1.7} />
       <City id={b.id} />
       <Slabs b={b} onSelectPin={setSelectedPin} />
       <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
         <circleGeometry args={[1.4 * span, 64]} />
-        <meshStandardMaterial color={fs.ground} transparent opacity={0.75} depthWrite={false} />
+        <meshStandardMaterial color={fs.sidewalk} transparent opacity={0.75} depthWrite={false} />
       </mesh>
     </Canvas>
   </PhoneShell>

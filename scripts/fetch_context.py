@@ -78,29 +78,103 @@ def area(ring):  # shoelace, positive when CCW
     return sum(ring[i - 1][0] * ring[i][1] - ring[i][0] * ring[i - 1][1] for i in range(len(ring))) / 2
 
 
+def overpass(q):
+    for url in OVERPASS:
+        try:
+            return get(url, data=urllib.parse.urlencode({"data": q}).encode())
+        except RuntimeError:
+            continue
+    raise RuntimeError("overpass unavailable")
+
+
+def ring_of(pts):
+    """Simplified CCW ring, or None if too small."""
+    if pts[0] == pts[-1]:
+        pts = pts[:-1]
+    ring = simplify_ring(pts, 0.4)
+    a = area(ring)
+    if len(ring) < 3 or abs(a) < 12:
+        return None
+    return ring if a > 0 else ring[::-1]
+
+
+def inside(pt, ring):
+    x, y, hit = pt[0], pt[1], False
+    for i in range(len(ring)):
+        (ax, ay), (bx, by) = ring[i - 1], ring[i]
+        if (ay > y) != (by > y) and x < ax + (y - ay) * (bx - ax) / (by - ay):
+            hit = not hit
+    return hit
+
+
+def osm_height(tags):
+    h = tags.get("height", "").replace(",", ".").strip()
+    try:
+        if h.endswith(("'", "ft")):
+            return float(h.rstrip("'ft ")) * 0.3048
+        return float(h.split()[0].rstrip("m"))
+    except (ValueError, IndexError):
+        pass
+    try:
+        return float(tags["building:levels"]) * 3.6 + 1
+    except (KeyError, ValueError):
+        return None
+
+
+def osm_buildings(lat, lon, r, proj):
+    """OSM buildings with a height or level count: fills towers finished after the 2010 LiDAR flight."""
+    q = f'[out:json][timeout:180];(way["building"]["height"](around:{r},{lat},{lon});way["building"]["building:levels"](around:{r},{lat},{lon}););out tags geom;'
+    out = []
+    for w in overpass(q).get("elements", []):
+        h, geom = osm_height(w.get("tags", {})), w.get("geometry") or []
+        if h and h >= 2 and len(geom) >= 4:
+            ring = ring_of([proj(p["lon"], p["lat"]) for p in geom])
+            if ring:
+                out.append((h, ring))
+    return out
+
+
+def merge(lidar, osm, hero):
+    """LiDAR heights win, except where OSM says the building is over twice as tall (built after 2010);
+    OSM buildings that no city footprint covers are added. Returns rings and how many heights came from each."""
+    cell = 50
+    grid = {}
+    for k, (_, ring) in enumerate(lidar):
+        xs, ys = [p[0] for p in ring], [p[1] for p in ring]
+        for gx in range(int(min(xs) // cell), int(max(xs) // cell) + 1):
+            for gy in range(int(min(ys) // cell), int(max(ys) // cell) + 1):
+                grid.setdefault((gx, gy), []).append(k)
+    heights = [h for h, _ in lidar]
+    raised, added = set(), []
+    for h, ring in osm:
+        c = (sum(p[0] for p in ring) / len(ring), sum(p[1] for p in ring) / len(ring))
+        if inside(c, hero):
+            continue
+        hits = [k for k in grid.get((int(c[0] // cell), int(c[1] // cell)), []) if inside(c, lidar[k][1])]
+        for k in hits:
+            if h > 2 * heights[k]:
+                heights[k] = max(h, heights[k] if k in raised else 0)
+                raised.add(k)
+        if not hits:
+            added.append((h, ring))
+    rings = [(heights[k], ring) for k, (_, ring) in enumerate(lidar)] + added
+    return rings, {"lidar": len(lidar) - len(raised), "osmRaised": len(raised), "osmAdded": len(added)}
+
+
 def buildings(lat, lon, r, proj, hero_mblr):
     out, offset, page = [], 0, 20000
     while True:
         rows = soda("ynuv-fyni", **{"$select": "mblr,hgt_median_m,shape", "$where": f"within_circle(shape,{lat},{lon},{r})",
                                     "$order": ":id", "$limit": page, "$offset": offset})
         for row in rows:
-            if row.get("mblr") == hero_mblr or not row.get("shape") or not row.get("hgt_median_m"):
+            if row.get("mblr") == hero_mblr or not row.get("shape") or row.get("hgt_median_m") is None:
                 continue
             h = float(row["hgt_median_m"])
-            if h < 2:
-                continue
             g = row["shape"]
             for poly in g["coordinates"] if g["type"] == "MultiPolygon" else [g["coordinates"]]:
-                ring = [proj(x, y) for x, y in poly[0]]  # outer ring; courtyards are rare and unseen from street level
-                if ring[0] == ring[-1]:
-                    ring = ring[:-1]
-                ring = simplify_ring(ring, 0.4)
-                a = area(ring)
-                if len(ring) < 3 or abs(a) < 12:
-                    continue
-                if a < 0:
-                    ring.reverse()  # CCW, like the hero footprint
-                out.append([round(h * 10)] + [round(v * 10) for p in ring for v in p])
+                ring = ring_of([proj(x, y) for x, y in poly[0]])  # outer ring; courtyards are unseen from the street
+                if ring:
+                    out.append((h, ring))  # low LiDAR heights stay: OSM may raise them
         print(f"  footprints: +{len(rows)} (offset {offset})", file=sys.stderr)
         if len(rows) < page:
             return out
@@ -109,15 +183,7 @@ def buildings(lat, lon, r, proj, hero_mblr):
 
 def streets(lat, lon, r, proj):
     cls = "|".join(WIDTH)
-    q = f'[out:json][timeout:120];way(around:{r},{lat},{lon})[highway~"^({cls})$"];out tags geom;'
-    for url in OVERPASS:
-        try:
-            data = get(url, data=urllib.parse.urlencode({"data": q}).encode())
-            break
-        except RuntimeError:
-            continue
-    else:
-        raise RuntimeError("overpass unavailable")
+    data = overpass(f'[out:json][timeout:120];way(around:{r},{lat},{lon})[highway~"^({cls})$"];out tags geom;')
     out = []
     for w in data.get("elements", []):
         tags, geom = w.get("tags", {}), w.get("geometry") or []
@@ -133,6 +199,19 @@ def streets(lat, lon, r, proj):
     return out
 
 
+def parks(lat, lon, r, proj):
+    q = (f'[out:json][timeout:120];(way["leisure"~"^(park|garden|playground|pitch)$"](around:{r},{lat},{lon});'
+         f'way["landuse"~"^(grass|recreation_ground|village_green)$"](around:{r},{lat},{lon}););out geom;')
+    out = []
+    for w in overpass(q).get("elements", []):
+        geom = w.get("geometry") or []
+        if len(geom) >= 4 and geom[0] == geom[-1]:
+            ring = ring_of([proj(p["lon"], p["lat"]) for p in geom])
+            if ring and abs(area(ring)) >= 40:
+                out.append([round(v * 10) for p in ring for v in p])
+    return out
+
+
 def main():
     bid = sys.argv[1]
     r = int(sys.argv[2]) if len(sys.argv) > 2 else 1500
@@ -140,23 +219,28 @@ def main():
     lat, lon = b["centroid"]["lat"], b["centroid"]["lon"]
     proj = projector(lat, lon)
     t = time.time()
-    fps = buildings(lat, lon, r, proj, "SF" + b["apn"])
+    hero = [tuple(p) for p in b["footprint"]]
+    rings, counts = merge(buildings(lat, lon, r, proj, "SF" + b["apn"]), osm_buildings(lat, lon, r, proj), hero)
+    fps = [[round(h * 10)] + [round(v * 10) for p in ring for v in p] for h, ring in rings if h >= 2]
     sts = streets(lat, lon, r, proj)
+    pks = parks(lat, lon, r, proj)
     doc = {
         "id": bid, "centroid": b["centroid"], "radiusM": r, "units": "decimetres, x east, y north, origin at centroid",
         "fetchedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "sources": [
             {"name": "DataSF Building Footprints (2010 LiDAR heights)", "datasetId": "ynuv-fyni", "license": "PDDL 1.0"},
-            {"name": "OpenStreetMap streets via Overpass", "datasetId": "osm-highway", "license": "ODbL 1.0, (c) OpenStreetMap contributors"},
+            {"name": "OpenStreetMap streets, parks, and building heights where newer than the LiDAR", "datasetId": "osm", "license": "ODbL 1.0, (c) OpenStreetMap contributors"},
         ],
+        "heightFrom": counts,
         "buildings": fps,  # [heightDm, x0, y0, x1, y1, ...] outer ring, CCW
         "streets": sts,  # {w: width m, n?: name, p: [x0, y0, ...]}
+        "parks": pks,  # [x0, y0, x1, y1, ...] outer ring
     }
     os.makedirs(os.path.join(ROOT, "context"), exist_ok=True)
     path = os.path.join(ROOT, "context", bid + ".json")
     with open(path, "w") as f:
         json.dump(doc, f, separators=(",", ":"))
-    print(f"{bid}: {len(fps)} buildings, {len(sts)} streets, {os.path.getsize(path) // 1024} KB, {time.time() - t:.0f}s")
+    print(f"{bid}: {len(fps)} buildings {counts}, {len(sts)} streets, {len(pks)} parks, {os.path.getsize(path) // 1024} KB, {time.time() - t:.0f}s")
 
 
 if __name__ == "__main__":
