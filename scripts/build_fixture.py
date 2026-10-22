@@ -155,7 +155,7 @@ def ev(ds, rec, url, asof, rule, source=None):
 
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 PHONE = re.compile(r"\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}")
-CONTACT = re.compile(r"(contact|call|email|e-mail|inspector|attn:?|please contact)[^.;]*", re.I)
+CONTACT = re.compile(r"\b(contact|call|email|e-mail|inspector|attn:?|please contact)\b[^.;]*", re.I)
 
 
 def clean(text):
@@ -208,6 +208,7 @@ TAGS = [  # (tag, regex, severity, label template)
     ("structural", r"(structural|load[- ]bearing|shear wall|foundation|beam|seismic|soft[- ]story|retrofit)", "caution", "STRUCTURAL WORK"),
     ("fire_escape", r"fire escape", "caution", "FIRE ESCAPE WORK"),
     ("elevator", r"elevator", "info", "ELEVATOR WORK"),
+    ("server_room", r"(server|computer|data|telecom|mdf|idf) room", "caution", "SERVER ROOM"),
     ("ev_charger", r"(ev (car )?charger|electric vehicle charg)", "caution", "EV CHARGER IN BUILDING"),
     ("urm", r"unreinforced masonry", "danger", "UNREINFORCED MASONRY RETROFIT"),
     ("roof", r"\b(re-?roof|roofing|roof deck)\b", "info", "ROOF WORK"),
@@ -380,15 +381,20 @@ def build(bid):
             if tag == "ess" and re.search(r"(garage|gate|alarm|smoke|exit sign|emergency light)", desc):
                 continue
             us = [u for u in units_in(desc) if 1 <= u // 100 <= floors]
-            anchor = floor(us[0] // 100) if (us and tag == "structural") else (ROOF if tag in ("solar_pv", "solar_thermal", "roof") else BLDG)
+            fl_txt = [int(x) for x in re.findall(r"\b(\d{1,2})(?:st|nd|rd|th)\s*(?:fl|flr|floor)\b", desc) if 1 <= int(x) <= floors]
+            anchor = floor(us[0] // 100) if (us and tag == "structural") else (ROOF if tag in ("solar_pv", "solar_thermal", "roof") else floor(fl_txt[0]) if (fl_txt and tag in ("server_room", "ess")) else BLDG)
             k = (tag, us[0] if (us and tag == "structural") else json.dumps(anchor))
-            if k in seen:
+            if k in seen or (tag == "server_room" and sum(1 for t in seen if t[0] == "server_room") >= 2):
                 continue
             seen.add(k)
             when = iso(p.get("filed_date"))
             st = (p.get("status") or "").lower()
             done = "completed" if st == "complete" else f"status {st or 'not recorded'}"
-            lab = f"UNIT {us[0]}: {label}" if (us and tag == "structural") else f"{label} {when[:4]}"
+            lab = f"UNIT {us[0]}: {label}" if (us and tag == "structural") else f"{label}, FLOOR {anchor['floor']}" if anchor.get("kind") == "floor" else f"{label} {when[:4]}"
+            if anchor.get("kind") == "floor" and not (us and tag == "structural"):
+                rule_extra = f"; permit text '{anchor['floor']}th fl' -> floor {anchor['floor']}"
+            else:
+                rule_extra = ""
             if tag in ("solar_pv", "ess", "ev_charger") and st not in ("complete", "completed"):
                 lab = f"{label.replace(' IN BUILDING', '')} PERMIT {when[:4]} ({st.upper() or 'NO STATUS'})"
                 sev = "caution"
@@ -397,7 +403,7 @@ def build(bid):
                 P.add("permit", f"tank-{p['permit_number']}", "caution", f"{gal.group(1) if gal else ''} GAL SOLAR WATER TANK".strip(),
                       f"{when[:4]} permit says the solar hot-water tank{' (' + gal.group(1) + ' gallons)' if gal else ''} is located in the basement.", floor(0),
                       [ev(ds, p["permit_number"], soda_url(ds, "permit_number", p["permit_number"]), when, "permit text says 'basement' -> floor 0")])
-            rule = f"keyword '{tag}' in permit text" + (f"; unit {us[0]} -> floor {us[0] // 100}" if anchor.get("kind") == "floor" else "")
+            rule = f"keyword '{tag}' in permit text" + (f"; unit {us[0]} -> floor {us[0] // 100}" if (us and tag == "structural") else rule_extra)
             P.add("permit", f"{tag}-{p['permit_number']}", sev, lab, f"{when[:4]} permit ({done}): \"{p.get('description', '').strip()[:220]}\"", anchor,
                   [ev(ds, p["permit_number"], soda_url(ds, "permit_number", p["permit_number"]), when, rule)])
     act = [p for p in rows(bdir, "permitsf") if (p.get("status_detail") or "").lower().startswith("active")]
@@ -415,11 +421,13 @@ def build(bid):
 
     # ---- fire incidents (radius matches can pull in neighbours: keep only this building's street numbers)
     inc = [r for r in rows(bdir, "fire_incidents") if own_address(r.get("address"), own_nums)]
-    groups = {"building": [], "cooking": [], "malfunction": [], "outside": []}
+    groups = {"building": [], "cooking": [], "malfunction": [], "outside": [], "elevator": []}
     for r in inc:
         sit = (r.get("primary_situation") or "").lower()
         if sit.startswith("111") or "building fire" in sit:
             groups["building"].append(r)
+        elif sit.startswith("353") or "stalled elevator" in sit:
+            groups["elevator"].append(r)
         elif sit.startswith("113") or "cooking" in sit:
             groups["cooking"].append(r)
         elif "malfunction" in sit or sit.startswith(("73", "74", "71")):
@@ -444,6 +452,11 @@ def build(bid):
         g = groups["cooking"]
         P.add("incident", "cooking", "caution", f"{len(g)} COOKING FIRES ON RECORD", f"{len(g)} cooking fires confined to a container, {iso(g[-1]['incident_date'])[:4]} to {iso(g[0]['incident_date'])[:4]}.", BLDG,
               [ev("wr8u-xric", r["id"], soda_url("wr8u-xric", "id", r["id"]), iso(r["incident_date"]), "situation code 113") for r in g[:4]])
+    if groups["elevator"]:
+        g = groups["elevator"]
+        P.add("incident", "elevator-rescues", "caution", f"{len(g)} ELEVATOR RESCUES ON RECORD",
+              f"SFFD removed people from a stalled elevator {len(g)} times, {iso(g[-1]['incident_date'])[:4]} to {iso(g[0]['incident_date'])[:4]}; newest {iso(g[0]['incident_date'])}. Expect elevator entrapments.", BLDG,
+              [ev("wr8u-xric", r["id"], soda_url("wr8u-xric", "id", r["id"]), iso(r["incident_date"]), "situation code 353") for r in g[:4]])
     if groups["malfunction"]:
         g = groups["malfunction"]
         spr = [r for r in g if "sprinkler" in (r.get("primary_situation") or "").lower()]
@@ -467,6 +480,14 @@ def build(bid):
         P.add("violation", v["violation_id"], "caution", f"VIOLATION {iso(v.get('violation_date'))[:4]}: {v.get('violation_item_description', '')[:26]}",
               f"SFFD violation {iso(v.get('violation_date'))}: {v.get('violation_item_description')}, status {v.get('status')}" + (f" {iso(v.get('close_date'))}" if v.get("close_date") else "") + ".", BLDG,
               [ev("4zuq-2cbe", v["violation_id"], soda_url("4zuq-2cbe", "violation_id", v["violation_id"]), iso(v.get("violation_date")), "EAS id match")])
+    if viol and not openv and not recent:
+        st_counts = Counter((v.get("status") or "").lower() for v in viol)
+        top = Counter(v.get("violation_item_description") for v in viol).most_common(3)
+        newest_v = max(viol, key=lambda v: iso(v.get("violation_date")))
+        P.add("violation", "history", "info", f"{len(viol)} FIRE VIOLATIONS ON RECORD, 0 OPEN",
+              f"{len(viol)} SFFD violations {min(iso(v.get('violation_date')) for v in viol)[:4]} to {iso(newest_v.get('violation_date'))[:4]}, status "
+              + ", ".join(f"{k} {n}" for k, n in st_counts.most_common()) + "; most common: " + "; ".join(f"{k} x{n}" for k, n in top) + ".", BLDG,
+              [ev("4zuq-2cbe", newest_v["violation_id"], soda_url("4zuq-2cbe", "violation_id", newest_v["violation_id"]), iso(newest_v.get("violation_date")), "EAS id match, newest violation")])
     ins = rows(bdir, "fire_inspections")
     # newest inspection of each statutory type (R-1/R-2 annual, high-rise annual) feeds the compliance strip
     for rx in (r"\br[12]\b", r"high ?rise"):
@@ -527,8 +548,19 @@ def build(bid):
             P.add("fire_permit", fpm["permit_number"], sev, f"FIRE PERMIT: {desc[:30]}", f"SFFD permit {fpm['permit_number']} ({desc}), status {st}, {when}.", anc, e(rule))
 
     # ---- Tall Building Inventory (high-rises only): sprinkler coverage, basements, structure
+    tall_alias = []
     for t in rows(bdir, "tall_building")[:1]:
         tev = [ev("5kya-mfst", apn, soda_url("5kya-mfst", "mapblocklot", apn), iso(t.get("collected_on")), "tall building inventory by block + lot", "DataSF Tall Building Inventory")]
+        tall_m = num(t.get("height_ft")) and round(num(t.get("height_ft")) * 0.3048, 1)
+        if tall_m and abs(tall_m - height) / tall_m > 0.05:
+            pid = P.add("construction", "height", "caution", f"HEIGHT {height} M OR {tall_m} M: RECORDS DISAGREE",
+                        f"2010 LiDAR median roof height is {height} m ({round(height / 0.3048)} ft); the Tall Building Inventory says {t.get('height_ft')} ft ({tall_m} m). "
+                        "The model uses the LiDAR median; the inventory figure likely measures to the top of the tower.", BLDG,
+                        [ev("ynuv-fyni", f"SF{apn}", soda_url("ynuv-fyni", "mblr", f"SF{apn}"), fp_asof, "hgt_median_m"), tev[0]], claim="conflict")
+            conflicts.append({"id": "conflict-height", "field": "height", "departmentPinId": "", "publicPinId": pid,
+                              "summary": f"Height disagrees: LiDAR median {height} m vs Tall Building Inventory {t.get('height_ft')} ft ({tall_m} m).", "pinIds": [pid]})
+        if t.get("name"):
+            tall_alias.append(t["name"].upper())
         pct = num(t.get("percent_sprinklered"))
         if pct is not None:
             P.add("construction", "tall-sprinklered", "danger" if pct < 100 else "info", f"ONLY {pct}% SPRINKLERED" if pct < 100 else "FULLY SPRINKLERED",
@@ -836,7 +868,7 @@ def build(bid):
         addrs = Counter(r.get("address") or r.get("permit_address") for r in rs)
         link(ds, "address_norm", f"address '{res['address_like'].rstrip('%')}*' or within {m} m", "high", len(rs), ", ".join(a for a, _ in addrs.most_common(3) if a))
     link("nuek-vuh3", "spatial", "within 120 m (block-level points)", "low", len(calls), ex(calls, "address"))
-    aliases = sorted({a for a in [res.get("address"), assessor_addr, permit_addr, ex(rows(bdir, "historic"), "name").upper()] if a}, key=len)
+    aliases = sorted({a for a in [res.get("address"), assessor_addr, permit_addr, ex(rows(bdir, "historic"), "name").upper()] + tall_alias if a}, key=len)
 
     # ---- layer status for the sources drawer
     layers = []
