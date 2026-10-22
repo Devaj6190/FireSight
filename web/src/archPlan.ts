@@ -210,7 +210,7 @@ export function archPlan(b: Pick<Building, 'id' | 'footprint' | 'structure' | 'f
     return c.map((p, i) => [toPlan(p), toPlan(c[(i + 1) % 4])])
   }
   const coreWalls = box(cc[0], cc[1], L, D)
-  for (const s of stairs) coreWalls.push(...box(cc[0] + (s.name === 'Stair A' ? -1 : 1) * (L / 2 - sl / 2), cc[1], sl, D).filter((_, i) => i === 1 || i === 3))
+  // no stair enclosures: stair positions are not public and must never be drawn (product rule, 14:58)
   const step = Math.max(6, 1.5 * bay)
   const gu: number[] = []
   const gv: number[] = []

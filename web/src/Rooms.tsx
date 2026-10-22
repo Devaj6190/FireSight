@@ -182,8 +182,9 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
   const elev = arch.shafts.length ? arch.shafts.reduce((s, r) => [s[0] + r.c[0] / arch.shafts.length, s[1] + r.c[1] / arch.shafts.length], [0, 0]) : arch.core.c
   const tags: { key: string; at: [number, number]; text: string; cls: string; pin?: Pin }[] = [
     { key: 'elev', at: [elev[0], elev[1]], text: arch.elevators > 1 ? 'Elevators' : 'Elevator', cls: 'arch' },
-    ...arch.stairs.map((s) => ({ key: s.name, at: s.rect.c, text: s.name, cls: 'arch' })),
-    ...arch.rooms.map((r) => ({ key: r.name, at: r.c, text: r.name, cls: `arch hz ${r.tone}`, pin: r.pin })),
+    // stairs: never drawn or placed. One plain note at the core, no position implied
+    { key: 'stairs', at: [arch.core.c[0], arch.core.c[1] - arch.core.d / 2 - 2.5], text: 'Stairs: not on public record · verify on arrival', cls: 'arch unknown' },
+    ...arch.rooms.map((r) => ({ key: r.name, at: r.c, text: `${r.name} · spot estimated`, cls: `arch hz ${r.tone}`, pin: r.pin })),
   ]
   return (
     <group ref={root}>
@@ -202,9 +203,7 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
         {arch.walls.map((s, i) => <mesh key={`w${i}`} geometry={res.box} material={res.m.wall} {...segProps(s, SLAB, WALL_H, 0.14)} />)}
         {arch.coreWalls.map((s, i) => <mesh key={`c${i}`} geometry={res.box} material={res.m.coreWall} {...segProps(s, SLAB, WALL_H + 0.3, 0.3)} />)}
         {arch.shafts.map((r, i) => <mesh key={`e${i}`} geometry={res.box} material={res.m.shaft} {...rectProps(r, SLAB - 0.25, WALL_H + 0.45)} />)}
-        {arch.stairs.map((s) => <mesh key={s.name} geometry={res.box} material={res.m.stair} {...rectProps({ ...s.rect, w: s.rect.w - 0.2, d: s.rect.d - 0.2 }, SLAB, 0.6)} />)}
-        <lineSegments geometry={res.treads} material={res.m.tread} />
-        <instancedMesh key={arch.columns.length} ref={colRef} args={[res.box, res.m.column, arch.columns.length]} frustumCulled={false} />
+        {b.structure && <instancedMesh key={arch.columns.length} ref={colRef} args={[res.box, res.m.column, arch.columns.length]} frustumCulled={false} />}
       </group>
       {tags.map((g, i) => (
         <Html key={g.key} center position={[g.at[0], SLAB + WALL_H + 0.6, -g.at[1]]} zIndexRange={[g.pin ? 6 : 4, 0]} style={{ pointerEvents: g.pin ? 'auto' : 'none' }}>
@@ -225,8 +224,8 @@ export function RoomsOverlay() {
   return (
     <>
       {rooms !== 'off' && (
-        <p className="rooms-banner" role="note" title="No public floor plan exists. Column spacing follows the structural system; core, stairs, corridor and rooms are typical-practice estimates. Hazard rooms are named in cited records; their spot on the floor is estimated.">
-          Estimated layout · columns from structural system · core and rooms not surveyed
+        <p className="rooms-banner" role="note" title="No public floor plan exists. Column spacing follows the structural system recorded in the SF Tall Building Inventory (5kya-mfst). Corridor and room grid are schematic. Stairs are not drawn: their location is not public. Hazard rooms are named in cited records; their spot on the floor is estimated.">
+          {useStore.getState().building?.structure ? 'Columns: structural system per SF Tall Building Inventory · ' : ''}Corridor and rooms schematic · stairs not drawn
         </p>
       )}
       <button className="rooms-toggle" disabled={busy} aria-pressed={rooms === 'on'} onClick={toggleRooms}>
