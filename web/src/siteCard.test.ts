@@ -74,8 +74,8 @@ test('faces group streets by 8-point side', () => {
 
 test('entrances: kind named when not generic, street from the nearest face, empty when none', () => {
   const lines = entrances(hero)
-  assert.ok(lines.length >= 1 && lines.every((l) => l.text.startsWith('Parking entrance on ')))
-  assert.equal(lines.reduce((n, l) => n + l.count, 0), 3)
+  // two nodes sit within 15 m of a Minna St edge; the third is 31 m from any labelled edge, so only a compass side is claimed
+  assert.deepEqual(lines.map((l) => [l.text, l.count]), [['Parking entrance on the south side', 1], ['Parking entrance on Minna St', 2]])
   assert.deepEqual(entrances(haight), [])
   // plain entrance, no street data: falls back to the compass side
   const plain = { footprint: hero.footprint, site: { ...hero.site!, sides: [], entrances: [{ x: -40, y: 0, kind: 'yes', source: 'OpenStreetMap', url: '' }] } }

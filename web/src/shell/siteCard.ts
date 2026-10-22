@@ -55,6 +55,7 @@ const distToSegment = (px: number, py: number, a: [number, number], b: [number, 
   return Math.hypot(px - (a[0] + t * dx), py - (a[1] + t * dy))
 }
 
+const STREET_MAX_M = 15
 const GENERIC_KIND = /^(|entrance|entry|yes|main|door)$/i
 
 export interface EntranceLine { text: string; count: number; url: string }
@@ -67,13 +68,18 @@ export function entrances(b: Pick<Building, 'footprint'> & { site?: Building['si
   const n = b.footprint.length
   const out = new Map<string, EntranceLine>()
   for (const e of site.entrances) {
+    // a street is claimed only when the nearest street-labelled edge is close and no unlabelled edge is clearly nearer
     let place = ''
-    let best = Infinity
+    let listed = Infinity
+    let street = ''
     for (const s of site.sides) {
       if (n < 2) break
       const d = distToSegment(e.x, e.y, b.footprint[s.edge % n], b.footprint[(s.edge + 1) % n])
-      if (d < best) { best = d; place = `on ${shortStreet(s.street)}` }
+      if (d < listed) { listed = d; street = s.street }
     }
+    let any = Infinity
+    for (let i = 0; i < n && n >= 2; i++) any = Math.min(any, distToSegment(e.x, e.y, b.footprint[i], b.footprint[(i + 1) % n]))
+    if (street && listed <= STREET_MAX_M && listed <= any + 3) place = `on ${shortStreet(street)}`
     if (!place) place = `on the ${compassWord((Math.atan2(e.x, e.y) * 180) / Math.PI, 8)} side`
     const kind = GENERIC_KIND.test(e.kind.trim()) ? 'Entrance' : cap(e.kind.trim())
     const text = `${kind} ${place}`
