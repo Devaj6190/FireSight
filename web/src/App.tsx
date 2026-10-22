@@ -3,7 +3,7 @@ import { OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
-import { collapse, explode, type Pose } from './explode'
+import { collapse, explode, reduce, type Pose } from './explode'
 import { fs } from './tokens'
 
 // ponytail: local slice of the Building contract until Lane B lands shared/building.ts
@@ -30,7 +30,6 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
   const home = useRef<Pose>(null)
   const camera = useThree((s) => s.camera)
-  const invalidate = useThree((s) => s.invalidate)
 
   const geo = useMemo(() => {
     const shape = new THREE.Shape(b.footprint.map(([x, y]) => new THREE.Vector2(x, y)))
@@ -55,7 +54,6 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
         c.target.set(pose.tx, pose.ty, pose.tz)
         camera.position.setFromSpherical(new THREE.Spherical(pose.r, pose.phi, pose.theta)).add(c.target)
         c.update()
-        invalidate()
       },
       onComplete: () => {
         c.enabled = true
@@ -83,7 +81,15 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
           </mesh>
         </group>
       ))}
-      <OrbitControls ref={controls} target={[0, b.heightM / 2, 0]} maxPolarAngle={Math.PI / 2 - 0.05} />
+      <OrbitControls
+        ref={controls}
+        target={[0, b.heightM / 2, 0]}
+        maxPolarAngle={Math.PI / 2 - 0.05}
+        enableDamping
+        dampingFactor={0.05}
+        autoRotate={!reduce && (phase === 'assembled' || phase === 'exploded')}
+        autoRotateSpeed={0.35}
+      />
     </>
   )
 }
@@ -105,10 +111,12 @@ export default function App() {
   return (
     <>
       <div className="stage">
-        <Canvas dpr={[1, 2]} frameloop="demand" camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
+        {/* ponytail: frameloop always (design.md says demand) for the idle drift and damping; demand again if battery bites */}
+        <Canvas dpr={[1, 2]} camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
           <color attach="background" args={[fs.bg]} />
-          <ambientLight intensity={0.6} />
-          <directionalLight position={[40, 80, 30]} intensity={1.6} />
+          <fog attach="fog" args={[fs.bg, d * 1.2, d * 5]} />
+          <hemisphereLight args={[fs.ink, fs.ground, 0.7]} />
+          <directionalLight position={[60, 90, 40]} intensity={1.4} />
           <Slabs b={b} phase={phase} setPhase={setPhase} />
           <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
             <circleGeometry args={[1.4 * span, 64]} />

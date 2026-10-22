@@ -6,4 +6,5 @@ export const fs = {
   slab: '#262b33',
   slabTop: '#3a414b',
   ground: '#13161b',
+  ink: '#f4f3ee',
 }
