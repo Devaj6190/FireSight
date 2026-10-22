@@ -12,7 +12,8 @@
    "tone": "info",
    "position": "0.2354 0.0460 0.0132",
    "normal": "0 1 0",
-   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/4/query?where=objectid_12=611&outFields=*&f=json"
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/4/query?where=objectid_12=611&outFields=*&f=json",
+   "pri": 4
   },
   {
    "id": "hydrant-water-esf4_hydrants_hp-617",
@@ -20,36 +21,41 @@
    "tone": "info",
    "position": "0.3001 0.1360 0.1949",
    "normal": "0 1 0",
-   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=617&outFields=*&f=json"
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=617&outFields=*&f=json",
+   "pri": 9
   },
   {
    "id": "wind",
-   "text": "Wind 3 mph from SW · forecast",
+   "text": "Wind 6 mph from WSW · forecast",
    "tone": "caution",
-   "position": "-0.2851 0.2260 0.2227",
+   "position": "-0.2851 0.2260 0.1391",
    "normal": "0 1 0",
-   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7696&longitude=-122.4296&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7696&longitude=-122.4296&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph",
+   "pri": 9
   },
   {
    "id": "unit-1",
    "text": "Unit 203",
    "tone": "unit",
    "position": "0.2172 0.3360 0.0293",
-   "normal": "0 1 0"
+   "normal": "0 1 0",
+   "pri": 9
   },
   {
    "id": "unit-2",
    "text": "Unit 204",
    "tone": "unit",
    "position": "0.2357 0.4260 0.2158",
-   "normal": "0 1 0"
+   "normal": "0 1 0",
+   "pri": 9
   },
   {
    "id": "unit-3",
    "text": "Unit 211",
    "tone": "unit",
    "position": "0.1367 0.5160 0.2241",
-   "normal": "0 1 0"
+   "normal": "0 1 0",
+   "pri": 9
   },
   {
    "id": "unit-4",
@@ -57,14 +63,16 @@
    "tone": "caution",
    "position": "-0.2171 0.0660 -0.2047",
    "normal": "0 1 0",
-   "source": "i98e-djp9 202205063754"
+   "source": "i98e-djp9 202205063754",
+   "pri": 9
   },
   {
    "id": "unit-5",
    "text": "Unit 215",
    "tone": "unit",
    "position": "-0.0966 0.1560 -0.2489",
-   "normal": "0 1 0"
+   "normal": "0 1 0",
+   "pri": 9
   },
   {
    "id": "open",
@@ -72,7 +80,8 @@
    "tone": "caution",
    "position": "0.0365 0.2420 0.1413",
    "normal": "0 1 0",
-   "source": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20230417285"
+   "source": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20230417285",
+   "pri": 9
   },
   {
    "id": "stairs",
@@ -80,7 +89,8 @@
    "tone": "unknown",
    "position": "0.0365 0.2620 0.1413",
    "normal": "0 1 0",
-   "source": "floorFacts.notOnRecord"
+   "source": "floorFacts.notOnRecord",
+   "pri": 3
   }
  ]
 }

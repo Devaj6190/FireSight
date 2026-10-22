@@ -12,7 +12,8 @@
    "tone": "info",
    "position": "-0.0349 0.0360 0.4647",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/8324272536"
+   "source": "https://www.openstreetmap.org/node/8324272536",
+   "pri": 9
   },
   {
    "id": "street-1",
@@ -20,7 +21,8 @@
    "tone": "unknown",
    "position": "-0.2516 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 5
   },
   {
    "id": "street-2",
@@ -28,7 +30,8 @@
    "tone": "unknown",
    "position": "0.2606 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-3",
@@ -36,7 +39,8 @@
    "tone": "unknown",
    "position": "0.2606 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-4",
@@ -44,7 +48,8 @@
    "tone": "unknown",
    "position": "0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-5",
@@ -52,7 +57,8 @@
    "tone": "unknown",
    "position": "0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-6",
@@ -60,7 +66,8 @@
    "tone": "unknown",
    "position": "-0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "hydrant-water-esf4_hydrants_hp-1143",
@@ -68,15 +75,17 @@
    "tone": "info",
    "position": "0.2802 0.0460 -0.2108",
    "normal": "0 1 0",
-   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json"
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json",
+   "pri": 4
   },
   {
    "id": "wind",
    "text": "Wind 6 mph from WSW · forecast",
    "tone": "caution",
-   "position": "-0.3220 0.1360 0.1367",
+   "position": "-0.3220 0.1360 0.1570",
    "normal": "0 1 0",
-   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph",
+   "pri": 9
   },
   {
    "id": "room-0",
@@ -84,7 +93,8 @@
    "tone": "caution",
    "position": "-0.1135 0.2420 -0.0579",
    "normal": "0 1 0",
-   "source": "https://data.sf.gov/resource/893e-xam6.json?permit_number=142618"
+   "source": "https://data.sf.gov/resource/893e-xam6.json?permit_number=142618",
+   "pri": 9
   },
   {
    "id": "room-1",
@@ -92,15 +102,65 @@
    "tone": "caution",
    "position": "0.1009 0.3320 -0.0993",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/3641760241"
+   "source": "https://www.openstreetmap.org/node/3641760241",
+   "pri": 9
   },
   {
    "id": "unit-1",
+   "text": "Unit 104",
+   "tone": "unit",
+   "position": "0.2414 0.4260 0.0723",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-2",
+   "text": "Unit 117",
+   "tone": "unit",
+   "position": "0.1634 0.5160 0.1021",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-3",
+   "text": "Unit 119",
+   "tone": "unit",
+   "position": "0.2214 0.0660 0.1620",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-4",
+   "text": "Unit 120",
+   "tone": "unit",
+   "position": "0.1561 0.1560 0.1753",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-5",
+   "text": "Unit 124",
+   "tone": "unit",
+   "position": "-0.2203 0.2460 0.1409",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-6",
+   "text": "Unit 129",
+   "tone": "unit",
+   "position": "-0.2688 0.3360 0.0895",
+   "normal": "0 1 0",
+   "pri": 9
+  },
+  {
+   "id": "unit-7",
    "text": "Unit 155 · open permit",
    "tone": "caution",
-   "position": "-0.2688 0.4260 0.0895",
+   "position": "-0.2141 0.4260 0.0328",
    "normal": "0 1 0",
-   "source": "i98e-djp9 201708074050"
+   "source": "i98e-djp9 201708074050",
+   "pri": 9
   },
   {
    "id": "crowd",
@@ -108,7 +168,8 @@
    "tone": "people",
    "position": "0.0071 0.5120 0.0169",
    "normal": "0 1 0",
-   "source": "SFFD assembly permit"
+   "source": "SFFD assembly permit",
+   "pri": 2
   },
   {
    "id": "fire",
@@ -116,7 +177,8 @@
    "tone": "danger",
    "position": "0.0071 0.0620 0.0169",
    "normal": "0 1 0",
-   "source": "SFFD incidents"
+   "source": "SFFD incidents",
+   "pri": 1
   },
   {
    "id": "open",
@@ -124,31 +186,35 @@
    "tone": "caution",
    "position": "0.0652 0.1520 -0.0454",
    "normal": "0 1 0",
-   "source": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202512313131"
+   "source": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202512313131",
+   "pri": 9
   },
   {
-   "id": "occ-r5",
+   "id": "occ-r3",
    "text": "Restaurant · commercial kitchen · est.",
    "tone": "unknown",
-   "position": "-0.2203 0.2460 0.1409",
+   "position": "-0.1389 0.2460 -0.0438",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/3641760241"
+   "source": "https://www.openstreetmap.org/node/3641760241",
+   "pri": 9
   },
   {
-   "id": "occ-r15",
+   "id": "occ-r6",
    "text": "Bar · crowds · est.",
    "tone": "unknown",
-   "position": "0.2214 0.3360 0.1620",
+   "position": "-0.1377 0.3360 0.0578",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/3641760242"
+   "source": "https://www.openstreetmap.org/node/3641760242",
+   "pri": 9
   },
   {
-   "id": "occ-r14",
+   "id": "occ-r10",
    "text": "Parking entrance · vehicles and fuel · est.",
    "tone": "unknown",
-   "position": "0.2414 0.4260 0.0723",
+   "position": "0.1268 0.4260 -0.0440",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/8324272536"
+   "source": "https://www.openstreetmap.org/node/8324272536",
+   "pri": 9
   },
   {
    "id": "stairs",
@@ -156,7 +222,8 @@
    "tone": "unknown",
    "position": "0.0652 0.2620 -0.0454",
    "normal": "0 1 0",
-   "source": "floorFacts.notOnRecord"
+   "source": "floorFacts.notOnRecord",
+   "pri": 3
   }
  ]
 }
