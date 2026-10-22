@@ -21,6 +21,7 @@ export type Ctx = {
   pins: { v: number }[] // reveal per pin group, sorted danger first
   fades: { a: number }[] // opacity per floor, contract numbering (0 = B1)
   target: number | null // focused floor
+  lit: number[] // floors an answer names, shown full alongside target
   hot: Set<number> // floors with a danger pin
 }
 
@@ -46,11 +47,13 @@ function fan(c: Ctx) {
   return { n, step, rise }
 }
 
-// focus: the floor full, the floor above (fire spreads up) and nearby danger floors half-lit, the rest dim
+// focus: the floor and any answer floors full, the floor above (fire spreads up) and nearby danger floors half-lit, the rest dim
 const HALF = 0.4
 const DIM = 0.15
-const fadeFor = (f: number, c: Ctx) =>
-  c.target === null || f === c.target ? 1 : f === c.target + 1 || (c.hot.has(f) && Math.abs(f - c.target) <= 4) ? HALF : DIM
+const fadeFor = (f: number, c: Ctx) => {
+  if ((c.target === null && !c.lit.length) || f === c.target || c.lit.includes(f)) return 1
+  return c.target !== null && (f === c.target + 1 || (c.hot.has(f) && Math.abs(f - c.target) <= 4)) ? HALF : DIM
+}
 
 export function explode(c: Ctx) {
   const { n, step, rise } = fan(c)
@@ -68,10 +71,15 @@ export function explode(c: Ctx) {
 // runs once the fan has landed (and again whenever the target changes): fade floors, frame the target
 export function focus(c: Ctx) {
   c.tl.to(c.fades, { a: (f: number) => fadeFor(f, c), duration: t(0.8), ease: 'sine.inOut' }, 0)
-  if (c.target === null) return
+  const shown = c.target === null ? c.lit : [c.target, ...c.lit]
+  if (!shown.length) return
   const { step, rise } = fan(c)
-  const s = c.target - 1 // slab index; B1 is -1, which the fan formula places downhill
-  c.tl.to(c.pose, { tx: 0, ty: s * rise + c.floorH / 2, tz: -s * step, r: 3 * fit(c) * c.span, duration: t(1.4), ease: 'sine.inOut' }, 0)
+  // slab indices; B1 is -1, which the fan formula places downhill. Frame the middle, back off to fit the run
+  const lo = Math.min(...shown) - 1
+  const hi = Math.max(...shown) - 1
+  const s = (lo + hi) / 2
+  const r = fit(c) * Math.max(3 * c.span, 1.6 * (hi - lo) * Math.hypot(step, rise))
+  c.tl.to(c.pose, { tx: 0, ty: s * rise + c.floorH / 2, tz: -s * step, r, duration: t(1.4), ease: 'sine.inOut' }, 0)
 }
 
 export function collapse(c: Ctx) {
