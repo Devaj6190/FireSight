@@ -93,3 +93,17 @@ describe("unverifiable lines cannot assert facts", () => {
     expect(answer.text).toBe("No public record: sprinkler coverage.");
   });
 });
+
+import { briefFromRecords } from "../../shared/client.ts";
+
+describe("briefFromRecords (no network, no saved brief)", () => {
+  it("lists cited records danger first, ends with unknowns, and every line passes the validator", () => {
+    const b = hero();
+    const brief = briefFromRecords(b);
+    expect(brief.lines[0].pinIds).toEqual(["permit-201910044012"]);
+    expect(brief.lines.at(-1)?.text).toBe("Unknown: stairs, standpipe.");
+    expect(brief.lines.some((l) => l.pinIds.includes("permit-bogus"))).toBe(false);
+    const { dropped } = validateBrief(b, brief.lines.map((l) => ({ ...l, element: null })));
+    expect(dropped).toEqual([]);
+  });
+});
