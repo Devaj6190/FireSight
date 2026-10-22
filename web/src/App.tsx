@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import { collapse, explode, focus, reduce, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
+import { Rooms, RoomsOverlay } from './Rooms'
 import { useStore, type Phase } from './store'
 import { City } from './City'
 import { facade } from './cityMesh'
@@ -27,7 +28,7 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, lit, setPhase } = useStore()
+  const { phase, target, lit, rooms, setPhase, toggleRooms } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -170,24 +171,30 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       return marker(g, [x, top, -y])
     })
 
-  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y
+  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y. Tapping the focused floor opens its rooms
   const slab = (f: number) => (
-    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]}>
+    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={f === target && phase === 'exploded' ? (e) => (e.stopPropagation(), toggleRooms()) : undefined}>
       <lineSegments geometry={edges} material={levels[f].edge} />
     </mesh>
   )
+  const roomsOf = (f: number) =>
+    f === target && rooms !== 'off' && (
+      <Rooms b={b} floor={f} height={top} level={levels[f]} chips={groups.map((g) => g.reveal)} play={play} onSelectPin={onSelectPin} />
+    )
   return (
     <>
       {hasB1 && (
         <group ref={basement} position-y={-b.floorHeightM}>
           {slab(0)}
           {onSlab(0, 1)}
+          {roomsOf(0)}
         </group>
       )}
       {Array.from({ length: b.floors }, (_, i) => (
         <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM}>
           {slab(i + 1)}
           {onSlab(i + 1, i)}
+          {roomsOf(i + 1)}
           {i === 0 && groups.filter((g) => g.key === 'site').map((g) => marker(g, [west[0], top, -west[1]]))}
           {i === b.floors - 1 && groups.filter((g) => g.key === 'roof').map((g) => marker(g, [0, top, 0]))}
         </group>
@@ -199,7 +206,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
         maxPolarAngle={Math.PI / 2 - 0.05}
         enableDamping
         dampingFactor={0.05}
-        autoRotate={!reduce && (phase === 'assembled' || phase === 'exploded')}
+        autoRotate={!reduce && (phase === 'assembled' || phase === 'exploded') && rooms === 'off'}
         autoRotateSpeed={0.35}
       />
     </>
@@ -287,5 +294,6 @@ export default function App() {
         <meshStandardMaterial color={fs.sidewalk} transparent opacity={0.75} depthWrite={false} />
       </mesh>
     </Canvas>
+    <RoomsOverlay />
   </PhoneShell>
 }
