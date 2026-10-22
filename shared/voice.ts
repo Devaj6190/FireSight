@@ -201,18 +201,110 @@ export function spokenSizeUp(b: Building, max = 8): string[] {
   return spokenBeats(b, max).map((x) => x.text);
 }
 
-// After a dispatch update ("people trapped on 23"): only that floor, what is on it, and what to verify.
+// ---- Short spoken version (voice only; the arrival card keeps the full spokenBeats) ----
+// At most five sentences, no per-fact source (the card shows them), one closing line pointing at the screen.
+// Every fact is still read from a cited record; considerations, never orders.
+
+const lc = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
+const ucfirst = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+const shortFloors = (fs: number[]) => (fs.length === 1 ? `${fs[0] === 0 ? "basement B 1" : `floor ${fs[0]}`}` : `floors ${join(fs.map((f) => (f === 0 ? "B 1" : String(f))))}`);
+// "Battery room floor 22, 33.6 gallons electrolyte" -> "battery room"; "Unit 311, structural work" stays whole.
+const hazardName = (p: Pin) => lc(speakable(p.label).replace(/,?\s*floor \d+.*$/i, "").replace(/\s+[\d.]+\s+gallons.*$/i, "").trim());
+const countOf = (p: Pin) => p.label.match(/(\d[\d,]*)\s+(people|persons|occupants|units|rooms)/i);
+
+function shortPeople(b: Building, verified: Pin[], fire: number | null, reports: Pin[]): Beat | null {
+  const r = reports[0];
+  if (r) {
+    const f = floorOf(r);
+    const rel = f !== null && fire !== null && f !== fire ? `, ${Math.abs(f - fire) === 1 ? "one floor" : `${Math.abs(f - fire)} floors`} ${f > fire ? "above" : "below"} the fire` : "";
+    return beat(`Dispatch reports people${f !== null ? ` on ${floorName(f)}` : ""}${rel}.`, [r]);
+  }
+  if (fire === null) return null;
+  const counts = verified.filter(isPeople);
+  const here = counts.find((p) => floorOf(p) === fire);
+  const disputed = counts.find((p) => p.claim === "conflict");
+  if (here) {
+    const m = countOf(here);
+    return beat(`${m ? `${m[1]} ${m[2].toLowerCase()} on ${floorName(fire)}` : speakable(here.label)}${disputed ? "; records disagree on the total" : ""}.`, [here, ...(disputed ? [disputed] : [])]);
+  }
+  const load = officeLoadPerFloor(b);
+  const upTo = fire < b.floors ? `${fire} or above` : String(fire);
+  const span = fire < b.floors ? Array.from({ length: b.floors - fire + 1 }, (_, i) => fire + i) : [fire];
+  return beat(`No headcount on ${upTo}${load ? `; up to about ${load} per floor` : ""}.`, [], span);
+}
+
+function shortHazards(verified: Pin[], fire: number | null, b: Building): Beat | null {
+  if (fire === null) return null;
+  const near = verified
+    .filter((p) => !isPeople(p) && ["fire_permit", "hazmat", "incident", "permit"].includes(p.layer))
+    .filter((p) => floorOf(p) !== null && Math.abs(floorOf(p)! - fire) <= 1)
+    .sort((x, y) => RANK[x.severity] - RANK[y.severity] || Math.abs(floorOf(x)! - fire) - Math.abs(floorOf(y)! - fire))
+    .slice(0, 3);
+  if (!near.length) {
+    const occ = b.floorFacts?.find((x) => x.floor === fire)?.occupants?.[0];
+    return occ
+      ? beat(`${ucfirst(floorName(fire))} use on record: ${occ.kind.toLowerCase()}.`, [], [fire])
+      : beat(`No public record places a hazard near ${floorName(fire)}.`, [], [fire]);
+  }
+  const groups = new Map<string, Pin[]>();
+  for (const p of near) groups.set(hazardName(p), [...(groups.get(hazardName(p)) ?? []), p]);
+  const parts = [...groups.entries()].slice(0, 2).map(([name, ps]) => ({ name, floors: floorsOf(ps), ps }));
+  const same = parts.length > 1 && parts.every((x) => x.floors.join() === parts[0].floors.join());
+  const text = same
+    ? `On ${shortFloors(parts[0].floors)}: ${join(parts.map((x) => x.name))}`
+    : parts.map((x) => `${x.name} on ${shortFloors(x.floors)}`).join("; ");
+  return beat(`${ucfirst(text)}.`, parts.flatMap((x) => x.ps), [fire]);
+}
+
+function shortBring(b: Building, verified: Pin[], fire: number | null, coveredEnergy: boolean): Beat | null {
+  const items: { text: string; pins: Pin[] }[] = [];
+  if (b.floors >= 7 || b.heightM > 22.86) items.push({ text: "standpipe operations", pins: verified.filter((p) => /stories/i.test(p.label)).slice(0, 1) });
+  const fuel = verified.find((p) => /diesel|fuel|propane|lpg|gasoline/i.test(p.label));
+  if (fuel) items.push({ text: `fuel in ${floorOf(fuel) === 0 ? "B 1" : floorOf(fuel) !== null ? `floor ${floorOf(fuel)}` : "the building"}`, pins: [fuel] });
+  const near = (p: Pin) => fire === null || (floorOf(p) !== null && Math.abs(floorOf(p)! - fire) <= 1);
+  const energy = verified.filter((p) => /battery|energy storage|electrolyte|\bups\b/i.test(p.label) && near(p));
+  if (energy.length && !coveredEnergy) items.push({ text: `battery hazard on ${shortFloors(floorsOf(energy))}`, pins: energy });
+  const haz = verified.filter((p) => p.layer === "hazmat" && floorOf(p) !== null && near(p));
+  if (haz.length) items.push({ text: `hazardous materials on ${shortFloors(floorsOf(haz))}`, pins: haz });
+  if (!items.length) return null;
+  const top = items.slice(0, 2);
+  return beat(`Bring and check: ${join(top.map((i) => i.text))}.`, top.flatMap((i) => i.pins), [], "bring");
+}
+
+// The arrival brief as it is spoken: about 45 words for the hero, five sentences at most.
+export function spokenBrief(b: Building): Beat[] {
+  const dispatches = b.pins.filter((p) => p.origin === "dispatch");
+  const call = dispatches.find((p) => !REPORT.test(p.label)) ?? dispatches[0];
+  const reports = dispatches.filter((p) => p !== call && REPORT.test(p.label));
+  const fire = call ? floorOf(call) : null;
+  const verified = b.pins.filter((p) => p.origin === "public" && p.claim !== "unverifiable" && p.evidence.length);
+  const out: Beat[] = [beat(`${b.address}, ${b.floors} stories${fire !== null ? `, fire floor ${fire}` : ""}.`, call ? [call] : [], [], "call")];
+  const people = shortPeople(b, verified, fire, reports);
+  if (people) out.push({ ...people, section: "people" });
+  const haz = shortHazards(verified, fire, b);
+  if (haz) out.push({ ...haz, section: "fire" });
+  const bring = shortBring(b, verified, fire, !!haz && haz.pinIds.some((id) => /battery|energy|electrolyte|ups/i.test(b.pins.find((p) => p.id === id)?.label ?? "")));
+  if (bring) out.push(bring);
+  const unknowns = [...new Set(b.unknowns.slice(0, 2).map((u) => unknownName(u).replace(/ and F D C$/, "")))];
+  out.push(beat(`${unknowns.length ? `Verify ${join(unknowns)} on arrival` : "Verify everything on arrival"}; sources on screen.`, [], [], "verify"));
+  return out;
+}
+
+// After a dispatch update ("people trapped on 23"): three sentences at most.
 export function reportBeats(b: Building, report: Pin): Beat[] {
   const f = floorOf(report);
   const call = b.pins.find((p) => p.origin === "dispatch" && p !== report && !REPORT.test(p.label));
   const fire = call ? floorOf(call) : null;
   if (f === null) return [beat("Copy, people reported. No floor given.", [report])];
-  const out = [beat(`Copy. People reported, ${floorName(f)}${fire !== null && f !== fire ? `, ${Math.abs(f - fire) === 1 ? "one floor" : `${Math.abs(f - fire)} floors`} ${f > fire ? "above" : "below"} the fire` : ""}.`, [report])];
+  const rel = fire !== null && f !== fire ? `, ${Math.abs(f - fire) === 1 ? "one floor" : `${Math.abs(f - fire)} floors`} ${f > fire ? "above" : "below"} the fire` : "";
+  const out = [beat(`Copy, people on ${floorName(f)}${rel}.`, [report])];
   const verified = b.pins.filter((p) => p.origin === "public" && p.claim !== "unverifiable" && p.evidence.length);
-  const here = verified.filter((p) => floorOf(p) === f).sort((x, y) => RANK[x.severity] - RANK[y.severity]).slice(0, 2);
-  if (here.length) out.push(beat(`${floorName(f)[0].toUpperCase()}${floorName(f).slice(1)} records: ${here.map(cite).join(". ")}.`, here));
+  const here = verified.filter((p) => floorOf(p) === f && !isPeople(p)).sort((x, y) => RANK[x.severity] - RANK[y.severity]).slice(0, 2);
+  const count = verified.find((p) => isPeople(p) && floorOf(p) === f);
   const load = officeLoadPerFloor(b);
-  if (!verified.some((p) => isPeople(p) && floorOf(p) === f)) out.push(beat(`No public headcount for ${floorName(f)}${load ? `; office code allows up to about ${load}` : ""}.`, [], [f]));
-  out.push(beat(`Stairs to ${floorName(f)}: no public record, verify on arrival.`, [], [f]));
+  const names = [...new Set(here.map(hazardName))];
+  const headcount = count ? (countOf(count) ? `${countOf(count)![1]} ${countOf(count)![2].toLowerCase()} on record` : speakable(count.label).toLowerCase()) : `no public headcount${load ? `, up to about ${load} per floor` : ""}`;
+  out.push(beat(`${ucfirst(floorName(f))}: ${names.length ? `${join(names)}; ` : ""}${headcount}.`, [...here, ...(count ? [count] : [])], [f]));
+  out.push(beat(`Verify stairs to ${floorName(f)} on arrival.`, [], [f]));
   return out;
 }
