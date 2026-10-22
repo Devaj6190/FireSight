@@ -632,5 +632,62 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T23:36:51+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 44878,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   },
+   {
+    "pinId": "occupancy-floor1-units",
+    "label": "9 UNITS KNOWN ON FLOOR 1"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~3 pins"
+ },
+ {
+  "at": "2026-10-22T23:36:51+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 0,
+  "ms": 30854,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T23:37:22+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 0,
+  "ms": 33453,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "no changes"
+ },
+ {
+  "at": "2026-10-22T23:37:36+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 41093,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
