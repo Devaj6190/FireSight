@@ -66,6 +66,14 @@ def simplify(pts, tol):
     return simplify(pts[: i + 1], tol)[:-1] + simplify(pts[i:], tol)
 
 
+def simplify_ring(ring, tol):
+    """Closed ring (no repeated end point): split at the vertex farthest from the first, simplify both halves."""
+    if len(ring) < 4:
+        return ring
+    i = max(range(len(ring)), key=lambda j: math.dist(ring[0], ring[j]))
+    return simplify(ring[: i + 1], tol)[:-1] + simplify(ring[i:] + [ring[0]], tol)[:-1]
+
+
 def area(ring):  # shoelace, positive when CCW
     return sum(ring[i - 1][0] * ring[i][1] - ring[i][0] * ring[i - 1][1] for i in range(len(ring))) / 2
 
@@ -86,7 +94,7 @@ def buildings(lat, lon, r, proj, hero_mblr):
                 ring = [proj(x, y) for x, y in poly[0]]  # outer ring; courtyards are rare and unseen from street level
                 if ring[0] == ring[-1]:
                     ring = ring[:-1]
-                ring = simplify(ring + [ring[0]], 0.4)[:-1]
+                ring = simplify_ring(ring, 0.4)
                 a = area(ring)
                 if len(ring) < 3 or abs(a) < 12:
                     continue

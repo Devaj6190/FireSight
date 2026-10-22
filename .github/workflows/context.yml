@@ -21,7 +21,9 @@ jobs:
       - name: Fetch footprints and streets around each cached building
         run: |
           for f in web/public/buildings/sf-*.json; do
-            python -I scripts/fetch_context.py "$(basename "$f" .json)" 1500
+            id="$(basename "$f" .json)"
+            r=1500; [ "$id" = sf-3722080 ] && r=2500   # the hero gets the wider skyline
+            python -I scripts/fetch_context.py "$id" "$r"
           done
       - name: Commit if changed
         run: |
