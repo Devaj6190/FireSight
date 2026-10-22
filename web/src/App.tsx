@@ -24,7 +24,7 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, setPhase } = useStore()
+  const { phase, target, lit, setPhase } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -101,7 +101,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       },
     })
     run({
-      tl, pose, home: home.current!, target, hot,
+      tl, pose, home: home.current!, target, lit, hot,
       slabs: slabs.current, basement: hasB1 ? basement.current : null,
       edges: levels.map((l) => l.edge.color), fades: levels.map((l) => l.fade), pins: groups.map((g) => g.reveal),
       floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b), aspect: size.width / size.height,
@@ -119,10 +119,10 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     }
     if (phase === 'collapsing') return play(collapse, 'assembled')
     if (phase === 'exploded') {
-      if (target !== null) navigator.vibrate?.(20)
+      if (target !== null || lit.length) navigator.vibrate?.(20)
       return play(focus)
     }
-  }, [phase, target]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [phase, target, lit]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
     <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} /></group>
@@ -171,7 +171,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
 }
 
 export default function App() {
-  const { building: b, phase, target, setBuilding: setB, setPhase, focus, explode, collapse } = useStore()
+  const { building: b, phase, target, setBuilding: setB, setPhase, focus, highlight, lit, explode, collapse } = useStore()
   const [buildingId, setBuildingId] = useState(() => {
     const id = new URLSearchParams(location.search).get('building')
     return BUILDINGS.some(v => v.id === id) ? id! : 'sf-3722080'
@@ -232,11 +232,11 @@ export default function App() {
   const d = 2.2 * Math.max(b.heightM, span)
   const mid = b.heightM / 2
 
-  return <PhoneShell key={b.id} building={b} phase={phase} selectedPin={selectedPin} focusedFloors={target === null ? [] : [target]}
+  return <PhoneShell key={b.id} building={b} phase={phase} selectedPin={selectedPin} focusedFloors={[...new Set(target === null ? lit : [target, ...lit])]}
     onBuilding={changeBuilding} onDispatch={handleDispatch}
     onToggle={() => { if (phase === 'exploded') collapse(); else explode() }}
     onSelectPin={setSelectedPin}
-    onHighlight={(floors, ids) => { const pin = b.pins.find(p => ids.includes(p.id) && p.anchor.kind === 'floor'); focus(floors[0] ?? (pin?.anchor.kind === 'floor' ? pin.anchor.floor : null)) }}
+    onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
     onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
     <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
       <color attach="background" args={[fs.bg]} />
