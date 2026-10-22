@@ -3,5 +3,20 @@
  "address": "1433 Haight St",
  "fireFloor": null,
  "scale": 0.0033333333333333335,
- "hotspots": []
+ "floors": [
+  {
+   "n": 1,
+   "kind": "plain"
+  },
+  {
+   "n": 2,
+   "kind": "plain"
+  },
+  {
+   "n": 3,
+   "kind": "plain"
+  }
+ ],
+ "hotspots": [],
+ "assembledHotspots": []
 }

@@ -3,6 +3,116 @@
  "address": "140 New Montgomery St",
  "fireFloor": 22,
  "scale": 0.0033333333333333335,
+ "floors": [
+  {
+   "n": 0,
+   "kind": "plain"
+  },
+  {
+   "n": 1,
+   "kind": "people"
+  },
+  {
+   "n": 2,
+   "kind": "people"
+  },
+  {
+   "n": 3,
+   "kind": "plain"
+  },
+  {
+   "n": 4,
+   "kind": "plain"
+  },
+  {
+   "n": 5,
+   "kind": "plain"
+  },
+  {
+   "n": 6,
+   "kind": "plain"
+  },
+  {
+   "n": 7,
+   "kind": "plain"
+  },
+  {
+   "n": 8,
+   "kind": "plain"
+  },
+  {
+   "n": 9,
+   "kind": "plain"
+  },
+  {
+   "n": 10,
+   "kind": "plain"
+  },
+  {
+   "n": 11,
+   "kind": "plain"
+  },
+  {
+   "n": 12,
+   "kind": "plain"
+  },
+  {
+   "n": 13,
+   "kind": "plain"
+  },
+  {
+   "n": 14,
+   "kind": "plain"
+  },
+  {
+   "n": 15,
+   "kind": "plain"
+  },
+  {
+   "n": 16,
+   "kind": "plain"
+  },
+  {
+   "n": 17,
+   "kind": "plain"
+  },
+  {
+   "n": 18,
+   "kind": "plain"
+  },
+  {
+   "n": 19,
+   "kind": "plain"
+  },
+  {
+   "n": 20,
+   "kind": "plain"
+  },
+  {
+   "n": 21,
+   "kind": "plain"
+  },
+  {
+   "n": 22,
+   "kind": "fire"
+  },
+  {
+   "n": 23,
+   "kind": "exposure"
+  },
+  {
+   "n": 24,
+   "kind": "exposure"
+  },
+  {
+   "n": 25,
+   "kind": "exposure"
+  },
+  {
+   "n": 26,
+   "kind": "exposure"
+  }
+ ],
  "hotspots": [
   {
    "id": "fire",
@@ -33,6 +143,40 @@
    "text": "68 people · floor 2",
    "tone": "people",
    "position": "-0.1167 0.0581 -0.0040",
+   "normal": "-0.7 0 0.7",
+   "floor": 2
+  }
+ ],
+ "assembledHotspots": [
+  {
+   "id": "fire",
+   "text": "Fire · floor 22",
+   "tone": "fire",
+   "position": "-0.1167 0.3335 -0.0040",
+   "normal": "-0.7 0 0.7",
+   "floor": 22
+  },
+  {
+   "id": "battery",
+   "text": "Battery rooms · 22–23",
+   "tone": "battery",
+   "position": "0.1013 0.3409 0.0054",
+   "normal": "0.7 0 0.7",
+   "floor": 22
+  },
+  {
+   "id": "people-1",
+   "text": "257 people · floor 1",
+   "tone": "people",
+   "position": "0.1013 0.0241 0.0054",
+   "normal": "0.7 0 0.7",
+   "floor": 1
+  },
+  {
+   "id": "people-2",
+   "text": "68 people · floor 2",
+   "tone": "people",
+   "position": "-0.1167 0.0388 -0.0040",
    "normal": "-0.7 0 0.7",
    "floor": 2
   }
