@@ -125,7 +125,7 @@ export interface Building {
 
 // Compliance strip (Lane C owns the logic, Lane D renders).
 export interface ComplianceRow {
-  id: "C1" | "C3" | "C4" | "C8";
+  id: "C1" | "C3" | "C4" | "C5" | "C7" | "C8"; // additive 13:05: C5 energy storage, C7 high-rise inspection
   rule: string; // "Annual fire inspection, apartments and hotels"
   citation: string; // "Cal. H&SC 13146.2"
   result: "pass" | "fail" | "unknown" | "partial";

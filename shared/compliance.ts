@@ -124,7 +124,63 @@ export function preplanCoverage(b: Building): ComplianceRow & { counts: Record<C
   };
 }
 
+const RESIDENTIAL = /\b(residential|apartment|dwelling|hotel|motel|sro|lodging|condo)/i;
+const HIGH_RISE_M = 22.86; // 75 ft, CBC 202 high-rise definition (REPORTED in research-regs.md)
+const BATTERY = /\b(batter(y|ies)|energy storage|powerwall|\bess\b|ups)\b/i;
+const NOT_ESS = /\b(garage door|smoke (alarm|detector)|alarm panel batter)/i;
+
+// C1 applies to apartments and hotels (H&SC 17921(b)); an office tower gets C7 instead.
+export function isResidential(b: Building): boolean {
+  return RESIDENTIAL.test(b.use ?? "") || (b.units ?? 0) >= 3 || b.pins.some((p) => p.layer === "inspection" && /\bR-?[12]\b/i.test(text(p)));
+}
+
+export function highRiseInspection(b: Building, today: Date): ComplianceRow {
+  const base = {
+    id: "C7" as const,
+    rule: "High-rise annual inspection",
+    citation: "SFFD High Rise Annual Inspection program; high-rise over 75 ft",
+    wording: "rule logic meets" as const,
+  };
+  const hr = b.pins
+    .filter((p) => p.layer === "inspection" && /high[- ]?rise/i.test(text(p)) && /complet/i.test(text(p)) && p.evidence.length)
+    .sort((x, y) => latestAsOf(y).localeCompare(latestAsOf(x)));
+  if (!hr.length) {
+    return { ...base, result: "unknown", summary: `Over 75 ft (${Math.round(b.heightM * 3.28084)} ft); no completed high-rise inspection found in SFFD records.`, pinIds: [] };
+  }
+  const date = latestAsOf(hr[0]).slice(0, 10);
+  const days = Math.floor((today.getTime() - Date.parse(date)) / DAY);
+  return { ...base, result: days <= 365 ? "pass" : "fail", summary: `High Rise Annual Inspection completed ${date}, ${days} days ago.`, pinIds: [hr[0].id] };
+}
+
+// C5: CFC 1207 thresholds by battery type (Table 1207.1.3). Never FAIL: capacity is rarely on record.
+export function energyStorage(b: Building): ComplianceRow | null {
+  const ess = b.pins.filter((p) => ["permit", "fire_permit", "hazmat"].includes(p.layer) && BATTERY.test(text(p)) && !NOT_ESS.test(text(p)));
+  if (!ess.length) return null;
+  const kwh = ess.map((p) => text(p).match(/(\d+(?:\.\d+)?)\s*kwh/i)?.[1]).filter(Boolean).map(Number);
+  const floors = [...new Set(ess.flatMap((p) => (p.anchor.kind === "floor" ? [p.anchor.floor] : [])))].sort((x, y) => x - y);
+  const where = floors.length ? `floor${floors.length > 1 ? "s" : ""} ${floors.join(", ")}` : "location not stated";
+  return {
+    id: "C5",
+    rule: "Battery energy storage",
+    citation: "CA Fire Code 2025 §1207.1.3 (Li-ion 20 kWh, lead-acid 70 kWh)",
+    result: kwh.length && Math.max(...kwh) > 20 ? "partial" : "unknown",
+    summary: kwh.length
+      ? `Battery storage on ${where}, up to ${Math.max(...kwh)} kWh on record; §1207 applies above the threshold for its type.`
+      : `Battery storage on ${where}; capacity in kWh not on record, so whether §1207 applies is unknown.`,
+    pinIds: ess.map((p) => p.id),
+    wording: "rule logic meets",
+  };
+}
+
 export function evaluateCompliance(b: Building, today = new Date()): ComplianceRow[] {
   const { counts: _counts, ...c8 } = preplanCoverage(b);
-  return [annualInspection(b, today), openViolations(b), solarPathways(b), c8];
+  const rows: (ComplianceRow | null)[] = [
+    isResidential(b) ? annualInspection(b, today) : null,
+    b.heightM > HIGH_RISE_M ? highRiseInspection(b, today) : null,
+    openViolations(b),
+    solarPathways(b),
+    energyStorage(b),
+    c8,
+  ];
+  return rows.filter((r): r is ComplianceRow => r !== null);
 }
