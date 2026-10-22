@@ -6,6 +6,8 @@ From a dispatch line, typed or spoken, FireSight finds the building, opens the 3
 
 **Try it:** https://firesight-ten.vercel.app (the story is the rig's tablet; the demo runs in a laptop browser, and AR needs Chrome on Android)
 
+**Demo script:** [a simulated fire on floor 22](docs/demo-fire-22.md), at https://firesight-ten.vercel.app/?scenario=fire22. Tap the tower to explode it, a floor to open its rooms, the red fire area to go straight to it.
+
 **Demo video:** _link coming_
 <!-- VIDEO: replace with YouTube/Loom link + thumbnail docs/img/video-thumb.jpg -->
 

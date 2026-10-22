@@ -3,6 +3,7 @@
 // useStore.getState().highlight(answer.highlight) lights every floor an answer names, keeping the focused floor.
 import { create } from 'zustand'
 import type { Answer, Building } from '../../shared/building'
+import type { Fire } from './scenario'
 
 export type Phase = 'assembled' | 'exploding' | 'exploded' | 'collapsing' // plan.md s4
 export type RoomsPhase = 'off' | 'opening' | 'on' | 'closing' // second level: the focused floor split into rooms
@@ -15,6 +16,9 @@ type Store = {
   lit: number[] // floors an answer names, sorted; shown full alongside target
   rooms: RoomsPhase
   collapseAfterRooms: boolean // collapse asked while rooms were open: rooms close first, then the floors
+  roomsAfterExplode: boolean // a floor tapped on the assembled building: explode first, then open its rooms
+  roomsAt: 'fire' | null // the rooms camera lands on the fire area instead of the whole plate
+  fire: Fire | null // the fire area a dispatch named (scenario.ts); simulated, never a record
   view: number // bumped by resetView: the scene flies the camera back to the framing for the current phase
   inset: Inset // the camera frames the building in the canvas minus this (the canvas itself never resizes)
   setBuilding: (b: Building) => void
@@ -24,6 +28,9 @@ type Store = {
   focus: (floor: number | null) => void
   highlight: (h: Answer['highlight']) => void
   toggleRooms: () => void
+  openFloor: (floor: number, at?: 'fire') => void
+  goToFire: () => void
+  setFire: (fire: Fire | null) => void
   setRooms: (r: RoomsPhase) => void
   resetView: () => void
   setInset: (inset: Inset) => void
@@ -35,10 +42,16 @@ export const useStore = create<Store>((set, get) => ({
   lit: [],
   rooms: 'off',
   collapseAfterRooms: false,
+  roomsAfterExplode: false,
+  roomsAt: null,
+  fire: null,
   view: 0,
   inset: { top: 0, right: 0, bottom: 0, left: 0 },
   setBuilding: (building) => set({ building }),
-  setPhase: (phase) => set({ phase }),
+  setPhase: (phase) => {
+    const open = phase === 'exploded' && get().roomsAfterExplode
+    set({ phase, ...(open && { rooms: 'opening' as const, roomsAfterExplode: false }) })
+  },
   explode: () => void (get().phase === 'assembled' && set({ phase: 'exploding' })),
   collapse: () => {
     if (get().rooms !== 'off') return void set({ rooms: 'closing', collapseAfterRooms: true }) // rooms -> floor -> building
@@ -63,6 +76,19 @@ export const useStore = create<Store>((set, get) => ({
     if (rooms === 'off' && phase === 'exploded' && target !== null) set({ rooms: 'opening' })
     else if (rooms === 'on' || rooms === 'opening') set({ rooms: 'closing', collapseAfterRooms: false })
   },
+  // a tap on a floor: straight into its rooms, exploding the building first when it is assembled
+  openFloor: (floor, at) => {
+    const { phase, target, rooms } = get()
+    if (phase === 'collapsing' || (target === floor && rooms !== 'off')) return void set({ roomsAt: at ?? null })
+    set({ target: floor, lit: [], roomsAt: at ?? null })
+    if (phase === 'exploded') set({ rooms: 'opening', collapseAfterRooms: false })
+    else set({ rooms: 'off', roomsAfterExplode: true, ...(phase === 'assembled' && { phase: 'exploding' as const }) })
+  },
+  goToFire: () => {
+    const f = get().fire
+    if (f) get().openFloor(f.floor, 'fire')
+  },
+  setFire: (fire) => set({ fire }),
   setRooms: (rooms) => {
     set({ rooms })
     if (rooms === 'off' && get().collapseAfterRooms) {

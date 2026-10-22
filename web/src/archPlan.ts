@@ -10,6 +10,8 @@ export type Seg = [P, P]
 export type Rect = { c: P; w: number; d: number; angle: number } // plan coords (m, x east, y north); w along angle
 export type Tone = 'danger' | 'caution'
 export type ArchRoom = { name: string; tone: Tone; polys: P[][]; c: P; pin?: Pin }
+// fire area from a dispatch side (scenario.ts): the origin cell burns, its neighbours on that side take the spread
+export type FireArea = { cells: { poly: P[]; heat: number }[]; c: P }
 export type Arch = {
   angle: number
   bay: number
@@ -23,6 +25,7 @@ export type Arch = {
   facade: Seg[]
   rooms: ArchRoom[]
   elevators: number
+  fire?: FireArea
 }
 
 const CORRIDOR = 1.8
@@ -102,7 +105,7 @@ const HAZ: { re: RegExp; name: string; tone: Tone; big?: boolean }[] = [
   { re: /assembly/i, name: 'Assembly', tone: 'caution', big: true },
 ]
 
-export function archPlan(b: Pick<Building, 'id' | 'footprint' | 'structure' | 'floorFacts'>, floor: number, pins: Pin[]): Arch {
+export function archPlan(b: Pick<Building, 'id' | 'footprint' | 'structure' | 'floorFacts'>, floor: number, pins: Pin[], fireDir?: P): Arch {
   const a = mainAxis(b.footprint)
   const [ca, sa] = [Math.cos(a), Math.sin(a)]
   const toLocal = ([x, y]: P): P => [x * ca + y * sa, -x * sa + y * ca]
@@ -275,6 +278,24 @@ export function archPlan(b: Pick<Building, 'id' | 'footprint' | 'structure' | 'f
   for (const w of wanted) take(w.h.name, w.pin?.severity === 'danger' ? 'danger' : w.h.tone, w.pin, !!w.h.big && floor >= 1 && floor <= 2)
   if (cooking) take('Kitchen', 'caution', undefined, false)
 
+  // fire area: after the hazard rooms, so naming a side never moves them. The full-size free cell farthest toward the
+  // named side is the origin (not a sliver the grid leaves along the facade); edge neighbours no nearer the middle than
+  // one bay back are the spread
+  let fire: FireArea | undefined
+  if (fireDir) {
+    const d = toLocal(fireDir)
+    const pool = [...cells.values()].filter((c) => !used.has(c) && !touches(c) && c.ar > 12)
+    const big = Math.max(0, ...pool.map((c) => c.ar))
+    const mean = (c: Cell): P => [c.poly.reduce((s, q) => s + q[0], 0) / c.poly.length, c.poly.reduce((s, q) => s + q[1], 0) / c.poly.length]
+    const proj = (c: Cell) => mean(c)[0] * d[0] + mean(c)[1] * d[1]
+    const whole = pool.filter((c) => c.ar >= 0.35 * big)
+    const seed = whole.length ? whole.reduce((m, c) => (proj(c) > proj(m) ? c : m)) : undefined
+    if (seed) {
+      const spread = pool.filter((c) => c !== seed && Math.abs(c.i - seed.i) + Math.abs(c.j - seed.j) === 1 && proj(c) > proj(seed) - step * 1.1)
+      fire = { cells: [{ poly: seed.poly.map(toPlan), heat: 1 }, ...spread.map((c) => ({ poly: c.poly.map(toPlan), heat: 0.6 }))], c: center([seed]) }
+    }
+  }
+
   const walls: Seg[] = box(cc[0], cc[1], L + 2 * CORRIDOR, D + 2 * CORRIDOR)
   // vertical partitions u = bu[i], between rows bv[j]..bv[j+1]
   for (let i = 1; i + 1 < bu.length; i++) {
@@ -300,5 +321,5 @@ export function archPlan(b: Pick<Building, 'id' | 'footprint' | 'structure' | 'f
   }
   const facade: Seg[] = b.footprint.map((p, i) => [p, b.footprint[(i + 1) % b.footprint.length]])
 
-  return { angle: a, bay, columns: columns.map(toPlan), core, corridor, shafts, stairs, walls, coreWalls, facade, rooms, elevators }
+  return { angle: a, bay, columns: columns.map(toPlan), core, corridor, shafts, stairs, walls, coreWalls, facade, rooms, elevators, fire }
 }

@@ -7,6 +7,7 @@ import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { archPlan, type Rect, type Seg } from './archPlan.ts'
+import { FIRE } from './Fire.tsx'
 import { fadeFor, near, reduce, t, type Ctx } from './explode'
 import { type Pin, type Reveal } from './Pins'
 import { planFloor } from './roomPlan.ts'
@@ -52,10 +53,11 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
   const rise = useRef<THREE.Group>(null)
   const labels = useRef<(HTMLDivElement | null)[]>([])
   const saved = useRef<Ctx['pose']>(null)
+  const fire = useStore((s) => (s.fire?.floor === floor ? s.fire : null))
 
   const pins = useMemo(() => b.pins.filter((p) => p.anchor.kind === 'floor' && Math.min(p.anchor.floor, b.floors) === floor), [b, floor])
   const plan = useMemo(() => planFloor(b, floor, pins), [b, floor, pins]) // framing only: centre, extents, long axis
-  const arch = useMemo(() => archPlan(b, floor, pins), [b, floor, pins])
+  const arch = useMemo(() => archPlan(b, floor, pins, fire?.dir), [b, floor, pins, fire])
   const colH = Math.max(1.5, height - SLAB)
 
   const res = useMemo(() => {
@@ -84,13 +86,25 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
         glow: new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }),
       }
     })
-    return { m, box, slab, treads, haz }
+    // the fire area burns over everything on the plan: per cell, a floor wash at its heat and a bright outline
+    const burn = (arch.fire?.cells ?? []).map((c) => {
+      const pts = c.poly.map(([x, y]) => new THREE.Vector2(x, y))
+      return {
+        heat: c.heat,
+        geo: new THREE.ShapeGeometry(new THREE.Shape(pts)),
+        ring: new THREE.BufferGeometry().setFromPoints(pts.map((p) => new THREE.Vector3(p.x, SLAB + 0.08, -p.y))),
+        floor: new THREE.MeshBasicMaterial({ color: FIRE, transparent: true, opacity: 0, depthWrite: false, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -3 }),
+        line: new THREE.LineBasicMaterial({ color: '#ffb199', transparent: true, opacity: 0, toneMapped: false }),
+      }
+    })
+    return { m, box, slab, treads, haz, burn }
   }, [b.footprint, arch])
   useEffect(
     () => () => {
       Object.values(res.m).forEach((x) => x.dispose())
       ;[res.box, res.slab, res.treads].forEach((g) => g.dispose())
       res.haz.forEach((h) => [...h.geo, h.floor, h.glow].forEach((x) => x.dispose()))
+      res.burn.forEach((f) => [f.geo, f.ring, f.floor, f.line].forEach((x) => x.dispose()))
     },
     [res],
   )
@@ -136,6 +150,11 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
       h.floor.emissiveIntensity = 0.25 + 0.3 * pulse
       h.glow.opacity = v * (0.12 + 0.12 * pulse)
     }
+    const flame = reduce ? 0.6 : 0.6 + 0.25 * Math.sin(clock.elapsedTime * 5.3) + 0.15 * Math.sin(clock.elapsedTime * 8.9 + 1.3)
+    for (const f of res.burn) {
+      f.floor.opacity = v * Math.min(1, f.heat * (0.7 + 0.3 * flame)) // origin near solid, spread about half
+      f.line.opacity = v * f.heat
+    }
     labels.current.forEach((d) => d && (d.style.opacity = String(v)))
   })
 
@@ -149,7 +168,11 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
     const theta = [th, th + Math.PI].map((x) => near(c.pose.theta, x)).reduce((m, x) => (Math.abs(x - c.pose.theta) < Math.abs(m - c.pose.theta) ? x : m))
     const [up, across] = tall ? [plan.long, plan.short] : [plan.short, plan.long]
     const fov = 2 * Math.tan(20 * DEG) // camera fov is 40 (App.tsx)
-    const r = 1.45 * Math.max((up * Math.cos(PITCH)) / fov, across / (fov * c.aspect))
+    let r = 1.45 * Math.max((up * Math.cos(PITCH)) / fov, across / (fov * c.aspect))
+    // reached from the fire: land on the fire area, closer in, with the rest of the plate around it
+    const at = useStore.getState().roomsAt === 'fire' && arch.fire ? arch.fire.c : null
+    const [cx, cy] = at ? [plan.center[0] + 0.7 * (at[0] - plan.center[0]), plan.center[1] + 0.7 * (at[1] - plan.center[1])] : plan.center
+    if (at) r *= 0.8
     const lift = (0.05 * fov * r) / Math.cos(PITCH)
     c.tl
       .to(chips, { v: 0, duration: t(0.3), ease: 'power2.in' }, 0)
@@ -157,7 +180,7 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
       .to(shown, { v: 1, duration: t(0.7), ease: 'power2.out' }, t(0.3))
       .call(() => setSlab(false), [], t(0.95))
       .to(grow, { v: 1, duration: t(1.1), ease: 'power3.out' }, t(0.7))
-      .to(c.pose, { phi: PITCH, theta, r, tx: w.x + plan.center[0] + lift * Math.sin(theta), ty: w.y + SLAB, tz: w.z - plan.center[1] + lift * Math.cos(theta), duration: t(1.9), ease: 'sine.inOut' }, 0)
+      .to(c.pose, { phi: PITCH, theta, r, tx: w.x + cx + lift * Math.sin(theta), ty: w.y + SLAB, tz: w.z - cy + lift * Math.cos(theta), duration: t(1.9), ease: 'sine.inOut' }, 0)
       .call(() => setRooms('on'))
   }
   const close = (c: Ctx) => {
@@ -186,6 +209,8 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
     { key: 'stairs', at: [arch.core.c[0], arch.core.c[1] - arch.core.d / 2 - 2.5], text: 'Stairs: not on public record · verify on arrival', cls: 'arch unknown' },
     ...arch.rooms.map((r) => ({ key: r.name, at: r.c, text: `${r.name} · spot estimated`, cls: `arch hz ${r.tone}`, pin: r.pin })),
   ]
+  const dispatchPin = pins.find((p) => p.origin === 'dispatch')
+  if (fire && arch.fire) tags.push({ key: 'fire', at: arch.fire.c, text: `FIRE · ${fire.side.toUpperCase()}`, cls: 'arch fire', pin: dispatchPin })
   return (
     <group ref={root}>
       <mesh geometry={res.slab} material={res.m.slab} rotation-x={-Math.PI / 2} onClick={(e) => (e.stopPropagation(), toggle())} />
@@ -198,6 +223,12 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
           </group>
         )),
       )}
+      {res.burn.map((f, i) => (
+        <group key={`fire${i}`}>
+          <mesh geometry={f.geo} material={f.floor} rotation-x={-Math.PI / 2} position-y={SLAB + 0.07} renderOrder={3} />
+          <lineLoop geometry={f.ring} material={f.line} renderOrder={3} />
+        </group>
+      ))}
       <group ref={rise} scale-y={0.001}>
         {arch.facade.map((s, i) => <mesh key={`f${i}`} geometry={res.box} material={res.m.facade} {...segProps(s, SLAB, WALL_H * 0.8, 0.18)} />)}
         {arch.walls.map((s, i) => <mesh key={`w${i}`} geometry={res.box} material={res.m.wall} {...segProps(s, SLAB, WALL_H, 0.14)} />)}
@@ -209,6 +240,7 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
         <Html key={g.key} center position={[g.at[0], SLAB + WALL_H + 0.6, -g.at[1]]} zIndexRange={[g.pin ? 6 : 4, 0]} style={{ pointerEvents: g.pin ? 'auto' : 'none' }}>
           <div ref={(d) => void (labels.current[i] = d)} className={`room-label ${g.cls}`} style={{ opacity: 0, cursor: g.pin ? 'pointer' : undefined }} onClick={g.pin ? () => onSelectPin(g.pin!) : undefined}>
             {g.text}
+            {g.key === 'fire' && <small>simulated · from dispatch</small>}
           </div>
         </Html>
       ))}
