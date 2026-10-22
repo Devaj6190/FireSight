@@ -34,10 +34,11 @@ const WALL_T = 0.3
 const COL = 0.9
 
 const mat = (color: string, emissive = '#000000') => new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: 1, roughness: 0.7, metalness: 0.05 })
+// Night Glass palette (docs/handoff/design-v2.md): cool grey plate, light walls, danger #ff4d4f and caution #ffb020 for hazard rooms only
 const M = {
-  slab: mat('#e9e7e2'), corridor: mat('#cfd3d8'), wall: mat('#f7f7f5'), facade: mat('#dfe3e8'), coreWall: mat('#b9bdc3'),
-  column: mat('#3a3f47'), shaft: mat('#2b3038'), marker: mat('#7d838c'), ground: mat('#2a2f37'),
-  danger: mat('#ff4a1c', '#b32a0a'), caution: mat('#ff9f1c', '#6b3f08'),
+  slab: [mat('#3a4658'), mat('#2a3442')], corridor: mat('#242d3a'), wall: mat('#c9d2dd'), facade: mat('#8b95a3'), coreWall: mat('#6b7686'),
+  column: mat('#eef2f6'), shaft: mat('#0c1118'), marker: mat('#8b95a3'), ground: mat('#141b24'),
+  danger: mat('#ff4d4f', '#a3282a'), caution: mat('#ffb020', '#7a4f08'),
 }
 const box = new THREE.BoxGeometry(1, 1, 1)
 const root = new THREE.Group()
@@ -62,7 +63,7 @@ const rect = (r: Rect, y: number, h: number, m: THREE.Material, name: string) =>
 
 const slabGeo = new THREE.ExtrudeGeometry(new THREE.Shape(b.footprint.map(([x, y]) => new THREE.Vector2(x, y))), { depth: SLAB, bevelEnabled: false })
 slabGeo.rotateX(-Math.PI / 2)
-const slab = new THREE.Mesh(slabGeo, M.slab)
+const slab = new THREE.Mesh(slabGeo, M.slab) // [cap, side]
 slab.name = `Floor ${floor} slab`
 root.add(slab)
 rect(arch.corridor, SLAB, 0.05, M.corridor, 'Corridor')
@@ -103,7 +104,7 @@ const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...
 const [cx, cy] = [(minX + maxX) / 2, (minY + maxY) / 2]
 const ground = new THREE.Mesh(box, M.ground)
 ground.name = 'Ground plate'
-ground.scale.set(maxX - minX + 12, 0.6, maxY - minY + 12)
+ground.scale.set(maxX - minX + 6, 0.6, maxY - minY + 6)
 ground.position.set(cx, -0.3, -cy)
 root.add(ground)
 // centre the plate on the model's origin, ground top at y = 0
@@ -116,12 +117,12 @@ type Hot = { id: string; text: string; tone: 'danger' | 'caution' | 'unknown'; p
 const at = (x: number, y: number, up = SLAB + WALL_H + 1.2) => `${(x * SCALE + off.x).toFixed(4)} ${(up * SCALE).toFixed(4)} ${(-y * SCALE + off.z).toFixed(4)}`
 const hot: Hot[] = []
 const cafeteria = (facts?.occupants ?? []).find((o) => /cook|kitchen|food|cafeteria|restaurant/i.test(`${o.kind} ${o.hazard ?? ''}`))
-for (const r of arch.rooms) {
+for (const [i, r] of arch.rooms.entries()) {
   const text = r.name === 'Kitchen' ? `${cafeteria ? 'Cafeteria (cooking)' : 'Kitchen'} · spot estimated` : `${r.name} · spot estimated`
   const source = r.pin ? r.pin.id : r.name === 'Kitchen' && cafeteria ? `${cafeteria.datasetId}:${cafeteria.recordId}` : facts?.rooms?.length ? `floorFacts.rooms floor ${floor}` : undefined
-  hot.push({ id: r.name.toLowerCase().replace(/\W+/g, '-'), text, tone: r.tone, position: at(r.c[0], r.c[1]), normal: '0 1 0', source })
+  hot.push({ id: r.name.toLowerCase().replace(/\W+/g, '-'), text, tone: r.tone, position: at(r.c[0], r.c[1], SLAB + WALL_H + 2 + i * 12), normal: '0 1 0', source })
 }
-hot.push({ id: 'stairs', text: 'Stairs: not on public record · verify on arrival', tone: 'unknown', position: at(arch.core.c[0], arch.core.c[1], SLAB + 1.2), normal: '0 1 0', source: 'floorFacts.notOnRecord' })
+hot.push({ id: 'stairs', text: 'Stairs: not on public record · verify on arrival', tone: 'unknown', position: at(arch.core.c[0], arch.core.c[1], SLAB + WALL_H + 2 + arch.rooms.length * 12), normal: '0 1 0', source: 'floorFacts.notOnRecord' })
 
 const scene = new THREE.Scene()
 scene.add(root)

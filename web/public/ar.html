@@ -6,49 +6,85 @@
 <title>FireSight AR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap">
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <style>
-  :root { --bg: #0d0f12; --line: #2a2f37; --ink: #f4f3ee; --dim: #9aa0a8; --amber: #ff9f1c; --red: #e5261f; --blue: #3b82f6; }
-  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 15px/1.4 'IBM Plex Sans', system-ui, sans-serif; }
-  model-viewer { width: 100%; height: 100%; background: radial-gradient(circle at 50% 40%, #1b1f26, #0d0f12 70%); --poster-color: transparent; --min-hotspot-opacity: 0; }
+  /* Night Glass (docs/handoff/design-v2.md): blue is the one interactive colour; red, amber and cyan mean hazards and records only */
+  :root {
+    --bg: #05070a; --surface: rgba(14, 18, 24, .62); --strong: rgba(12, 15, 20, .86); --line: rgba(255, 255, 255, .09);
+    --ink: #eef2f6; --muted: #8b95a3; --action: #3d8bff; --danger: #ff4d4f; --caution: #ffb020; --info: #5ee1ff;
+  }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 15px/1.4 'Geist', system-ui, sans-serif; }
+  model-viewer { width: 100%; height: 100%; background: radial-gradient(circle at 50% 40%, #121a24, #05070a 72%); --poster-color: transparent; --min-hotspot-opacity: 0; }
+  .glass { background: var(--surface); border: 1px solid var(--line); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 8px 32px rgba(0,0,0,.45), 0 1px 0 rgba(255,255,255,.06) inset; }
+  .glass-strong { background: var(--strong); border: 1px solid var(--line); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  button { font-family: inherit; }
   .top { position: fixed; top: 0; left: 0; right: 0; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
   .top > * { pointer-events: auto; }
-  .title b { display: block; font-size: 18px; } .title span { font: 500 11px/1.4 'IBM Plex Mono', monospace; letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
-  a.back { color: var(--ink); text-decoration: none; border: 1px solid var(--line); background: rgba(13,15,18,.8); border-radius: 10px; padding: 10px 14px; min-height: 44px; box-sizing: border-box; }
-  .seg { position: fixed; left: 16px; top: 92px; display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: rgba(13,15,18,.85); }
-  .seg[hidden] { display: none; }
-  .seg button { border: 0; background: transparent; color: var(--ink); font: 600 13px/1 'IBM Plex Sans', system-ui, sans-serif; padding: 0 14px; min-height: 44px; }
-  .seg button[aria-pressed="true"] { background: var(--amber); color: var(--bg); }
-  .legend { position: fixed; left: 16px; bottom: 92px; display: flex; flex-direction: column; gap: 3px; font-size: 11px; background: rgba(13,15,18,.8); border: 1px solid var(--line); border-radius: 10px; padding: 6px 8px; }
-  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
-  .btn { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); border: 0; border-radius: 12px; padding: 16px 26px; min-height: 52px; background: var(--amber); color: var(--bg); font: 700 16px/1 'IBM Plex Sans', system-ui, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .title b { display: block; font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+  .title span { font: 500 10.5px/1.4 'Geist Mono', ui-monospace, monospace; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+  a.back { color: var(--action); text-decoration: none; font-weight: 500; border-radius: 14px; padding: 10px 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; }
+  .tools { position: fixed; left: 16px; top: 88px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100vw - 96px); }
+  .seg { display: flex; border-radius: 14px; overflow: hidden; }
+  .seg[hidden], .tools [hidden] { display: none; }
+  .seg button { border: 0; background: transparent; color: var(--ink); font-size: 13px; font-weight: 500; padding: 0 14px; min-height: 44px; }
+  .seg button[aria-pressed="true"] { background: var(--action); color: #fff; }
+  .pill { border-radius: 14px; border: 1px solid var(--line); color: var(--action); font-size: 13px; font-weight: 500; padding: 0 14px; min-height: 44px; }
+  .legend { position: fixed; left: 16px; bottom: 92px; display: flex; flex-direction: column; gap: 3px; font-size: 11px; border-radius: 14px; padding: 8px 10px; }
+  .legend[hidden] { display: none; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
+  .btn { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); border: 0; border-radius: 14px; padding: 16px 26px; min-height: 52px; background: var(--action); color: #fff; font: 600 16px/1 'Geist', system-ui, sans-serif; box-shadow: 0 8px 32px rgba(0,0,0,.45), 0 0 24px rgba(61,139,255,.35); }
   /* shown instead of the AR button when this browser cannot place models on a table */
-  .btn.off { background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-weight: 600; font-size: 14px; line-height: 1.3; width: max-content; max-width: min(92vw, 420px); box-sizing: border-box; text-align: center; box-shadow: none; pointer-events: none; }
+  .btn.off { background: var(--strong); color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 14px; line-height: 1.3; width: max-content; max-width: min(92vw, 420px); box-sizing: border-box; text-align: center; box-shadow: none; pointer-events: none; }
   .btn[hidden] { display: none; }
-  .note { position: fixed; left: 16px; right: 16px; top: 144px; max-width: 300px; margin: 0; font-size: 12px; color: var(--dim); }
-  #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--dim); }
-  #msg { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); max-width: min(92vw, 420px); margin: 0; padding: 10px 14px; border-radius: 10px; background: rgba(13,15,18,.92); border: 1px solid var(--red); color: var(--ink); font-size: 13px; text-align: center; }
+  .note { margin: 0; font-size: 12px; color: var(--muted); max-width: 250px; }
+  #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--muted); }
+  #msg { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); max-width: min(92vw, 420px); margin: 0; padding: 10px 14px; border-radius: 14px; border-color: rgba(255,77,79,.6); font-size: 13px; text-align: center; z-index: 6; }
   #msg[hidden] { display: none; }
-  /* hotspot labels, pinned to the floors in the model */
-  .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 5px 9px; background: rgba(13,15,18,.9); color: var(--ink); font: 600 12px/1.2 'IBM Plex Sans', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
-  .hs.fire, .hs.danger { border-left-color: #ff4a1c; } .hs.battery, .hs.caution { border-left-color: var(--amber); } .hs.people { border-left-color: var(--blue); } .hs.unknown { border-left-color: var(--dim); color: #c9ccd1; }
-  .hs.fire { border-left-color: var(--red); }
+  /* floor rail, slotted inside model-viewer so it stays on screen in AR */
+  .rail { position: fixed; right: 12px; top: 80px; bottom: 92px; display: flex; flex-direction: column; gap: 2px; padding: 4px; border-radius: 14px; overflow-y: auto; scrollbar-width: none; z-index: 3; }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail[hidden] { display: none; }
+  .rail button { flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-end; gap: 5px; min-width: 44px; height: 34px; padding: 0 8px; border: 0; border-radius: 10px; background: transparent; color: var(--ink); font: 500 12px/1 'Geist Mono', ui-monospace, monospace; }
+  .rail button i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .rail button[aria-pressed="true"] { background: var(--action); color: #fff; }
+  /* floor info card, also inside model-viewer */
+  .card { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); width: min(calc(100vw - 96px), 400px); max-height: 38vh; overflow-y: auto; border-radius: 20px; padding: 14px 16px 12px; box-sizing: border-box; z-index: 4; box-shadow: 0 8px 32px rgba(0,0,0,.45); }
+  .card[hidden] { display: none; }
+  .card h3 { margin: 0 28px 6px 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card h3 em { font: 500 10.5px/1 'Geist Mono', monospace; letter-spacing: .08em; text-transform: uppercase; font-style: normal; color: var(--danger); border: 1px solid rgba(255,77,79,.5); border-radius: 8px; padding: 3px 6px; }
+  .card h4 { margin: 10px 0 3px; font: 500 10.5px/1.4 'Geist Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .card ul { margin: 0; padding: 0; list-style: none; font-size: 13.5px; }
+  .card li { padding: 3px 0 3px 12px; position: relative; }
+  .card li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .card li.danger::before { background: var(--danger); } .card li.caution::before { background: var(--caution); } .card li.people::before { background: var(--info); }
+  .card li small { display: block; color: var(--muted); font: 500 11px/1.4 'Geist Mono', monospace; }
+  .card .x { position: absolute; right: 6px; top: 6px; width: 44px; height: 44px; border: 0; background: transparent; color: var(--action); font-size: 20px; }
+  /* hotspot labels, pinned to the model: hazard colours on the left edge, glass behind the text */
+  .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px; padding: 5px 9px; background: var(--strong); color: var(--ink); font: 500 12px/1.25 'Geist', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
+  .hs.fire, .hs.battery, .hs.danger { border-left-color: var(--danger); } .hs.caution { border-left-color: var(--caution); } .hs.people { border-left-color: var(--info); } .hs.unknown { border-left-color: var(--muted); color: #c3cad3; }
   .hs:not([data-visible]) { opacity: 0; }
-  @media (max-width: 480px) { .hs { font-size: 11px; padding: 4px 7px; max-width: 160px; } }
+  .legend .nb { color: var(--muted); margin-top: 2px; }
+  @media (max-width: 480px) { body.tower .note { display: none; } }
+  @media (max-width: 480px) { .hs { font-size: 11px; padding: 4px 7px; max-width: 150px; } }
 </style>
 </head>
-<body>
+<body class="tower">
 <model-viewer id="mv" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" interaction-prompt="auto" camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1.1" camera-orbit="25deg 72deg 125%" alt="Tower with floors separated, from city records">
   <button slot="ar-button" class="btn" id="arbtn" type="button">Place on the table</button>
   <div id="status" slot="poster">Loading the building…</div>
   <div class="btn off" id="noar" hidden>AR needs Chrome on an ARCore phone · rotate the 3D model instead</div>
+  <div class="rail glass" id="rail" role="group" aria-label="Pick a floor" hidden></div>
+  <section class="card glass-strong" id="card" aria-live="polite" hidden></section>
 </model-viewer>
-<div class="top"><div class="title"><b id="name">FireSight</b><span id="sub">1:300 · from city records</span></div><a class="back" href="/">← Back</a></div>
-<div class="seg" id="seg" role="group" aria-label="Model" hidden><button type="button" id="v-tower" aria-pressed="true">Tower</button><button type="button" id="v-floor" aria-pressed="false">Inside floor</button></div>
-<div class="legend" id="legend"></div>
-<p class="note" id="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
-<p id="msg" role="status" hidden></p>
+<div class="top"><div class="title"><b id="name">FireSight</b><span id="sub">1:300 · from city records</span></div><a class="back glass" href="/">← Back</a></div>
+<div class="tools">
+  <div class="seg glass" id="seg" role="group" aria-label="Model" hidden><button type="button" id="v-tower" aria-pressed="true">Tower</button><button type="button" id="v-floor" aria-pressed="false">Inside floor</button></div>
+  <button type="button" class="pill glass" id="explode" aria-pressed="true" hidden>Assemble</button>
+  <p class="note" id="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
+</div>
+<div class="legend glass-strong" id="legend"></div>
+<p id="msg" class="glass-strong" role="status" hidden></p>
 <script>
   // ?b=<building id>; only buildings with a generated model (web/scripts/ar-model.mts) are linked.
   // A building with an "inside floor" model (web/scripts/ar-floor.mts) also gets the Tower / Inside floor toggle.
@@ -57,16 +93,19 @@
   const $ = (i) => document.getElementById(i);
   const say = (t) => { $('msg').textContent = t; $('msg').hidden = !t; };
   const dot = (c, t) => `<div><i style="background:${c}"></i>${t}</div>`;
-  const ORBIT = { tower: '25deg 72deg 125%', floor: '20deg 48deg 105%' };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const ORBIT = { tower: '25deg 72deg 125%', floor: '15deg 40deg 92%' };
   const cache = {};
-  const get = (key) => (cache[key] ??= fetch(`/ar/${key}.json`).then((r) => (r.ok ? r.json() : Promise.reject(r.status))));
+  const get = (key, dir = 'ar') => (cache[dir + key] ??= fetch(`/${dir}/${key}.json`).then((r) => (r.ok ? r.json() : Promise.reject(r.status))));
   mv.addEventListener('error', () => { $('status').textContent = 'Could not load the model.'; });
 
-  // Labels: positions come from the JSON the model scripts write next to each GLB (model coordinates, metres).
-  function show(m, view) {
-    $('name').textContent = m.address;
+  let view = 'tower', assembled = false, sel = null, M = null, B = null, current = null;
+  const floorName = (n) => (n === 0 ? 'B1' : `Floor ${n}`);
+
+  // ---- labels: positions come from the JSON the model scripts write next to each GLB (model coordinates, metres) ----
+  function showHotspots(list) {
     mv.querySelectorAll('.hs').forEach((e) => e.remove());
-    for (const h of m.hotspots) {
+    for (const h of list) {
       const el = document.createElement('div');
       el.slot = `hotspot-${h.id}`;
       el.className = `hs ${h.tone}`;
@@ -76,32 +115,140 @@
       el.textContent = h.text;
       mv.appendChild(el);
     }
+  }
+  function chrome(m) {
+    $('name').textContent = m.address;
     if (view === 'floor') {
       $('sub').textContent = `Inside floor ${m.floor} · 1:${Math.round(1 / m.scale)} · estimated`;
-      $('legend').innerHTML = dot('#ff4a1c', 'Hazard room (spot estimated)') + dot('#ff9f1c', 'Cooking (spot estimated)') + dot('#7d838c', 'Stairs: not on record');
+      $('legend').innerHTML = dot('#ff4d4f', 'Hazard room (spot estimated)') + dot('#ffb020', 'Cooking (spot estimated)') + dot('#8b95a3', 'Stairs: not on record');
       $('note').textContent = m.banner;
       mv.alt = `Floor ${m.floor} of ${m.address}: schematic layout with hazard rooms glowing. No public floor plan exists.`;
     } else {
       const fire = m.fireFloor != null;
       $('sub').textContent = (fire ? `Fire floor ${m.fireFloor} · ` : '') + '1:300 · from city records';
-      $('legend').innerHTML = (fire ? dot('#e5261f', 'Fire floor') + dot('#ff9f1c', 'Floors above the fire') : '') + dot('#3b82f6', 'People on record');
+      $('legend').innerHTML = (fire ? dot('#ff4d4f', 'Fire floor') + dot('#ffb020', 'Floors above the fire') : '') + dot('#5ee1ff', 'People on record') + '<div class="nb">Not for operational use</div>';
       $('note').textContent = 'Not for operational use. Floors from footprint and height records; no interior is shown.';
-      mv.alt = 'Tower with floors separated, from city records: fire floor in red, floors above it in amber, floors with recorded people in blue';
+      mv.alt = 'Tower with floors separated, from city records: fire floor in red, floors above it in amber, floors with recorded people in cyan';
     }
   }
-  let current = null;
-  function setView(view, floorKey) {
-    const key = view === 'floor' ? floorKey : id;
+
+  // ---- pick a floor: highlight one floor slab through model-viewer's scene graph, dim the rest ----
+  const orig = new Map();
+  const FLOOR = /^(Floor (\d+)|B1)$/;
+  const num = (name) => { const m = FLOOR.exec(name); return m ? (m[2] ? Number(m[2]) : 0) : null; };
+  function capture() {
+    orig.clear();
+    if (!mv.model) return;
+    for (const m of mv.model.materials) orig.set(m.name, { c: [...m.pbrMetallicRoughness.baseColorFactor], e: [...m.emissiveFactor] });
+  }
+  function paint() {
+    if (!mv.model) return;
+    try {
+      for (const m of mv.model.materials) {
+        const n = num(m.name), o = orig.get(m.name);
+        if (n === null || !o) continue;
+        const on = sel !== null && view === 'tower';
+        if (!on) { m.pbrMetallicRoughness.setBaseColorFactor(o.c); m.setEmissiveFactor(o.e); m.setAlphaMode('OPAQUE'); }
+        else if (n === sel) { m.pbrMetallicRoughness.setBaseColorFactor([0.05, 0.3, 1, 1]); m.setEmissiveFactor([0, 0.05, 0.2]); m.setAlphaMode('OPAQUE'); }
+        else { m.pbrMetallicRoughness.setBaseColorFactor([o.c[0], o.c[1], o.c[2], 0.22]); m.setEmissiveFactor([o.e[0] * 0.4, o.e[1] * 0.4, o.e[2] * 0.4]); m.setAlphaMode('BLEND'); }
+      }
+    } catch (e) { console.warn('floor highlight unavailable', e); }
+  }
+  mv.addEventListener('load', () => { capture(); paint(); });
+
+  // sentence case for record labels that arrive in capitals; keep the acronyms
+  const sentence = (s) => { const t = s === s.toUpperCase() ? s.toLowerCase() : s; return (t.charAt(0).toUpperCase() + t.slice(1)).replace(/\b(sffd|dbi|ul|pv|ev|b1|aqi|osm|hvac)\b/gi, (x) => x.toUpperCase()); };
+  const year = (d) => (d || '').slice(0, 4);
+  const src = (e) => (e ? `${e.source.replace(/^DataSF /, '')}${year(e.asOf) ? ' · ' + year(e.asOf) : ''}` : '');
+  function card(n) {
+    const c = $('card');
+    if (n === null || !B) { c.hidden = true; c.innerHTML = ''; $('legend').hidden = false; return; }
+    const f = (B.floorFacts || []).find((x) => x.floor === n) || {};
+    const pins = B.pins.filter((p) => p.anchor.kind === 'floor' && p.anchor.floor === n);
+    const peopleRe = /(\d[\d,]*)\s+(people|occupants|units)/i;
+    const ppl = [];
+    if (f.occupantLoad) ppl.push(`<li class="people">${f.occupantLoad} people (assembly permit)</li>`);
+    else for (const p of pins) if (peopleRe.test(p.label)) ppl.push(`<li class="people">${esc(sentence(p.label))}<small>${esc(src(p.evidence[0]))}</small></li>`);
+    if ((f.units || []).length) ppl.push(`<li class="people">${f.units.length} ${f.units.length === 1 ? 'unit' : 'units'} named in permits (lower bound)</li>`);
+    for (const o of f.occupants || []) ppl.push(`<li class="people">${esc(o.kind)}${o.hazard ? ' · ' + esc(o.hazard.toLowerCase()) : ''}<small>${esc(o.source)}</small></li>`);
+    const haz = pins.filter((p) => (p.severity === 'danger' || p.severity === 'caution') && !peopleRe.test(p.label))
+      .map((p) => `<li class="${p.severity}">${esc(sentence(p.label))}<small>${esc(src(p.evidence[0]) || 'record')}</small></li>`);
+    for (const r of f.rooms || []) if (!pins.some((p) => p.label.toLowerCase().includes(r.split(/[ /]/)[0].toLowerCase()))) haz.push(`<li class="caution">${esc(r)} named in records</li>`);
+    if (f.openPermits) haz.push(`<li class="caution">${f.openPermits} open permits: expect open walls</li>`);
+    if (f.incidents) haz.push(`<li class="caution">${f.incidents} past fire ${f.incidents === 1 ? 'incident' : 'incidents'} began here</li>`);
+    const nor = (f.notOnRecord || []).filter((x) => !/stair/i.test(x));
+    const fireTag = M && M.fireFloor === n ? '<em>Fire floor</em>' : '';
+    c.innerHTML = `<button class="x" type="button" aria-label="Close floor details">×</button><h3>${n === 0 ? 'Basement (B1)' : 'Floor ' + n}${fireTag}</h3>`
+      + `<h4>People</h4><ul>${ppl.join('') || '<li>None on record</li>'}</ul>`
+      + `<h4>Hazards</h4><ul>${haz.join('') || '<li>None on record</li>'}</ul>`
+      + (nor.length ? `<h4>Not on record</h4><ul>${nor.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '');
+    c.hidden = false;
+    $('legend').hidden = true;
+    c.scrollTop = 0;
+    c.querySelector('.x').onclick = () => select(null);
+  }
+  function select(n) {
+    sel = n === sel ? null : n;
+    paint();
+    card(sel);
+    document.querySelectorAll('#rail button').forEach((b) => {
+      const on = sel !== null && Number(b.dataset.n) === sel;
+      b.setAttribute('aria-pressed', String(on));
+      if (on) b.scrollIntoView({ block: 'nearest' });
+    });
+  }
+  function buildRail() {
+    const rail = $('rail');
+    const col = { fire: '#ff4d4f', people: '#5ee1ff' };
+    rail.innerHTML = [...M.floors].sort((a, b) => b.n - a.n).map((f) => `<button type="button" data-n="${f.n}" aria-pressed="false" aria-label="${f.n === 0 ? 'Basement' : 'Floor ' + f.n}">${col[f.kind] ? `<i style="background:${col[f.kind]}"></i>` : ''}${f.n === 0 ? 'B1' : f.n}</button>`).join('');
+    rail.onclick = (e) => { const b = e.target.closest('button'); if (b) select(Number(b.dataset.n)); };
+  }
+  // tap the model: a tap (not a drag) on a floor slab picks it
+  let down = null;
+  mv.addEventListener('pointerdown', (e) => { down = { x: e.clientX, y: e.clientY, t: Date.now() }; });
+  mv.addEventListener('pointerup', (e) => {
+    if (!down || view !== 'tower' || e.target.closest('.rail, .card')) return;
+    const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y), dt = Date.now() - down.t;
+    down = null;
+    if (moved > 8 || dt > 600) return;
+    const r = mv.getBoundingClientRect();
+    const m = mv.materialFromPoint(e.clientX - r.left, e.clientY - r.top);
+    const n = m ? num(m.name) : null;
+    if (n !== null) select(n);
+  });
+
+  // ---- which model is showing: Tower (exploded or assembled) or Inside floor ----
+  function setView(next, floorKey) {
+    const key = next === 'floor' ? floorKey : id + (assembled ? '-assembled' : '');
     if (current === key) return;
-    current = key;
+    current = key; view = next;
+    document.body.className = view;
     $('v-tower').setAttribute('aria-pressed', String(view === 'tower'));
     $('v-floor').setAttribute('aria-pressed', String(view === 'floor'));
+    $('rail').hidden = view !== 'tower' || !M;
+    $('explode').hidden = view !== 'tower' || !M;
+    if (view === 'floor') { sel = null; card(null); }
+    else if (sel !== null) card(sel);
     mv.setAttribute('camera-orbit', ORBIT[view]);
     mv.src = `/ar/${key}.glb`;
-    get(key).then((m) => { if (current === key) show(m, view); }).catch(() => { /* labels are optional; the model still shows */ });
+    get(view === 'floor' ? floorKey : id).then((m) => {
+      if (current !== key) return;
+      chrome(m);
+      showHotspots(view === 'tower' && assembled ? m.assembledHotspots || m.hotspots : m.hotspots);
+    }).catch(() => { /* labels are optional; the model still shows */ });
   }
-  setView('tower');
+  $('explode').onclick = () => {
+    assembled = !assembled;
+    $('explode').textContent = assembled ? 'Explode' : 'Assemble';
+    $('explode').setAttribute('aria-pressed', String(!assembled));
+    setView('tower');
+  };
   get(id).then((m) => {
+    M = m;
+    buildRail();
+    $('rail').hidden = view !== 'tower';
+    $('explode').hidden = view !== 'tower';
+    get(id, 'buildings').then((b) => { B = b; }).catch(() => {});
     if (m.fireFloor == null) return;
     const fk = `${id}-f${m.fireFloor}`;
     // the toggle appears only when an inside-floor model exists
@@ -112,6 +259,7 @@
       $('v-floor').onclick = () => setView('floor', fk);
     }).catch(() => {});
   }).catch(() => {});
+  setView('tower');
 
   // model-viewer shows its own button only when this browser can place models; otherwise say what is needed.
   const noar = $('noar');

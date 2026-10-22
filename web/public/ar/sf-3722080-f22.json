@@ -10,7 +10,7 @@
    "id": "battery-room",
    "text": "Battery room · spot estimated",
    "tone": "danger",
-   "position": "0.1009 0.0340 -0.0993",
+   "position": "0.1009 0.0420 -0.0993",
    "normal": "0 1 0",
    "source": "fire_permit-76784-f22"
   },
@@ -18,7 +18,7 @@
    "id": "kitchen",
    "text": "Cafeteria (cooking) · spot estimated",
    "tone": "caution",
-   "position": "-0.0308 0.0340 -0.1410",
+   "position": "-0.0308 0.1620 -0.1410",
    "normal": "0 1 0",
    "source": "g8m3-pdis:1379488-01-251-0046324"
   },
@@ -26,7 +26,7 @@
    "id": "stairs",
    "text": "Stairs: not on public record · verify on arrival",
    "tone": "unknown",
-   "position": "0.0652 0.0180 -0.0454",
+   "position": "0.0652 0.2820 -0.0454",
    "normal": "0 1 0",
    "source": "floorFacts.notOnRecord"
   }
