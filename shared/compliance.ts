@@ -58,16 +58,31 @@ export function openViolations(b: Building): ComplianceRow {
   return {
     ...base,
     result: "pass",
-    summary: last ? `None open. Last item ${latestAsOf(last).slice(0, 10)}, closed.` : "No fire violations on record.",
+    summary: last ? `None open. Last item ${latestAsOf(last).slice(0, 10)}, resolved.` : "No fire violations on record.",
     pinIds: last ? [last.id] : [],
   };
 }
 
-// Longest distance between footprint vertices, meters.
-export function longestAxisM(footprint: [number, number][]): number {
-  let max = 0;
-  for (const a of footprint) for (const c of footprint) max = Math.max(max, Math.hypot(a[0] - c[0], a[1] - c[1]));
-  return max;
+// Sides of the minimum-area rectangle around the footprint, meters [short, long].
+// CFC 1205.3.1 gives the 4 ft perimeter "where either axis of the building is 250 feet or less".
+export function footprintAxesM(footprint: [number, number][]): [number, number] {
+  let best: [number, number] = [0, 0];
+  let bestArea = Infinity;
+  for (let i = 0; i < footprint.length; i++) {
+    const [ax, ay] = footprint[i];
+    const [bx, by] = footprint[(i + 1) % footprint.length];
+    const len = Math.hypot(bx - ax, by - ay);
+    if (!len) continue;
+    const ux = (bx - ax) / len, uy = (by - ay) / len;
+    let minU = Infinity, maxU = -Infinity, minV = Infinity, maxV = -Infinity;
+    for (const [x, y] of footprint) {
+      const u = x * ux + y * uy, v = -x * uy + y * ux;
+      minU = Math.min(minU, u); maxU = Math.max(maxU, u); minV = Math.min(minV, v); maxV = Math.max(maxV, v);
+    }
+    const w = maxU - minU, h = maxV - minV;
+    if (w * h < bestArea) { bestArea = w * h; best = [Math.min(w, h), Math.max(w, h)]; }
+  }
+  return best;
 }
 
 export function solarPathways(b: Building): ComplianceRow {
@@ -76,12 +91,12 @@ export function solarPathways(b: Building): ComplianceRow {
   if (!solar.length) {
     return { ...base, result: "pass", summary: "Not triggered: no solar permit on record.", pinIds: [] };
   }
-  const axisFt = longestAxisM(b.footprint) * 3.28084;
-  const perimeter = axisFt <= 250 ? "4 ft" : "6 ft";
+  const [shortFt, longFt] = footprintAxesM(b.footprint).map((m) => Math.round(m * 3.28084));
+  const perimeter = shortFt <= 250 ? "4 ft" : "6 ft";
   return {
     ...base,
     result: "unknown",
-    summary: `Solar permit on file; roof layout not public. Rule that applies: ${perimeter} clear perimeter (longest axis ${Math.round(axisFt)} ft).`,
+    summary: `Solar permit on file; roof layout not public. Rule that applies: ${perimeter} clear perimeter (footprint ${shortFt} x ${longFt} ft).`,
     pinIds: solar.map((p) => p.id),
   };
 }

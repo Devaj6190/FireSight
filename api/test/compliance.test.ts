@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { evaluateCompliance, longestAxisM, preplanCoverage } from "../../shared/compliance.ts";
+import { evaluateCompliance, footprintAxesM, preplanCoverage } from "../../shared/compliance.ts";
 import { hero } from "./fixture.ts";
 
 const today = new Date("2026-10-22T12:00:00-07:00");
@@ -42,7 +42,10 @@ describe("edge cases", () => {
     b.layers = [{ layer: "violation", status: "fetch_failed" }];
     expect(evaluateCompliance(b, today)[1].result).toBe("unknown");
   });
-  it("longest axis is the footprint diagonal", () => {
-    expect(longestAxisM([[0, 0], [3, 0], [3, 4], [0, 4]])).toBe(5);
+  it("footprint axes are the bounding rectangle sides, not the diagonal", () => {
+    const [s, l] = footprintAxesM([[0, 0], [30, 0], [30, 70], [0, 70]]);
+    expect([Math.round(s), Math.round(l)]).toEqual([30, 70]);
+    const rot = footprintAxesM([[0, 0], [21.2, 21.2], [-28.3, 70.7], [-49.5, 49.5]]);
+    expect(rot.map(Math.round)).toEqual([30, 70]);
   });
 });
