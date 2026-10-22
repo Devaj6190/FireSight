@@ -1,6 +1,9 @@
-# FireSight
+<h1 align="center">FireSight</h1>
 
-**An arrival brief for the fire officer on a responding engine, built only from cited San Francisco public records.**
+<p align="center"><b>Incident intelligence for first responders.</b><br>
+An arrival brief for the fire officer on a responding engine, built only from cited San Francisco public records.</p>
+
+<p align="center"><a href="https://firesight-ten.vercel.app"><b>Try it</b></a> · <a href="#what-the-officer-gets">What it does</a> · <a href="#how-it-works">How it works</a> · <a href="#trust-and-safety">Trust and safety</a></p>
 
 From a dispatch line, typed or spoken, FireSight finds the building, opens the 3D tower at the fire floor, and tells the officer where the people are, what is on that floor, what to bring and check, how to reach the water, and what to verify on arrival. Every line cites its record.
 
@@ -9,9 +12,9 @@ From a dispatch line, typed or spoken, FireSight finds the building, opens the 3
 **Demo video:** _link coming_
 <!-- VIDEO: replace with YouTube/Loom link + thumbnail docs/img/video-thumb.jpg -->
 
-![FireSight on a laptop: 140 New Montgomery St exploded at floor 22, with the floor panel showing the street on each face, entrances, the nearest hydrant and the wind](docs/img/hero.jpg)
+![FireSight on a laptop: 140 New Montgomery St exploded at floor 22 while the spoken brief plays, with the floor panel showing the street on each face, entrances, the nearest hydrant and the wind](docs/img/hero.jpg)
 
-> **Not for operational use.** FireSight is an independent prototype built by a team of four in one day at a San Francisco hackathon. It is not affiliated with, endorsed by or reviewed by SFFD or any public agency. The dispatch line in the demo is simulated.
+> **Not affiliated with SFFD. Not for operational use.** FireSight is an independent prototype built by a team of four in one day at a San Francisco hackathon. It is not affiliated with, endorsed by or reviewed by SFFD or any public agency. The dispatch line in the demo is simulated.
 
 Built at super{set} SF, Oct 22 2026, for Track 1: Hacking with Public Data APIs.
 
@@ -37,17 +40,15 @@ Dispatch in: "Structure fire, 140 New Montgomery St, smoke reported 22nd floor".
 4. **Water and access.** The street on each face, entrances from OpenStreetMap, the nearest hydrants with distance and direction, and the wind forecast with where the smoke goes.
 5. **Verify on arrival.** Stairs, standpipe and roof access. No public record has them, so FireSight lists them as checks and never draws them.
 
-<!-- IMG 2: arrival brief beside the floor panel for floor 22. Save as docs/img/brief.jpg, then replace this comment with: ![Arrival brief and floor panel](docs/img/brief.jpg) -->
+**The fire floor, opened up.** One tap on "Explore floor 22" hides every other floor and opens a cutaway of the fire floor: the recorded footprint, the reported incident card ("Fire / smoke reported · floor 22, exact position unknown"), and 3D markers for what the records put on that floor, such as the 33.6-gallon battery room and the cafeteria with food prep. Positions are marked unverified, and walls, cores and stairs are never drawn, because none are on public record.
+
+![Floor 22 cutaway: the reported incident card, a battery room and a cafeteria marked as recorded uses with unverified positions, beside the approach, water and wind panel](docs/img/cutaway.jpg)
 
 **Voice.** The brief is spoken in a natural voice (ElevenLabs), and each sentence lights the floors it names. A spoken update such as "people trapped on floor 23" becomes a dispatch report: floor 23 lights up and FireSight reads what the records say about it. Hands-free commands go through TypeSafe Jev: what the officer said becomes one typed decision (dispatch, report, question, explode, collapse, brief, stop) with a confidence score in about 0.1 to 0.5 s. Below 0.5 FireSight asks "Say again?" instead of guessing, and without a Jev key it falls back to keyword rules. The caption shows the decision ("JEV · report · 0.98").
 
-<!-- IMG 3: voice caption on screen while the brief is spoken, with the named floor lit. Save as docs/img/voice.jpg, then replace this comment with: ![Spoken brief with live caption](docs/img/voice.jpg) -->
+**Tablet in the rig, phone in the hand.** On the rig's tablet the officer gets the full 3D view. On an Android phone, "View in AR" stands the tower on any table: pick a floor from the rail to pull it out of the building, and open the inside of that floor with the six labels that matter. On a laptop the same model opens in 3D.
 
-**AR.** "View in AR" on Android puts the tower on the table. Pick a floor to see a glass info card, explode or assemble the floors, and open a schematic of the inside of floor 22 (no stairs drawn, because none are on record).
-
-<!-- IMG 4: AR tower on a table (capture on an Android phone). Save as docs/img/ar.jpg, then replace this comment with: ![FireSight tower in AR on a table](docs/img/ar.jpg) -->
-
-**Ask, approve, strike.** Claude Opus 5.5 answers questions and drafts the brief from the cited records only. The officer approves or strikes each line before it goes to the crew, and each struck line becomes a test case.
+**No AI in the brief.** The arrival brief is assembled from the records by rules, so it is the same every time and works without a model. Claude Opus 5.5 is used only for **Ask**: free questions answered from the cited records, with a validator that drops any line without a citation.
 
 **Rules and provenance.** A compliance strip checks the rules that apply to the building (California Fire Code 1205 and 1207, SFFD's high-rise annual inspection, and a "maps to NFPA 1660" pre-plan coverage check). Every pin opens its source record.
 
@@ -138,7 +139,7 @@ Every fact carries one of three labels:
 | **CONFLICT** | Records disagree. FireSight shows both. |
 
 - **Validator.** Any model line without a valid citation is dropped before the officer sees it. In the last saved eval ([`web/public/eval/last-run.json`](web/public/eval/last-run.json)), Claude Opus 5.5 wrote 48 brief lines across the four buildings (37 VERIFIED, 7 UNVERIFIABLE, 4 CONFLICT) and the validator dropped 0. It also answered 20 questions, with 0 dropped.
-- **A human decides.** The officer approves or strikes every line. Struck lines become test cases.
+- **A human decides.** Everything is a consideration for the officer, never an instruction. Model answers in Ask are checked against their citations before they are shown.
 - **Considerations, not orders.** The brief never tells a crew what to do.
 - **No names.** Tenant and permit-holder names are stripped from permit text by an allowlist, and contact fields in city map layers are dropped. Occupants show by type only. Incidents show counts and types only.
 - **Read-only to agents.** The MCP server cannot write or change anything.
@@ -170,10 +171,10 @@ API routes: `POST /api/brief`, `POST /api/ask`, `POST /api/strike`, `POST /api/c
 
 ## Team
 
-- Devaj ([@Devaj6190](https://github.com/Devaj6190)): 3D and deploy
-- Rishit: data
-- Rohan: shell and pitch
-- Vidyut: AI, compliance and MCP
+- Devaj ([@Devaj6190](https://github.com/Devaj6190)): app shell, 3D city and deploy
+- Rishit: floor view, floor cutaway and the data pipeline
+- Rohan: demo and pitch
+- Vidyut: voice (ElevenLabs, Jev), AR, AI and MCP
 
 Built at super{set} SF, Oct 22 2026.
 
