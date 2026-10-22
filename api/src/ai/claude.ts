@@ -7,7 +7,11 @@ import { SYSTEM, buildingBlock } from "./prompt.ts";
 export const MODEL = "claude-opus-5-5";
 
 let client: Anthropic | null = null;
-const getClient = () => (client ??= new Anthropic());
+// An org-level key needs the workspace header; a workspace-scoped key needs nothing extra.
+const getClient = () =>
+  (client ??= new Anthropic(
+    process.env.ANTHROPIC_WORKSPACE_ID ? { defaultHeaders: { "anthropic-workspace-id": process.env.ANTHROPIC_WORKSPACE_ID } } : {},
+  ));
 
 export class ModelError extends Error {}
 
