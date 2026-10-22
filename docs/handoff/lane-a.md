@@ -119,3 +119,12 @@ export interface ComplianceRow {
 
 ## Start
 Run `date`, `git fetch && git checkout lane-a-3d`, read the files listed above, then begin with "Do now". Push to your lane branch at least every 30 minutes.
+
+## Setup and integration checklist (added 12:30; details in docs/handoff/SETUP.md)
+1. Tools: Node 22+, `gh auth status` OK, Android phone with Chrome (SETUP.md section 1).
+2. **You are the main blocker right now:** push the `web/` scaffold and open the PR (Lane D cannot start the shell until it is on main).
+3. In `web/vite.config.ts`: `server: { host: true, proxy: { "/api": "http://localhost:8787" } }`. In `web/tsconfig.app.json`: keep `moduleResolution: "bundler"` and `allowImportingTsExtensions: true`, add `"../shared"` to `include` (SETUP.md section 3).
+4. Load real data with `fetch("/buildings/sf-0874003.json")` (Lane B's files are on `lane-b-data`, coming to main). Until then `git show origin/lane-b-data:web/public/buildings/sf-0874003.json > web/public/buildings/sf-0874003.json` locally, but do not commit Lane B's files from your branch.
+5. Store API others call: `addPin(pin)` (from `parseDispatch` in `shared/dispatch.ts`), `explode()`, `collapse()`, `focus(target)`, `highlight({ floors, pinIds })` (from `answer.highlight`, SETUP.md section 6), `selectPin(id)`.
+6. Check the 400 Duboce footprint: it measures about 53 x 59 m (174 x 193 ft), large for 79 units. If the model looks wrong, tell Rishit (it may include a neighbour).
+7. Phone over HTTPS: SETUP.md section 10. For local phone tests, `npm run dev -- --host` works for model mode on the same Wi-Fi, but WebXR AR needs HTTPS (Lane D's deploy).

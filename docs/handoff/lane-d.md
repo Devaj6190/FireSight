@@ -118,3 +118,12 @@ export interface ComplianceRow {
 
 ## Start
 Run `date`, `git fetch && git checkout lane-d-phone`, read the files listed above, then begin with "Do now". Push to your lane branch at least every 30 minutes.
+
+## Setup and integration checklist (added 12:30; details in docs/handoff/SETUP.md)
+1. Tools: Node 22+, `gh auth status` OK, the Android phone (SETUP.md section 1).
+2. Wait for Lane A's `web/` scaffold on main, then `git merge origin/main`. Until then: deploy plan, pitch slides, and the panel components can be written as plain React files in `web/src/shell/`.
+3. Call the API only through `shared/client.ts`: `fetchBrief`, `ask`, `strike`, `compliance`, `SUGGESTED_QUESTIONS`, with `parseDispatch` from `shared/dispatch.ts`. Full example in SETUP.md section 6, including the offline fallback behaviour.
+4. Compliance strip rendering and wording rules: SETUP.md section 7. Eval screen reads `/eval/last-run.json`: shape in section 8.
+5. Sources drawer: from `building.layers` (each has `datasetId`, `source`, `records`, `asOf`, `status`) and `building.resolution.links`. Limits panel text: hub Final plan.
+6. Deploy: SETUP.md section 10. Ask Vidyut which account before any signup. The key goes only into the host's environment settings, entered by Vidyut. Fallback plan if the API deploy fails: web-only deploy works on precomputed answers.
+7. Claude Desktop MCP on the presenting laptop (yours or Devaj's): `mcp/README.md` and SETUP.md section 9, only with Vidyut's OK, after CP2.

@@ -121,3 +121,11 @@ Generate `sf-0874003.json` from the data (Python first is fine for speed; a Type
 
 ## Start
 Run `date`, `git fetch && git checkout lane-b-data`, read the files listed above, then begin with "Do now". Push to your lane branch at least every 30 minutes.
+
+## Setup and integration checklist (added 12:30; details in docs/handoff/SETUP.md)
+1. Tools: Python 3 + certifi, Node 22+, `gh auth status` OK (SETUP.md section 1).
+2. **Open your PR into main now** (contract, 3 building files, dispatch, conflicts, URL checker). Vidyut will squash-merge it so the old raw-data commit never reaches main.
+3. Your builder must **keep an existing `fallback` field** when it rewrites a building file (read the old file, copy `fallback` across). Lane C fills it with `npm run precompute` (SETUP.md section 5).
+4. Pin formats the compliance strip reads are in SETUP.md section 5; your current files already match (C1 PASS 79 days, C3 PASS, C4 UNKNOWN 4 ft rule, C8 7/9/5 of 21 on 400 Duboce).
+5. Check the 400 Duboce footprint: about 53 x 59 m (174 x 193 ft) for 79 units on 4 floors looks large. Compare with the assessor lot area; if it includes a neighbour, pick the ring by `mblr` or the largest ring containing the parcel centroid.
+6. Your shared files import without extensions (`"./building"`): fine, Lane C switched to bundler resolution.
