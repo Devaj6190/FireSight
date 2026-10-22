@@ -281,7 +281,7 @@ export default function App() {
     onSelectPin={setSelectedPin}
     onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
     onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
-    <p className="phone-credit">DataSF footprints<br />© OpenStreetMap contributors</p>
+    <p className="phone-credit">DataSF footprints · © OpenStreetMap contributors</p>
     <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, far: 8000, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
       <color attach="background" args={[fs.sky]} />
       <fog attach="fog" args={[fs.sky, d * 1.2, d * 5]} />
