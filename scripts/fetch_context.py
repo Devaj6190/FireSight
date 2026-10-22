@@ -66,8 +66,8 @@ def simplify(pts, tol):
     return simplify(pts[: i + 1], tol)[:-1] + simplify(pts[i:], tol)
 
 
-def area(ring):
-    return sum(ring[i][0] * ring[i - 1][1] - ring[i - 1][0] * ring[i][1] for i in range(len(ring))) / 2
+def area(ring):  # shoelace, positive when CCW
+    return sum(ring[i - 1][0] * ring[i][1] - ring[i][0] * ring[i - 1][1] for i in range(len(ring))) / 2
 
 
 def buildings(lat, lon, r, proj, hero_mblr):
