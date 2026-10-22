@@ -1,0 +1,40 @@
+{
+ "id": "sf-3722080",
+ "address": "140 New Montgomery St",
+ "fireFloor": 22,
+ "scale": 0.0033333333333333335,
+ "hotspots": [
+  {
+   "id": "fire",
+   "text": "Fire · floor 22",
+   "tone": "fire",
+   "position": "-0.1167 0.5591 -0.0040",
+   "normal": "-0.7 0 0.7",
+   "floor": 22
+  },
+  {
+   "id": "battery",
+   "text": "Battery rooms · 22–23",
+   "tone": "battery",
+   "position": "0.1013 0.5716 0.0054",
+   "normal": "0.7 0 0.7",
+   "floor": 22
+  },
+  {
+   "id": "people-1",
+   "text": "257 people · floor 1",
+   "tone": "people",
+   "position": "0.1013 0.0331 0.0054",
+   "normal": "0.7 0 0.7",
+   "floor": 1
+  },
+  {
+   "id": "people-2",
+   "text": "68 people · floor 2",
+   "tone": "people",
+   "position": "-0.1167 0.0581 -0.0040",
+   "normal": "-0.7 0 0.7",
+   "floor": 2
+  }
+ ]
+}

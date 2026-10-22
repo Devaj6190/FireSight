@@ -54,9 +54,33 @@ root.scale.setScalar(SCALE)
 // lift so the ground plate sits at y = 0 in the AR scene
 root.position.y = (0.6 + (hasB1 ? h + gap : 0)) * SCALE
 
+// Hotspot labels for ar.html (model-viewer), in the exported model's own coordinates (metres, after SCALE and the lift).
+// Every text comes from a building JSON pin; the fire floor comes from the CLI argument.
+const floorY = (f: number) => ((floors.indexOf(f) - base) * (h + gap) + slab / 2) * SCALE + root.position.y
+const pt = (side: 'left' | 'right', f: number, y = floorY(f)) => {
+  const v = b.footprint.reduce((a, c) => ((side === 'right' ? c[0] > a[0] : c[0] < a[0]) ? c : a))
+  const x = (v[0] + (side === 'right' ? 0.5 : -0.5)) * SCALE
+  return { position: `${x.toFixed(4)} ${y.toFixed(4)} ${(-v[1] * SCALE).toFixed(4)}`, normal: side === 'right' ? '0.7 0 0.7' : '-0.7 0 0.7' }
+}
+type Hot = { id: string; text: string; tone: 'fire' | 'battery' | 'people'; position: string; normal: string; floor: number }
+const hot: Hot[] = []
+if (fire !== null) hot.push({ id: 'fire', text: `Fire · floor ${fire}`, tone: 'fire', ...pt('left', fire), floor: fire })
+const battery = b.pins.filter((p) => /battery room/i.test(p.label) && p.anchor.kind === 'floor').map((p) => (p.anchor as { floor: number }).floor).sort((a, c) => a - c)
+if (battery.length) {
+  const lo = battery[0]!, hi = battery[battery.length - 1]!
+  hot.push({ id: 'battery', text: lo === hi ? `Battery room · ${lo}` : `Battery rooms · ${lo}–${hi}`, tone: 'battery', ...pt('right', lo, (floorY(lo) + floorY(hi)) / 2), floor: lo })
+}
+const peoplePins = b.pins.flatMap((p) => {
+  const m = p.anchor.kind === 'floor' ? /(\d[\d,]*)\s+(people|occupants|units)/i.exec(p.label) : null
+  return m ? [{ n: m[1]!, kind: m[2]!.toLowerCase() === 'units' ? 'units' : 'people', floor: (p.anchor as { floor: number }).floor }] : []
+}).sort((a, c) => a.floor - c.floor)
+peoplePins.forEach((p, i) => hot.push({ id: `people-${p.floor}`, text: `${p.n} ${p.n === '1' && p.kind === 'units' ? 'unit' : p.kind} · floor ${p.floor}`, tone: 'people', ...pt(i % 2 === 0 ? 'right' : 'left', p.floor), floor: p.floor }))
+
 const scene = new THREE.Scene()
 scene.add(root)
 const glb = await new GLTFExporter().parseAsync(scene, { binary: true })
 const out = new URL(`../public/ar/${id}.glb`, import.meta.url)
 writeFileSync(out, Buffer.from(glb as ArrayBuffer))
 console.log(`${id}: ${floors.length} floors, fire ${fire ?? 'none'}, ${(Buffer.from(glb as ArrayBuffer).length / 1024).toFixed(0)} KB -> ${out.pathname}`)
+writeFileSync(new URL(`../public/ar/${id}.json`, import.meta.url), JSON.stringify({ id, address: b.address, fireFloor: fire, scale: SCALE, hotspots: hot }, null, 1) + '\n')
+console.log(`hotspots: ${hot.map((x) => x.text).join(' | ')}`)
