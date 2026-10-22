@@ -1849,6 +1849,40 @@
   }
  ],
  "structure": null,
+ "site": {
+  "sides": [
+   {
+    "edge": 0,
+    "street": "Haight Street",
+    "bearingDeg": 351
+   },
+   {
+    "edge": 1,
+    "street": "Haight Street",
+    "bearingDeg": 261
+   },
+   {
+    "edge": 12,
+    "street": "Masonic Avenue",
+    "bearingDeg": 171
+   },
+   {
+    "edge": 17,
+    "street": "Haight Street",
+    "bearingDeg": 81
+   }
+  ],
+  "entrances": [],
+  "floorAreaM2": 310,
+  "maxSpanM": 25.8,
+  "perimeterM": 81,
+  "code": [
+   {
+    "text": "At least 2 exit stairs required",
+    "citation": "CBC 1006.3 (code requirement, locations not on record)"
+   }
+  ]
+ },
  "resolution": {
   "apn": "1244030",
   "easBaseId": "443247",

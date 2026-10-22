@@ -2749,6 +2749,35 @@
   }
  ],
  "structure": null,
+ "site": {
+  "sides": [
+   {
+    "edge": 1,
+    "street": "Mission Street",
+    "bearingDeg": 135
+   },
+   {
+    "edge": 5,
+    "street": "Jessie Street",
+    "bearingDeg": 315
+   },
+   {
+    "edge": 8,
+    "street": "Mission Street",
+    "bearingDeg": 225
+   }
+  ],
+  "entrances": [],
+  "floorAreaM2": 406,
+  "maxSpanM": 31.4,
+  "perimeterM": 86,
+  "code": [
+   {
+    "text": "At least 2 exit stairs required",
+    "citation": "CBC 1006.3 (code requirement, locations not on record)"
+   }
+  ]
+ },
  "resolution": {
   "apn": "3703081",
   "easBaseId": "364715",

@@ -341,6 +341,55 @@ def footprint_local(shape):
     return pts, lat0, lon0, abs(area) / 2
 
 
+def site_of(bdir, footprint, lat0, lon0, area_m2, height, floors):
+    """Where each face of the building points, real entrances, floor size, and code requirements (labeled as code)."""
+    k = 111_320 * math.cos(math.radians(lat0))
+    to_local = lambda lat, lon: ((lon - lon0) * k, (lat - lat0) * 111_320)
+    osm = dload(bdir, "osm").get("elements") or []
+    streets = []
+    for e in osm:
+        t = e.get("tags", {})
+        c = e.get("center")
+        if t.get("highway") in ("primary", "secondary", "tertiary", "residential", "unclassified", "service", "living_street", "pedestrian") and t.get("name") and c:
+            streets.append((t["name"], *to_local(c["lat"], c["lon"])))
+    n = len(footprint)
+    sides = []
+    for i in range(n):
+        (x1, y1), (x2, y2) = footprint[i], footprint[(i + 1) % n]
+        L = math.hypot(x2 - x1, y2 - y1)
+        if L < 6:  # skip notches; only real faces
+            continue
+        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+        nx, ny = (y2 - y1) / L, -(x2 - x1) / L  # outward normal for a CCW ring
+        best = None
+        for name, sx, sy in streets:
+            dx, dy = sx - mx, sy - my
+            ahead = dx * nx + dy * ny
+            if ahead <= 0:
+                continue
+            d = math.hypot(dx, dy)
+            if d < 90 and (best is None or d < best[0]):
+                best = (d, name)
+        if best:
+            sides.append({"edge": i, "street": best[1], "bearingDeg": round((math.degrees(math.atan2(nx, ny)) + 360) % 360)})
+    entrances = []
+    for e in osm:
+        t = e.get("tags", {})
+        if e.get("type") == "node" and ("entrance" in t or t.get("amenity") == "parking_entrance") and "lat" in e:
+            x, y = to_local(e["lat"], e["lon"])
+            if math.hypot(x, y) < 120:
+                kind = "Parking entrance" if t.get("amenity") == "parking_entrance" else ("Main entrance" if t.get("entrance") == "main" else "Entrance")
+                entrances.append({"x": round(x, 1), "y": round(y, 1), "kind": kind, "source": "OpenStreetMap", "url": f"https://www.openstreetmap.org/node/{e['id']}"})
+    span = max((math.hypot(a[0] - b[0], a[1] - b[1]) for a in footprint for b in footprint), default=0)
+    perim = sum(math.hypot(footprint[i][0] - footprint[(i + 1) % n][0], footprint[i][1] - footprint[(i + 1) % n][1]) for i in range(n))
+    code = []
+    if height > 22.86:  # 75 ft
+        code.append({"text": "High-rise: standpipes required in every exit stair", "citation": "CBC 403 / 905.3.1 (code requirement, locations not on record)"})
+    if floors >= 2:
+        code.append({"text": "At least 2 exit stairs required", "citation": "CBC 1006.3 (code requirement, locations not on record)"})
+    return {"sides": sides, "entrances": entrances[:8], "floorAreaM2": round(area_m2), "maxSpanM": round(span, 1), "perimeterM": round(perim), "code": code}
+
+
 def structure_of(bdir, apn):
     t = (rows(bdir, "tall_building") or [None])[0]
     if not t:
@@ -1202,6 +1251,7 @@ def build(bid):
         "yearBuilt": year_built, "constructionType": construction, "units": units, "rooms": rooms, "use": use,
         "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers, "floorFacts": floor_facts,
         "structure": structure_of(bdir, apn),
+        "site": site_of(bdir, footprint, clat, clon, area_m2, height, floors),
         "resolution": {"apn": apn, "easBaseId": res.get("eas_baseid"), "aliases": aliases, "links": links},
         "fetchedAt": man["fetchedAt"],
         "meta": {"footprintAsOf": fp_asof, "heightSource": "2010 LiDAR (hgt_median_m)", "footprintAreaM2": round(area_m2),

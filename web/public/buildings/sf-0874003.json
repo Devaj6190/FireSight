@@ -4119,6 +4119,103 @@
   }
  ],
  "structure": null,
+ "site": {
+  "sides": [
+   {
+    "edge": 9,
+    "street": "Fillmore Street",
+    "bearingDeg": 261
+   },
+   {
+    "edge": 14,
+    "street": "Fillmore Street",
+    "bearingDeg": 170
+   },
+   {
+    "edge": 25,
+    "street": "Fillmore Street",
+    "bearingDeg": 261
+   },
+   {
+    "edge": 34,
+    "street": "Fillmore Street",
+    "bearingDeg": 351
+   },
+   {
+    "edge": 46,
+    "street": "Duboce Avenue",
+    "bearingDeg": 169
+   },
+   {
+    "edge": 59,
+    "street": "Duboce Avenue",
+    "bearingDeg": 267
+   },
+   {
+    "edge": 69,
+    "street": "Fillmore Street",
+    "bearingDeg": 352
+   },
+   {
+    "edge": 76,
+    "street": "Duboce Avenue",
+    "bearingDeg": 261
+   },
+   {
+    "edge": 97,
+    "street": "Duboce Avenue",
+    "bearingDeg": 177
+   },
+   {
+    "edge": 122,
+    "street": "Church Street",
+    "bearingDeg": 355
+   },
+   {
+    "edge": 126,
+    "street": "Church Street",
+    "bearingDeg": 175
+   },
+   {
+    "edge": 140,
+    "street": "Church Street",
+    "bearingDeg": 359
+   },
+   {
+    "edge": 146,
+    "street": "Church Street",
+    "bearingDeg": 356
+   },
+   {
+    "edge": 149,
+    "street": "Church Street",
+    "bearingDeg": 81
+   },
+   {
+    "edge": 152,
+    "street": "Church Street",
+    "bearingDeg": 80
+   }
+  ],
+  "entrances": [
+   {
+    "x": 7.5,
+    "y": -19.7,
+    "kind": "Main entrance",
+    "source": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/node/4915914627"
+   }
+  ],
+  "floorAreaM2": 1790,
+  "maxSpanM": 77.4,
+  "perimeterM": 366,
+  "code": [
+   {
+    "text": "At least 2 exit stairs required",
+    "citation": "CBC 1006.3 (code requirement, locations not on record)"
+   }
+  ]
+ },
  "resolution": {
   "apn": "0874003",
   "easBaseId": "275608",

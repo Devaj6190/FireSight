@@ -4551,6 +4551,106 @@
    "url": "https://data.sf.gov/resource/5kya-mfst.json?mapblocklot=3722080"
   }
  },
+ "site": {
+  "sides": [
+   {
+    "edge": 1,
+    "street": "Minna Street",
+    "bearingDeg": 224
+   },
+   {
+    "edge": 4,
+    "street": "Minna Street",
+    "bearingDeg": 225
+   },
+   {
+    "edge": 7,
+    "street": "New Montgomery Street",
+    "bearingDeg": 135
+   },
+   {
+    "edge": 10,
+    "street": "New Montgomery Street",
+    "bearingDeg": 135
+   },
+   {
+    "edge": 15,
+    "street": "Minna Street",
+    "bearingDeg": 226
+   },
+   {
+    "edge": 18,
+    "street": "Natoma Street",
+    "bearingDeg": 135
+   },
+   {
+    "edge": 22,
+    "street": "Minna Street",
+    "bearingDeg": 225
+   },
+   {
+    "edge": 32,
+    "street": "Natoma Street",
+    "bearingDeg": 134
+   },
+   {
+    "edge": 34,
+    "street": "Natoma Street",
+    "bearingDeg": 46
+   },
+   {
+    "edge": 37,
+    "street": "New Montgomery Street",
+    "bearingDeg": 46
+   },
+   {
+    "edge": 39,
+    "street": "New Montgomery Street",
+    "bearingDeg": 46
+   },
+   {
+    "edge": 40,
+    "street": "Minna Street",
+    "bearingDeg": 314
+   }
+  ],
+  "entrances": [
+   {
+    "x": -5.8,
+    "y": -36.9,
+    "kind": "Parking entrance",
+    "source": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/node/8324272536"
+   },
+   {
+    "x": -45.2,
+    "y": -6.7,
+    "kind": "Parking entrance",
+    "source": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/node/8324272538"
+   },
+   {
+    "x": -41.9,
+    "y": -3.4,
+    "kind": "Parking entrance",
+    "source": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/node/8324272539"
+   }
+  ],
+  "floorAreaM2": 1284,
+  "maxSpanM": 64.5,
+  "perimeterM": 218,
+  "code": [
+   {
+    "text": "High-rise: standpipes required in every exit stair",
+    "citation": "CBC 403 / 905.3.1 (code requirement, locations not on record)"
+   },
+   {
+    "text": "At least 2 exit stairs required",
+    "citation": "CBC 1006.3 (code requirement, locations not on record)"
+   }
+  ]
+ },
  "resolution": {
   "apn": "3722080",
   "easBaseId": "476469",

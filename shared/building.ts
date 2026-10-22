@@ -125,6 +125,15 @@ export interface Building {
   fallback?: { brief: Brief; answers: Answer[] }; // precomputed, used when offline or slow
   floorFacts?: FloorFacts[]; // additive: one entry per floor (B1 only if a record says basement), bottom to top
   // additive: structural facts from the Tall Building Inventory (5kya-mfst), null for buildings not in it
+  // additive: the site as an arriving crew sees it. All positions are real (local meters, x east, y north, centroid origin).
+  site?: {
+    sides: { edge: number; street: string; bearingDeg: number }[]; // footprint edge index -> the street that face is on (OSM)
+    entrances: { x: number; y: number; kind: string; source: string; url: string }[]; // OSM entrance / parking entrance nodes
+    floorAreaM2: number; // footprint area: the size of each floor to search
+    maxSpanM: number; // longest straight distance across the floor (hose stretch / search)
+    perimeterM: number;
+    code: { text: string; citation: string }[]; // code requirements, labeled as code, never as observed facts
+  } | null;
   structure?: {
     system: string | null; // "Steel Moment Frame - Space"
     material: string | null; // "Steel"
