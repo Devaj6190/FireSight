@@ -7,7 +7,7 @@ Contents: 0 auto-refresh (docs/handoff/refresh.md) · 1 tools · 2 git workflow 
 ---
 
 ## Decisions at 13:00 (Vidyut)
-- **The hero building is now 140 New Montgomery St** (parcel 3722/080, `web/public/buildings/sf-3722080.json`, 26 floors, 114.8 m). 400 Duboce stays cached. A replanned demo script is coming on the hub.
+- **The hero building is now 140 New Montgomery St** (parcel 3722/080, `web/public/buildings/sf-3722080.json`, 26 floors, 114.8 m). 400 Duboce stays cached. **Plan v4 (13:05): `docs/plan/plan-v4-hero.md`**: demo script (dispatch "smoke reported 22nd floor"), per-lane changes, canned questions, risks, cut order. It overrides plan.md v3 sections 3, 6 and 8.
 - **Devaj owns the Vercel deploy:** `docs/handoff/deploy.md`.
 
 ## Rebalance (12:57, approved by Vidyut)
