@@ -38,8 +38,8 @@
 .phone-handle span { width: 36px; height: 4px; border-radius: 4px; background: var(--fs-line); }
 .phone-close { min-height: 48px; padding: 8px 0 8px 12px; border: 0; color: var(--fs-muted); background: none; font-size: 12px !important; }
 .phone-sheet-top .phone-row { margin-top: -12px; }
-.phone-tabs { display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; padding: 0 12px; border-bottom: 1px solid var(--fs-line); scrollbar-width: thin; }
-.phone-tabs button { flex: 0 0 auto; min-height: 48px; padding: 8px 12px; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--fs-muted); font-size: 12px !important; }
+.phone-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; flex-shrink: 0; padding: 0 8px; border-bottom: 1px solid var(--fs-line); }
+.phone-tabs button { min-width: 0; min-height: 48px; padding: 8px 2px; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--fs-muted); font-size: 11px !important; }
 .phone-tabs button[aria-current] { color: var(--fs-action); border-bottom-color: var(--fs-action); }
 .phone-sheet-body { padding: 14px 16px 24px; overflow-y: auto; overscroll-behavior: contain; min-height: 0; flex: 1; }
 .phone-app h2 { font-size: 20px; line-height: 1.25; margin: 8px 0 14px; overflow-wrap: anywhere; }
@@ -69,3 +69,6 @@
 .phone-loading { height: 100dvh; display: grid; align-content: center; justify-items: center; padding: 24px; text-align: center; font-family: 'IBM Plex Sans', sans-serif; gap: 16px; }.phone-loading button { min-height: 48px; padding: 12px 20px; }
 @media (min-width: 900px) { .phone-header { padding-left: 28px; padding-right: 28px; }.phone-app .phone-sheet { position: absolute; right: 20px; top: 205px; left: auto; bottom: 100px; height: auto; width: 390px; border: 1px solid var(--fs-line); border-radius: 14px; }.phone-stage { margin-right: 425px; }.phone-app .phone-sheet.expanded { top: 205px; bottom: 100px; height: auto; }.phone-bar { justify-content: flex-end; }.phone-bar .phone-primary { flex: 0 1 280px; }.phone-header .phone-address-row, .phone-header .phone-subline { max-width: 700px; } }
 @media (max-height: 700px) and (max-width: 899px) { .phone-notice { display: none; }.phone-sheet { flex-basis: 190px; }.phone-sheet.expanded { height: 65dvh; }.phone-header { padding-top: 8px; } }
+
+/* Focus belongs in the header so it cannot obscure the floor 22 record chip. */
+.phone-focus { min-height: 48px; width: 100%; border: 1px solid var(--fs-line); border-radius: 8px; background: var(--fs-bg); color: var(--fs-action); text-align: left; padding: 8px 12px; margin: 0 0 8px; font-size: 12px !important; }

@@ -19,7 +19,7 @@ const tabs: [Page, string][] = [['sizeup', 'Size-up'], ['brief', 'Brief'], ['res
 
 export function PhoneShell({ building: b, children, phase, selectedPin, focusedFloors, onBuilding, onDispatch, onToggle, onSelectPin, onHighlight, onAddPin }: Props) {
   const [page, setPage] = useState<Page>('sizeup')
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(() => b.pins.some(p => p.origin === 'dispatch'))
   const [dispatch, setDispatch] = useState(HERO_DISPATCH)
   const [dispatchBusy, setDispatchBusy] = useState(false)
   const [message, setMessage] = useState('')
@@ -49,7 +49,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
   async function submitDispatch() {
     if (!dispatch.trim()) return
     setDispatchBusy(true); setMessage('')
-    try { await onDispatch(dispatch); navigate('sizeup') } catch (e) { setMessage(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setDispatchBusy(false) }
+    try { await onDispatch(dispatch); navigate('sizeup'); setExpanded(true) } catch (e) { setMessage(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setDispatchBusy(false) }
   }
   async function askQuestion(q: string) {
     if (!q.trim() || asking) return
@@ -70,11 +70,12 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
       <div className="phone-row"><span className="phone-brand">FIRE<span>SIGHT</span></span><span className="phone-mono">FIELD PROTOTYPE</span></div>
       <div className="phone-address-row"><label className="phone-address">Responding to<select aria-label="Building address" value={b.id} onChange={e => onBuilding(e.target.value)}>{BUILDINGS.map(v => <option key={v.id} value={v.id}>{v.address}</option>)}</select></label><div className="phone-eta">4:00<span>DEMO ETA</span></div></div>
       <div className="phone-row phone-subline"><span>{b.floors} floors · parcel {b.apn}</span><button className="phone-fresh" onClick={() => navigate('refresh')}>Refreshed {localTime(b.fetchedAt)} ↗</button></div>
+      {focusedFloors.length > 0 && <button className="phone-focus" onClick={() => onHighlight([], [])}>Focused floor: {focusedFloors.map(f => f === 0 ? 'B1' : f).join(', ')} · Clear ×</button>}
       <p className="phone-notice">Not for operational use · public records may be incomplete</p>
     </header>
     <main className="phone-stage" aria-label="Building model">
       {children}
-      <div className="phone-scene-meta"><span>{phase.toUpperCase()}</span>{focusedFloors.length > 0 && <button onClick={() => onHighlight([], [])}>Focus: {focusedFloors.map(f => f === 0 ? 'B1' : f).join(', ')} · Clear ×</button>}</div>
+      <div className="phone-scene-meta"><span>{phase.toUpperCase()}</span></div>
       <button className="phone-dispatch-shortcut" onClick={() => navigate('dispatch')}>Paste dispatch ↗</button>
     </main>
     <section className={`phone-sheet ${expanded || selectedPin ? 'expanded' : ''}`} aria-label="Building information">
@@ -82,7 +83,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
       <nav className="phone-tabs" aria-label="Information panels">{tabs.map(([id, label]) => <button key={id} aria-current={selected === id ? 'page' : undefined} onClick={() => navigate(id)}>{label}</button>)}</nav>
       <div className="phone-sheet-body">
         {message && <p className="phone-message" role="status">{message}</p>}
-        {selected === 'sizeup' && <><div className="phone-row"><span className="phone-eyebrow">Priority records</span><span className="phone-mono">{b.pins.length} PINS</span></div><ul className="phone-pins">{topPins.map(p => <li key={p.id}><button onClick={() => selectPin(p)}><span className={`phone-dot ${p.severity}`} /><span><strong>{p.label}</strong><small>{floorLabel(p)} · {p.evidence[0]?.source ?? p.origin} · {p.evidence[0]?.asOf ?? 'user supplied'}{p.stale ? ' · STALE' : ''}</small></span><span>↗</span></button></li>)}</ul><button className="phone-text-button" onClick={() => navigate('records')}>View all {b.pins.length} records →</button><div className="phone-tags">{b.unknowns.slice(0, 3).map(u => <span className="phone-claim unverifiable" key={u}>{u}: UNKNOWN</span>)}</div>{expanded && <ComplianceStrip building={b} onSelectPins={highlight} />}</>}
+        {selected === 'sizeup' && <>{b.pins.some(p => p.origin === 'dispatch') && <ComplianceStrip building={b} onSelectPins={highlight} />}<div className="phone-row"><span className="phone-eyebrow">Priority records</span><span className="phone-mono">{b.pins.length} PINS</span></div><ul className="phone-pins">{topPins.map(p => <li key={p.id}><button onClick={() => selectPin(p)}><span className={`phone-dot ${p.severity}`} /><span><strong>{p.label}</strong><small>{floorLabel(p)} · {p.evidence[0]?.source ?? p.origin} · {p.evidence[0]?.asOf ?? 'user supplied'}{p.stale ? ' · STALE' : ''}</small></span><span>↗</span></button></li>)}</ul><button className="phone-text-button" onClick={() => navigate('records')}>View all {b.pins.length} records →</button><div className="phone-tags">{b.unknowns.slice(0, 3).map(u => <span className="phone-claim unverifiable" key={u}>{u}: UNKNOWN</span>)}</div>{expanded && !b.pins.some(p => p.origin === 'dispatch') && <ComplianceStrip building={b} onSelectPins={highlight} />}</>}
         {selected === 'dispatch' && <form onSubmit={e => { e.preventDefault(); void submitDispatch() }}><h2>Dispatch → building → floor</h2><p className="phone-muted">Simulated CAD input. Only cached addresses can be resolved in this prototype.</p><label>Dispatch message<textarea value={dispatch} onChange={e => setDispatch(e.target.value)} rows={4} maxLength={1000} /></label><button className="phone-primary" disabled={dispatchBusy || !dispatch.trim()}>{dispatchBusy ? 'Resolving…' : 'Resolve and explode'}</button></form>}
         {selected === 'ask' && <section><h2>Ask the records</h2><p className="phone-muted">Answers cite records. A missing public fact stays unverifiable.</p><div className="phone-questions">{SUGGESTED_QUESTIONS.map(q => <button key={q} disabled={asking} onClick={() => void askQuestion(q)}>{q} ↗</button>)}</div><form onSubmit={e => { e.preventDefault(); void askQuestion(question) }}><label>Your question<input value={question} onChange={e => setQuestion(e.target.value)} maxLength={300} placeholder="Where are the people?" /></label><button className="phone-primary" disabled={asking || !question.trim()}>{asking ? 'Checking cited records…' : 'Ask'}</button></form>{answer && <div className="phone-answer" role="status"><span className={`phone-claim ${answer.claim}`}>{answer.claim.toUpperCase()} · {answerSource === 'fallback' ? 'SAVED ANSWER' : 'MODEL ANSWER'}</span><p>{answer.text}</p><div className="phone-tags">{answer.unknowns.map(u => <span key={u} className="phone-claim unverifiable">{u}: UNVERIFIABLE</span>)}</div>{answer.pinIds.map(id => { const p = b.pins.find(v => v.id === id); return p && <button className="phone-text-button" key={id} onClick={() => selectPin(p)}>{p.label} · source ↗</button> })}</div>}{!b.fallback && <p className="phone-muted">Saved offline answers have not been supplied for this snapshot.</p>}</section>}
         {selected === 'brief' && <BriefSheet building={b} onSelectPins={highlight} onSend={lines => { setApproved(lines); navigate('crew') }} />}
