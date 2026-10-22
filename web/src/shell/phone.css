@@ -1,0 +1,71 @@
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-sans/latin-700.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+
+.phone-app { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; font: 15px/1.4 'IBM Plex Sans', system-ui, sans-serif; color: var(--fs-ink); background: var(--fs-bg); position: relative; }
+.phone-app * { box-sizing: border-box; }
+.phone-app button, .phone-app select, .phone-app input, .phone-app textarea { font: inherit; }
+.phone-app button, .phone-app a, .phone-app select { touch-action: manipulation; }
+.phone-app button { cursor: pointer; }
+.phone-app button:disabled { cursor: default; opacity: .5; }
+.phone-app :focus-visible { outline: 2px solid var(--fs-action); outline-offset: 3px; }
+.phone-header { padding: max(12px, env(safe-area-inset-top)) 16px 8px; border-bottom: 1px solid var(--fs-line); flex-shrink: 0; }
+.phone-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.phone-brand { font-size: 17px; font-weight: 700; letter-spacing: .15em; }
+.phone-brand span { color: var(--fs-action); }
+.phone-mono, .phone-eyebrow { font: 10px/1.5 'IBM Plex Mono', monospace; color: var(--fs-muted); letter-spacing: .06em; }
+.phone-eyebrow { text-transform: uppercase; }
+.phone-address-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.phone-app label { display: block; color: var(--fs-muted); font-size: 12px; margin: 12px 0; }
+.phone-app .phone-address { flex: 1; min-width: 0; margin: 0; font: 10px/1.3 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.phone-app select, .phone-app input, .phone-app textarea { display: block; width: 100%; min-height: 48px; padding: 10px 12px; margin-top: 5px; border: 1px solid var(--fs-line); border-radius: 8px; color: var(--fs-ink); background: var(--fs-bg); font-size: 16px; }
+.phone-app textarea { resize: vertical; line-height: 1.5; }
+.phone-address select { font: 700 20px/1.2 'IBM Plex Sans', sans-serif; padding: 4px 24px 4px 0; border: none; margin: 0; }
+.phone-eta { font-size: 26px; font-weight: 700; text-align: right; line-height: 1; }
+.phone-eta span { display: block; color: var(--fs-action); font: 9px/1.5 'IBM Plex Mono', monospace; margin-top: 4px; }
+.phone-subline { color: var(--fs-muted); font: 10px/1.4 'IBM Plex Mono', monospace; }
+.phone-fresh { color: var(--fs-action); background: none; border: 0; min-height: 48px; padding: 5px 0 5px 8px; font: inherit !important; text-align: right; }
+.phone-notice { font-size: 10px; color: var(--fs-muted); margin: -3px 0 0; }
+.phone-stage { flex: 1; min-height: 100px; position: relative; overflow: hidden; }
+.phone-scene-meta { position: absolute; top: 12px; left: 16px; right: 16px; pointer-events: none; display: flex; justify-content: space-between; gap: 8px; font: 10px/1.4 'IBM Plex Mono', monospace; color: var(--fs-muted); }
+.phone-scene-meta button { pointer-events: auto; min-height: 48px; border: 1px solid var(--fs-line); background: var(--fs-bg); color: var(--fs-action); padding: 6px 10px; border-radius: 8px; font: inherit; }
+.phone-dispatch-shortcut { position: absolute; bottom: 10px; left: 16px; min-height: 48px; padding: 8px 12px; background: var(--fs-surface); border: 1px solid var(--fs-line); border-radius: 10px; color: var(--fs-ink); font-size: 13px !important; }
+.phone-sheet { flex: 0 1 236px; min-height: 150px; border-top: 1px solid var(--fs-line); border-radius: 18px 18px 0 0; background: var(--fs-surface); display: flex; flex-direction: column; overflow: hidden; z-index: 5; }
+.phone-sheet.expanded { position: absolute; bottom: calc(76px + env(safe-area-inset-bottom)); left: 0; right: 0; height: min(66dvh, 650px); }
+.phone-sheet-top { padding: 0 16px; flex-shrink: 0; }
+.phone-handle { height: 26px; width: 100%; border: 0; background: none; display: flex; align-items: center; justify-content: center; }
+.phone-handle span { width: 36px; height: 4px; border-radius: 4px; background: var(--fs-line); }
+.phone-close { min-height: 48px; padding: 8px 0 8px 12px; border: 0; color: var(--fs-muted); background: none; font-size: 12px !important; }
+.phone-sheet-top .phone-row { margin-top: -12px; }
+.phone-tabs { display: flex; gap: 4px; overflow-x: auto; flex-shrink: 0; padding: 0 12px; border-bottom: 1px solid var(--fs-line); scrollbar-width: thin; }
+.phone-tabs button { flex: 0 0 auto; min-height: 48px; padding: 8px 12px; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--fs-muted); font-size: 12px !important; }
+.phone-tabs button[aria-current] { color: var(--fs-action); border-bottom-color: var(--fs-action); }
+.phone-sheet-body { padding: 14px 16px 24px; overflow-y: auto; overscroll-behavior: contain; min-height: 0; flex: 1; }
+.phone-app h2 { font-size: 20px; line-height: 1.25; margin: 8px 0 14px; overflow-wrap: anywhere; }
+.phone-app p { line-height: 1.5; }
+.phone-muted { color: var(--fs-muted); font-size: 12px; overflow-wrap: anywhere; }
+.phone-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.phone-claim, .phone-stale, .phone-alias { font: 10px/1.5 'IBM Plex Mono', monospace; border: 1px solid var(--fs-muted); padding: 4px 7px; border-radius: 5px; overflow-wrap: anywhere; }
+.phone-claim.unverifiable { border-style: dashed; color: var(--fs-muted); }
+.phone-claim.conflict, .phone-stale { color: var(--fs-action); border-color: var(--fs-action); }
+.phone-alias { color: var(--fs-muted); border-color: var(--fs-line); }
+.phone-evidence { padding: 16px 0; border-top: 1px solid var(--fs-line); }
+.phone-evidence a { color: var(--fs-action); display: inline-flex; min-height: 48px; align-items: center; }
+.phone-evidence dl { display: grid; grid-template-columns: 90px 1fr; gap: 8px; font: 11px/1.5 'IBM Plex Mono', monospace; }
+.phone-evidence dt { color: var(--fs-muted); }.phone-evidence dd { margin: 0; overflow-wrap: anywhere; }
+.phone-parcel { display: flex; flex-direction: column; gap: 6px; padding: 12px; background: var(--fs-bg); border: 1px solid var(--fs-line); border-radius: 8px; }.phone-parcel span { color: var(--fs-muted); font: 11px/1.5 'IBM Plex Mono', monospace; }
+.phone-records { padding: 0; margin: 14px 0; list-style: none; }.phone-records li { padding: 14px 0; border-top: 1px solid var(--fs-line); overflow-wrap: anywhere; }.phone-records p { margin: 6px 0; font-size: 13px; }
+.phone-conflict { border-left: 3px solid var(--fs-action); padding: 12px; margin-top: 12px; background: var(--fs-bg); }
+.phone-pins { list-style: none; padding: 0; margin: 6px 0; }.phone-pins li { border-bottom: 1px solid var(--fs-line); }.phone-pins button { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 60px; padding: 10px 0; border: 0; background: none; text-align: left; color: var(--fs-ink); }.phone-pins button > span:nth-child(2) { flex: 1; min-width: 0; }.phone-pins strong { font-size: 13px; display: block; }.phone-pins small { display: block; color: var(--fs-muted); font: 10px/1.6 'IBM Plex Mono', monospace; margin-top: 4px; }
+.phone-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--fs-ink); flex-shrink: 0; }.phone-dot.danger { background: #e5261f; }.phone-dot.caution { background: #ffb020; }
+.phone-new { color: var(--fs-action); font: 10px 'IBM Plex Mono', monospace; }
+.phone-bar { flex-shrink: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); display: flex; gap: 10px; border-top: 1px solid var(--fs-line); background: var(--fs-bg); z-index: 6; }
+.phone-primary, .phone-secondary { min-height: 52px; border-radius: 12px; padding: 12px 16px; font-weight: 700 !important; border: 0; }
+.phone-primary { color: var(--fs-action-ink); background: var(--fs-action); width: 100%; }.phone-secondary { color: var(--fs-ink); background: var(--fs-surface); border: 1px solid var(--fs-line); }.phone-bar .phone-primary { flex: 1; text-transform: uppercase; letter-spacing: .07em; }.phone-bar .phone-secondary { width: 96px; }
+.phone-text-button { min-height: 48px; border: 0; background: none; color: var(--fs-action); text-align: left; padding: 10px 0; }
+.phone-questions { display: grid; gap: 8px; }.phone-questions button { min-height: 48px; border: 1px solid var(--fs-line); border-radius: 8px; background: var(--fs-bg); text-align: left; color: var(--fs-ink); padding: 12px; }
+.phone-answer { padding-top: 20px; }.phone-message { border-left: 3px solid var(--fs-action); padding: 12px; background: var(--fs-bg); font-size: 13px; }.phone-radio { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; border: 1px solid var(--fs-line); background: var(--fs-bg); font: 12px/1.7 'IBM Plex Mono', monospace; user-select: text; }
+.phone-loading { height: 100dvh; display: grid; align-content: center; justify-items: center; padding: 24px; text-align: center; font-family: 'IBM Plex Sans', sans-serif; gap: 16px; }.phone-loading button { min-height: 48px; padding: 12px 20px; }
+@media (min-width: 900px) { .phone-header { padding-left: 28px; padding-right: 28px; }.phone-app .phone-sheet { position: absolute; right: 20px; top: 205px; left: auto; bottom: 100px; height: auto; width: 390px; border: 1px solid var(--fs-line); border-radius: 14px; }.phone-stage { margin-right: 425px; }.phone-app .phone-sheet.expanded { top: 205px; bottom: 100px; height: auto; }.phone-bar { justify-content: flex-end; }.phone-bar .phone-primary { flex: 0 1 280px; }.phone-header .phone-address-row, .phone-header .phone-subline { max-width: 700px; } }
+@media (max-height: 700px) and (max-width: 899px) { .phone-notice { display: none; }.phone-sheet { flex-basis: 190px; }.phone-sheet.expanded { height: 65dvh; }.phone-header { padding-top: 8px; } }
