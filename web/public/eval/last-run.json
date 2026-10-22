@@ -1,0 +1,178 @@
+{
+  "model": "claude-opus-5-5",
+  "ranAt": "2026-10-22T21:26:48.422Z",
+  "seconds": 92,
+  "totals": {
+    "buildings": 4,
+    "briefs": 4,
+    "lines": 48,
+    "verified": 37,
+    "unverifiable": 7,
+    "conflict": 4,
+    "dropped": 0,
+    "answers": 20,
+    "answersUnverifiable": 6,
+    "answersDropped": 0,
+    "strikeCases": 0,
+    "strikesRepeated": 0
+  },
+  "dropReasons": {},
+  "perBuilding": [
+    {
+      "buildingId": "sf-0874003",
+      "address": "400 Duboce Ave",
+      "lines": 12,
+      "dropped": 0,
+      "answers": [
+        {
+          "question": "Where are the people?",
+          "claim": "conflict",
+          "cited": 6,
+          "dropped": false
+        },
+        {
+          "question": "What are the energy hazards: batteries, solar, fuel?",
+          "claim": "verified",
+          "cited": 4,
+          "dropped": false
+        },
+        {
+          "question": "Is it sprinklered?",
+          "claim": "verified",
+          "cited": 1,
+          "dropped": false
+        },
+        {
+          "question": "Where are the stairs and standpipes?",
+          "claim": "unverifiable",
+          "cited": 0,
+          "dropped": false
+        },
+        {
+          "question": "How tall is it, and is its fire inspection current?",
+          "claim": "verified",
+          "cited": 2,
+          "dropped": false
+        }
+      ],
+      "strikesRepeated": []
+    },
+    {
+      "buildingId": "sf-1244030",
+      "address": "1433 Haight St",
+      "lines": 12,
+      "dropped": 0,
+      "answers": [
+        {
+          "question": "Where are the people?",
+          "claim": "conflict",
+          "cited": 1,
+          "dropped": false
+        },
+        {
+          "question": "What are the energy hazards: batteries, solar, fuel?",
+          "claim": "verified",
+          "cited": 1,
+          "dropped": false
+        },
+        {
+          "question": "Is it sprinklered?",
+          "claim": "unverifiable",
+          "cited": 0,
+          "dropped": false
+        },
+        {
+          "question": "Where are the stairs and standpipes?",
+          "claim": "unverifiable",
+          "cited": 0,
+          "dropped": false
+        },
+        {
+          "question": "How tall is it, and is its fire inspection current?",
+          "claim": "verified",
+          "cited": 1,
+          "dropped": false
+        }
+      ],
+      "strikesRepeated": []
+    },
+    {
+      "buildingId": "sf-3703081",
+      "address": "1018 Mission St",
+      "lines": 12,
+      "dropped": 0,
+      "answers": [
+        {
+          "question": "Where are the people?",
+          "claim": "conflict",
+          "cited": 6,
+          "dropped": false
+        },
+        {
+          "question": "What are the energy hazards: batteries, solar, fuel?",
+          "claim": "unverifiable",
+          "cited": 1,
+          "dropped": false
+        },
+        {
+          "question": "Is it sprinklered?",
+          "claim": "verified",
+          "cited": 2,
+          "dropped": false
+        },
+        {
+          "question": "Where are the stairs and standpipes?",
+          "claim": "unverifiable",
+          "cited": 0,
+          "dropped": false
+        },
+        {
+          "question": "How tall is it, and is its fire inspection current?",
+          "claim": "verified",
+          "cited": 2,
+          "dropped": false
+        }
+      ],
+      "strikesRepeated": []
+    },
+    {
+      "buildingId": "sf-3722080",
+      "address": "140 New Montgomery St",
+      "lines": 12,
+      "dropped": 0,
+      "answers": [
+        {
+          "question": "Where are the people?",
+          "claim": "verified",
+          "cited": 3,
+          "dropped": false
+        },
+        {
+          "question": "What are the energy hazards: batteries, solar, fuel?",
+          "claim": "verified",
+          "cited": 3,
+          "dropped": false
+        },
+        {
+          "question": "Is it sprinklered?",
+          "claim": "verified",
+          "cited": 1,
+          "dropped": false
+        },
+        {
+          "question": "Where are the stairs and standpipes?",
+          "claim": "unverifiable",
+          "cited": 0,
+          "dropped": false
+        },
+        {
+          "question": "How tall is it, and is its fire inspection current?",
+          "claim": "conflict",
+          "cited": 3,
+          "dropped": false
+        }
+      ],
+      "strikesRepeated": []
+    }
+  ]
+}
