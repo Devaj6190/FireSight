@@ -151,7 +151,7 @@ Needs Node 22 and Python 3.
 # API (Hono): brief, ask, strike, compliance, speech
 cd api && npm ci && cp .env.example .env && npm start
 # In api/.env: ANTHROPIC_API_KEY (model-written brief), ELEVENLABS_API_KEY (spoken brief).
-# TYPESAFE_API_KEY is optional (for the voice intent work in progress). Never commit the file.
+# TYPESAFE_API_KEY is optional (hands-free voice intent via Jev; keyword rules without it). Never commit the file.
 
 # Web app (Vite + React + react-three-fiber)
 cd web && npm ci && npm run dev
