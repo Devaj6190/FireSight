@@ -6,6 +6,22 @@ Contents: 0 auto-refresh (docs/handoff/refresh.md) · 1 tools · 2 git workflow 
 
 ---
 
+## Decisions at 13:00 (Vidyut)
+- **The hero building is now 140 New Montgomery St** (parcel 3722/080, `web/public/buildings/sf-3722080.json`, 26 floors, 114.8 m). 400 Duboce stays cached. A replanned demo script is coming on the hub.
+- **Devaj owns the Vercel deploy:** `docs/handoff/deploy.md`.
+
+## Rebalance (12:57, approved by Vidyut)
+Lanes B and C are ahead, so three must-have screens move off Lane D. Each owner edits only their own folder; Rohan places the finished components in his layout.
+
+| Owner | Builds | Folder | Exports |
+|---|---|---|---|
+| Rishit (Lane B), after the auto-refresh job | "What we don't know" limits panel, sources drawer, compliance strip | `web/src/shell/panels/` | `<LimitsPanel building/>`, `<SourcesDrawer building/>`, `<ComplianceStrip building/>` |
+| Vidyut's Claude (Lane C) | Brief sheet with approve/strike (calls `fetchBrief`, `strike`), and the eval screen (`/eval/last-run.json`) | `web/src/shell/brief/` | `<BriefSheet building onSend(lines)/>`, `<EvalScreen/>` |
+| Rohan (Lane D) keeps | Shell layout (address bar, ETA, bottom sheet, Explode button), dispatch paste box, provenance card, resolution view (with Devaj), crew and department pin inputs, "Send to crew" radio card (receives the approved lines from `onSend`), freshness chip and change feed, Vercel deploy, pitch, demo script, backup video, submission | `web/src/App.tsx`, `web/src/shell/**` except the two folders above | |
+| Devaj (Lane A) unchanged | Scene, explode, pins, store, AR | `web/src/scene/`, `web/src/store.ts` | |
+
+Components take the `Building` as a prop and read nothing global except Lane A's store when they need `highlight()`. Styles use the Night Watch tokens in `web/src/tokens.ts` / CSS variables.
+
 ## 1. Tools every laptop needs
 
 | Tool | Check | Notes |

@@ -129,3 +129,7 @@ Run `date`, `git fetch && git checkout lane-d-phone`, read the files listed abov
 7. Claude Desktop MCP on the presenting laptop (yours or Devaj's): `mcp/README.md` and SETUP.md section 9, only with Vidyut's OK, after CP2.
 
 8. **New roadmap item (12:45): auto-refresh every 30 minutes.** Show "Refreshed HH:MM · every 30 min", a change feed card, NEW tags on new pins and per-source as-of dates (`docs/handoff/refresh.md` section 3). Deploy recipe: SETUP.md section 10 (updated 12:45).
+
+9. **Rebalance (12:57):** the limits panel, sources drawer and compliance strip move to Rishit (`web/src/shell/panels/`); the brief sheet with approve/strike and the eval screen move to Lane C (`web/src/shell/brief/`). You keep: the shell layout, dispatch box, provenance card, resolution view (with Devaj), crew and department inputs, the "Send to crew" radio card, freshness chip and change feed, Vercel deploy, pitch, script, backup video and submission. Place the others' components in your layout (SETUP.md "Rebalance"). **Push what you have now, and at least every 30 minutes.**
+
+10. **13:00: the Vercel deploy moved to Devaj** (`docs/handoff/deploy.md`). The hero is now 140 New Montgomery St (sf-3722080): the dispatch line, address box default and pitch follow it. The replanned script is coming on the hub.

@@ -1,0 +1,61 @@
+/* Night Watch tokens (docs/design.md s2), scoped so the sheet works before the shell defines them globally. */
+.fsb {
+  --b-bg: var(--fs-bg, #0d0f12);
+  --b-surface: var(--fs-surface, #171a1f);
+  --b-line: var(--fs-line, #2a2f37);
+  --b-ink: var(--fs-ink, #f4f3ee);
+  --b-muted: var(--fs-muted, #9aa0a8);
+  --b-action: var(--fs-action, #ff9f1c);
+  --b-action-ink: var(--fs-action-ink, #0d0f12);
+  --b-danger: var(--fs-danger, #e5261f);
+  --b-caution: var(--fs-caution, #ffb020);
+  --b-info: var(--fs-info, #8ecae6);
+  --b-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --b-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: var(--b-sans);
+  color: var(--b-ink);
+  background: var(--b-surface);
+  border-radius: 18px 18px 0 0;
+  padding: 10px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.fsb-eyebrow { font: 500 11px/14px var(--b-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--b-muted); display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.fsb-tag { font: 600 10px/12px var(--b-mono); padding: 3px 6px; border-radius: 6px; border: 1px solid var(--b-line); color: var(--b-muted); }
+.fsb-tag.offline { border-color: var(--b-caution); color: var(--b-caution); }
+.fsb-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.fsb-line { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: var(--b-bg); border: 1px solid var(--b-line); }
+.fsb-line.approved { border-color: color-mix(in srgb, var(--b-info) 60%, var(--b-line)); }
+.fsb-line.struck { opacity: 0.5; }
+.fsb-line.struck .fsb-text { text-decoration: line-through; }
+.fsb-body { min-width: 0; display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
+.fsb-text { font: 400 15px/20px var(--b-sans); overflow-wrap: anywhere; }
+.fsb-meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font: 400 10px/12px var(--b-mono); color: var(--b-muted); }
+.fsb-claim { font: 700 10px/12px var(--b-mono); letter-spacing: 0.04em; padding: 2px 6px; border-radius: 6px; }
+.fsb-claim.verified { background: var(--b-ink); color: var(--b-bg); }
+.fsb-claim.unverifiable { border: 1.5px dashed var(--b-muted); color: var(--b-muted); }
+.fsb-claim.conflict { background: var(--b-caution); color: var(--b-bg); }
+.fsb-actions { display: flex; gap: 6px; }
+.fsb-btn { min-width: 48px; min-height: 48px; border-radius: 12px; border: 1px solid var(--b-line); background: transparent; color: var(--b-ink); font: 700 18px/1 var(--b-sans); cursor: pointer; }
+.fsb-btn:focus-visible, .fsb-primary:focus-visible { outline: 2px solid var(--b-action); outline-offset: 2px; }
+.fsb-btn.on.ok { background: var(--b-info); color: var(--b-bg); border-color: var(--b-info); }
+.fsb-btn.on.no { background: var(--b-danger); color: #fff; border-color: var(--b-danger); }
+.fsb-saved { font: 500 10px/12px var(--b-mono); color: var(--b-caution); }
+.fsb-counts { font: 400 11px/16px var(--b-mono); color: var(--b-muted); }
+.fsb-primary { min-height: 52px; border-radius: 14px; border: 0; background: var(--b-action); color: var(--b-action-ink); font: 700 15px/1 var(--b-sans); letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
+.fsb-primary:disabled { opacity: 0.5; cursor: default; }
+.fsb-msg { font: 400 13px/18px var(--b-sans); color: var(--b-muted); margin: 0; }
+.fsb-msg.err { color: var(--b-caution); }
+.fsb-skel { height: 44px; border-radius: 12px; background: linear-gradient(90deg, var(--b-bg), var(--b-line), var(--b-bg)); background-size: 200% 100%; animation: fsb-shimmer 1.2s linear infinite; }
+@keyframes fsb-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .fsb-skel { animation: none; } }
+/* Eval screen */
+.fse-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.fse-stat { background: var(--b-bg); border: 1px solid var(--b-line); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
+.fse-num { font: 700 28px/32px var(--b-sans); font-variant-numeric: tabular-nums; }
+.fse-num.good { color: var(--b-info); }
+.fse-num.bad { color: var(--b-danger); }
+.fse-label { font: 500 10px/12px var(--b-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--b-muted); }
+.fse-rows { font: 400 12px/18px var(--b-mono); color: var(--b-muted); margin: 0; padding: 0; list-style: none; }

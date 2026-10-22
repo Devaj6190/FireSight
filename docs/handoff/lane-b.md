@@ -131,3 +131,7 @@ Run `date`, `git fetch && git checkout lane-b-data`, read the files listed above
 6. Your shared files import without extensions (`"./building"`): fine, Lane C switched to bundler resolution.
 
 8. **New roadmap item (12:45): auto-refresh every 30 minutes.** You own `scripts/refresh.py` and `.github/workflows/refresh.yml`. Full spec, wording rules and done list: `docs/handoff/refresh.md`. Target CP2 (14:45). Never say "live".
+
+9. **Rebalance (12:57):** after `scripts/refresh.py` and the workflow, build `<LimitsPanel/>`, `<SourcesDrawer/>` and `<ComplianceStrip/>` in `web/src/shell/panels/` (SETUP.md "Rebalance"; content in SETUP.md sections 7 and 10 of the hub Final plan; compliance rows from `compliance(building)` in `shared/client.ts`).
+
+10. **13:00, top priority: the hero is now 140 New Montgomery St (3722/080).** Rebuild `web/public/buildings/sf-3722080.json` through `fetch_sources.py` and `build_fixture.py`, so it has layers, resolution links (aliases 140 and 138 New Montgomery), SFFD inspections (High Rise Annual Inspection), violations, fire permits (battery rooms, floors 22 and 23; B1 fire pump and diesel), Tall Building Inventory (90% sprinklered) and water. Devaj's hand-made file is on his branch; your built file replaces it. PR it as soon as it builds. Then do the refresh job and the panels.
