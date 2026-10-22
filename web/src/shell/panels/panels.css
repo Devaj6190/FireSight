@@ -1,0 +1,50 @@
+/* Night Watch tokens (docs/design.md s2), scoped so the panels work before the shell defines them globally. */
+.fsp {
+  --p-bg: var(--fs-bg, #0d0f12);
+  --p-surface: var(--fs-surface, #171a1f);
+  --p-line: var(--fs-line, #2a2f37);
+  --p-ink: var(--fs-ink, #f4f3ee);
+  --p-muted: var(--fs-muted, #9aa0a8);
+  --p-action: var(--fs-action, #ff9f1c);
+  --p-danger: var(--fs-danger, #e5261f);
+  --p-caution: var(--fs-caution, #ffb020);
+  --p-info: var(--fs-info, #8ecae6);
+  --p-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --p-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: var(--p-sans);
+  color: var(--p-ink);
+  background: var(--p-surface);
+  border-radius: 18px 18px 0 0;
+  padding: 10px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.fsp-eyebrow { font: 500 11px/14px var(--p-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--p-muted); display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.fsp-tag { font: 600 10px/12px var(--p-mono); padding: 3px 6px; border-radius: 6px; border: 1px solid var(--p-line); color: var(--p-muted); }
+.fsp-list, .fsp-attr, .fsp-evidence { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.fsp-row { display: flex; flex-direction: column; gap: 4px; padding: 10px; border-radius: 12px; background: var(--p-bg); border: 1px solid var(--p-line); min-width: 0; }
+.fsp-row.unverifiable, .fsp-row.no_records, .fsp-row.unknown { border-style: dashed; }
+.fsp-row.conflict, .fsp-row.fetch_failed { border-color: var(--p-caution); }
+.fsp-head { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; }
+.fsp-name { font: 600 15px/20px var(--p-sans); overflow-wrap: anywhere; }
+.fsp-asof { font: 400 11px/16px var(--p-mono); color: var(--p-muted); overflow-wrap: anywhere; }
+.fsp-gap { font: 400 13px/18px var(--p-sans); color: var(--p-ink); overflow-wrap: anywhere; }
+.fsp-note { font: 400 13px/18px var(--p-sans); color: var(--p-muted); margin: 0; }
+.fsp-age { color: var(--p-caution); font-weight: 600; }
+.fsp-claim, .fsp-result, .fsp-conf { flex: none; font: 700 10px/12px var(--p-mono); letter-spacing: 0.04em; padding: 3px 6px; border-radius: 6px; white-space: nowrap; }
+.fsp-claim.unverifiable, .fsp-result.unknown, .fsp-result.no_records { border: 1.5px dashed var(--p-muted); color: var(--p-muted); }
+.fsp-claim.conflict { background: var(--p-caution); color: var(--p-bg); }
+.fsp-result.pass, .fsp-result.ok, .fsp-conf.exact { background: var(--p-ink); color: var(--p-bg); }
+.fsp-result.fail { background: var(--p-danger); color: #fff; }
+.fsp-result.partial, .fsp-result.fetch_failed, .fsp-conf.medium, .fsp-conf.low { border: 1.5px solid var(--p-caution); color: var(--p-caution); }
+.fsp-conf.high { border: 1.5px solid var(--p-info); color: var(--p-info); }
+.fsp-tap { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; min-height: 48px; cursor: pointer; width: 100%; }
+.fsp-tap:focus-visible, .fsp-toggle:focus-visible { outline: 2px solid var(--p-action); outline-offset: 2px; }
+.fsp-evidence { padding-top: 6px; border-top: 1px solid var(--p-line); font: 400 13px/18px var(--p-sans); }
+.fsp-evidence li { display: flex; flex-direction: column; gap: 2px; }
+.fsp-toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; padding: 0 4px; background: transparent; border: 0; color: var(--p-ink); font: 700 15px/1 var(--p-sans); cursor: pointer; text-align: left; }
+.fsp-eyebrow-text { font: 500 11px/14px var(--p-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--p-muted); }
+.fsp-toggle-sum { flex: 1; font: 400 11px/14px var(--p-mono); color: var(--p-muted); }
+.fsp-attr { font: 400 12px/16px var(--p-mono); color: var(--p-ink); }

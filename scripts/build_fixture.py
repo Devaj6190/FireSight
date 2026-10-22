@@ -187,7 +187,7 @@ TAGS = [  # (tag, regex, severity, label template)
     ("urm", r"unreinforced masonry", "danger", "UNREINFORCED MASONRY RETROFIT"),
     ("roof", r"\b(re-?roof|roofing|roof deck)\b", "info", "ROOF WORK"),
 ]
-UNIT_RE = re.compile(r"(?:\bunit|\bapt\.?|\bapartment|#)\s*#?\s*(\d{3})\b", re.I)
+UNIT_RE = re.compile(r"(?:\bunit|\bapt\.?|\bapartment|\bsuite|\bste\.?|#)\s*#?\s*(\d{3,4})\b", re.I)
 FLR_RE = re.compile(r"\b(\d)(?:st|nd|rd|th)\s*(?:fl(?:oo)?r?\b|flr\b)", re.I)
 
 
@@ -254,7 +254,7 @@ def build(bid):
     floors = int(mode([v for v in [p_stories, a_stories] if v]) or max(1, round(height / 3.4)))
     floors = int(p_stories or a_stories or floors)
     year_built = num(a0.get("year_property_built"))
-    a_type = a0.get("construction_type")
+    a_type = a0.get("construction_type") if a0.get("construction_type") not in (None, "", "NA") else None
     loc = re.sub(r"\s+", " ", re.sub(r"^0+|\b0+(?=\d)", "", (a0.get("property_location") or "").replace("0000 ", " "))).strip()
     loc = re.sub(r"(ST|AV|AVE|BLVD|WY|WAY|PL|DR|TER|CT|LN|RD)\d+$", r"\1", loc)  # "...MISSION ST0000"
     two = re.match(r"^(\d+)\s+(\d+)\s+(.*)$", loc)  # assessor ranges read "1024 1018 MISSION ST"
@@ -337,8 +337,9 @@ def build(bid):
                     floor_units[f].add(u)
                     if len(unit_ev[f]) < 3:
                         unit_ev[f].append(ev(ds, p[pk], soda_url(ds, pk, p[pk]), iso(p.get(dfield)), f"unit {u} -> floor {f}"))
+    residential = bool(re.search(r"(resid|dwelling|apartment|hotel|r-[12])", (use or "") + " " + (p_occ or ""), re.I))
     for f in range(1, floors + 1):
-        if floor_units[f]:
+        if floor_units[f] and residential:
             us = sorted(floor_units[f])
             P.add("occupancy", f"floor{f}-units", "info", f"{len(us)} UNITS KNOWN ON FLOOR {f}",
                   f"Units {', '.join(map(str, us))} appear in permits for floor {f}; this is a lower bound, not a full list.", floor(f), unit_ev[f])
@@ -403,13 +404,16 @@ def build(bid):
     by_floor = {}
     for r in groups["building"]:
         fl = num(r.get("floor_of_fire_origin"))
-        by_floor.setdefault(fl if fl and 1 <= fl <= floors else None, []).append(r)
+        if fl is not None and fl < 0:
+            fl = 0  # NFIRS records below-grade origin as negative floors -> basement
+        by_floor.setdefault(fl if fl is not None and 0 <= fl <= floors else None, []).append(r)
     for fl, rs in sorted(by_floor.items(), key=lambda kv: (kv[0] is None, kv[0] or 0)):
         years = sorted({iso(r["incident_date"])[:4] for r in rs})
         where = f"origin floor {fl}" if fl else "floor of origin not recorded"
         lab = f"BUILDING FIRE {years[0]}" if len(rs) == 1 else f"{len(rs)} BUILDING FIRES {years[0]}-{years[-1]}"
-        P.add("incident", f"bldgfire-f{fl or 'x'}", "danger", lab + (f", FLOOR {fl}" if fl and len(rs) > 1 else ""),
-              f"{len(rs)} SFFD building fire incident(s), {where}: " + ", ".join(iso(r["incident_date"]) for r in rs[:6]) + ".", floor(fl) if fl else BLDG,
+        where = "origin in the basement" if fl == 0 else where
+        P.add("incident", f"bldgfire-f{'x' if fl is None else fl}", "danger", lab + (", BASEMENT" if fl == 0 else f", FLOOR {fl}" if fl and len(rs) > 1 else ""),
+              f"{len(rs)} SFFD building fire incident(s), {where}: " + ", ".join(iso(r["incident_date"]) for r in rs[:6]) + ".", floor(fl) if fl is not None else BLDG,
               [ev("wr8u-xric", r["id"], soda_url("wr8u-xric", "id", r["id"]), iso(r["incident_date"]), "address/radius match" + (f"; floor_of_fire_origin {fl} -> floor {fl}" if fl else "")) for r in rs[:4]])
     if groups["cooking"]:
         g = groups["cooking"]
@@ -439,23 +443,93 @@ def build(bid):
               f"SFFD violation {iso(v.get('violation_date'))}: {v.get('violation_item_description')}, status {v.get('status')}" + (f" {iso(v.get('close_date'))}" if v.get("close_date") else "") + ".", BLDG,
               [ev("4zuq-2cbe", v["violation_id"], soda_url("4zuq-2cbe", "violation_id", v["violation_id"]), iso(v.get("violation_date")), "EAS id match")])
     ins = rows(bdir, "fire_inspections")
-    r2 = [i for i in ins if "r2" in (i.get("inspection_type_description") or "").lower() or "r1" in (i.get("inspection_type_description") or "").lower()]
-    if r2:
-        i = r2[0]
-        P.add("inspection", i["inspection_number"], "info", (i.get("inspection_type_description") or "R2 inspection").upper(),
-              f"{i.get('inspection_type_description')}, status {i.get('inspection_status')}. SFFD inspection {i['inspection_number']} on {iso(i['inspection_start_date'])}.", BLDG,
-              [ev("wb4c-6hwj", i["inspection_number"], soda_url("wb4c-6hwj", "inspection_number", i["inspection_number"]), iso(i["inspection_start_date"]), "address or 15 m radius match")])
+    # newest inspection of each statutory type (R-1/R-2 annual, high-rise annual) feeds the compliance strip
+    for rx in (r"\br[12]\b", r"high ?rise"):
+        hits = [i for i in ins if re.search(rx, (i.get("inspection_type_description") or "").lower()) and own_address(i.get("address"), own_nums)]
+        if hits:
+            i = hits[0]
+            P.add("inspection", i["inspection_number"], "info", (i.get("inspection_type_description") or "inspection").upper(),
+                  f"{i.get('inspection_type_description')}, status {i.get('inspection_status')}. SFFD inspection {i['inspection_number']} on {iso(i['inspection_start_date'])}"
+                  + (f"; {len(hits)} on record, newest first." if len(hits) > 1 else "."), BLDG,
+                  [ev("wb4c-6hwj", i["inspection_number"], soda_url("wb4c-6hwj", "inspection_number", i["inspection_number"]), iso(i["inspection_start_date"]), "address or 15 m radius match")])
     fcomp = [c for c in rows(bdir, "fire_complaints") if iso(c.get("received_date")) >= "2024-01-01" and own_address(c.get("address"), own_nums)]
     if fcomp:
         kinds = Counter(c.get("complaint_item_type_description") for c in fcomp)
         P.add("complaint", "fire-complaints", "caution", f"{len(fcomp)} FIRE SAFETY COMPLAINTS SINCE 2024",
               "; ".join(f"{k} x{n}" for k, n in kinds.most_common()) + f"; newest {iso(fcomp[0]['received_date'])} ({fcomp[0].get('disposition')}).", BLDG,
               [ev("2wsq-7wmv", c["complaint_id"], soda_url("2wsq-7wmv", "complaint_id", c["complaint_id"]), iso(c["received_date"]), "address or 20 m radius match") for c in fcomp[:4]])
-    for fpm in rows(bdir, "fire_permits")[:6]:
+    # SFFD fire permits: the condition text names floors ("floor 22 computer room", "basement level b1", "main floor")
+    fps = [f for f in rows(bdir, "fire_permits") if own_address(f.get("permit_address"), own_nums)]
+    current = [f for f in fps if re.search(r"(approved|pending|issued|active)", (f.get("permit_status") or ""), re.I)]
+    past_tanks = [f for f in fps if f not in current and re.search(r"tank", f.get("permit_type_description") or "", re.I)]
+    has_current_tank = any(re.search(r"tank", f.get("permit_type_description") or "", re.I) for f in current)
+    for fpm in current + ([] if has_current_tank else past_tanks[:1]):
         desc = fpm.get("permit_type_description") or ""
-        sev = "danger" if re.search(r"(battery|lithium|hazard|lpg|cryogen|tank|flammable|compressed gas)", desc, re.I) else "caution"
-        P.add("fire_permit", fpm["permit_number"], sev, f"FIRE PERMIT: {desc[:30]}", f"SFFD permit {fpm['permit_number']} ({desc}) at {fpm.get('permit_address')}, status {fpm.get('permit_status')}.", BLDG,
-              [ev("893e-xam6", fpm["permit_number"], soda_url("893e-xam6", "permit_number", fpm["permit_number"]), iso(fpm.get("permit_application_date")), "address or 30 m radius match")])
+        cond = clean(fpm.get("conditions_associated_with_granting_this_permit") or "")
+        st = fpm.get("permit_status") or ""
+        when = iso(fpm.get("permit_application_date"))
+        e = lambda rule: [ev("893e-xam6", fpm["permit_number"], soda_url("893e-xam6", "permit_number", fpm["permit_number"]), when, rule)]
+        if re.search(r"battery", desc, re.I):
+            for fl, amt in re.findall(r"floor\s*(\d{1,2})\s+[a-z ]*?room\s+([\d.]+)\s*gal", cond, re.I) or [(None, None)]:
+                fl = num(fl)
+                anc = floor(fl) if fl and fl <= floors else BLDG
+                P.add("fire_permit", f"{fpm['permit_number']}-f{fl or 'x'}", "danger", f"BATTERY ROOM{' FLOOR ' + str(fl) if fl else ''}" + (f", {amt} GAL ELECTROLYTE" if amt else ""),
+                      f"SFFD permit {fpm['permit_number']} ({desc}, {st} {when}): battery storage" + (f" in the floor {fl} computer room, {amt} gallons" if fl else "") + ". Lithium or lead-acid not stated.",
+                      anc, e(f"permit text 'floor {fl}' -> floor {fl}" if fl else "address match"))
+            continue
+        anc, rule = BLDG, "address match"
+        if re.search(r"basement|level b1|\bb1\b", cond, re.I):
+            anc, rule = floor(0), "permit text 'basement' -> floor 0"
+        elif m := re.search(r"(?:floor,?\s*(\d{1,2})\b|(\d{1,2})(?:st|nd|rd|th)\s*(?:fl|flr|floor))", cond, re.I):
+            fl = num(m.group(1) or m.group(2))
+            if fl and fl <= floors:
+                anc, rule = floor(fl), f"permit text 'floor {fl}' -> floor {fl}"
+        elif re.search(r"main floor|ground floor|lobby", cond, re.I):
+            anc, rule = floor(1), "permit text 'main/ground floor' -> floor 1"
+        if re.search(r"assembly", desc, re.I):
+            occ = re.search(r"occupant load of (\d+)", cond)
+            P.add("fire_permit", fpm["permit_number"], "caution", f"ASSEMBLY: {occ.group(1) if occ else '?'} PEOPLE" + (f", FLOOR {anc['floor']}" if anc["kind"] == "floor" else ""),
+                  f"SFFD place-of-assembly permit {fpm['permit_number']} ({st} {when}) for up to {occ.group(1) if occ else 'an unstated number of'} occupants: crowded floor, check exits.", anc, e(rule))
+        elif re.search(r"tank", desc, re.I):
+            gal = re.findall(r"(\d[\d,]*)\s*gallon\s*([a-z ]*?)(?:day )?tank", cond, re.I)
+            what = ", ".join(f"{g} gal {k.strip()}".strip() for g, k in gal[:2]) or desc
+            pump = "fire pump" in cond.lower()
+            P.add("fire_permit", fpm["permit_number"], "caution" if fpm in current else "info",
+                  ("B1 FIRE PUMP + " if pump and anc.get("floor") == 0 else "") + ("DIESEL TANKS" if "diesel" in cond.lower() else "FUEL TANK") + ("" if fpm in current else f" ({st.split()[0].upper()})"),
+                  f"SFFD permit {fpm['permit_number']} ({desc}, {st} {when}): {what}" + (" in the fire pump / generator room" if pump else "") + ".", anc, e(rule))
+        else:
+            sev = "danger" if re.search(r"(hazard|lpg|cryogen|flammable|compressed gas|hazmat)", desc, re.I) else "caution"
+            P.add("fire_permit", fpm["permit_number"], sev, f"FIRE PERMIT: {desc[:30]}", f"SFFD permit {fpm['permit_number']} ({desc}), status {st}, {when}.", anc, e(rule))
+
+    # ---- Tall Building Inventory (high-rises only): sprinkler coverage, basements, structure
+    for t in rows(bdir, "tall_building")[:1]:
+        tev = [ev("5kya-mfst", apn, soda_url("5kya-mfst", "mapblocklot", apn), iso(t.get("collected_on")), "tall building inventory by block + lot", "DataSF Tall Building Inventory")]
+        pct = num(t.get("percent_sprinklered"))
+        if pct is not None:
+            P.add("construction", "tall-sprinklered", "danger" if pct < 100 else "info", f"ONLY {pct}% SPRINKLERED" if pct < 100 else "FULLY SPRINKLERED",
+                  f"Tall Building Inventory: {pct} percent sprinklered (collected {iso(t.get('collected_on'))[:4]}); which areas are unsprinklered is not listed.", BLDG, tev)
+        below = num(t.get("stories_below_grade"))
+        if below:
+            P.add("construction", "tall-basement", "caution", f"{below} BASEMENT LEVEL{'S' if below > 1 else ''}",
+                  f"Tall Building Inventory: {t.get('stories_above_grade')} stories above grade, {below} below.", floor(0), tev)
+        P.add("construction", "tall-structure", "info", f"{(t.get('fire_resistence_type') or '').upper()[:30]}",
+              f"{t.get('name')} ({t.get('completion_date')}): {t.get('description')}; {t.get('structural_system')}, {t.get('foundation_system')} foundation, "
+              f"{t.get('height_ft')} ft, typical story {t.get('typ_story_height')}, liquefaction potential {t.get('liquefaction_potential')}.", BLDG, tev)
+
+    # ---- tenant build-out by floor (office/commercial permits say "18th floor"), last 2 years
+    recent_fl = {}
+    for p in permits:
+        if iso(p.get("filed_date")) < "2024-10-22":
+            continue
+        for m in re.findall(r"\b(\d{1,2})(?:st|nd|rd|th)\s*(?:fl|flr|floor)", (p.get("description") or "").lower()):
+            fl = int(m)
+            if 2 <= fl <= floors:
+                recent_fl.setdefault(fl, []).append(p)
+    for fl, ps in sorted(recent_fl.items(), key=lambda kv: -len(kv[1]))[:5]:
+        p0 = ps[0]
+        P.add("permit", f"buildout-f{fl}", "caution", f"RECENT BUILD-OUT, FLOOR {fl}",
+              f"{len(ps)} permit(s) since Oct 2024 name floor {fl}; newest {iso(p0.get('filed_date'))} ({p0.get('status')}): \"{clean(p0.get('description') or '')[:120]}\". Expect open ceilings or changed layout.", floor(fl),
+              [ev("i98e-djp9", p["permit_number"], soda_url("i98e-djp9", "permit_number", p["permit_number"]), iso(p.get("filed_date")), f"permit text '{fl}th floor' -> floor {fl}") for p in ps[:3]])
 
     # ---- DBI complaints / NOVs
     comp = rows(bdir, "dbi_complaints")
@@ -707,7 +781,7 @@ def build(bid):
         "Gas and electric shutoff locations: not public",
         "Knox box: no public dataset",
     ]
-    if not any(p["layer"] == "softstory" for p in P.items) and floors >= 3:
+    if not any(p["layer"] == "softstory" for p in P.items) and 3 <= floors <= 7 and residential:
         unknowns.append("Soft-story status: not on the city list")
     if not rows(bdir, "fire_permits"):
         unknowns.append("Battery storage, hazmat or tanks: no SFFD fire permit at this address (absence of a permit is not proof of absence)")
@@ -777,5 +851,5 @@ def build(bid):
 
 
 if __name__ == "__main__":
-    for b in sys.argv[1:] or ["sf-0874003", "sf-3703081", "sf-1244030"]:
+    for b in sys.argv[1:] or ["sf-3722080", "sf-0874003", "sf-3703081", "sf-1244030"]:
         build(b)
