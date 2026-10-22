@@ -918,7 +918,10 @@ def build(bid):
         if k in ("footprint_pt", "softstory"):
             continue
         layers.append({"layer": k, "status": m["status"], "ms": m["ms"], "datasetId": m["datasetId"], "source": m["source"], "records": m["records"],
-                       "asOf": newest_record_date(bdir, k) or man["fetchedAt"][:10], "fetchedAt": man["fetchedAt"][:10]})
+                       # a failed fetch claims no date; refresh.py carries the last good layer forward
+                       "asOf": (newest_record_date(bdir, k) or man["fetchedAt"][:10]) if m["status"] != "fetch_failed" else None,
+                       "fetchedAt": man["fetchedAt"][:10],
+                       "lastGoodAt": man["fetchedAt"][:10] if m["status"] != "fetch_failed" else None})
 
     # ---- order: danger first, then caution, then info
     sev_rank = {"danger": 0, "caution": 1, "info": 2}
