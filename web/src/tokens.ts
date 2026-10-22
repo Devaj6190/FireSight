@@ -7,4 +7,8 @@ export const fs = {
   slabTop: '#3a414b',
   ground: '#13161b',
   ink: '#f4f3ee',
+  surface: '#171a1f',
+  muted: '#9aa0a8',
+  danger: '#e5261f',
+  caution: '#ffb020',
 }

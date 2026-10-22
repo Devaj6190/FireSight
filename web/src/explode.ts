@@ -16,6 +16,7 @@ export type Ctx = {
   heightM: number
   floors: number
   span: number
+  pins: { v: number }[] // reveal per pin, sorted danger first
 }
 
 const DEG = Math.PI / 180
@@ -37,6 +38,8 @@ export function explode(c: Ctx) {
   c.tl
     .to(c.edge, { ...rgb(fs.action), duration: t(0.6), ease: 'sine.inOut' }, 0)
     .to(pos(c), { z: (k) => -(k + 1) * step, y: (k) => (k + 1) * rise, duration: t(1.4), ease: 'power3.inOut', stagger: t(0.12) }, t(0.1))
+    // pins after the floors have mostly landed, danger first (design.md s4 order)
+    .to(c.pins, { v: 1, duration: t(0.7), ease: 'power2.out', stagger: t(0.14) }, t(1.25))
     // aim 40 percent up the fan, not the middle: perspective makes the near (ground) plates bigger
     .to(c.pose, { phi: 62 * DEG, theta: near(c.pose.theta, 30 * DEG), r: c.home.r * 2.5, tx: 0, ty: 0.4 * n * rise + c.floorH / 2, tz: -0.4 * n * step, duration: t(1.9), ease: 'sine.inOut' }, 0)
 }
@@ -44,6 +47,7 @@ export function explode(c: Ctx) {
 export function collapse(c: Ctx) {
   const { theta: _, ...home } = c.home // keep the drifted azimuth, no spin back
   c.tl
+    .to(c.pins, { v: 0, duration: t(0.3), ease: 'power2.in' }, 0) // gone before the floors move
     .to(pos(c), { z: 0, y: (k) => (k + 1) * c.floorH, duration: t(1.1), ease: 'power3.inOut', stagger: { each: t(0.1), from: 'end' } }, 0)
     .to(c.pose, { ...home, duration: t(1.5), ease: 'sine.inOut' }, 0)
     .to(c.edge, { ...rgb(fs.line), duration: t(0.8), ease: 'sine.inOut' }, t(0.3))

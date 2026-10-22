@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import { collapse, explode, reduce, type Pose } from './explode'
+import { PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { fs } from './tokens'
 
 // ponytail: local slice of the Building contract until Lane B lands shared/building.ts
@@ -14,6 +15,7 @@ type Building = {
   heightM: number
   floors: number
   floorHeightM: number
+  pins: Pin[]
 }
 type Phase = 'assembled' | 'exploding' | 'exploded' | 'collapsing' // plan.md s4
 
@@ -37,6 +39,13 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
   }, [b])
   const edges = useMemo(() => new THREE.EdgesGeometry(geo, 15), [geo])
   const edgeMat = useMemo(() => new THREE.LineBasicMaterial({ color: fs.line }), [])
+  const pins = useMemo(() => [...b.pins].sort((p, q) => SEVERITY_ORDER[p.severity] - SEVERITY_ORDER[q.severity]), [b])
+  const reveals = useMemo(() => pins.map(() => ({ v: 0 })), [pins])
+  // ponytail: pins sit on the east edge of their floor (building pins: west edge of the ground floor); no in-floor position in the data yet
+  const [east, west] = useMemo(() => {
+    const byX = [...b.footprint].sort((p, q) => p[0] - q[0])
+    return [byX.at(-1)!, byX[0]]
+  }, [b])
   useEffect(() => () => (geo.dispose(), edges.dispose()), [geo, edges])
 
   useEffect(() => {
@@ -61,7 +70,7 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
         setPhase(phase === 'exploding' ? 'exploded' : 'assembled')
       },
     })
-    const ctx = { tl, slabs: slabs.current, edge: edgeMat.color, pose, home: home.current!, floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b) }
+    const ctx = { tl, slabs: slabs.current, edge: edgeMat.color, pose, home: home.current!, floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b), pins: reveals }
     ;(phase === 'exploding' ? explode : collapse)(ctx)
     return () => {
       tl.kill()
@@ -79,6 +88,13 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
             <meshStandardMaterial attach="material-1" color={fs.slab} roughness={0.9} />
             <lineSegments geometry={edges} material={edgeMat} />
           </mesh>
+          {pins
+            .map((p, k) => ({ p, k }))
+            .filter(({ p }) => (p.anchor.kind === 'floor' ? p.anchor.floor - 1 : 0) === i)
+            .map(({ p, k }, j) => {
+              const [x, y] = p.anchor.kind === 'floor' ? east : west
+              return <PinMarker key={p.id} pin={p} at={[x, b.floorHeightM - GAP, -y]} stack={j} side={p.anchor.kind === 'floor' ? 'left' : 'right'} reveal={reveals[k]} />
+            })}
         </group>
       ))}
       <OrbitControls
