@@ -1,0 +1,21 @@
+[
+ {
+  "block": "0874",
+  "lot": "003",
+  "parcel_number": "0874003",
+  "property_address": "400 DUBOCE AV",
+  "address": "400 DUBOCE AV, SAN FRANCISCO CA",
+  "tier": "2",
+  "status": "Work Complete, CFC Issued",
+  "bos_district": "8",
+  "point": {
+   "type": "Point",
+   "coordinates": [
+    -122.429635687,
+    37.769756571
+   ]
+  },
+  "data_as_of": "2026-10-07T01:03:51.476",
+  "data_loaded_at": "2026-10-07T01:05:53.822"
+ }
+]

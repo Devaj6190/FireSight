@@ -1,0 +1,319 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_mapblklot",
+   "type": "esriFieldTypeString",
+   "alias": "mapblklot",
+   "sqlType": "sqlTypeOther",
+   "length": 9,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_blklot",
+   "type": "esriFieldTypeString",
+   "alias": "blklot",
+   "sqlType": "sqlTypeOther",
+   "length": 9,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_block_num",
+   "type": "esriFieldTypeString",
+   "alias": "block_num",
+   "sqlType": "sqlTypeOther",
+   "length": 5,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_lot_num",
+   "type": "esriFieldTypeString",
+   "alias": "lot_num",
+   "sqlType": "sqlTypeOther",
+   "length": 4,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_from_st",
+   "type": "esriFieldTypeString",
+   "alias": "from_st",
+   "sqlType": "sqlTypeOther",
+   "length": 5,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_to_st",
+   "type": "esriFieldTypeString",
+   "alias": "to_st",
+   "sqlType": "sqlTypeOther",
+   "length": 5,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_street",
+   "type": "esriFieldTypeString",
+   "alias": "street",
+   "sqlType": "sqlTypeOther",
+   "length": 20,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_st_type",
+   "type": "esriFieldTypeString",
+   "alias": "st_type",
+   "sqlType": "sqlTypeOther",
+   "length": 4,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_odd_even",
+   "type": "esriFieldTypeString",
+   "alias": "odd_even",
+   "sqlType": "sqlTypeOther",
+   "length": 1,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_softstoryti",
+   "type": "esriFieldTypeInteger",
+   "alias": "Tier",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_softstoryst",
+   "type": "esriFieldTypeString",
+   "alias": "Status",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_dbistreet",
+   "type": "esriFieldTypeString",
+   "alias": "DBI Street",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_dbiblock",
+   "type": "esriFieldTypeString",
+   "alias": "DBI Block",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "softstoryparcel_pts_dbilot",
+   "type": "esriFieldTypeString",
+   "alias": "DBI Lot",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "district",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "District",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 4352,
+    "softstoryparcel_pts_mapblklot": "1244030",
+    "softstoryparcel_pts_blklot": "1244030",
+    "softstoryparcel_pts_block_num": "1244",
+    "softstoryparcel_pts_lot_num": "030",
+    "softstoryparcel_pts_from_st": "1427",
+    "softstoryparcel_pts_to_st": "1433",
+    "softstoryparcel_pts_street": "HAIGHT",
+    "softstoryparcel_pts_st_type": "ST",
+    "softstoryparcel_pts_odd_even": "O",
+    "softstoryparcel_pts_softstoryti": 4,
+    "softstoryparcel_pts_softstoryst": "Work Complete, CFC Issued",
+    "softstoryparcel_pts_dbistreet": "1427 HAIGHT ST",
+    "softstoryparcel_pts_dbiblock": "1244",
+    "softstoryparcel_pts_dbilot": "30",
+    "district": 5,
+    "globalid": "446d9f9a-f4dd-451a-876c-35c06fc7c05d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537482221095,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537482221095
+   },
+   "geometry": {
+    "x": -122.445904,
+    "y": 37.769858
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 4348,
+    "softstoryparcel_pts_mapblklot": "1244002",
+    "softstoryparcel_pts_blklot": "1244002",
+    "softstoryparcel_pts_block_num": "1244",
+    "softstoryparcel_pts_lot_num": "002",
+    "softstoryparcel_pts_from_st": "1221",
+    "softstoryparcel_pts_to_st": "1221",
+    "softstoryparcel_pts_street": "MASONIC",
+    "softstoryparcel_pts_st_type": "AVE",
+    "softstoryparcel_pts_odd_even": "O",
+    "softstoryparcel_pts_softstoryti": 3,
+    "softstoryparcel_pts_softstoryst": "Work Complete, CFC Issued",
+    "softstoryparcel_pts_dbistreet": "1221 MASONIC AV",
+    "softstoryparcel_pts_dbiblock": "1244",
+    "softstoryparcel_pts_dbilot": "2",
+    "district": 5,
+    "globalid": "54cb4ead-2bbb-4726-91e3-ec0b684b5bcc",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537482221095,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537482221095
+   },
+   "geometry": {
+    "x": -122.445635,
+    "y": 37.769854
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 4349,
+    "softstoryparcel_pts_mapblklot": "1244003",
+    "softstoryparcel_pts_blklot": "1244003",
+    "softstoryparcel_pts_block_num": "1244",
+    "softstoryparcel_pts_lot_num": "003",
+    "softstoryparcel_pts_from_st": "1227",
+    "softstoryparcel_pts_to_st": "1231",
+    "softstoryparcel_pts_street": "MASONIC",
+    "softstoryparcel_pts_st_type": "AVE",
+    "softstoryparcel_pts_odd_even": "O",
+    "softstoryparcel_pts_softstoryti": 3,
+    "softstoryparcel_pts_softstoryst": "Permit Submitted, CFC Required by 9/15/19",
+    "softstoryparcel_pts_dbistreet": "1227 MASONIC AV",
+    "softstoryparcel_pts_dbiblock": "1244",
+    "softstoryparcel_pts_dbilot": "3",
+    "district": 5,
+    "globalid": "0a198f53-e762-47c0-942d-f2786faff659",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537482221095,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537482221095
+   },
+   "geometry": {
+    "x": -122.445616,
+    "y": 37.769759
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 4351,
+    "softstoryparcel_pts_mapblklot": "1244027",
+    "softstoryparcel_pts_blklot": "1244027",
+    "softstoryparcel_pts_block_num": "1244",
+    "softstoryparcel_pts_lot_num": "027",
+    "softstoryparcel_pts_from_st": "1457",
+    "softstoryparcel_pts_to_st": "1459",
+    "softstoryparcel_pts_street": "HAIGHT",
+    "softstoryparcel_pts_st_type": "ST",
+    "softstoryparcel_pts_odd_even": "O",
+    "softstoryparcel_pts_softstoryti": 4,
+    "softstoryparcel_pts_softstoryst": "Permit Required by 9/15/18",
+    "softstoryparcel_pts_dbistreet": "1457 HAIGHT ST",
+    "softstoryparcel_pts_dbiblock": "1244",
+    "softstoryparcel_pts_dbilot": "27",
+    "district": 5,
+    "globalid": "c7795202-3804-4a43-b017-aeac2f092597",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537482221095,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537482221095
+   },
+   "geometry": {
+    "x": -122.446304,
+    "y": 37.769807
+   }
+  }
+ ]
+}

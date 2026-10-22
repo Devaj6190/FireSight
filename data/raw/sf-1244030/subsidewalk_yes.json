@@ -1,0 +1,149 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "blocklot",
+   "type": "esriFieldTypeString",
+   "alias": "blocklot",
+   "sqlType": "sqlTypeOther",
+   "length": 9,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "dateofsurv",
+   "type": "esriFieldTypeDate",
+   "alias": "dateofsurv",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "keymapgrid",
+   "type": "esriFieldTypeString",
+   "alias": "keymapgrid",
+   "sqlType": "sqlTypeOther",
+   "length": 32,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "bos",
+   "type": "esriFieldTypeString",
+   "alias": "bos",
+   "sqlType": "sqlTypeOther",
+   "length": 2,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "X",
+   "type": "esriFieldTypeDouble",
+   "alias": "X",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Y",
+   "type": "esriFieldTypeDouble",
+   "alias": "Y",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cnn",
+   "type": "esriFieldTypeInteger",
+   "alias": "cnn",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 612,
+    "blocklot": "1244022",
+    "dateofsurv": 1494806400000,
+    "keymapgrid": "039",
+    "bos": "05",
+    "X": 5999034.351,
+    "Y": 2108616.933,
+    "cnn": 6618000
+   },
+   "geometry": {
+    "x": -122.446698,
+    "y": 37.769809
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1272,
+    "blocklot": "1232013",
+    "dateofsurv": 1439251200000,
+    "keymapgrid": "039",
+    "bos": "05",
+    "X": 5999040.958,
+    "Y": 2108750.586,
+    "cnn": 6618000
+   },
+   "geometry": {
+    "x": -122.446685,
+    "y": 37.770176
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1270,
+    "blocklot": "1243029",
+    "dateofsurv": 1494806400000,
+    "keymapgrid": "039",
+    "bos": "05",
+    "X": 5999523.959,
+    "Y": 2108723.022,
+    "cnn": 6617000
+   },
+   "geometry": {
+    "x": -122.445012,
+    "y": 37.770128
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1269,
+    "blocklot": "1243030",
+    "dateofsurv": 1494806400000,
+    "keymapgrid": "039",
+    "bos": "05",
+    "X": 5999584.783,
+    "Y": 2108693.636,
+    "cnn": 6617000
+   },
+   "geometry": {
+    "x": -122.444799,
+    "y": 37.770051
+   }
+  }
+ ]
+}

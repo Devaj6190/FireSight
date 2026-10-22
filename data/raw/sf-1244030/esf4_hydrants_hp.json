@@ -1,0 +1,418 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "layer",
+   "type": "esriFieldTypeString",
+   "alias": "LAYER",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "hydrant_id",
+   "type": "esriFieldTypeString",
+   "alias": "HYDRANT_ID",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "type",
+   "type": "esriFieldTypeString",
+   "alias": "TYPE",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ports",
+   "type": "esriFieldTypeString",
+   "alias": "PORTS",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "capacity",
+   "type": "esriFieldTypeString",
+   "alias": "CAPACITY",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "doc_id",
+   "type": "esriFieldTypeString",
+   "alias": "DOC_ID",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "doc_name",
+   "type": "esriFieldTypeString",
+   "alias": "DOC_NAME",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "installedy",
+   "type": "esriFieldTypeString",
+   "alias": "INSTALLEDY",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "recorddraw",
+   "type": "esriFieldTypeString",
+   "alias": "RECORDDRAW",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intercnn",
+   "type": "esriFieldTypeInteger",
+   "alias": "interCNN",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intername",
+   "type": "esriFieldTypeString",
+   "alias": "interName",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 1001,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1001",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41163",
+    "doc_name": " AWSS_00095.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "0b51d870-e6b3-41da-9c4e-3d0efa603bf7",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.445188,
+    "y": 37.770299
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1000,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1000",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41154",
+    "doc_name": " AWSS_00086.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "4bb5c248-2764-42a2-a0aa-8db403f9c4ac",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.446843,
+    "y": 37.769909
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 767,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 767",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41154",
+    "doc_name": " AWSS_00086.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "e339e31f-40ea-4c57-b85d-1399556560d5",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.446703,
+    "y": 37.769194
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1002,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1002",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41164",
+    "doc_name": " AWSS_00096.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "40821970-3e48-4c9b-94da-8f033403ff0e",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.443547,
+    "y": 37.77051
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 769,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 769",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41162",
+    "doc_name": " AWSS_00094.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "c464c0b6-c3ec-4b0c-a71d-99a90a5dc794",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.448533,
+    "y": 37.769917
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 768,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 768",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41162",
+    "doc_name": " AWSS_00094.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "0d99e0af-f234-4dfb-b650-2191db701962",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.448344,
+    "y": 37.768975
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 985,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 985",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41177",
+    "doc_name": " AWSS_00102.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "43513f7f-2641-4e07-bd8a-f9a3bfbf354c",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.445506,
+    "y": 37.772028
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 984,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 984",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41176",
+    "doc_name": " AWSS_00101.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "2a8c454f-aae7-4411-a70f-d95e37fdb540",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.447153,
+    "y": 37.771818
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 770,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 770",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41162",
+    "doc_name": " AWSS_00094.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "f5251938-f58f-45e0-8936-e6fb06fad55a",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.448729,
+    "y": 37.770847
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 766,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 766",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41153",
+    "doc_name": " AWSS_00085.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "8cf67e82-bda4-42d4-9ca4-cb156956a7ce",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.446328,
+    "y": 37.767343
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "recordid": "15895",
+  "recordno": "ELEC-26-409",
+  "recordtype": "Electrical permit (standard)",
+  "status_detail": "Complete",
+  "permit_issued": "Building Permit",
+  "submitted_date": "2026-09-21T14:05:51.000",
+  "permit_issued_date": "2026-09-21T14:07:00.000",
+  "submit_to_issue_cal": "1.0",
+  "submit_to_issue_biz": "1.0",
+  "submit_to_complete_cal": "18.0",
+  "submit_to_complete_biz": "14.0",
+  "completed_date": "2026-10-08T13:36:15.137",
+  "expiration_date": "2027-09-21T14:07:07.463",
+  "last_doc": "Building Permit",
+  "last_doc_date": "2026-09-21T14:07:00.000",
+  "parcel_number": "1244030",
+  "streetno": "1433",
+  "streetname": "HAIGHT ST",
+  "postalcode": "94117",
+  "url": {
+   "url": "https://sanfranciscoca.portal.opengov.com/records/15895"
+  },
+  "data_as_of": "2026-10-22T12:06:45.883",
+  "data_loaded_at": "2026-10-22T12:11:23.594"
+ },
+ {
+  "recordid": "15810",
+  "recordno": "ELEC-26-399",
+  "recordtype": "Electrical permit (standard)",
+  "status_detail": "Active - Not Issued",
+  "submitted_date": "2026-09-21T12:32:13.000",
+  "parcel_number": "1244030",
+  "streetno": "1433",
+  "streetname": "HAIGHT ST",
+  "postalcode": "94117",
+  "url": {
+   "url": "https://sanfranciscoca.portal.opengov.com/records/15810"
+  },
+  "data_as_of": "2026-10-22T12:06:45.883",
+  "data_loaded_at": "2026-10-22T12:11:23.594"
+ }
+]

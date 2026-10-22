@@ -1,0 +1,105 @@
+[
+ {
+  "uniqueid": "1241599-01-201-1109831",
+  "full_business_address": "435 Duboce Ave Unit A",
+  "self_reported_naics_code": "531120",
+  "location_start_date": "2018-08-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429804183,
+    37.769389985
+   ]
+  }
+ },
+ {
+  "uniqueid": "1351475-01-241-1154544",
+  "full_business_address": "400 Duboce Ave",
+  "self_reported_naics_code": "531311",
+  "location_start_date": "2024-01-19T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4296505,
+    37.76976
+   ]
+  }
+ },
+ {
+  "uniqueid": "1371512-09-241-1108993",
+  "full_business_address": "400 Duboce Ave Apt 310",
+  "location_start_date": "2024-09-29T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4296505,
+    37.76976
+   ]
+  }
+ },
+ {
+  "uniqueid": "1274236-04-211-1123198",
+  "full_business_address": "400 Duboce Ave Apt 315",
+  "self_reported_naics_code": "541820",
+  "location_start_date": "2021-03-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4296505,
+    37.76976
+   ]
+  }
+ },
+ {
+  "uniqueid": "1241606-01-201-1109828",
+  "full_business_address": "435 Duboce Ave Unit 1",
+  "self_reported_naics_code": "531110",
+  "location_start_date": "2015-09-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429804183,
+    37.769389985
+   ]
+  }
+ },
+ {
+  "uniqueid": "1403817-11-251-1176310",
+  "full_business_address": "435 Duboce Ave Apt 5",
+  "self_reported_naics_code": "54",
+  "location_start_date": "2025-10-06T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429804183,
+    37.769389985
+   ]
+  }
+ },
+ {
+  "uniqueid": "1316488-10-221-1139762",
+  "full_business_address": "400 Duboce Ave Apt 206",
+  "self_reported_naics_code": "611620",
+  "location_start_date": "2022-10-18T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4296505,
+    37.76976
+   ]
+  }
+ },
+ {
+  "uniqueid": "1431582-09-261-1188186",
+  "full_business_address": "400 Duboce Ave Apt 415",
+  "self_reported_naics_code": "236118",
+  "location_start_date": "2026-08-31T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4296505,
+    37.76976
+   ]
+  }
+ }
+]

@@ -1,0 +1,101 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "generated": 1792696571000,
+  "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=37.769853185114734&longitude=-122.44589053312724&maxradiuskm=50&minmagnitude=2&orderby=time&starttime=2026-10-15",
+  "title": "USGS Earthquakes",
+  "status": 200,
+  "api": "2.8.2",
+  "count": 2
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "mag": 2.39,
+    "place": "4 km SE of San Ramon, CA",
+    "time": 1792452597360,
+    "updated": 1792506360162,
+    "tz": null,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75452281",
+    "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nc75452281&format=geojson",
+    "felt": 5,
+    "cdi": 3.1,
+    "mmi": null,
+    "alert": null,
+    "status": "automatic",
+    "tsunami": 0,
+    "sig": 89,
+    "net": "nc",
+    "code": "75452281",
+    "ids": ",nc75452281,",
+    "sources": ",nc,",
+    "types": ",dyfi,focal-mechanism,nearby-cities,origin,phase-data,scitech-link,",
+    "nst": 40,
+    "dmin": 0.0357,
+    "rms": 0.13,
+    "gap": 36,
+    "magType": "md",
+    "type": "earthquake",
+    "title": "M 2.4 - 4 km SE of San Ramon, CA"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -121.945999145508,
+     37.7528343200684,
+     7.13000011444092
+    ]
+   },
+   "id": "nc75452281"
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "mag": 2.4,
+    "place": "2 km SSW of San Ramon, CA",
+    "time": 1792376114060,
+    "updated": 1792413764434,
+    "tz": null,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75451976",
+    "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nc75451976&format=geojson",
+    "felt": 2,
+    "cdi": 1,
+    "mmi": null,
+    "alert": null,
+    "status": "automatic",
+    "tsunami": 0,
+    "sig": 89,
+    "net": "nc",
+    "code": "75451976",
+    "ids": ",nc75451976,",
+    "sources": ",nc,",
+    "types": ",dyfi,nearby-cities,origin,phase-data,scitech-link,",
+    "nst": 11,
+    "dmin": 0.04906,
+    "rms": 0.07,
+    "gap": 85,
+    "magType": "md",
+    "type": "earthquake",
+    "title": "M 2.4 - 2 km SSW of San Ramon, CA"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -121.987663269043,
+     37.7669982910156,
+     6.53000020980835
+    ]
+   },
+   "id": "nc75451976"
+  }
+ ],
+ "bbox": [
+  -121.98766326904,
+  37.752834320068,
+  6.5300002098083,
+  -121.94599914551,
+  37.766998291016,
+  7.1300001144409
+ ]
+}

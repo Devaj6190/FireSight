@@ -1,0 +1,56 @@
+[
+ {
+  "inspection_number": "171701",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1427 - 1433 Haight St",
+  "zipcode": "94117",
+  "battalion": "05",
+  "station": "21",
+  "bfp_district": "05",
+  "billable_inspection": false,
+  "inspection_start_date": "2013-10-04T00:00:00.000",
+  "inspection_end_date": "2013-10-04T00:00:00.000",
+  "inspection_status": "Completed",
+  "dbi_application_number": "201306179227",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "5",
+  "neighborhood_district": "Haight Ashbury",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.44589053,
+    37.76985319
+   ]
+  },
+  "data_as_of": "2017-01-30T10:21:04.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "137343",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1427 - 1433 Haight St",
+  "zipcode": "94117",
+  "battalion": "05",
+  "station": "21",
+  "bfp_district": "05",
+  "billable_inspection": false,
+  "inspection_start_date": "2012-11-19T00:00:00.000",
+  "inspection_end_date": "2012-12-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "dbi_application_number": "201210031266",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "5",
+  "neighborhood_district": "Haight Ashbury",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.44589053,
+    37.76985319
+   ]
+  },
+  "data_as_of": "2017-01-30T10:21:04.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ }
+]

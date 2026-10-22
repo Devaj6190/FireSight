@@ -1,0 +1,43 @@
+{
+ "batchcomplete": "",
+ "query": {
+  "geosearch": [
+   {
+    "pageid": 401349,
+    "ns": 0,
+    "title": "Haight-Ashbury",
+    "lat": 37.77,
+    "lon": -122.4469,
+    "dist": 90.2,
+    "primary": ""
+   },
+   {
+    "pageid": 2242380,
+    "ns": 0,
+    "title": "Urban School of San Francisco",
+    "lat": 37.770833333333336,
+    "lon": -122.44611111111111,
+    "dist": 110.7,
+    "primary": ""
+   },
+   {
+    "pageid": 52433695,
+    "ns": 0,
+    "title": "Bound Together",
+    "lat": 37.7702,
+    "lon": -122.4447,
+    "dist": 111.5,
+    "primary": ""
+   },
+   {
+    "pageid": 30426801,
+    "ns": 0,
+    "title": "Chinese Immersion School at De Avila",
+    "lat": 37.769593,
+    "lon": -122.444308,
+    "dist": 142.1,
+    "primary": ""
+   }
+  ]
+ }
+}

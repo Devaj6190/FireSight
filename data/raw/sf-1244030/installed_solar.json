@@ -1,0 +1,14 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area_2",
+  "shapeLengthFieldName": "Shape__Length_2",
+  "units": "esriMeters"
+ },
+ "features": []
+}

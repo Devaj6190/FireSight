@@ -1,0 +1,133 @@
+{
+ "batchcomplete": "",
+ "query": {
+  "geosearch": [
+   {
+    "pageid": 51549246,
+    "ns": 0,
+    "title": "International Art Museum of America",
+    "lat": 37.7815,
+    "lon": -122.4107,
+    "dist": 140.9,
+    "primary": ""
+   },
+   {
+    "pageid": 24077370,
+    "ns": 0,
+    "title": "James R. Browning United States Court of Appeals Building",
+    "lat": 37.78,
+    "lon": -122.411,
+    "dist": 156.9,
+    "primary": ""
+   },
+   {
+    "pageid": 72437541,
+    "ns": 0,
+    "title": "Birdsong (restaurant)",
+    "lat": 37.779444444444444,
+    "lon": -122.41041666666668,
+    "dist": 163.7,
+    "primary": ""
+   },
+   {
+    "pageid": 11475223,
+    "ns": 0,
+    "title": "Golden Gate Theatre",
+    "lat": 37.78216,
+    "lon": -122.41073,
+    "dist": 197,
+    "primary": ""
+   },
+   {
+    "pageid": 53119562,
+    "ns": 0,
+    "title": "Market and 6th Street / Market and Taylor stations",
+    "lat": 37.7823,
+    "lon": -122.4105,
+    "dist": 199.9,
+    "primary": ""
+   },
+   {
+    "pageid": 57158221,
+    "ns": 0,
+    "title": "Barbary Coast cannabis lounge",
+    "lat": 37.782,
+    "lon": -122.4078,
+    "dist": 204.6,
+    "primary": ""
+   },
+   {
+    "pageid": 72324545,
+    "ns": 0,
+    "title": "Luggage Store Gallery",
+    "lat": 37.782499,
+    "lon": -122.410237,
+    "dist": 211.2,
+    "primary": ""
+   },
+   {
+    "pageid": 9715278,
+    "ns": 0,
+    "title": "Warfield Theatre",
+    "lat": 37.782667,
+    "lon": -122.410268,
+    "dist": 229.7,
+    "primary": ""
+   },
+   {
+    "pageid": 2063907,
+    "ns": 0,
+    "title": "Theatre District, San Francisco",
+    "lat": 37.7825,
+    "lon": -122.4108,
+    "dist": 232.2,
+    "primary": ""
+   },
+   {
+    "pageid": 72379787,
+    "ns": 0,
+    "title": "Root Division",
+    "lat": 37.779471,
+    "lon": -122.411705,
+    "dist": 240.8,
+    "primary": ""
+   },
+   {
+    "pageid": 15602134,
+    "ns": 0,
+    "title": "Hugo Hotel",
+    "lat": 37.7795,
+    "lon": -122.40717,
+    "dist": 241.2,
+    "primary": ""
+   },
+   {
+    "pageid": 61098026,
+    "ns": 0,
+    "title": "The Transgender District",
+    "lat": 37.7826,
+    "lon": -122.411,
+    "dist": 250.9,
+    "primary": ""
+   },
+   {
+    "pageid": 33657876,
+    "ns": 0,
+    "title": "Mid-Market, San Francisco",
+    "lat": 37.780518,
+    "lon": -122.412534,
+    "dist": 271.6,
+    "primary": ""
+   },
+   {
+    "pageid": 3322770,
+    "ns": 0,
+    "title": "San Francisco Federal Building",
+    "lat": 37.77916666666667,
+    "lon": -122.41194444444444,
+    "dist": 277.8,
+    "primary": ""
+   }
+  ]
+ }
+}

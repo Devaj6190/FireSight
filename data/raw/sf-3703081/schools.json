@@ -1,0 +1,33 @@
+[
+ {
+  "record_type": "School",
+  "cds_code": "38684786150254",
+  "district": "San Francisco Unified",
+  "school": "Proof School",
+  "status": "Active",
+  "open_date": "2015-12-02T00:00:00.000",
+  "charter_yesno": false,
+  "educational_program_type": "No Data",
+  "entity_type": "K-12 Schools (Private)",
+  "low_grade": "6",
+  "high_grade": "12",
+  "public_yesno": false,
+  "latitude": "37.781181",
+  "longitude": "-122.407924",
+  "street_address": "973 Mission St",
+  "street_city": "San Francisco",
+  "street_state": "CA",
+  "street_zip": "94103-2912",
+  "point": {
+   "type": "Point",
+   "coordinates": [
+    -122.407924,
+    37.781181
+   ]
+  },
+  "analysis_neighborhood": "South of Market",
+  "supervisor_district": "6",
+  "data_as_of": "2026-02-03T14:02:06.000",
+  "data_loaded_at": "2026-02-06T14:16:51.925"
+ }
+]

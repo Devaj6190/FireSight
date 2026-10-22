@@ -1,0 +1,609 @@
+[
+ {
+  "permit_number": "E202508084591",
+  "application_creation_date": "2025-08-08T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "replace existing fire alarm syswith new low frequency horn inside each sleeping room (80); replace all smoke detectors pull stations, monitor modules and elevator relays",
+  "status": "issued",
+  "filed_date": "2025-08-08T00:00:00.000",
+  "issued_date": "2025-08-08T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202503271221",
+  "application_creation_date": "2025-03-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "room 408- new electrical for bathroom",
+  "status": "complete",
+  "filed_date": "2025-03-27T00:00:00.000",
+  "issued_date": "2025-03-28T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202503271220",
+  "application_creation_date": "2025-03-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "room 308- n) electrical for bathroom",
+  "status": "complete",
+  "filed_date": "2025-03-27T00:00:00.000",
+  "issued_date": "2025-03-28T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202503251166",
+  "application_creation_date": "2025-03-25T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "#208-(n) electrical for bathroom",
+  "status": "issued",
+  "filed_date": "2025-03-25T00:00:00.000",
+  "issued_date": "2025-03-28T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW202306272128",
+  "application_creation_date": "2023-06-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new electrical for bathrooms and rooms 100-106, 110-112, 114-120. new electrical for manager's unit (107) bathroom, room and kitchen",
+  "status": "complete",
+  "filed_date": "2023-06-27T00:00:00.000",
+  "issued_date": "2023-06-27T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "77000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW202306272131",
+  "application_creation_date": "2023-06-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new electrical for bathrooms and rooms 300-312, 314-320",
+  "status": "complete",
+  "filed_date": "2023-06-27T00:00:00.000",
+  "issued_date": "2023-06-27T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "71000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW202306272130",
+  "application_creation_date": "2023-06-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new electrical for bathrooms and rooms 200-212, 214-220",
+  "status": "complete",
+  "filed_date": "2023-06-27T00:00:00.000",
+  "issued_date": "2023-06-27T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "71000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW202306272133",
+  "application_creation_date": "2023-06-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new electrical for bathrooms and rooms 400-412, 414-420",
+  "status": "complete",
+  "filed_date": "2023-06-27T00:00:00.000",
+  "issued_date": "2023-06-27T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "71000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202212224250",
+  "application_creation_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new bathroom light/ fan and 1 switch per rooms 300-307",
+  "status": "expired",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202212224253",
+  "application_creation_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "motion sensors added for new lights, 14 n lights in hallway per flr 4 flrs total and 4 n lights in lobby area, new electrical sub panels on flrs 2-4",
+  "status": "complete",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "completed_date": "2025-07-10T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202212224249",
+  "application_creation_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new bathroom light/ fan and 1 switch per rooms 200-207",
+  "status": "expired",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202212224252",
+  "application_creation_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new bathroom light/fan and 1 switch for rooms 100-107",
+  "status": "issued",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202212224251",
+  "application_creation_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "new bathroom light/fan and 1 switch for rooms 400-407",
+  "status": "issued",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW201602226381",
+  "application_creation_date": "2016-02-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1024",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "add 2 additional outlets",
+  "status": "complete",
+  "filed_date": "2016-02-22T00:00:00.000",
+  "issued_date": "2016-02-22T00:00:00.000",
+  "completed_date": "2016-02-24T00:00:00.000",
+  "permit_valuation": "1650",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E201002035204",
+  "application_creation_date": "2010-02-03T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "parking lot.",
+  "status": "complete",
+  "filed_date": "2010-02-03T00:00:00.000",
+  "issued_date": "2010-02-03T00:00:00.000",
+  "completed_date": "2010-02-23T00:00:00.000",
+  "permit_valuation": "1500",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20070518161",
+  "application_creation_date": "2007-05-18T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "fire alarm system installation and life safety test [scope of work does not include residential electric space heater installation.]",
+  "status": "complete",
+  "filed_date": "2007-05-18T00:00:00.000",
+  "issued_date": "2007-05-18T00:00:00.000",
+  "completed_date": "2007-05-22T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20070328225",
+  "application_creation_date": "2007-03-28T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "life safety test [scope of work does not include residential electric space heater installation.]",
+  "status": "expired",
+  "filed_date": "2007-03-28T00:00:00.000",
+  "issued_date": "2007-03-28T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200604277330",
+  "application_creation_date": "2006-04-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "2 lights, 1 switch, 4 receptacles. rewire room 414.",
+  "status": "complete",
+  "filed_date": "2006-04-27T00:00:00.000",
+  "issued_date": "2006-04-27T00:00:00.000",
+  "completed_date": "2006-05-09T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200604106823",
+  "application_creation_date": "2006-04-10T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "life safety test",
+  "status": "complete",
+  "filed_date": "2006-04-10T00:00:00.000",
+  "issued_date": "2006-04-10T00:00:00.000",
+  "completed_date": "2007-04-30T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200603025596",
+  "application_creation_date": "2006-03-02T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "installation of slave fire control pane/7 smoke, 7 water flow devices/life safety test",
+  "status": "expired",
+  "filed_date": "2006-03-02T00:00:00.000",
+  "issued_date": "2006-03-02T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200506217732",
+  "application_creation_date": "2005-06-21T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "installing wiring for elevator controls",
+  "status": "expired",
+  "filed_date": "2005-06-21T00:00:00.000",
+  "issued_date": "2005-06-21T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200402249474",
+  "application_creation_date": "2004-02-24T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "correct electrical wiring",
+  "status": "complete",
+  "filed_date": "2004-02-24T00:00:00.000",
+  "issued_date": "2004-02-24T00:00:00.000",
+  "completed_date": "2004-03-30T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zip_code": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ }
+]

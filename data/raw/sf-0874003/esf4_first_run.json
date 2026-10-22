@@ -1,0 +1,140 @@
+{
+ "objectIdFieldName": "objectid_1",
+ "uniqueIdField": {
+  "name": "objectid_1",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "geometryType": "esriGeometryPolygon",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid_1",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeInteger",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "firstrun",
+   "type": "esriFieldTypeString",
+   "alias": "FirstRun",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "count_rd",
+   "type": "esriFieldTypeInteger",
+   "alias": "COUNT_RD",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "shape_leng",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Leng",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Area",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid_1": 6,
+    "objectid": 75,
+    "firstrun": "06",
+    "count_rd": 55,
+    "shape_leng": 34525.1879564,
+    "globalid": "9b704c18-a9ec-4a80-a1b7-49f0cbb4478d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393726373,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393726373,
+    "Shape__Area": 3818666.34375,
+    "Shape__Length": 13321.929528385845
+   }
+  }
+ ]
+}

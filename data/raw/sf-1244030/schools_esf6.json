@@ -1,0 +1,292 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ccsf_entit",
+   "type": "esriFieldTypeString",
+   "alias": "ccsf_entit",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "supervisor",
+   "type": "esriFieldTypeString",
+   "alias": "supervisor",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "general_ty",
+   "type": "esriFieldTypeString",
+   "alias": "general_ty",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "category",
+   "type": "esriFieldTypeString",
+   "alias": "category",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "grade_rang",
+   "type": "esriFieldTypeString",
+   "alias": "grade_rang",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "upper_age",
+   "type": "esriFieldTypeString",
+   "alias": "upper_age",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "map_label",
+   "type": "esriFieldTypeString",
+   "alias": "map_label",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "campus_nam",
+   "type": "esriFieldTypeString",
+   "alias": "campus_nam",
+   "sqlType": "sqlTypeOther",
+   "length": 95,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cds_code",
+   "type": "esriFieldTypeString",
+   "alias": "cds_code",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "campus_add",
+   "type": "esriFieldTypeString",
+   "alias": "campus_add",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "lower_grad",
+   "type": "esriFieldTypeString",
+   "alias": "lower_grad",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "county_nam",
+   "type": "esriFieldTypeString",
+   "alias": "county_nam",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "county_fip",
+   "type": "esriFieldTypeString",
+   "alias": "county_fip",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "lower_age",
+   "type": "esriFieldTypeString",
+   "alias": "lower_age",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "upper_grad",
+   "type": "esriFieldTypeString",
+   "alias": "upper_grad",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 414,
+    "ccsf_entit": "Private",
+    "supervisor": "5",
+    "general_ty": "CDC",
+    "category": "Independent / Private",
+    "grade_rang": "PK",
+    "upper_age": "4",
+    "map_label": "CDC037",
+    "campus_nam": "Faces Sf Child Development Program - Haight Ashbury/Masonic",
+    "cds_code": "384002201",
+    "campus_add": "1101 MASONIC AVE, SAN FRANCISCO, CA 94117",
+    "lower_grad": "-2",
+    "county_nam": "SAN FRANCISCO",
+    "county_fip": "06075",
+    "lower_age": "3",
+    "upper_grad": "-1",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1549673249045,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1549673249045,
+    "globalid": "8ebe2610-3ac8-40f8-b2f2-5db2d02425a9"
+   },
+   "geometry": {
+    "x": -122.445869,
+    "y": 37.770889
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 224,
+    "ccsf_entit": "Private",
+    "supervisor": "5",
+    "general_ty": "IND",
+    "category": "Independent / Private",
+    "grade_rang": "9-12",
+    "upper_age": "17",
+    "map_label": "IND333",
+    "campus_nam": "Urban School Of San Francisco",
+    "cds_code": "38684786938930",
+    "campus_add": "1563 PAGE ST, SAN FRANCISCO, CA 94117",
+    "lower_grad": "9",
+    "county_nam": "SAN FRANCISCO",
+    "county_fip": "06075",
+    "lower_age": "14",
+    "upper_grad": "12",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1549673249045,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1549673249045,
+    "globalid": "636d3794-943f-452c-91d0-6bc9def5125f"
+   },
+   "geometry": {
+    "x": -122.44635,
+    "y": 37.770832
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 431,
+    "ccsf_entit": "SFUSD",
+    "supervisor": "5",
+    "general_ty": "PS",
+    "category": "USD Grades K-4",
+    "grade_rang": "K-4",
+    "upper_age": "9",
+    "map_label": "PS018",
+    "campus_nam": "Chinese Immersion School At Deavila",
+    "cds_code": "38684780120386",
+    "campus_add": "1250 WALLER ST, San Francisco, CA 94117",
+    "lower_grad": "0",
+    "county_nam": "SAN FRANCISCO",
+    "county_fip": "06075",
+    "lower_age": "5",
+    "upper_grad": "4",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1549673249045,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1549673249045,
+    "globalid": "5158d6c8-bcac-41dd-bb61-9623b81b3ebb"
+   },
+   "geometry": {
+    "x": -122.444275,
+    "y": 37.769829
+   }
+  }
+ ]
+}

@@ -1,0 +1,194 @@
+{
+ "objectIdFieldName": "objectid_1",
+ "uniqueIdField": {
+  "name": "objectid_1",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryProperties": {
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "geometryType": "esriGeometryPolyline",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid_1",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeInteger",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cnn",
+   "type": "esriFieldTypeDouble",
+   "alias": "cnn",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "oid_",
+   "type": "esriFieldTypeInteger",
+   "alias": "oid_",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cnn_1",
+   "type": "esriFieldTypeDouble",
+   "alias": "cnn_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "type",
+   "type": "esriFieldTypeString",
+   "alias": "type",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "street_name",
+   "type": "esriFieldTypeString",
+   "alias": "Street Name",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid_1": 5722,
+    "objectid": 7323,
+    "cnn": 9100000,
+    "oid_": 3143,
+    "cnn_1": 9100000,
+    "type": "Primary",
+    "globalid": "38b320d5-87e3-4c95-b903-04293405a112",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1551476699316,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1551476699316,
+    "street_name": "MISSION",
+    "Shape__Length": 350.6016059078026
+   },
+   "geometry": {
+    "paths": [
+     [
+      [
+       -122.408722,
+       37.780976
+      ],
+      [
+       -122.41095,
+       37.779217
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "attributes": {
+    "objectid_1": 5723,
+    "objectid": 7325,
+    "cnn": 9099000,
+    "oid_": 3142,
+    "cnn_1": 9099000,
+    "type": "Primary",
+    "globalid": "c7d23fa8-3777-4733-b3cc-fc3fba7c9ce4",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1551476699316,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1720561054613,
+    "street_name": "MISSION ST",
+    "Shape__Length": 228.8092592702902
+   },
+   "geometry": {
+    "paths": [
+     [
+      [
+       -122.407268,
+       37.782124
+      ],
+      [
+       -122.408722,
+       37.780976
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,851 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.11 87bfad18",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-22T19:14:20Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 4915914627,
+   "lat": 37.7695653,
+   "lon": -122.429564,
+   "tags": {
+    "addr:housenumber": "400",
+    "addr:street": "Duboce Avenue",
+    "entrance": "main",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 8917433,
+   "center": {
+    "lat": 37.7699444,
+    "lon": -122.4292092
+   },
+   "tags": {
+    "cycleway:both": "shared_lane",
+    "cycleway:both:lane": "pictogram",
+    "highway": "residential",
+    "lane_markings": "yes",
+    "lanes": "2",
+    "lcn_ref": "345",
+    "lit": "yes",
+    "name": "Church Street",
+    "parking:lane:both": "parallel",
+    "parking:lane:both:parallel": "on_street",
+    "sidewalk": "both",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Church",
+    "tiger:name_type": "St",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 8921220,
+   "center": {
+    "lat": 37.769865,
+    "lon": -122.4300133
+   },
+   "tags": {
+    "cycleway:both": "no",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "name": "Fillmore Street",
+    "name:etymology:wikidata": "Q12306",
+    "oneway": "no",
+    "parking:both": "lane",
+    "parking:both:orientation": "parallel",
+    "sidewalk": "both",
+    "surface": "asphalt",
+    "tiger:cfcc": "A45",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Fillmore",
+    "tiger:name_type": "St"
+   }
+  },
+  {
+   "type": "way",
+   "id": 27145532,
+   "center": {
+    "lat": 37.7694325,
+    "lon": -122.4291543
+   },
+   "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lanes:psv:backward": "1",
+    "lit": "yes",
+    "name": "Church Street",
+    "oneway": "yes",
+    "oneway:psv": "no",
+    "parking:lane:both": "no",
+    "sidewalk": "separate",
+    "surface": "concrete",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 215676435,
+   "center": {
+    "lat": 37.7697901,
+    "lon": -122.4296129
+   },
+   "tags": {
+    "addr:housename": "Duboce Apartments",
+    "addr:housenumber": "400",
+    "addr:street": "Duboce Avenue",
+    "building": "apartments",
+    "building:levels": "4",
+    "height": "14"
+   }
+  },
+  {
+   "type": "way",
+   "id": 215704541,
+   "center": {
+    "lat": 37.7696074,
+    "lon": -122.4286226
+   },
+   "tags": {
+    "foot": "yes",
+    "footway": "sidewalk",
+    "highway": "footway",
+    "surface": "paving_stones"
+   }
+  },
+  {
+   "type": "way",
+   "id": 216018285,
+   "center": {
+    "lat": 37.7694342,
+    "lon": -122.4291183
+   },
+   "tags": {
+    "bicycle": "yes",
+    "foot": "yes",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lcn_ref": "30;350",
+    "lit": "yes",
+    "name": "Church Street",
+    "oneway": "yes",
+    "parking:lane:both": "no",
+    "sidewalk": "separate",
+    "surface": "concrete",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 280404914,
+   "center": {
+    "lat": 37.769381,
+    "lon": -122.4297102
+   },
+   "tags": {
+    "cycleway:left": "lane",
+    "cycleway:left:lane": "exclusive",
+    "cycleway:left:oneway": "-1",
+    "cycleway:right": "shared_lane",
+    "cycleway:right:lane": "pictogram",
+    "highway": "residential",
+    "lanes": "1",
+    "lit": "yes",
+    "name": "Duboce Avenue",
+    "name:pronunciation": "d\u028a\u02c8bo\u028as \u02c8\u00e6v.\u0259\u02ccnu",
+    "oneway": "yes",
+    "oneway:bicycle": "no",
+    "parking:lane:both": "no",
+    "sidewalk": "separate",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Duboce",
+    "tiger:name_type": "Ave",
+    "turn:lanes": "right"
+   }
+  },
+  {
+   "type": "way",
+   "id": 280404918,
+   "center": {
+    "lat": 37.7695035,
+    "lon": -122.429616
+   },
+   "tags": {
+    "highway": "cycleway",
+    "lit": "yes",
+    "name": "Duboce Avenue",
+    "name:pronunciation": "d\u028a\u02c8bo\u028as \u02c8\u00e6v.\u0259\u02ccnu",
+    "oneway": "yes",
+    "sidewalk": "separate",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 280404919,
+   "center": {
+    "lat": 37.7693981,
+    "lon": -122.429696
+   },
+   "tags": {
+    "area": "yes",
+    "bench": "no",
+    "bin": "no",
+    "bus": "yes",
+    "highway": "platform",
+    "light_rail": "yes",
+    "lit": "yes",
+    "network": "Muni",
+    "operator": "San Francisco Municipal Railway",
+    "public_transport": "platform",
+    "railway": "platform",
+    "shelter": "yes",
+    "wheelchair": "limited",
+    "wheelchair:description": "step-free access for buses but not light rail"
+   }
+  },
+  {
+   "type": "way",
+   "id": 489665609,
+   "center": {
+    "lat": 37.7694032,
+    "lon": -122.4291126
+   },
+   "tags": {
+    "highway": "cycleway",
+    "lit": "yes",
+    "oneway": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 500567745,
+   "center": {
+    "lat": 37.7695499,
+    "lon": -122.4295625
+   },
+   "tags": {
+    "handrail": "no",
+    "highway": "steps",
+    "incline": "up",
+    "lit": "yes",
+    "ramp": "no",
+    "step_count": "4",
+    "surface": "concrete",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 530071044,
+   "center": {
+    "lat": 37.7694732,
+    "lon": -122.4278938
+   },
+   "tags": {
+    "highway": "cycleway",
+    "lcn_ref": "30;350",
+    "lit": "yes",
+    "name": "Duboce Avenue",
+    "name:pronunciation": "d\u028a\u02c8bo\u028as \u02c8\u00e6v.\u0259\u02ccnu",
+    "sidewalk": "left",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Duboce",
+    "tiger:name_type": "Ave"
+   }
+  },
+  {
+   "type": "way",
+   "id": 554619820,
+   "center": {
+    "lat": 37.7695427,
+    "lon": -122.4290366
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 554619825,
+   "center": {
+    "lat": 37.7695219,
+    "lon": -122.428956
+   },
+   "tags": {
+    "footway": "ramp",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 554637510,
+   "center": {
+    "lat": 37.7694408,
+    "lon": -122.4301071
+   },
+   "tags": {
+    "cycleway": "shared_lane",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lcn_ref": "30;350",
+    "lit": "yes",
+    "name": "Duboce Avenue",
+    "name:pronunciation": "d\u028a\u02c8bo\u028as \u02c8\u00e6v.\u0259\u02ccnu",
+    "oneway": "yes",
+    "sidewalk": "separate",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Duboce",
+    "tiger:name_type": "Ave"
+   }
+  },
+  {
+   "type": "way",
+   "id": 564330005,
+   "center": {
+    "lat": 37.7698562,
+    "lon": -122.4300583
+   },
+   "tags": {
+    "highway": "service",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 564330009,
+   "center": {
+    "lat": 37.7699334,
+    "lon": -122.4303491
+   },
+   "tags": {
+    "highway": "service",
+    "service": "parking_aisle",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 675273813,
+   "center": {
+    "lat": 37.7694986,
+    "lon": -122.429165
+   },
+   "tags": {
+    "bicycle": "yes",
+    "cycleway:both": "shared_lane",
+    "cycleway:both:lane": "pictogram",
+    "highway": "residential",
+    "lanes": "2",
+    "lit": "yes",
+    "name": "Church Street",
+    "parking:both": "no",
+    "sidewalk": "both",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Church",
+    "tiger:name_type": "St",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 675273820,
+   "center": {
+    "lat": 37.7694325,
+    "lon": -122.4297159
+   },
+   "tags": {
+    "access": "no",
+    "bus": "yes",
+    "highway": "busway",
+    "psv": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691673,
+   "center": {
+    "lat": 37.7685873,
+    "lon": -122.4291999
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691674,
+   "center": {
+    "lat": 37.7695609,
+    "lon": -122.429153
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691675,
+   "center": {
+    "lat": 37.7693686,
+    "lon": -122.4291171
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691676,
+   "center": {
+    "lat": 37.7690608,
+    "lon": -122.4289897
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691677,
+   "center": {
+    "lat": 37.769444,
+    "lon": -122.427836
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691679,
+   "center": {
+    "lat": 37.7694436,
+    "lon": -122.4290194
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "crossing:signals": "no",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676691681,
+   "center": {
+    "lat": 37.7694514,
+    "lon": -122.429283
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676714187,
+   "center": {
+    "lat": 37.7690368,
+    "lon": -122.4291128
+   },
+   "tags": {
+    "cycleway:both": "no",
+    "highway": "residential",
+    "lanes": "3",
+    "lanes:forward": "2",
+    "lanes:psv:backward": "1",
+    "lit": "yes",
+    "name": "Church Street",
+    "oneway": "yes",
+    "oneway:psv": "no",
+    "parking:left": "no",
+    "parking:right": "lane",
+    "parking:right:orientation": "parallel",
+    "sidewalk:left": "no",
+    "sidewalk:right": "separate",
+    "surface": "asphalt",
+    "trolley_wire": "yes",
+    "turn:lanes:forward": "left|"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676716217,
+   "center": {
+    "lat": 37.7693367,
+    "lon": -122.4297378
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676716220,
+   "center": {
+    "lat": 37.7693053,
+    "lon": -122.430265
+   },
+   "tags": {
+    "crossing": "unmarked",
+    "crossing:island": "no",
+    "crossing:markings": "no",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676716227,
+   "center": {
+    "lat": 37.7694692,
+    "lon": -122.430785
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676716228,
+   "center": {
+    "lat": 37.7695202,
+    "lon": -122.4299473
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676716229,
+   "center": {
+    "lat": 37.7695332,
+    "lon": -122.4295784
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676883981,
+   "center": {
+    "lat": 37.769295,
+    "lon": -122.4290829
+   },
+   "tags": {
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676883983,
+   "center": {
+    "lat": 37.7695007,
+    "lon": -122.4293622
+   },
+   "tags": {
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676883985,
+   "center": {
+    "lat": 37.7694156,
+    "lon": -122.4293623
+   },
+   "tags": {
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 676883991,
+   "center": {
+    "lat": 37.769041,
+    "lon": -122.4290376
+   },
+   "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "name": "Church Street",
+    "oneway": "yes",
+    "parking:lane:both": "no",
+    "sidewalk:left": "no",
+    "sidewalk:right": "separate",
+    "surface": "asphalt",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 902063014,
+   "center": {
+    "lat": 37.7685302,
+    "lon": -122.4301219
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 902063025,
+   "center": {
+    "lat": 37.7698405,
+    "lon": -122.4308329
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221643,
+   "center": {
+    "lat": 37.7695538,
+    "lon": -122.4292671
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221644,
+   "center": {
+    "lat": 37.769544,
+    "lon": -122.4292916
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221645,
+   "center": {
+    "lat": 37.7695662,
+    "lon": -122.4290568
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221646,
+   "center": {
+    "lat": 37.7695073,
+    "lon": -122.4290225
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221647,
+   "center": {
+    "lat": 37.7693702,
+    "lon": -122.4292625
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 908221648,
+   "center": {
+    "lat": 37.7693818,
+    "lon": -122.4290273
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "concrete"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1228516042,
+   "center": {
+    "lat": 37.7695117,
+    "lon": -122.4292885
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1228516043,
+   "center": {
+    "lat": 37.7693983,
+    "lon": -122.4292789
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1228516044,
+   "center": {
+    "lat": 37.7693625,
+    "lon": -122.4292226
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "crossing:island": "no",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "lit": "yes",
+    "surface": "asphalt",
+    "tactile_paving": "no"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1330696983,
+   "center": {
+    "lat": 37.7695302,
+    "lon": -122.42923
+   },
+   "tags": {
+    "crossing": "uncontrolled",
+    "cycleway": "crossing",
+    "highway": "cycleway",
+    "lit": "yes",
+    "name": "Duboce Avenue",
+    "name:pronunciation": "d\u028a\u02c8bo\u028as \u02c8\u00e6v.\u0259\u02ccnu",
+    "oneway": "yes",
+    "sidewalk": "separate",
+    "surface": "asphalt"
+   }
+  }
+ ]
+}

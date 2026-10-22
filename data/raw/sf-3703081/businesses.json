@@ -1,0 +1,55 @@
+[
+ {
+  "uniqueid": "1243892-01-201-0471712",
+  "full_business_address": "1028 Mission St",
+  "self_reported_naics_code": "72",
+  "location_start_date": "2011-07-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4095445,
+    37.780497
+   ]
+  }
+ },
+ {
+  "uniqueid": "0479257-01-001-0479257",
+  "full_business_address": "1028 Mission St",
+  "self_reported_naics_code": "561110",
+  "location_start_date": "2012-01-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4095445,
+    37.780497
+   ]
+  }
+ },
+ {
+  "uniqueid": "1319703-12-221-1141060",
+  "full_business_address": "1018 Mission St",
+  "self_reported_naics_code": "531120",
+  "lic_code_description": "Multiple",
+  "location_start_date": "2022-12-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4094635,
+    37.780713
+   ]
+  }
+ },
+ {
+  "uniqueid": "0460804-01-001-0460804",
+  "full_business_address": "1028 Mission St",
+  "self_reported_naics_code": "531190",
+  "location_start_date": "2011-07-01T00:00:00.000",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.4095445,
+    37.780497
+   ]
+  }
+ }
+]

@@ -1,0 +1,888 @@
+{
+ "building": "sf-1244030",
+ "query": "1433 HAIGHT",
+ "fetchedAt": "2026-10-22T12:16:11-0700",
+ "sources": {
+  "assessor": {
+   "datasetId": "wv5m-vpq2",
+   "source": "Assessor secured property tax roll",
+   "status": "ok",
+   "records": 3,
+   "ms": 431,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/wv5m-vpq2.json?%24limit=3&%24where=parcel_number%3D%271244030%27&%24order=closed_roll_year+desc",
+   "error": null
+  },
+  "footprint": {
+   "datasetId": "ynuv-fyni",
+   "source": "Building footprints + 2010 LiDAR heights",
+   "status": "ok",
+   "records": 2,
+   "ms": 530,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/ynuv-fyni.json?%24limit=5&%24where=mblr%3D%27SF1244030%27",
+   "error": null
+  },
+  "footprint_pt": {
+   "datasetId": "ynuv-fyni",
+   "source": "Building footprints (point fallback)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 451,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/ynuv-fyni.json?%24limit=3&%24where=intersects%28shape%2C%27POINT+%28-122.44589053312724+37.769853185114734%29%27%29",
+   "error": null
+  },
+  "landuse": {
+   "datasetId": "c5ge-t6pj",
+   "source": "Land use (residential units by parcel)",
+   "status": "ok",
+   "records": 1,
+   "ms": 462,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/c5ge-t6pj.json?%24limit=5&%24where=mapblklot%3D%271244030%27&%24select=mapblklot%2Cresunits%2Cresunits_s%2Ccie%2Cmed%2Cmips%2Cretail%2Cpdr%2Cvisitor%2Ctotal_comm%2Cresidentia%2Cgeography_type%2Cdata_as_of",
+   "error": null
+  },
+  "historic": {
+   "datasetId": "3tsw-4idn",
+   "source": "Historic resource status by parcel",
+   "status": "ok",
+   "records": 1,
+   "ms": 465,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/3tsw-4idn.json?%24limit=5&%24where=intersects%28the_geom%2C%27POINT+%28-122.44589053312724+37.769853185114734%29%27%29&%24select=apn%2Cname%2Clowstnum%2Chighstnum%2Cstname%2Csttype%2Cceqacode%2Cceqacodea10a11%2Cceqacodereason%2Cyearbuilt%2Cdata_as_of",
+   "error": null
+  },
+  "energy": {
+   "datasetId": "96ck-qcfe",
+   "source": "Existing buildings energy performance",
+   "status": "no_records",
+   "records": 0,
+   "ms": 482,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/96ck-qcfe.json?%24limit=3&%24where=parcel_number%3D%271244%2F030%27&%24order=benchmark_year+desc",
+   "error": null
+  },
+  "tall_building": {
+   "datasetId": "5kya-mfst",
+   "source": "Tall building inventory",
+   "status": "no_records",
+   "records": 0,
+   "ms": 2437,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/5kya-mfst.json?%24limit=5&%24where=mapblocklot%3D%271244030%27",
+   "error": null
+  },
+  "rentboard": {
+   "datasetId": "gdc7-dmcn",
+   "source": "Rent Board housing inventory (block level)",
+   "status": "ok",
+   "records": 213,
+   "ms": 872,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/gdc7-dmcn.json?%24limit=300&%24where=block_num%3D%271244%27&%24order=submission_year+desc",
+   "error": null
+  },
+  "zoning_height": {
+   "datasetId": "h9wh-cg3m",
+   "source": "Zoning height and bulk district",
+   "status": "ok",
+   "records": 1,
+   "ms": 435,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/h9wh-cg3m.json?%24limit=3&%24where=intersects%28the_geom%2C%27POINT+%28-122.44589053312724+37.769853185114734%29%27%29&%24select=height%2Cgen_hght",
+   "error": null
+  },
+  "permits": {
+   "datasetId": "i98e-djp9",
+   "source": "DBI building permits (legacy)",
+   "status": "ok",
+   "records": 39,
+   "ms": 766,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/i98e-djp9.json?%24limit=500&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=filed_date+desc",
+   "error": null
+  },
+  "permitsf": {
+   "datasetId": "tyz3-vt28",
+   "source": "PermitSF permits (new system)",
+   "status": "ok",
+   "records": 2,
+   "ms": 397,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/tyz3-vt28.json?%24limit=200&%24where=parcel_number%3D%271244030%27&%24order=submitted_date+desc",
+   "error": null
+  },
+  "electrical": {
+   "datasetId": "ftty-kx6y",
+   "source": "Electrical permits",
+   "status": "ok",
+   "records": 21,
+   "ms": 534,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/ftty-kx6y.json?%24limit=300&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=filed_date+desc",
+   "error": null
+  },
+  "plumbing": {
+   "datasetId": "a6aw-rudh",
+   "source": "Plumbing permits",
+   "status": "ok",
+   "records": 7,
+   "ms": 498,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/a6aw-rudh.json?%24limit=300&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=filed_date+desc",
+   "error": null
+  },
+  "boiler": {
+   "datasetId": "5dp4-gtxk",
+   "source": "Boiler permits",
+   "status": "no_records",
+   "records": 0,
+   "ms": 458,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/5dp4-gtxk.json?%24limit=100&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=application_date+desc",
+   "error": null
+  },
+  "sec604": {
+   "datasetId": "75h8-2zhw",
+   "source": "Section 604 elevated elements affidavits",
+   "status": "no_records",
+   "records": 0,
+   "ms": 395,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/75h8-2zhw.json?%24limit=50&%24where=block%3D%271244%27+and+lot%3D%27030%27",
+   "error": null
+  },
+  "building_inspections": {
+   "datasetId": "vckc-dh2h",
+   "source": "DBI building inspections",
+   "status": "ok",
+   "records": 1,
+   "ms": 457,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/vckc-dh2h.json?%24limit=200&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=scheduled_date+desc",
+   "error": null
+  },
+  "dbi_complaints": {
+   "datasetId": "gm2e-bten",
+   "source": "DBI complaints (all divisions)",
+   "status": "ok",
+   "records": 16,
+   "ms": 456,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/gm2e-bten.json?%24limit=300&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=date_filed+desc",
+   "error": null
+  },
+  "dbi_nov": {
+   "datasetId": "nbtm-fbw5",
+   "source": "DBI notices of violation",
+   "status": "ok",
+   "records": 14,
+   "ms": 568,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/nbtm-fbw5.json?%24limit=300&%24where=block%3D%271244%27+and+lot%3D%27030%27&%24order=date_filed+desc",
+   "error": null
+  },
+  "softstory": {
+   "datasetId": "beah-shgi",
+   "source": "Soft-story program list",
+   "status": "no_records",
+   "records": 0,
+   "ms": 2363,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/beah-shgi.json?%24limit=10&%24where=block%3D%271244%27+and+lot%3D%2730%27",
+   "error": null
+  },
+  "softstory_padded": {
+   "datasetId": "beah-shgi",
+   "source": "Soft-story program list (padded lot)",
+   "status": "ok",
+   "records": 1,
+   "ms": 420,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/beah-shgi.json?%24limit=10&%24where=block%3D%271244%27+and+lot%3D%27030%27",
+   "error": null
+  },
+  "fire_incidents": {
+   "datasetId": "wr8u-xric",
+   "source": "SFFD fire incidents",
+   "status": "ok",
+   "records": 8,
+   "ms": 592,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/wr8u-xric.json?%24limit=300&%24where=%28upper%28address%29+like+%271433+HAIGHT%25%27+or+within_circle%28point%2C37.769853185114734%2C-122.44589053312724%2C25%29%29&%24order=incident_date+desc",
+   "error": null
+  },
+  "fire_violations": {
+   "datasetId": "4zuq-2cbe",
+   "source": "SFFD fire code violations",
+   "status": "no_records",
+   "records": 0,
+   "ms": 2413,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/4zuq-2cbe.json?%24limit=200&%24where=starts_with%28eas_id%2C%27443247-%27%29&%24order=violation_date+desc",
+   "error": null
+  },
+  "fire_inspections": {
+   "datasetId": "wb4c-6hwj",
+   "source": "SFFD fire inspections",
+   "status": "ok",
+   "records": 2,
+   "ms": 2353,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/wb4c-6hwj.json?%24limit=200&%24where=%28upper%28address%29+like+%271433+HAIGHT%25%27+or+within_circle%28location%2C37.769853185114734%2C-122.44589053312724%2C15%29%29&%24order=inspection_start_date+desc",
+   "error": null
+  },
+  "fire_permits": {
+   "datasetId": "893e-xam6",
+   "source": "SFFD fire permits (ESS, tanks, hazmat, ERRCS)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 509,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/893e-xam6.json?%24limit=100&%24where=%28upper%28permit_address%29+like+%271433+HAIGHT%25%27+or+within_circle%28location%2C37.769853185114734%2C-122.44589053312724%2C30%29%29&%24order=permit_application_date+desc",
+   "error": null
+  },
+  "fire_complaints": {
+   "datasetId": "2wsq-7wmv",
+   "source": "SFFD fire safety complaints",
+   "status": "no_records",
+   "records": 0,
+   "ms": 505,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/2wsq-7wmv.json?%24limit=200&%24where=%28upper%28address%29+like+%271433+HAIGHT%25%27+or+within_circle%28location%2C37.769853185114734%2C-122.44589053312724%2C20%29%29&%24order=received_date+desc",
+   "error": null
+  },
+  "fire_calls": {
+   "datasetId": "nuek-vuh3",
+   "source": "SFFD/EMS dispatched calls near the block",
+   "status": "ok",
+   "records": 380,
+   "ms": 1172,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/nuek-vuh3.json?%24limit=1000&%24where=within_circle%28case_location%2C37.769853185114734%2C-122.44589053312724%2C120%29+and+received_dttm+%3E+%272025-10-22%27&%24order=received_dttm+desc&%24select=call_number%2Cincident_number%2Ccall_type%2Ccall_type_group%2Creceived_dttm%2Con_scene_dttm%2Cresponse_dttm%2Caddress%2Cunit_type%2Cnumber_of_alarms%2Cstation_area%2Cbattalion",
+   "error": null
+  },
+  "burn_1906": {
+   "datasetId": "ff3a-iqhv",
+   "source": "Area burned after the 1906 earthquake",
+   "status": "no_records",
+   "records": 0,
+   "ms": 2409,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/ff3a-iqhv.json?%24limit=2&%24where=intersects%28geometry%2C%27POINT+%28-122.44589053312724+37.769853185114734%29%27%29&%24select=id%2Cobjectid",
+   "error": null
+  },
+  "liquefaction": {
+   "datasetId": "i4t7-35u3",
+   "source": "Soil liquefaction hazard zone",
+   "status": "no_records",
+   "records": 0,
+   "ms": 2368,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/i4t7-35u3.json?%24limit=2&%24where=intersects%28the_geom%2C%27POINT+%28-122.44589053312724+37.769853185114734%29%27%29&%24select=liq",
+   "error": null
+  },
+  "schools": {
+   "datasetId": "7e7j-59qk",
+   "source": "Schools within 150 m",
+   "status": "ok",
+   "records": 2,
+   "ms": 505,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/7e7j-59qk.json?%24limit=20&%24where=within_circle%28point%2C37.769853185114734%2C-122.44589053312724%2C150%29",
+   "error": null
+  },
+  "storm_inlets": {
+   "datasetId": "jtgq-b7c5",
+   "source": "Storm drain inlets within 60 m (runoff path)",
+   "status": "ok",
+   "records": 1,
+   "ms": 517,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/jtgq-b7c5.json?%24limit=50&%24where=within_circle%28location%2C37.769853185114734%2C-122.44589053312724%2C60%29",
+   "error": null
+  },
+  "entertainment": {
+   "datasetId": "86e8-rfem",
+   "source": "Places of entertainment within 60 m",
+   "status": "ok",
+   "records": 1,
+   "ms": 417,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/86e8-rfem.json?%24limit=20&%24where=within_circle%28point%2C37.769853185114734%2C-122.44589053312724%2C60%29",
+   "error": null
+  },
+  "businesses": {
+   "datasetId": "g8m3-pdis",
+   "source": "Registered businesses at the address (counts/types only)",
+   "status": "ok",
+   "records": 12,
+   "ms": 459,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/g8m3-pdis.json?%24limit=200&%24where=within_circle%28location%2C37.769853185114734%2C-122.44589053312724%2C25%29+and+location_end_date+IS+NULL&%24select=uniqueid%2Cfull_business_address%2Cself_reported_naics_code%2Clic_code_description%2Clocation_start_date%2Cadministratively_closed%2Clocation",
+   "error": null
+  },
+  "police_calls": {
+   "datasetId": "gnap-fj3t",
+   "source": "SFPD calls near the corner (count only)",
+   "status": "ok",
+   "records": 1,
+   "ms": 448,
+   "http": 200,
+   "url": "https://data.sf.gov/resource/gnap-fj3t.json?%24limit=200&%24where=within_circle%28intersection_point%2C37.769853185114734%2C-122.44589053312724%2C80%29&%24order=received_datetime+desc&%24select=cad_number%2Creceived_datetime%2Ccall_type_final_desc%2Cpriority_final%2Csensitive_call",
+   "error": null
+  },
+  "esf4_stations": {
+   "datasetId": "Firefighting_ESF_4/0",
+   "source": "SF DEM fire stations",
+   "status": "ok",
+   "records": 9,
+   "ms": 233,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=2500&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "esf4_cisterns": {
+   "datasetId": "Firefighting_ESF_4/2",
+   "source": "SF DEM cisterns",
+   "status": "ok",
+   "records": 2,
+   "ms": 234,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/2/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=400&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "esf4_hydrants_hp": {
+   "datasetId": "Firefighting_ESF_4/3",
+   "source": "SF DEM AWSS high-pressure hydrants",
+   "status": "ok",
+   "records": 10,
+   "ms": 232,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=300&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "esf4_hydrants_lp": {
+   "datasetId": "Firefighting_ESF_4/4",
+   "source": "SF DEM low-pressure hydrants",
+   "status": "ok",
+   "records": 11,
+   "ms": 340,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/4/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=150&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "esf4_callboxes": {
+   "datasetId": "Firefighting_ESF_4/1",
+   "source": "SF DEM fire alarm call boxes",
+   "status": "ok",
+   "records": 4,
+   "ms": 398,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/1/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=200&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "esf4_first_run": {
+   "datasetId": "Firefighting_ESF_4/9",
+   "source": "First-run station boundary",
+   "status": "ok",
+   "records": 1,
+   "ms": 182,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/9/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "esf4_battalion": {
+   "datasetId": "Firefighting_ESF_4/6",
+   "source": "Fire battalion",
+   "status": "ok",
+   "records": 1,
+   "ms": 229,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/6/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "trolley_wires": {
+   "datasetId": "Public Works Emergency Response Layers/5",
+   "source": "Muni overhead trolley wires",
+   "status": "ok",
+   "records": 4,
+   "ms": 330,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Public%20Works%20Emergency%20Response%20Layers/FeatureServer/5/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=100&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "subsidewalk_yes": {
+   "datasetId": "ClaritiMapLayers2_WFL1/61",
+   "source": "Sub-sidewalk basements (confirmed)",
+   "status": "ok",
+   "records": 4,
+   "ms": 216,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/ClaritiMapLayers2_WFL1/FeatureServer/61/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=100&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "subsidewalk_maybe": {
+   "datasetId": "ClaritiMapLayers2_WFL1/60",
+   "source": "Sub-sidewalk basements (maybe)",
+   "status": "ok",
+   "records": 1,
+   "ms": 311,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/ClaritiMapLayers2_WFL1/FeatureServer/60/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=100&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "dpw_trees": {
+   "datasetId": "ClaritiMapLayers2_WFL1/57",
+   "source": "DPW-maintained street trees",
+   "status": "ok",
+   "records": 10,
+   "ms": 236,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/ClaritiMapLayers2_WFL1/FeatureServer/57/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=40&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "undergrounded": {
+   "datasetId": "ClaritiMapLayers2_WFL1/63",
+   "source": "Undergrounded streets (no overhead utility wires)",
+   "status": "ok",
+   "records": 1,
+   "ms": 192,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/ClaritiMapLayers2_WFL1/FeatureServer/63/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=40&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "sro_city": {
+   "datasetId": "City_Funded_or_Operated_SROs_List_/0",
+   "source": "City SRO list (elevator flag)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 254,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/City_Funded_or_Operated_SROs_List_/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=30&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "sro_cmtl": {
+   "datasetId": "CMTL_SROs/0",
+   "source": "SRO unit counts (2016)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 288,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/CMTL_SROs/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=30&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "sro_all": {
+   "datasetId": "all_sro_point_wEHD/0",
+   "source": "All SROs (2020)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 230,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/all_sro_point_wEHD/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=30&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "adult_residential": {
+   "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/2",
+   "source": "Adult residential facilities nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 211,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Mass_Care_Housing_Human_Services_ESF_6/FeatureServer/2/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "rcfe": {
+   "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/5",
+   "source": "Residential care for the elderly nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 175,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Mass_Care_Housing_Human_Services_ESF_6/FeatureServer/5/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "daycare24": {
+   "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/3",
+   "source": "24-hour day care nearby",
+   "status": "ok",
+   "records": 1,
+   "ms": 234,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Mass_Care_Housing_Human_Services_ESF_6/FeatureServer/3/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "schools_esf6": {
+   "datasetId": "Mass_Care_Housing_Human_Services_ESF_6/1",
+   "source": "Schools (ESF-6) nearby",
+   "status": "ok",
+   "records": 3,
+   "ms": 229,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Mass_Care_Housing_Human_Services_ESF_6/FeatureServer/1/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=150&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "hazmat_active": {
+   "datasetId": "Oil_and_Hazards_ESF_10/1",
+   "source": "Active hazmat facilities",
+   "status": "ok",
+   "records": 2,
+   "ms": 203,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Oil_and_Hazards_ESF_10/FeatureServer/1/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=200&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "contaminated_land": {
+   "datasetId": "Oil_and_Hazards_ESF_10/0",
+   "source": "Contaminated land cleanups",
+   "status": "no_records",
+   "records": 0,
+   "ms": 166,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Oil_and_Hazards_ESF_10/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=200&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "gas_stations": {
+   "datasetId": "Logistics_and_Fuel_ESF_7/0",
+   "source": "Gas stations nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 186,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Logistics_and_Fuel_ESF_7/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=300&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "generators": {
+   "datasetId": "Water_and_Utilities_ESF_12/0",
+   "source": "Registered generators nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 195,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Water_and_Utilities_ESF_12/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=200&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "substations": {
+   "datasetId": "Water_and_Utilities_ESF_12/4",
+   "source": "Electrical substations nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 175,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Water_and_Utilities_ESF_12/FeatureServer/4/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=400&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "gas_pipeline": {
+   "datasetId": "Water_and_Utilities_ESF_12/5",
+   "source": "Natural gas pipelines (national scale)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 316,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Water_and_Utilities_ESF_12/FeatureServer/5/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=300&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "medical": {
+   "datasetId": "Health_and_Medical_ESF_8/0",
+   "source": "Medical facilities nearby",
+   "status": "ok",
+   "records": 1,
+   "ms": 201,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Health_and_Medical_ESF_8/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=300&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "hospitals": {
+   "datasetId": "SF_HOSPITALS/0",
+   "source": "Hospitals within 3 km",
+   "status": "ok",
+   "records": 8,
+   "ms": 206,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/SF_HOSPITALS/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=3000&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "helipads": {
+   "datasetId": "Transportation_ESF_1/7",
+   "source": "Hospital helipads within 3 km",
+   "status": "no_records",
+   "records": 0,
+   "ms": 188,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Transportation_ESF_1/FeatureServer/7/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=3000&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "priority_routes": {
+   "datasetId": "Transportation_ESF_1/10",
+   "source": "Priority (emergency) routes",
+   "status": "no_records",
+   "records": 0,
+   "ms": 142,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Transportation_ESF_1/FeatureServer/10/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "traffic_cams": {
+   "datasetId": "Transportation_ESF_1/9",
+   "source": "Caltrans traffic cameras within 1.5 km",
+   "status": "no_records",
+   "records": 0,
+   "ms": 182,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Transportation_ESF_1/FeatureServer/9/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=1500&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "muni_metro": {
+   "datasetId": "Transportation_ESF_1/4",
+   "source": "Muni Metro light rail lines nearby",
+   "status": "ok",
+   "records": 1,
+   "ms": 232,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Transportation_ESF_1/FeatureServer/4/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "softstory_esf3": {
+   "datasetId": "Public_Works_and_Engineering_ESF_3/3",
+   "source": "Soft-story parcels nearby (exposures)",
+   "status": "ok",
+   "records": 4,
+   "ms": 160,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Public_Works_and_Engineering_ESF_3/FeatureServer/3/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=60&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "ev_chargers": {
+   "datasetId": "SF_EV_CHARGERS/0",
+   "source": "EV chargers nearby",
+   "status": "no_records",
+   "records": 0,
+   "ms": 167,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/SF_EV_CHARGERS/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "ev_chargeup": {
+   "datasetId": "ChargeUp_SF_(view)/0",
+   "source": "ChargeUp SF curbside chargers",
+   "status": "no_records",
+   "records": 0,
+   "ms": 253,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/ChargeUp_SF_%28view%29/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=120&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "installed_solar": {
+   "datasetId": "Installed _Solar/0",
+   "source": "Installed solar (city layer)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 171,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Installed%20_Solar/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=30&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "solar_potential": {
+   "datasetId": "Solar_Potential/0",
+   "source": "Rooftop solar potential",
+   "status": "no_records",
+   "records": 0,
+   "ms": 186,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Solar_Potential/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=10&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "cooking_fires": {
+   "datasetId": "cooking_fires_19/0",
+   "source": "Cooking fire locations (city analysis)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 174,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/cooking_fires_19/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=true&geometryPrecision=6&f=json&distance=60&units=esriSRUnit_Meter",
+   "error": null
+  },
+  "hz_tsunami": {
+   "datasetId": "Explore_Hazards_WFL1/9",
+   "source": "Tsunami inundation zone",
+   "status": "no_records",
+   "records": 0,
+   "ms": 339,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/9/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_landslide": {
+   "datasetId": "Explore_Hazards_WFL1/11",
+   "source": "Landslide hazard zone",
+   "status": "ok",
+   "records": 1,
+   "ms": 214,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/11/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_san_andreas": {
+   "datasetId": "Explore_Hazards_WFL1/10",
+   "source": "San Andreas M7.8 shaking scenario",
+   "status": "ok",
+   "records": 1,
+   "ms": 246,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/10/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_hayward": {
+   "datasetId": "Explore_Hazards_WFL1/12",
+   "source": "Hayward M7.0 shaking scenario",
+   "status": "ok",
+   "records": 1,
+   "ms": 457,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/12/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_liquefaction": {
+   "datasetId": "Explore_Hazards_WFL1/13",
+   "source": "Soil liquefaction hazard (Explore Hazards)",
+   "status": "no_records",
+   "records": 0,
+   "ms": 257,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/13/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_flood": {
+   "datasetId": "Explore_Hazards_WFL1/4",
+   "source": "100-year storm flood risk",
+   "status": "no_records",
+   "records": 0,
+   "ms": 209,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/4/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_heat": {
+   "datasetId": "Explore_Hazards_WFL1/2",
+   "source": "Heat vulnerability index",
+   "status": "ok",
+   "records": 1,
+   "ms": 220,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/2/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_air": {
+   "datasetId": "Explore_Hazards_WFL1/0",
+   "source": "Air pollutant exposure zone",
+   "status": "ok",
+   "records": 1,
+   "ms": 200,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_wildfire": {
+   "datasetId": "Wildfire_Hazard_2025/0",
+   "source": "Wildfire hazard 2025",
+   "status": "ok",
+   "records": 1,
+   "ms": 361,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Wildfire_Hazard_2025/FeatureServer/0/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "hz_reservoir": {
+   "datasetId": "Explore_Hazards_WFL1/8",
+   "source": "Reservoir inundation hazard",
+   "status": "no_records",
+   "records": 0,
+   "ms": 269,
+   "http": 200,
+   "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Explore_Hazards_WFL1/FeatureServer/8/query?geometry=-122.44589053312724%2C37.769853185114734&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&geometryPrecision=6&f=json",
+   "error": null
+  },
+  "weather": {
+   "datasetId": "open-meteo",
+   "source": "Open-Meteo current conditions",
+   "status": "ok",
+   "records": 1,
+   "ms": 729,
+   "http": 200,
+   "url": "https://api.open-meteo.com/v1/forecast?latitude=37.769853185114734&longitude=-122.44589053312724&timezone=America%2FLos_Angeles&wind_speed_unit=mph&temperature_unit=fahrenheit&current=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Cis_day%2Cprecipitation%2Ccloud_cover&hourly=wind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m&forecast_hours=6&daily=sunrise%2Csunset&forecast_days=1",
+   "error": null
+  },
+  "air_quality": {
+   "datasetId": "open-meteo-aq",
+   "source": "Open-Meteo air quality",
+   "status": "ok",
+   "records": 1,
+   "ms": 679,
+   "http": 200,
+   "url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.769853185114734&longitude=-122.44589053312724&current=us_aqi%2Cpm2_5%2Cpm10%2Ccarbon_monoxide",
+   "error": null
+  },
+  "nws_alerts": {
+   "datasetId": "nws",
+   "source": "NWS active alerts at the point",
+   "status": "no_records",
+   "records": 0,
+   "ms": 664,
+   "http": 200,
+   "url": "https://api.weather.gov/alerts/active?point=37.7699,-122.4459",
+   "error": null
+  },
+  "earthquakes": {
+   "datasetId": "usgs",
+   "source": "USGS earthquakes M2+ within 50 km, last 7 days",
+   "status": "ok",
+   "records": 2,
+   "ms": 421,
+   "http": 200,
+   "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=37.769853185114734&longitude=-122.44589053312724&maxradiuskm=50&minmagnitude=2&orderby=time&starttime=2026-10-15",
+   "error": null
+  },
+  "epa_frs": {
+   "datasetId": "epa-frs",
+   "source": "EPA FRS regulated facilities within 0.1 mi",
+   "status": "ok",
+   "records": 24,
+   "ms": 1205,
+   "http": 200,
+   "url": "https://frs-public.epa.gov/ords/frs_public2/frs_rest_services.get_facilities?latitude83=37.769853185114734&longitude83=-122.44589053312724&search_radius=0.1&output=JSON",
+   "error": null
+  },
+  "wikipedia": {
+   "datasetId": "wikipedia",
+   "source": "Wikipedia articles within 300 m",
+   "status": "ok",
+   "records": 4,
+   "ms": 383,
+   "http": 200,
+   "url": "https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gscoord=37.769853185114734%7C-122.44589053312724&gsradius=300&gslimit=20&format=json",
+   "error": null
+  },
+  "sanborn": {
+   "datasetId": "loc-sanborn",
+   "source": "Library of Congress Sanborn fire insurance maps, San Francisco",
+   "status": "ok",
+   "records": 40,
+   "ms": 115,
+   "http": 200,
+   "url": "https://www.loc.gov/collections/sanborn-maps/?fa=location_city%3Asan+francisco&fo=json&c=50&at=results",
+   "error": null
+  },
+  "osm": {
+   "datasetId": "osm-overpass",
+   "source": "OpenStreetMap building, entrances and access tags",
+   "status": "fetch_failed",
+   "records": 0,
+   "ms": 543,
+   "http": 502,
+   "url": "https://overpass-api.de/api/interpreter (POST, see fetch_sources.py)",
+   "error": "# 502 Gateway Timeout\n\nThis Overpass API server is currently at capacity. All query workers are busy\nand the request queue is full.\n\n## What to do\n\nRetry your request using exponential backoff: wait a short interval, then retry.\nIf the request fails again, double the wait time and retry again.\n\n## F"
+  }
+ },
+ "wallMs": 3478
+}

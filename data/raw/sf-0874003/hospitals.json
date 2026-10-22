@@ -1,0 +1,194 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "Lat",
+   "type": "esriFieldTypeDouble",
+   "alias": "Lat",
+   "sqlType": "sqlTypeFloat",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Long_",
+   "type": "esriFieldTypeDouble",
+   "alias": "Long_",
+   "sqlType": "sqlTypeFloat",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Name_",
+   "type": "esriFieldTypeString",
+   "alias": "Name_",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeInteger",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "Lat": 37.7682569,
+    "Long_": -122.4346212,
+    "Name_": "CPMC Davies Campus",
+    "FID": 13
+   },
+   "geometry": {
+    "x": -122.434621,
+    "y": 37.768257
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7845997,
+    "Long_": -122.4400396,
+    "Name_": "UCSF Medical Center at Mount Zion",
+    "FID": 12
+   },
+   "geometry": {
+    "x": -122.44004,
+    "y": 37.7846
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7860396,
+    "Long_": -122.4223647,
+    "Name_": "CPMC Van Ness Campus",
+    "FID": 14
+   },
+   "geometry": {
+    "x": -122.422365,
+    "y": 37.78604
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7858067,
+    "Long_": -122.4393639,
+    "Name_": "University of California San Francisco Medical Center",
+    "FID": 7
+   },
+   "geometry": {
+    "x": -122.439364,
+    "y": 37.785807
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7737727,
+    "Long_": -122.4543577,
+    "Name_": "St. Mary's Medical Center",
+    "FID": 8
+   },
+   "geometry": {
+    "x": -122.454358,
+    "y": 37.773773
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7737727,
+    "Long_": -122.4543577,
+    "Name_": "Kentfield Hospital San Francisco",
+    "FID": 6
+   },
+   "geometry": {
+    "x": -122.454358,
+    "y": 37.773773
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7896437,
+    "Long_": -122.4165414,
+    "Name_": "Zuckerberg San Francisco General Hospital and Trauma Center",
+    "FID": 1
+   },
+   "geometry": {
+    "x": -122.416541,
+    "y": 37.789644
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.75605,
+    "Long_": -122.406521,
+    "Name_": "Saint Francis Memorial Hospital",
+    "FID": 2
+   },
+   "geometry": {
+    "x": -122.406521,
+    "y": 37.75605
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.75605,
+    "Long_": -122.406521,
+    "Name_": "UCSF at San Francisco General Hospital",
+    "FID": 10
+   },
+   "geometry": {
+    "x": -122.406521,
+    "y": 37.75605
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.76307,
+    "Long_": -122.4574027,
+    "Name_": "505 Parnassus Ave, San Francisco, CA 94143",
+    "FID": 9
+   },
+   "geometry": {
+    "x": -122.457403,
+    "y": 37.76307
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.763601,
+    "Long_": -122.457718,
+    "Name_": "UCSF Helen Diller Medical Center at Parnassus Heights",
+    "FID": 15
+   },
+   "geometry": {
+    "x": -122.457718,
+    "y": 37.763601
+   }
+  },
+  {
+   "attributes": {
+    "Lat": 37.7469902,
+    "Long_": -122.4208571,
+    "Name_": "CPMC Saint Luke's Campus",
+    "FID": 11
+   },
+   "geometry": {
+    "x": -122.420857,
+    "y": 37.74699
+   }
+  }
+ ]
+}

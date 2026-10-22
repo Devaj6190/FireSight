@@ -1,0 +1,360 @@
+{
+ "objectIdFieldName": "OBJECTID_1",
+ "uniqueIdField": {
+  "name": "OBJECTID_1",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryProperties": {
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "geometryType": "esriGeometryPolyline",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "OBJECTID_1",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeInteger",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "SUBSTATION",
+   "type": "esriFieldTypeString",
+   "alias": "SUBSTATION",
+   "sqlType": "sqlTypeOther",
+   "length": 20,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CIRCUIT",
+   "type": "esriFieldTypeInteger",
+   "alias": "CIRCUIT",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "SUBSTACIR",
+   "type": "esriFieldTypeString",
+   "alias": "SUBSTACIR",
+   "sqlType": "sqlTypeOther",
+   "length": 24,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "POLARITY",
+   "type": "esriFieldTypeString",
+   "alias": "POLARITY",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "SHAPE_Leng",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE_Leng",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape_Le_1",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Le_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "OBJECTID_1": 27,
+    "OBJECTID": 27,
+    "SUBSTATION": "CC",
+    "CIRCUIT": 15,
+    "SUBSTACIR": "CC15",
+    "POLARITY": "N",
+    "SHAPE_Leng": 9137.03863991,
+    "Shape_Le_1": 9137.03863994,
+    "Shape__Length": 3526.7877198693946
+   },
+   "geometry": {
+    "paths": [
+     [
+      [
+       -122.414529,
+       37.776338
+      ],
+      [
+       -122.404541,
+       37.784223
+      ],
+      [
+       -122.404281,
+       37.784429
+      ],
+      [
+       -122.404149,
+       37.784533
+      ],
+      [
+       -122.404123,
+       37.784554
+      ]
+     ],
+     [
+      [
+       -122.413172,
+       37.777505
+      ],
+      [
+       -122.41456,
+       37.776411
+      ]
+     ],
+     [
+      [
+       -122.413172,
+       37.777505
+      ],
+      [
+       -122.413105,
+       37.777499
+      ],
+      [
+       -122.413104,
+       37.777499
+      ],
+      [
+       -122.413104,
+       37.777499
+      ],
+      [
+       -122.413103,
+       37.777499
+      ],
+      [
+       -122.413103,
+       37.777499
+      ],
+      [
+       -122.413102,
+       37.777499
+      ],
+      [
+       -122.413102,
+       37.7775
+      ],
+      [
+       -122.413101,
+       37.7775
+      ],
+      [
+       -122.413024,
+       37.777527
+      ]
+     ],
+     [
+      [
+       -122.414688,
+       37.778624
+      ],
+      [
+       -122.413308,
+       37.777594
+      ],
+      [
+       -122.413182,
+       37.777507
+      ],
+      [
+       -122.413181,
+       37.777507
+      ],
+      [
+       -122.413181,
+       37.777507
+      ],
+      [
+       -122.41318,
+       37.777507
+      ],
+      [
+       -122.41318,
+       37.777506
+      ],
+      [
+       -122.413179,
+       37.777506
+      ],
+      [
+       -122.413179,
+       37.777506
+      ],
+      [
+       -122.413178,
+       37.777506
+      ],
+      [
+       -122.413172,
+       37.777505
+      ]
+     ],
+     [
+      [
+       -122.404128,
+       37.784643
+      ],
+      [
+       -122.404339,
+       37.784476
+      ],
+      [
+       -122.404425,
+       37.784408
+      ],
+      [
+       -122.413172,
+       37.777505
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "attributes": {
+    "OBJECTID_1": 28,
+    "OBJECTID": 28,
+    "SUBSTATION": "CC",
+    "CIRCUIT": 15,
+    "SUBSTACIR": "CC15",
+    "POLARITY": "P",
+    "SHAPE_Leng": 9134.69578965,
+    "Shape_Le_1": 9134.69578965,
+    "Shape__Length": 3525.8848365834765
+   },
+   "geometry": {
+    "paths": [
+     [
+      [
+       -122.414534,
+       37.776342
+      ],
+      [
+       -122.413027,
+       37.777532
+      ]
+     ],
+     [
+      [
+       -122.413157,
+       37.77751
+      ],
+      [
+       -122.414555,
+       37.776407
+      ]
+     ],
+     [
+      [
+       -122.413157,
+       37.77751
+      ],
+      [
+       -122.413104,
+       37.777505
+      ],
+      [
+       -122.413027,
+       37.777532
+      ]
+     ],
+     [
+      [
+       -122.413027,
+       37.777532
+      ],
+      [
+       -122.404546,
+       37.784227
+      ],
+      [
+       -122.404286,
+       37.784433
+      ],
+      [
+       -122.404154,
+       37.784537
+      ],
+      [
+       -122.404127,
+       37.784558
+      ]
+     ],
+     [
+      [
+       -122.414683,
+       37.778628
+      ],
+      [
+       -122.413303,
+       37.777599
+      ],
+      [
+       -122.413177,
+       37.777511
+      ],
+      [
+       -122.413157,
+       37.77751
+      ]
+     ],
+     [
+      [
+       -122.404123,
+       37.784639
+      ],
+      [
+       -122.404335,
+       37.784472
+      ],
+      [
+       -122.40442,
+       37.784404
+      ],
+      [
+       -122.413157,
+       37.77751
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

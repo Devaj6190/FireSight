@@ -1,0 +1,82 @@
+{
+ "objectIdFieldName": "OBJECTID",
+ "uniqueIdField": {
+  "name": "OBJECTID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "geometryType": "esriGeometryPolygon",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "SRA",
+   "type": "esriFieldTypeString",
+   "alias": "SRA",
+   "sqlType": "sqlTypeOther",
+   "length": 3,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "FHSZ",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "FHSZ",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "FHSZ_Description",
+   "type": "esriFieldTypeString",
+   "alias": "FHSZ_Description",
+   "sqlType": "sqlTypeOther",
+   "length": 25,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Area",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "OBJECTID": 35,
+    "SRA": "LRA",
+    "FHSZ": -3,
+    "FHSZ_Description": "NonWildland",
+    "Shape__Area": 113941497.42700195,
+    "Shape__Length": 108907.66380191225
+   }
+  }
+ ]
+}

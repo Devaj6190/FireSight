@@ -1,0 +1,402 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "latitude",
+   "type": "esriFieldTypeDouble",
+   "alias": "latitude",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "longitude",
+   "type": "esriFieldTypeDouble",
+   "alias": "longitude",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "primary_name",
+   "type": "esriFieldTypeString",
+   "alias": "primary_name",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "location_address",
+   "type": "esriFieldTypeString",
+   "alias": "location_address",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "facility_type",
+   "type": "esriFieldTypeString",
+   "alias": "facility_type",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "facility_indusrty",
+   "type": "esriFieldTypeString",
+   "alias": "facility_indusrty",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "industry_group",
+   "type": "esriFieldTypeString",
+   "alias": "industry_group",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "rcra_handler_id",
+   "type": "esriFieldTypeString",
+   "alias": "rcra_handler_id",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "epa_registry_id_",
+   "type": "esriFieldTypeDouble",
+   "alias": "epa_registry_id_",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "county_name",
+   "type": "esriFieldTypeString",
+   "alias": "county_name",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "state_code",
+   "type": "esriFieldTypeString",
+   "alias": "state_code",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "postal_code",
+   "type": "esriFieldTypeDouble",
+   "alias": "postal_code",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "huc_code",
+   "type": "esriFieldTypeString",
+   "alias": "huc_code",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "acres",
+   "type": "esriFieldTypeString",
+   "alias": "acres",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "airs_afs",
+   "type": "esriFieldTypeString",
+   "alias": "airs_afs",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "bms",
+   "type": "esriFieldTypeString",
+   "alias": "bms",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cerclis",
+   "type": "esriFieldTypeString",
+   "alias": "cerclis",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "rcrainfo",
+   "type": "esriFieldTypeString",
+   "alias": "rcrainfo",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "sdwis",
+   "type": "esriFieldTypeString",
+   "alias": "sdwis",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "npdes",
+   "type": "esriFieldTypeString",
+   "alias": "npdes",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "pcs",
+   "type": "esriFieldTypeString",
+   "alias": "pcs",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "radinfo",
+   "type": "esriFieldTypeString",
+   "alias": "radinfo",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "tris",
+   "type": "esriFieldTypeString",
+   "alias": "tris",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "brs",
+   "type": "esriFieldTypeString",
+   "alias": "brs",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "tsca",
+   "type": "esriFieldTypeString",
+   "alias": "tsca",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "npl",
+   "type": "esriFieldTypeString",
+   "alias": "npl",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ghg",
+   "type": "esriFieldTypeString",
+   "alias": "ghg",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "column1",
+   "type": "esriFieldTypeString",
+   "alias": "column1",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 332,
+    "latitude": 37.77013,
+    "longitude": -122.44592999999999,
+    "primary_name": "GRAND STAR CLEANERS",
+    "location_address": "1422 HAIGHT ST",
+    "facility_type": "Small Quantity Generator (SQG)",
+    "facility_indusrty": "DRY CLEANING AND LAUNDRY SERVICE",
+    "industry_group": "Professional and Technical Services",
+    "rcra_handler_id": "CAD982517880",
+    "epa_registry_id_": null,
+    "county_name": "SAN FRANCISCO",
+    "state_code": "CA",
+    "postal_code": 94117,
+    "huc_code": " ",
+    "acres": null,
+    "airs_afs": "Y",
+    "bms": null,
+    "cerclis": null,
+    "rcrainfo": "Y",
+    "sdwis": null,
+    "npdes": null,
+    "pcs": null,
+    "radinfo": null,
+    "tris": null,
+    "brs": null,
+    "tsca": null,
+    "npl": null,
+    "ghg": null,
+    "column1": null,
+    "globalid": "67cfef1b-4b56-48ed-901f-9db13cfe0815",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537578573425,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537578573425
+   },
+   "geometry": {
+    "x": -122.44593,
+    "y": 37.77013
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 333,
+    "latitude": 37.76986,
+    "longitude": -122.4481,
+    "primary_name": "GRAND STAR CLEANERS/GOTY INC DBA",
+    "location_address": "1573 HAIGHT ST",
+    "facility_type": "Small Quantity Generator (SQG)",
+    "facility_indusrty": "DRY CLEANING AND LAUNDRY SERVICE",
+    "industry_group": "Professional and Technical Services",
+    "rcra_handler_id": "CAD982337909",
+    "epa_registry_id_": null,
+    "county_name": "SAN FRANCISCO",
+    "state_code": "CA",
+    "postal_code": 94117,
+    "huc_code": " ",
+    "acres": null,
+    "airs_afs": null,
+    "bms": null,
+    "cerclis": null,
+    "rcrainfo": "Y",
+    "sdwis": null,
+    "npdes": null,
+    "pcs": null,
+    "radinfo": null,
+    "tris": null,
+    "brs": null,
+    "tsca": null,
+    "npl": null,
+    "ghg": null,
+    "column1": null,
+    "globalid": "203bc8b8-ebf3-41ba-aa8a-c239943329d3",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537578573425,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537578573425
+   },
+   "geometry": {
+    "x": -122.4481,
+    "y": 37.76986
+   }
+  }
+ ]
+}

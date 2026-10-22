@@ -1,0 +1,943 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "layer",
+   "type": "esriFieldTypeString",
+   "alias": "LAYER",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "hydrant_id",
+   "type": "esriFieldTypeString",
+   "alias": "HYDRANT_ID",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "type",
+   "type": "esriFieldTypeString",
+   "alias": "TYPE",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ports",
+   "type": "esriFieldTypeString",
+   "alias": "PORTS",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "capacity",
+   "type": "esriFieldTypeString",
+   "alias": "CAPACITY",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "doc_id",
+   "type": "esriFieldTypeString",
+   "alias": "DOC_ID",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "doc_name",
+   "type": "esriFieldTypeString",
+   "alias": "DOC_NAME",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "installedy",
+   "type": "esriFieldTypeString",
+   "alias": "INSTALLEDY",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "recorddraw",
+   "type": "esriFieldTypeString",
+   "alias": "RECORDDRAW",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intercnn",
+   "type": "esriFieldTypeInteger",
+   "alias": "interCNN",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intername",
+   "type": "esriFieldTypeString",
+   "alias": "interName",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 1462,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1462",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41516",
+    "doc_name": " AWSS_00387.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "265c4e7f-f9c8-4004-9519-c35794037404",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.40939,
+    "y": 37.780338
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1463,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1463",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41516",
+    "doc_name": " AWSS_00387.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "74e8b4f2-1c0d-469e-8e7d-0808c90148d3",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.408779,
+    "y": 37.780814
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1113,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1113",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41371",
+    "doc_name": " AWSS_00273.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "f64289f5-8a4c-42ec-a92e-c68008577751",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.408798,
+    "y": 37.781153
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1114,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1114",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41371",
+    "doc_name": " AWSS_00273.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "d67fc1c8-f4e9-4fa0-a1af-686d032e7f94",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.409521,
+    "y": 37.781477
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1461,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1461",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41516",
+    "doc_name": " AWSS_00387.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "3fafb140-6750-4161-a4ec-0d3b8ebee00d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410136,
+    "y": 37.779978
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1112,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1112",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41372",
+    "doc_name": " AWSS_00274.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "fb04aa73-47d5-456f-9801-c6ea5c8dda33",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.407823,
+    "y": 37.780399
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1169,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1169",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41469",
+    "doc_name": " AWSS_00339.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "84e7a862-bbf9-4e0d-a3ec-b886c2773c45",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410924,
+    "y": 37.78164
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1464,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1464",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41517",
+    "doc_name": " AWSS_00388.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "56923b99-a1e9-475a-97b0-d45f3ff8c09d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.407979,
+    "y": 37.781673
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1170,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1170",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41469",
+    "doc_name": " AWSS_00339.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "3bb3eb63-8d23-408e-acb1-0da31b500158",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410368,
+    "y": 37.782057
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1168,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1168",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41469",
+    "doc_name": " AWSS_00339.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "cd267985-91c1-4252-be24-dbe5d7e947ab",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.411085,
+    "y": 37.781738
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1166,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1166",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41542",
+    "doc_name": " AWSS_0338A.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "b8e763c5-af23-4b36-b760-4350c6fccadb",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.411452,
+    "y": 37.781228
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1172,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1172",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41469",
+    "doc_name": " AWSS_00339.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "de67744a-4f65-4a2d-af22-59b005ff14fa",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410035,
+    "y": 37.782343
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1171,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1171",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41469",
+    "doc_name": " AWSS_00339.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "3be4261a-b716-4f1c-b2f9-34f0e2573124",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.41024,
+    "y": 37.782406
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1167,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1167",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41542",
+    "doc_name": " AWSS_0338A.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "c4e069b5-83c2-46c1-85de-dae18defcfde",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.41161,
+    "y": 37.781329
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1126,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1126",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41380",
+    "doc_name": " AWSS_00282.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "d04956a9-46a6-48b1-811d-a11bf78eeda2",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410756,
+    "y": 37.779175
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1391,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1391",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " ",
+    "doc_name": " ",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "7fce9c16-e841-4ebd-8cdb-6c388e1c1b2a",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410512,
+    "y": 37.782412
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1460,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1460",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41515",
+    "doc_name": " AWSS_00386.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "d4e688a1-c409-4f3b-89a0-48f5c811f7a8",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.411127,
+    "y": 37.779186
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1331,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1331",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41528",
+    "doc_name": " AWSS_00399.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "9221def3-b2ec-4d60-b6cc-3203828d087b",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.407892,
+    "y": 37.779048
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1127,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1127",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41379",
+    "doc_name": " AWSS_00281.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "db512628-1aa1-417d-b3c5-0a91b174f61e",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.411822,
+    "y": 37.7798
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1125,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1125",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41380",
+    "doc_name": " AWSS_00282.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "82549856-6608-4711-ae35-b885bc8affd7",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410068,
+    "y": 37.778638
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1173,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1173",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41429",
+    "doc_name": " AWSS_vol1\\300-399\\AWSS-00340.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "e3ac9583-703c-48fe-82f6-05937446f3b7",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.409409,
+    "y": 37.782836
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1110,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1110",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41373",
+    "doc_name": " AWSS_00275.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "7ffbf360-7c7a-4431-b416-ad3fd8b941b5",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.406978,
+    "y": 37.779728
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1165,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1165",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41542",
+    "doc_name": " AWSS_0338A.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "82e1eafd-63cc-420f-9b86-931db238f315",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.412276,
+    "y": 37.780575
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1306,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1306",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41184",
+    "doc_name": " AWSS_00109.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "b88a915f-e9a8-44c1-bdbf-34240bfd9b16",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.412215,
+    "y": 37.781189
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1174,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1174",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41429",
+    "doc_name": " AWSS_vol1\\300-399\\AWSS-00340.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "b0ed0c7e-fcd9-4371-906a-d82a46a22080",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.409551,
+    "y": 37.78295
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1465,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1465",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41517",
+    "doc_name": " AWSS_00388.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "1aff74b9-8074-4774-bc9e-1dcde5c1e571",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.407162,
+    "y": 37.782091
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1175,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1175",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41429",
+    "doc_name": " AWSS_vol1\\300-399\\AWSS-00340.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "7262a6ec-1e18-425c-be3e-2d35c9c06174",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.409198,
+    "y": 37.783229
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1164,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1164",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41468",
+    "doc_name": " AWSS_00338.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "0a5da6dd-3097-482d-99b2-43e466c627d3",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.41264,
+    "y": 37.780285
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1176,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1176",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41429",
+    "doc_name": " AWSS_vol1\\300-399\\AWSS-00340.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "cc662e36-2991-46e5-abea-bb9c11fa7f6d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.408908,
+    "y": 37.783236
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1390,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1390",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41099",
+    "doc_name": " AWSS_00032.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "5742a6ce-10ef-4ade-af52-f1ed6e195b4d",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.410674,
+    "y": 37.783107
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 1301,
+    "layer": "W_FireHydrant",
+    "hydrant_id": " 1301",
+    "type": " ",
+    "ports": " ",
+    "capacity": " ",
+    "doc_id": " 41528",
+    "doc_name": " AWSS_00399.TIF",
+    "installedy": " ",
+    "recorddraw": " ",
+    "intercnn": 0,
+    "intername": "",
+    "globalid": "60197b7d-9a51-4255-8604-aa7460939869",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393711135,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393711135
+   },
+   "geometry": {
+    "x": -122.409193,
+    "y": 37.778014
+   }
+  }
+ ]
+}

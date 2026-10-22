@@ -1,0 +1,75 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "ObjectID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "GlobalID",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "site_address",
+   "type": "esriFieldTypeString",
+   "alias": "Address",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "notes",
+   "type": "esriFieldTypeString",
+   "alias": "Notes",
+   "sqlType": "sqlTypeOther",
+   "length": 1000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ApprovalStatus",
+   "type": "esriFieldTypeString",
+   "alias": "Status",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": "Pending",
+   "description": "{\"value\":\"\",\"fieldValueType\":\"typeOrCategory\"}"
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 41,
+    "globalid": "b3cb694f-1acf-4016-8b40-0a282edfd39b",
+    "site_address": "55 Fillmore St, San Francisco, CA, 94117, USA",
+    "notes": null,
+    "ApprovalStatus": "Approved"
+   },
+   "geometry": {
+    "x": -122.430369,
+    "y": 37.769919
+   }
+  }
+ ]
+}

@@ -1,0 +1,599 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "status",
+   "type": "esriFieldTypeString",
+   "alias": "Status",
+   "sqlType": "sqlTypeOther",
+   "length": 1,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "station",
+   "type": "esriFieldTypeString",
+   "alias": "Station",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "address",
+   "type": "esriFieldTypeString",
+   "alias": "Address",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "city",
+   "type": "esriFieldTypeString",
+   "alias": "City",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "state",
+   "type": "esriFieldTypeString",
+   "alias": "State",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "zipcode",
+   "type": "esriFieldTypeString",
+   "alias": "Zipcode",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "x",
+   "type": "esriFieldTypeDouble",
+   "alias": "X",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "y",
+   "type": "esriFieldTypeDouble",
+   "alias": "Y",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "id",
+   "type": "esriFieldTypeInteger",
+   "alias": "Id",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "zip",
+   "type": "esriFieldTypeString",
+   "alias": "Zip",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "lat",
+   "type": "esriFieldTypeDouble",
+   "alias": "LAT",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "long_",
+   "type": "esriFieldTypeDouble",
+   "alias": "LONG_",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "fs_text",
+   "type": "esriFieldTypeString",
+   "alias": "FS_TEXT",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "engine",
+   "type": "esriFieldTypeString",
+   "alias": "Engine",
+   "sqlType": "sqlTypeOther",
+   "length": 4,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "trucks",
+   "type": "esriFieldTypeString",
+   "alias": "Trucks",
+   "sqlType": "sqlTypeOther",
+   "length": 4,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "comments",
+   "type": "esriFieldTypeString",
+   "alias": "Comments",
+   "sqlType": "sqlTypeOther",
+   "length": 40,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 4,
+    "status": "M",
+    "station": "6",
+    "address": "135 SANCHEZ ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94114",
+    "x": 6003526.06107,
+    "y": 2107518.7252,
+    "id": 0,
+    "zip": "94114",
+    "lat": 37.767044250000005,
+    "long_": -122.43106947,
+    "fs_text": "06",
+    "engine": "E06",
+    "trucks": "T06",
+    "comments": " ",
+    "globalid": "66712671-8a6d-4c90-ae81-d14a2820c179",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.431083,
+    "y": 37.767049
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 32,
+    "status": "M",
+    "station": "36",
+    "address": "109 OAK ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94102",
+    "x": 6006422.13972,
+    "y": 2110403.62178,
+    "id": 0,
+    "zip": "94102",
+    "lat": 37.775154130000004,
+    "long_": -122.42112641,
+    "fs_text": "36",
+    "engine": "E36",
+    "trucks": " ",
+    "comments": " ",
+    "globalid": "f8c16895-30c0-4d23-921e-2743ec3d8c2f",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.42127,
+    "y": 37.775134
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 19,
+    "status": "M",
+    "station": "21",
+    "address": "1443 GROVE ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94117",
+    "x": 6000905.63493,
+    "y": 2110677.5683399998,
+    "id": 0,
+    "zip": "94117",
+    "lat": 37.77556881,
+    "long_": -122.44035966,
+    "fs_text": "21",
+    "engine": "E21",
+    "trucks": " ",
+    "comments": " ",
+    "globalid": "b48a654f-9a42-49bf-aadb-9e9b38573a15",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.440373,
+    "y": 37.775574
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 3,
+    "status": "M",
+    "station": "5",
+    "address": "1301 TURK ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94115",
+    "x": 6003717.64102,
+    "y": 2112448.8584399996,
+    "id": 0,
+    "zip": "94115",
+    "lat": 37.78065533,
+    "long_": -122.43046554,
+    "fs_text": "05",
+    "engine": "E05",
+    "trucks": "T05",
+    "comments": " ",
+    "globalid": "e66aa6c6-18b5-4c6d-a340-3fc162eef887",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.430772,
+    "y": 37.780597
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 5,
+    "status": "M",
+    "station": "7",
+    "address": "2300 FOLSOM ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94110",
+    "x": 6008085.09793,
+    "y": 2105009.56002,
+    "id": 0,
+    "zip": "94110",
+    "lat": 37.76044783,
+    "long_": -122.41490987,
+    "fs_text": "07",
+    "engine": "E07",
+    "trucks": "T07",
+    "comments": " ",
+    "globalid": "1238f995-50a1-4d62-9b8b-055556cde4e3",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.415136,
+    "y": 37.760417
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 22,
+    "status": "M",
+    "station": "24",
+    "address": "100 HOFFMAN AVE",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94114",
+    "x": 6000584.669860001,
+    "y": 2102532.94235,
+    "id": 0,
+    "zip": "94114",
+    "lat": 37.7532746,
+    "long_": -122.44091906999999,
+    "fs_text": "24",
+    "engine": "E24",
+    "trucks": " ",
+    "comments": " ",
+    "globalid": "94937598-881a-42b5-8275-8387ea062e5a",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.440899,
+    "y": 37.753192
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 10,
+    "status": "M",
+    "station": "12",
+    "address": "1145 STANYAN ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94117",
+    "x": 5997308.27302,
+    "y": 2106358.5406,
+    "id": 0,
+    "zip": "94117",
+    "lat": 37.76343102,
+    "long_": -122.45242249,
+    "fs_text": "12",
+    "engine": "E12",
+    "trucks": "T12",
+    "comments": " ",
+    "globalid": "aec9bf17-aba2-476e-8e22-8ddd3a52f7bc",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.452505,
+    "y": 37.763509
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 2,
+    "status": "M",
+    "station": "3",
+    "address": "1067 POST ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94109",
+    "x": 6007057.43066,
+    "y": 2114656.8708300004,
+    "id": 0,
+    "zip": "94109",
+    "lat": 37.78684335,
+    "long_": -122.41936142,
+    "fs_text": "03",
+    "engine": "E03",
+    "trucks": "T03",
+    "comments": " ",
+    "globalid": "bec0bed3-4bd1-4edc-a278-3aa245f36c97",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.419375,
+    "y": 37.786848
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 34,
+    "status": "M",
+    "station": "38",
+    "address": "2150 CALIFORNIA ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94115",
+    "x": 6004073.69793,
+    "y": 2115678.63904,
+    "id": 0,
+    "zip": "94115",
+    "lat": 37.78948037,
+    "long_": -122.42975735,
+    "fs_text": "38",
+    "engine": "E38",
+    "trucks": " ",
+    "comments": " ",
+    "globalid": "e9a33dfb-5e0e-4850-9873-513d2b8cd30f",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.429771,
+    "y": 37.789485
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 26,
+    "status": "M",
+    "station": "29",
+    "address": "299  VERMONT ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94103",
+    "x": 6011175.401140001,
+    "y": 2107035.04247,
+    "id": 0,
+    "zip": "94103",
+    "lat": 37.76600233,
+    "long_": -122.40456027,
+    "fs_text": "29",
+    "engine": "E29",
+    "trucks": " ",
+    "comments": " ",
+    "globalid": "2356bb54-501a-44ae-a8fe-a7016ffe37ef",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.404591,
+    "y": 37.766152
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 8,
+    "status": "M",
+    "station": "10",
+    "address": "655 PRESIDIO AVE",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94115",
+    "x": 5999178.918260001,
+    "y": 2114387.26196,
+    "id": 0,
+    "zip": "94115",
+    "lat": 37.78578176,
+    "long_": -122.44657674,
+    "fs_text": "10",
+    "engine": "E10",
+    "trucks": "T10",
+    "comments": " ",
+    "globalid": "267a1e82-ec00-460a-8ef7-c1a4746d7db5",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.446613,
+    "y": 37.785661
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 9,
+    "status": "M",
+    "station": "11",
+    "address": "3880 26TH ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94131",
+    "x": 6004731.2509200005,
+    "y": 2100787.6975399996,
+    "id": 0,
+    "zip": "94131",
+    "lat": 37.74857893,
+    "long_": -122.42666799999999,
+    "fs_text": "11",
+    "engine": "E11",
+    "trucks": "T11",
+    "comments": " ",
+    "globalid": "d0f55764-902a-4277-8630-3b0cda4d83f0",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.426435,
+    "y": 37.748636
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 43,
+    "status": "M",
+    "station": "1",
+    "address": "935 FOLSOM ST",
+    "city": "SF",
+    "state": "CA",
+    "zipcode": "94107",
+    "x": 6011373.1606600005,
+    "y": 2111895.96312,
+    "id": 1,
+    "zip": "94107",
+    "lat": 37.77960291,
+    "long_": -122.40413159,
+    "fs_text": "01",
+    "engine": "E01",
+    "trucks": "T01",
+    "comments": " ",
+    "globalid": "1e81788c-452b-444b-979f-89c5720323ee",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393707933,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393707933
+   },
+   "geometry": {
+    "x": -122.404249,
+    "y": 37.77951
+   }
+  }
+ ]
+}

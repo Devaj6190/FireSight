@@ -1,0 +1,362 @@
+[
+ {
+  "permit_number": "PW20250717668",
+  "application_date": "2025-07-17T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "work category: 8p; recommission of boiler",
+  "status": "expired",
+  "filed_date": "2025-07-17T00:00:00.000",
+  "issued_date": "2025-07-17T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PP20250327323",
+  "valuation": "0",
+  "application_date": "2025-03-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "plumbing for rooms 208,308,408- water, waste and drain",
+  "status": "complete",
+  "filed_date": "2025-03-27T00:00:00.000",
+  "issued_date": "2025-03-28T00:00:00.000",
+  "completed_date": "2025-07-15T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PP20240925163",
+  "valuation": "500",
+  "application_date": "2024-09-25T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "to decommission boiler serial #211a-4360-0189 to abate complaint #202311401",
+  "status": "complete",
+  "filed_date": "2024-09-25T00:00:00.000",
+  "issued_date": "2024-09-25T00:00:00.000",
+  "completed_date": "2024-09-30T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PW20240725412",
+  "application_date": "2024-07-25T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "work category: 4pb; provide fire sprinkler heads in new added bathrooms.",
+  "status": "complete",
+  "filed_date": "2024-07-25T00:00:00.000",
+  "issued_date": "2024-07-25T00:00:00.000",
+  "completed_date": "2025-07-17T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PP20240628611",
+  "valuation": "0",
+  "application_date": "2024-06-28T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "remove boiler unit with back flow serial # j0108855. ref 202304276644. ew 202306222133",
+  "status": "complete",
+  "filed_date": "2024-06-28T00:00:00.000",
+  "issued_date": "2024-06-28T00:00:00.000",
+  "completed_date": "2024-08-21T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PW20230627088",
+  "application_date": "2023-06-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "work category: 3pc; plumbing for 71 bathrooms/4 ada bathrooms (100-108, 110-112, 114-120, 200-207, 209-212, 214-220, 300-307, 309-312, 314-320, 400-407, 409-412, 414-420) water, waste and drain. plumbing for kitchen in mgrs. unit.",
+  "status": "complete",
+  "filed_date": "2023-06-27T00:00:00.000",
+  "issued_date": "2023-06-27T00:00:00.000",
+  "completed_date": "2025-07-15T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PP20221222722",
+  "valuation": "0",
+  "application_date": "2022-12-22T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "plumbing for 32 bathrooms (100-407) water, waste and drains.",
+  "status": "expired",
+  "filed_date": "2022-12-22T00:00:00.000",
+  "issued_date": "2022-12-22T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PW20200820951",
+  "application_date": "2020-08-20T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "work category: 11p; boiler make up backflow device. old device with serial number s7576 has been removed",
+  "status": "complete",
+  "filed_date": "2020-08-20T00:00:00.000",
+  "issued_date": "2020-08-20T00:00:00.000",
+  "completed_date": "2020-09-04T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "PP20191227277",
+  "valuation": "14000",
+  "application_date": "2019-12-27T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "new domestic hot water boiler. old boiler with serial # e05ca0194 has been removed.",
+  "status": "complete",
+  "filed_date": "2019-12-27T00:00:00.000",
+  "issued_date": "2019-12-27T00:00:00.000",
+  "completed_date": "2020-02-26T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "459809",
+  "application_date": "2004-11-03T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "repair/replace section of deteriorated drain in center lightwell to comply with nov# 200452426",
+  "filed_date": "2004-11-03T00:00:00.000",
+  "issued_date": "2004-11-03T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "443255",
+  "application_date": "2003-08-05T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "fire sprinkler rough inspection",
+  "filed_date": "2003-08-05T00:00:00.000",
+  "issued_date": "2003-08-05T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "430944",
+  "application_date": "2002-10-01T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "fire sprinkler remodel/upgrade per sro ord",
+  "filed_date": "2002-10-01T00:00:00.000",
+  "issued_date": "2002-10-01T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "336076",
+  "application_date": "1995-10-06T00:00:00.000",
+  "block": "3703",
+  "lot": "081",
+  "parcel_number": "3703081",
+  "street_number": "1018",
+  "street_name": "Mission",
+  "street_suffix": "St",
+  "description": "relocate gas meter",
+  "filed_date": "1995-10-06T00:00:00.000",
+  "issued_date": "1995-10-06T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "South of Market",
+  "supervisor_district": "6",
+  "zipcode": "94103",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.409452271,
+    37.780703978
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:02:55.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ }
+]

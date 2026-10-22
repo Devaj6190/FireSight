@@ -1,0 +1,178 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriFeet"
+ },
+ "geometryType": "esriGeometryPolygon",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeInteger",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "gridcode",
+   "type": "esriFieldTypeInteger",
+   "alias": "gridcode",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "sum_shape_",
+   "type": "esriFieldTypeDouble",
+   "alias": "sum_shape_",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "shape_leng",
+   "type": "esriFieldTypeDouble",
+   "alias": "shape_leng",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_us",
+   "type": "esriFieldTypeString",
+   "alias": "created_us",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_da",
+   "type": "esriFieldTypeDate",
+   "alias": "created_da",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edite",
+   "type": "esriFieldTypeString",
+   "alias": "last_edite",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edi_1",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edi_1",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "shape_Le_1",
+   "type": "esriFieldTypeDouble",
+   "alias": "shape_Le_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CreationDate",
+   "type": "esriFieldTypeDate",
+   "alias": "CreationDate",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Creator",
+   "type": "esriFieldTypeString",
+   "alias": "Creator",
+   "sqlType": "sqlTypeOther",
+   "length": 128,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "EditDate",
+   "type": "esriFieldTypeDate",
+   "alias": "EditDate",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Editor",
+   "type": "esriFieldTypeString",
+   "alias": "Editor",
+   "sqlType": "sqlTypeOther",
+   "length": 128,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Area",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 5,
+    "objectid": 1,
+    "gridcode": 0,
+    "sum_shape_": 56841249.0455,
+    "shape_leng": 908308.77218,
+    "created_us": " ",
+    "created_da": null,
+    "last_edite": " ",
+    "last_edi_1": null,
+    "shape_Le_1": 2972545.06498,
+    "CreationDate": 1600121567530,
+    "Creator": "CPP_manager_adm",
+    "EditDate": 1600121567530,
+    "Editor": "CPP_manager_adm",
+    "Shape__Area": 608423722.6933594,
+    "Shape__Length": 2971653.2210087962
+   }
+  }
+ ]
+}

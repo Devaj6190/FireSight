@@ -1,0 +1,535 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriFeet"
+ },
+ "geometryType": "esriGeometryPolygon",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeInteger",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "STATEFP10",
+   "type": "esriFieldTypeString",
+   "alias": "STATEFP10",
+   "sqlType": "sqlTypeOther",
+   "length": 2,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "COUNTYFP10",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTYFP10",
+   "sqlType": "sqlTypeOther",
+   "length": 3,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "TRACTCE10",
+   "type": "esriFieldTypeString",
+   "alias": "TRACTCE10",
+   "sqlType": "sqlTypeOther",
+   "length": 6,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "GEOID10",
+   "type": "esriFieldTypeString",
+   "alias": "GEOID10",
+   "sqlType": "sqlTypeOther",
+   "length": 11,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ALAND10",
+   "type": "esriFieldTypeDouble",
+   "alias": "ALAND10",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "AWATER10",
+   "type": "esriFieldTypeDouble",
+   "alias": "AWATER10",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "INTPTLAT10",
+   "type": "esriFieldTypeString",
+   "alias": "INTPTLAT10",
+   "sqlType": "sqlTypeOther",
+   "length": 11,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "INTPTLON10",
+   "type": "esriFieldTypeString",
+   "alias": "INTPTLON10",
+   "sqlType": "sqlTypeOther",
+   "length": 12,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "AreaSqMi",
+   "type": "esriFieldTypeSingle",
+   "alias": "AreaSqMi",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CT_Lat",
+   "type": "esriFieldTypeDouble",
+   "alias": "CT_Lat",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CT_Long",
+   "type": "esriFieldTypeDouble",
+   "alias": "CT_Long",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Acres",
+   "type": "esriFieldTypeDouble",
+   "alias": "Acres",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "SqMi",
+   "type": "esriFieldTypeDouble",
+   "alias": "SqMi",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape_Leng",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Leng",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "long_ct",
+   "type": "esriFieldTypeDouble",
+   "alias": "long_ct",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CT",
+   "type": "esriFieldTypeSingle",
+   "alias": "CT",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "GeoID",
+   "type": "esriFieldTypeDouble",
+   "alias": "GeoID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "r_tractid1",
+   "type": "esriFieldTypeString",
+   "alias": "r_tractid1",
+   "sqlType": "sqlTypeOther",
+   "length": 100,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "BOS",
+   "type": "esriFieldTypeDouble",
+   "alias": "BOS",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CensusTrac",
+   "type": "esriFieldTypeString",
+   "alias": "CensusTrac",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CT_1",
+   "type": "esriFieldTypeString",
+   "alias": "CT_1",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "RC1",
+   "type": "esriFieldTypeDouble",
+   "alias": "RC1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "RC2",
+   "type": "esriFieldTypeDouble",
+   "alias": "RC2",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "RC3",
+   "type": "esriFieldTypeDouble",
+   "alias": "RC3",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "RC4",
+   "type": "esriFieldTypeDouble",
+   "alias": "RC4",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "RC5",
+   "type": "esriFieldTypeDouble",
+   "alias": "RC5",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Score_raw",
+   "type": "esriFieldTypeDouble",
+   "alias": "Score_raw",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Heat_Vulne",
+   "type": "esriFieldTypeDouble",
+   "alias": "Heat_Vulne",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CensusTr_1",
+   "type": "esriFieldTypeString",
+   "alias": "CensusTr_1",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Limited_Pa",
+   "type": "esriFieldTypeDouble",
+   "alias": "Limited_Pa",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "PM2_5_max",
+   "type": "esriFieldTypeDouble",
+   "alias": "PM2_5_max",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Asthma_Rat",
+   "type": "esriFieldTypeDouble",
+   "alias": "Asthma_Rat",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Average_Su",
+   "type": "esriFieldTypeDouble",
+   "alias": "Average_Su",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Diabetes_R",
+   "type": "esriFieldTypeDouble",
+   "alias": "Diabetes_R",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Homelessne",
+   "type": "esriFieldTypeInteger",
+   "alias": "Homelessne",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Ch",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Ch",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_El",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_El",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_No",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_No",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent__1",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent__1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Population",
+   "type": "esriFieldTypeDouble",
+   "alias": "Population",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Po",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Po",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Pr",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Pr",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Am",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Am",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Co",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Co",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent__2",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent__2",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent_Li",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent_Li",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Percent__3",
+   "type": "esriFieldTypeDouble",
+   "alias": "Percent__3",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "CreationDate",
+   "type": "esriFieldTypeDate",
+   "alias": "CreationDate",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Creator",
+   "type": "esriFieldTypeString",
+   "alias": "Creator",
+   "sqlType": "sqlTypeOther",
+   "length": 128,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "EditDate",
+   "type": "esriFieldTypeDate",
+   "alias": "EditDate",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Editor",
+   "type": "esriFieldTypeString",
+   "alias": "Editor",
+   "sqlType": "sqlTypeOther",
+   "length": 128,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Area",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape__Length",
+   "sqlType": "sqlTypeDouble",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 191,
+    "OBJECTID": 191,
+    "STATEFP10": "06",
+    "COUNTYFP10": "075",
+    "TRACTCE10": "017601",
+    "GEOID10": "06075017601",
+    "ALAND10": 631206,
+    "AWATER10": 0,
+    "INTPTLAT10": "+37.7794338",
+    "INTPTLON10": "-122.4107241",
+    "AreaSqMi": 0.243675,
+    "CT_Lat": -122.410723781,
+    "CT_Long": 37.7794338843,
+    "Acres": 155.951686283,
+    "SqMi": 0.243674509817,
+    "Shape_Leng": 13119.3849653,
+    "long_ct": 17601,
+    "CT": 17601,
+    "GeoID": 6075017601,
+    "r_tractid1": "Census Tract 176.01, San Francisco County, California",
+    "BOS": 6,
+    "CensusTrac": "1400000US06075017601",
+    "CT_1": "06075017601",
+    "RC1": 3.3622874297,
+    "RC2": 3.31158376415,
+    "RC3": 1.27641150278,
+    "RC4": 8.28521319751,
+    "RC5": 1.81258565972,
+    "Score_raw": 18.0480815539,
+    "Heat_Vulne": 64.3033999862,
+    "CensusTr_1": "1400000US06075017601",
+    "Limited_Pa": 0.503698507112,
+    "PM2_5_max": 10.55943,
+    "Asthma_Rat": 16.2288399696,
+    "Average_Su": 116.646238708,
+    "Diabetes_R": 25.8971860158,
+    "Homelessne": 3680,
+    "Percent_Ch": 0,
+    "Percent_El": 0.127,
+    "Percent_No": 0.655603778402,
+    "Percent__1": 0.981305711529,
+    "Population": 32025.4928726,
+    "Percent_Po": 0.70653561399,
+    "Percent_Pr": 0.289128758674,
+    "Percent_Am": 0.114,
+    "Percent_Co": 0.152,
+    "Percent__2": 0.0809558291093,
+    "Percent_Li": 0.153,
+    "Percent__3": 0.142,
+    "CreationDate": 1600121522838,
+    "Creator": "CPP_manager_adm",
+    "EditDate": 1600121522838,
+    "Editor": "CPP_manager_adm",
+    "Shape__Area": 6789232.078125,
+    "Shape__Length": 13115.499086388325
+   }
+  }
+ ]
+}

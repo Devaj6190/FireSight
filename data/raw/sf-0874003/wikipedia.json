@@ -1,0 +1,88 @@
+{
+ "batchcomplete": "",
+ "query": {
+  "geosearch": [
+   {
+    "pageid": 24036411,
+    "ns": 0,
+    "title": "Duboce and Church station",
+    "lat": 37.76946,
+    "lon": -122.42912,
+    "dist": 44.7,
+    "primary": ""
+   },
+   {
+    "pageid": 38991934,
+    "ns": 0,
+    "title": "St. Francis Lutheran Church",
+    "lat": 37.76861,
+    "lon": -122.42934,
+    "dist": 107.4,
+    "primary": ""
+   },
+   {
+    "pageid": 50551945,
+    "ns": 0,
+    "title": "Sans Souci Valley",
+    "lat": 37.7696,
+    "lon": -122.4309,
+    "dist": 113,
+    "primary": ""
+   },
+   {
+    "pageid": 73568663,
+    "ns": 0,
+    "title": "Scott's Pit",
+    "lat": 37.769134,
+    "lon": -122.431632,
+    "dist": 183.2,
+    "primary": ""
+   },
+   {
+    "pageid": 1511637,
+    "ns": 0,
+    "title": "Church station (Muni Metro)",
+    "lat": 37.76781388888889,
+    "lon": -122.42906666666667,
+    "dist": 199.1,
+    "primary": ""
+   },
+   {
+    "pageid": 2625463,
+    "ns": 0,
+    "title": "San Francisco Mint",
+    "lat": 37.7701,
+    "lon": -122.4273,
+    "dist": 212.5,
+    "primary": ""
+   },
+   {
+    "pageid": 48600652,
+    "ns": 0,
+    "title": "California Volunteers (sculpture)",
+    "lat": 37.76887,
+    "lon": -122.42682,
+    "dist": 257.1,
+    "primary": ""
+   },
+   {
+    "pageid": 53128409,
+    "ns": 0,
+    "title": "Market and Dolores / Market and Buchanan stations",
+    "lat": 37.7695,
+    "lon": -122.4263,
+    "dist": 291.5,
+    "primary": ""
+   },
+   {
+    "pageid": 1707038,
+    "ns": 0,
+    "title": "Lower Haight, San Francisco",
+    "lat": 37.7721,
+    "lon": -122.4305,
+    "dist": 293.9,
+    "primary": ""
+   }
+  ]
+ }
+}

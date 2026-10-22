@@ -1,0 +1,226 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "DataField",
+   "type": "esriFieldTypeInteger",
+   "alias": "DataField",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "X",
+   "type": "esriFieldTypeDouble",
+   "alias": "X",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Y",
+   "type": "esriFieldTypeDouble",
+   "alias": "Y",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "XY",
+   "type": "esriFieldTypeString",
+   "alias": "XY",
+   "sqlType": "sqlTypeOther",
+   "length": 41,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "LabelField",
+   "type": "esriFieldTypeString",
+   "alias": "LabelField",
+   "sqlType": "sqlTypeOther",
+   "length": 204,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "InfoField",
+   "type": "esriFieldTypeString",
+   "alias": "InfoField",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 41833,
+    "DataField": 10428,
+    "X": 5999264.0192,
+    "Y": 2108708.6767,
+    "XY": "5999264.019,2108708.677",
+    "LabelField": "Lophostemon confertus - Brisbane Box",
+    "InfoField": "Species: Lophostemon confertus - Brisbane Box, Address: 1427 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.44591,
+    "y": 37.770074
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41968,
+    "DataField": 245993,
+    "X": 5999291.5767,
+    "Y": 2108712.9163,
+    "XY": "5999291.577,2108712.916",
+    "LabelField": "Schinus terebinthifolius - Brazilian Pepper",
+    "InfoField": "Species: Schinus terebinthifolius - Brazilian Pepper, Address: 1419 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.445815,
+    "y": 37.770087
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41553,
+    "DataField": 246001,
+    "X": 5999214.6581,
+    "Y": 2108701.4088,
+    "XY": "5999214.658,2108701.409",
+    "LabelField": "Lophostemon confertus - Brisbane Box",
+    "InfoField": "Species: Lophostemon confertus - Brisbane Box, Address: 1437 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.44608,
+    "y": 37.770051
+   }
+  },
+  {
+   "attributes": {
+    "FID": 42140,
+    "DataField": 10425,
+    "X": 5999323.0709,
+    "Y": 2108716.5502,
+    "XY": "5999323.071,2108716.550",
+    "LabelField": "Schinus terebinthifolius - Brazilian Pepper",
+    "InfoField": "Species: Schinus terebinthifolius - Brazilian Pepper, Address: 1419 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.445706,
+    "y": 37.770099
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41377,
+    "DataField": 10432,
+    "X": 5999180.1356,
+    "Y": 2108696.8663,
+    "XY": "5999180.136,2108696.866",
+    "LabelField": "Lophostemon confertus - Brisbane Box",
+    "InfoField": "Species: Lophostemon confertus - Brisbane Box, Address: 1441 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.446199,
+    "y": 37.770037
+   }
+  },
+  {
+   "attributes": {
+    "FID": 42730,
+    "DataField": 245994,
+    "X": 5999356.6849,
+    "Y": 2108721.0927,
+    "XY": "5999356.685,2108721.093",
+    "LabelField": "Acacia melanoxylon - Blackwood Acacia",
+    "InfoField": "Species: Acacia melanoxylon - Blackwood Acacia, Address: 1401 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.44559,
+    "y": 37.770113
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41673,
+    "DataField": 10430,
+    "X": 5999234.911,
+    "Y": 2108753.3373,
+    "XY": "5999234.911,2108753.337",
+    "LabelField": "Lophostemon confertus - Brisbane Box",
+    "InfoField": "Species: Lophostemon confertus - Brisbane Box, Address: 1430 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.446014,
+    "y": 37.770195
+   }
+  },
+  {
+   "attributes": {
+    "FID": 43325,
+    "DataField": 14590,
+    "X": 5999397.8697,
+    "Y": 2108638.7231,
+    "XY": "5999397.870,2108638.723",
+    "LabelField": "Fraxinus uhdei - Shamel Ash- Evergreen Ash",
+    "InfoField": "Species: Fraxinus uhdei - Shamel Ash- Evergreen Ash, Address: 1221 Masonic AveTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.445442,
+    "y": 37.76989
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41272,
+    "DataField": 10433,
+    "X": 5999155.0008,
+    "Y": 2108693.838,
+    "XY": "5999155.001,2108693.838",
+    "LabelField": "Tristania conferta -",
+    "InfoField": "Species: Tristania conferta - , Address: 1449 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.446286,
+    "y": 37.770027
+   }
+  },
+  {
+   "attributes": {
+    "FID": 41836,
+    "DataField": 247295,
+    "X": 5999264.8582,
+    "Y": 2108759.0964,
+    "XY": "5999264.858,2108759.096",
+    "LabelField": "Acacia melanoxylon - Blackwood Acacia",
+    "InfoField": "Species: Acacia melanoxylon - Blackwood Acacia, Address: 1416 Haight StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.445911,
+    "y": 37.770213
+   }
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+[
+ {
+  "active_licenses": "LLP",
+  "permit_number": "1599",
+  "ban": "1112885",
+  "permit_status": "Active",
+  "license_type": "Limited Live Performance",
+  "dba_name": "The Mellow SF",
+  "street_address": "1401 HAIGHT ST",
+  "city": "San Francisco",
+  "state": "CA",
+  "point": {
+   "type": "Point",
+   "coordinates": [
+    -122.4456615,
+    37.769994
+   ]
+  },
+  "analysis_neighborhood": "Haight Ashbury",
+  "supervisor_district": "5",
+  "police_district": "PARK",
+  "data_as_of": "2024-01-29T14:30:06.000",
+  "data_loaded_at": "2026-10-22T08:05:39.175"
+ }
+]

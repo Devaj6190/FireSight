@@ -1,0 +1,189 @@
+{
+ "objectIdFieldName": "objectid_1",
+ "uniqueIdField": {
+  "name": "objectid_1",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid_1",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeInteger",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cnn",
+   "type": "esriFieldTypeString",
+   "alias": "CNN",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "layer",
+   "type": "esriFieldTypeString",
+   "alias": "LAYER",
+   "sqlType": "sqlTypeOther",
+   "length": 20,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intcnn",
+   "type": "esriFieldTypeDouble",
+   "alias": "INTCNN",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "location",
+   "type": "esriFieldTypeString",
+   "alias": "LOCATION",
+   "sqlType": "sqlTypeOther",
+   "length": 22,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid_1": 109,
+    "objectid": 109,
+    "cnn": "25986000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 25986000,
+    "location": "SANCHEZ & DUBOCE",
+    "globalid": "02673acd-4e61-4d5e-ada2-05d2c0a93de5",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.43137,
+    "y": 37.769326
+   }
+  },
+  {
+   "attributes": {
+    "objectid_1": 110,
+    "objectid": 110,
+    "cnn": "25987000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 25987000,
+    "location": "DUBOCE & STEINER",
+    "globalid": "5b04aae5-a5df-4c0c-8c91-33a3ceee9277",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.431584,
+    "y": 37.769312
+   }
+  },
+  {
+   "attributes": {
+    "objectid_1": 101,
+    "objectid": 101,
+    "cnn": "25897000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 25897000,
+    "location": "WEBSTER & WALLER",
+    "globalid": "93861676-f153-4b14-9267-b376facb8006",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.428627,
+    "y": 37.771388
+   }
+  },
+  {
+   "attributes": {
+    "objectid_1": 111,
+    "objectid": 111,
+    "cnn": "25871000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 25871000,
+    "location": "14TH & DOLORES",
+    "globalid": "32e43187-2385-4783-bf6d-52e1e0865b85",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.426706,
+    "y": 37.767874
+   }
+  }
+ ]
+}

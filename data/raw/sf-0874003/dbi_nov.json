@@ -1,0 +1,4588 @@
+[
+ {
+  "complaint_number": "202660577",
+  "item_sequence_number": "1427794",
+  "primary_key": "202660577-1427794",
+  "date_filed": "2026-08-06T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202660577",
+  "item_sequence_number": "1427793",
+  "primary_key": "202660577-1427793",
+  "date_filed": "2026-08-06T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair malfunctioning bath tub (1001f hc) note: plumbing permit needed, make sure that all permits have been signed off prior to contacting housing inspector for final inspection (103.1.1 pc)",
+  "nov_item_description": "located inside #415. bath tub needed repair. new bath tub was installed. no plumbing permit was found on record. please provide plumbing permit to housing inspector at time of reinspection or file for an plumbing permit for work that was done.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202660577",
+  "item_sequence_number": "1427791",
+  "primary_key": "202660577-1427791",
+  "date_filed": "2026-08-06T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #415",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202660577",
+  "item_sequence_number": "1427792",
+  "primary_key": "202660577-1427792",
+  "date_filed": "2026-08-06T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair or replace malfunctioning heating system (701c hc) note: permit needed, make sure that all permits have been signed off prior to contacting housing inspector for final inspection (108.4.1 cmc)",
+  "nov_item_description": "located inside #415. central steam heater did not work. electrical heater was installed. no electrical permit was found on record. please provide electrical permit to housing inspector at time of reinspection or file for an electrical permit for work that was done.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1426093",
+  "primary_key": "202658959-1426093",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair central intercom system and restore into its working condition (1001 hc)",
+  "nov_item_description": "located at front gate.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1426090",
+  "primary_key": "202658959-1426090",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #417",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1426092",
+  "primary_key": "202658959-1426092",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair window sash cords (1001(h) hc)",
+  "nov_item_description": "located in kitchen window. located in livingroom two (2) windows.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1427644",
+  "primary_key": "202658959-1427644",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair malfunctioning light switch (504 hc)",
+  "nov_item_description": "located at the kitchen. lightswitch sparks.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1426091",
+  "primary_key": "202658959-1426091",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "replace fire alert detector (908,911 hc)",
+  "nov_item_description": "located in bedroom. false alarm continuously sound, making sleep impossible.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202658959",
+  "item_sequence_number": "1426094",
+  "primary_key": "202658959-1426094",
+  "date_filed": "2026-07-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202650121",
+  "item_sequence_number": "1418841",
+  "primary_key": "202650121-1418841",
+  "date_filed": "2026-01-26T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair malfunctioning tub (1001f hc)",
+  "nov_item_description": "located at bathtub. little to no hot water comes out when turned on.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202650121",
+  "item_sequence_number": "1418839",
+  "primary_key": "202650121-1418839",
+  "date_filed": "2026-01-26T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair damaged ceilings (1001b,h,o hc)",
+  "nov_item_description": "located above bathtub in restroom.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202650121",
+  "item_sequence_number": "1418840",
+  "primary_key": "202650121-1418840",
+  "date_filed": "2026-01-26T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "painting required at walls and ceiling (1001, 1301 hc)",
+  "nov_item_description": "located above bathtub in restroom.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202650121",
+  "item_sequence_number": "1418842",
+  "primary_key": "202650121-1418842",
+  "date_filed": "2026-01-26T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202650121",
+  "item_sequence_number": "1418838",
+  "primary_key": "202650121-1418838",
+  "date_filed": "2026-01-26T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #301",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202546948",
+  "item_sequence_number": "1416059",
+  "primary_key": "202546948-1416059",
+  "date_filed": "2025-11-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202546948",
+  "item_sequence_number": "1416058",
+  "primary_key": "202546948-1416058",
+  "date_filed": "2025-11-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "painting required at walls and ceiling (1001, 1301 hc)",
+  "nov_item_description": "located at hallway. paint all holes and all walls. located at bathroom. paint all holes and all walls.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202546948",
+  "item_sequence_number": "1416056",
+  "primary_key": "202546948-1416056",
+  "date_filed": "2025-11-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #114",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202546948",
+  "item_sequence_number": "1416057",
+  "primary_key": "202546948-1416057",
+  "date_filed": "2025-11-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair damaged walls/ceilings (1001b,h,o hc)",
+  "nov_item_description": "located at hallway. patch all holes and repair all walls. located at bathroom. patch all holes and repair all walls.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202427648",
+  "item_sequence_number": "1398614",
+  "primary_key": "202427648-1398614",
+  "date_filed": "2024-08-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202427648",
+  "item_sequence_number": "1398613",
+  "primary_key": "202427648-1398613",
+  "date_filed": "2024-08-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "eliminate rodent infestation (1001b, 1306 hc)",
+  "nov_item_description": "located in unit #117 of 400 duboce. provide routine and systematic pest control services by a licensed firm until the infestation is eliminated. provide three months of invoice(s) as proof services provided.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202427648",
+  "item_sequence_number": "1398612",
+  "primary_key": "202427648-1398612",
+  "date_filed": "2024-08-21T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #117",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202425407",
+  "primary_key": "202425407",
+  "date_filed": "2024-07-01T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Building Inspection Division",
+  "assigned_division": "Electrical Inspection Division",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "expired_permit": "Y",
+  "code_violation_desc": "Expired permits E201312185944 & E201312185943. Unapproved PV and car charger installations.  Code/Section: S.F.E.C 89.116, 89.120 Monthly monitoring fee applies. Code/Section: SFBC 110A, Table 1A-K",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202418062",
+  "item_sequence_number": "1387652",
+  "primary_key": "202418062-1387652",
+  "date_filed": "2024-01-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "eliminate cockroach infestation (1001b, 1306 hc)",
+  "nov_item_description": "located inside unit. provide a routine and systematic pest control services until the infestation is eliminated by a licensed professional third party vendor. provide proof of pest control services at time of inspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202418062",
+  "item_sequence_number": "1387653",
+  "primary_key": "202418062-1387653",
+  "date_filed": "2024-01-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202418062",
+  "item_sequence_number": "1387651",
+  "primary_key": "202418062-1387651",
+  "date_filed": "2024-01-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 50 church",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376876",
+  "primary_key": "202308391-1376876",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair damaged walls (1001b,h,o hc)",
+  "nov_item_description": "located at stair 1. along the stairwell, hole on wall allows rain to enter the stairwell.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376871",
+  "primary_key": "202308391-1376871",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide date tag for all fire extinguishers (905 hc)",
+  "nov_item_description": "located throughout the property.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376878",
+  "primary_key": "202308391-1376878",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "remove egress obstruction at all fire escape stairs, fire corridors and platforms (801,1001(l) hc)",
+  "nov_item_description": "located by unit 208. bird spikes blocks exit to the fire escape ladder. check all similar fire egress situations.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376874",
+  "primary_key": "202308391-1376874",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide for compliance affidavit (sfhc 604 )",
+  "nov_item_description": "complete the 604 affidavit provided for self certification for structural maintenance. provide to inspector at the time of reinspection, send to inspector yee at 49 south van ness avenue, san francisco, ca 94103, fax to (628) 652-3709 or email the forms to dennis.yee@sfgov.org.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376873",
+  "primary_key": "202308391-1376873",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide for compliance affidavit (sfhc 420.4, 907.211 and 340.1.6.1 )",
+  "nov_item_description": "complete the 420 affidavit provided for self certification for smoke detectors and carbon monoxide alarms. provide to inspector at the time of reinspection, send to inspector yee at 49 south van ness avenue, san francisco, ca 94103, fax to (628) 652-3709 or email the forms to dennis.yee@sfgov.org.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376875",
+  "primary_key": "202308391-1376875",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide cover-plates to all receptacle and switches (504 hc)",
+  "nov_item_description": "located at stair 1, near ground floor. install electrical plates to prevent potential hazards.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376872",
+  "primary_key": "202308391-1376872",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide shutoff tool for gas utility shutoff (712 hc) post enclosed gas meter instructional diagram in a public area. (712 hc)",
+  "nov_item_description": "located at gas meter of the property.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376870",
+  "primary_key": "202308391-1376870",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee conducted a compliant generated routine of the common areas of the building initiated by cts #202308207. 400 duboce",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376877",
+  "primary_key": "202308391-1376877",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide smoke detectors (908 911 hc)",
+  "nov_item_description": "located by unit 201, no smoke detector. check entire property and provide as needed.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308391",
+  "item_sequence_number": "1376879",
+  "primary_key": "202308391-1376879",
+  "date_filed": "2023-05-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308207",
+  "item_sequence_number": "1376859",
+  "primary_key": "202308207-1376859",
+  "date_filed": "2023-05-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair door (1001(h) hc)",
+  "nov_item_description": "located at the unit door of 301. water intrusion had warped the unit door where the double lock is not operational. located at closet door. door does not close properly.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308207",
+  "item_sequence_number": "1376858",
+  "primary_key": "202308207-1376858",
+  "date_filed": "2023-05-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "eliminate mold/mildew on ceiling and walls (1301,1001b(13),1306 hc) painting required at ceilings and walls (1001, 1301 hc)",
+  "nov_item_description": "located at the top of the entry unit door, inside of the unit.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308207",
+  "item_sequence_number": "1376861",
+  "primary_key": "202308207-1376861",
+  "date_filed": "2023-05-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector. your cooperation is appreciated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308207",
+  "item_sequence_number": "1376857",
+  "primary_key": "202308207-1376857",
+  "date_filed": "2023-05-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "inspector yee investigated the complaint at the subject property and observed violation(s) of the san francisco housing code which are delineated within the notice of violation issued. pertinent observations are as follows: see below. 400 duboce #301",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "202308207",
+  "item_sequence_number": "1376860",
+  "primary_key": "202308207-1376860",
+  "date_filed": "2023-05-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair malfunctioning refrigerator. (1001 hc)",
+  "nov_item_description": "located in the kitchen. refrigerator leaks onto the kitchen floor.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767791",
+  "item_sequence_number": "955365",
+  "primary_key": "201767791-955365",
+  "date_filed": "2017-03-15T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend the re-inspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled re-inspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the re-inspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767791",
+  "item_sequence_number": "955284",
+  "primary_key": "201767791-955284",
+  "date_filed": "2017-03-15T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, #420",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767791",
+  "item_sequence_number": "955327",
+  "primary_key": "201767791-955327",
+  "date_filed": "2017-03-15T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "repairs cited in this notice may require a building, plumbing and /or electrical permit. it is the responsibility of the owner to obtain (or have others obtain) any required permits before beginning work that requires permit(s). this case can not be abated until the housing inspector makes a final inspection to verify that all violations have been corrected and all required permits have been obtained and finalized. on reinspection day, present to the housing inspector the job card, plans and permits indicating that all work under building, plumbing and electrical permits is complete. prior to reinspection by housing inspector, call building, plumbing and electrical inspectors for required inspections.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767791",
+  "item_sequence_number": "955304",
+  "primary_key": "201767791-955304",
+  "date_filed": "2017-03-15T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide heat to each occupied habitable room for 13 hrs between 5:00 a.m. and 11:00 a.m. and between 3:00 p.m. and 10:00 p.m. capable to maintaining a min. room temp. of 68 degrees f. (20 degrees c.). (701c hc)",
+  "nov_item_description": "heater was inoperable at time of inspection. repair or replace heater as require. note: if the heater requires replacement, obtain an electrical, plumbing and/or mechanical permit as required.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955325",
+  "primary_key": "201767542-955325",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend the re-inspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled re-inspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the re-inspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955244",
+  "primary_key": "201767542-955244",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair/replace damaged shower stall. 1001(b) sfhc",
+  "nov_item_description": "replace shower stall including the glass door to prevent cracked glass door from shattering. at time of inspection, shower stall was rusted, damaged and glass door cracked.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955427",
+  "primary_key": "201767542-955427",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair damaged walls. 1001(b) sfhc",
+  "nov_item_description": "make necessary repairs to damaged wall in bathroom. at time of inspection wall on opposite side of the shower had a hole in it and the towel rack was falling out. once walls are repaired repaint.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955226",
+  "primary_key": "201767542-955226",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair/replace damaged floor. 1001(b) sfhc",
+  "nov_item_description": "repair or replace damaged floor in bathroom. at time of inspection bathroom floor covering was ripped and subflooring was damaged.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955246",
+  "primary_key": "201767542-955246",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "disturbing lead based paint can be extremely dangerous to dwelling occupants and visitors, particularly to young children, pregnant women, pets, and to people performing work on the premises. for interior or exterior paint removal : always wet the surface, contain and properly dispose of leaded paint. if you are unsure whether the paint is leaded, you should test it prior to performing any work. if the paint is found to contain lead, you should consult with an expert about appropriate procedures. proper containment and 3-day notification is required for exterior jobs of more than 10 sq.ft. (sec.3423, sfbc) informational packets are available at (415) 558-6088. you can contact the san francisco childhood lead poisoning prevention program at: (415) 252-3800 for free advice. if you cause lead dust to be created, you could be liable for any illness caused by the dust. ordinance #446-97.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955245",
+  "primary_key": "201767542-955245",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "remove or cover damaged paint in an approved manner to prevent a lead hazard. see attached lead hazard warning. (1301 hc)",
+  "nov_item_description": "repaint chipping and peeling paint of windows, walls and ceilings througout. at time of inspection, chipping and peeling of paint in the following locations: 1. kitchen window, walls and ceilings 2. living room windows, walls and ceilings 3. bedroom windows, walls and ceilings 4. bathroom window, walls and celings 5. hallway walls and ceilings after repainting windows, walls and ceilings make sure it is waterproof. windows must open and closes properly and safely.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201767542",
+  "item_sequence_number": "955225",
+  "primary_key": "201767542-955225",
+  "date_filed": "2017-03-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, #420",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201646811",
+  "item_sequence_number": "922626",
+  "primary_key": "201646811-922626",
+  "date_filed": "2016-11-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201646811",
+  "item_sequence_number": "922625",
+  "primary_key": "201646811-922625",
+  "date_filed": "2016-11-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "replace damaged window sash frames. 708 & 1001(h) sfhc",
+  "nov_item_description": "replace damaged window sash frames in the kitchen and livingroom. at time of inspection sash frames were damaged and glazing was broken.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201646811",
+  "item_sequence_number": "922624",
+  "primary_key": "201646811-922624",
+  "date_filed": "2016-11-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, #417",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906174",
+  "primary_key": "201635781-906174",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "remove egress obstruction at roof. 801 & 1001(m) sfhc",
+  "nov_item_description": "secure cables at the roof to prevent a tripping hazard.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906184",
+  "primary_key": "201635781-906184",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "provide heat to each occupied room for 13 hours (from 5:00am to 11:00am and from 3:00pm to 10:00 pm) capable of maintaining a minimum room temperature of 68 degrees f. 701 sfhc",
+  "nov_item_description": "ensure timeclock is properly set to allow heat for a minimum of 13 hours a day between the hours of 5am to 11am and 3pm to 10pm.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906173",
+  "primary_key": "201635781-906173",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide affidavit for smoke and carbon monoxide detectors. 420.4, 907.2.11, & 3401.6.1 sfbc",
+  "nov_item_description": "provide self-certification of the numbers of smoke and carbon monoxide detectors installed in the building. a blank affidavit form, to be completed and returned, is attached to this notice of violation.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906172",
+  "primary_key": "201635781-906172",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "provide affidavit of structural maintenance. 604 sfhc",
+  "nov_item_description": "provide affidavit of structural maintenance for all exterior appendages. have a licensed general contractor, structural pest control licensee, or licensed professional architect or engineer inspect all exterior decks, balconies, landings, exit corridors, stairway systems, guardrails, handrails, fire escapes and all parts thereof and verify that each inspected area is in a safe and good working condition. a blank affidavit form, to be completed and returned, is attached to this notice of violation.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906171",
+  "primary_key": "201635781-906171",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "the common areas of 400 duboce avenue.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201635781",
+  "item_sequence_number": "906185",
+  "primary_key": "201635781-906185",
+  "date_filed": "2016-09-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201626290",
+  "item_sequence_number": "893264",
+  "primary_key": "201626290-893264",
+  "date_filed": "2016-07-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, #417",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201626290",
+  "item_sequence_number": "893285",
+  "primary_key": "201626290-893285",
+  "date_filed": "2016-07-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair/replace damaged cabinets. 1001(b) sfhc",
+  "nov_item_description": "repair/replace damaged kitchen cabinets and drawers. at time of inspection, both upper and lower cabinets were missing doors and drawers above cabinets were missing.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201626290",
+  "item_sequence_number": "893284",
+  "primary_key": "201626290-893284",
+  "date_filed": "2016-07-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair/replace damaged floor covering. 1001(b) sfhc",
+  "nov_item_description": "repair or replace damaged floor covering in kitchen.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201626290",
+  "item_sequence_number": "893286",
+  "primary_key": "201626290-893286",
+  "date_filed": "2016-07-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611342",
+  "item_sequence_number": "869874",
+  "primary_key": "201611342-869874",
+  "date_filed": "2016-04-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611342",
+  "item_sequence_number": "869872",
+  "primary_key": "201611342-869872",
+  "date_filed": "2016-04-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "smoke detection section",
+  "item": "repair central alarm system. 908 & 909 sfhc",
+  "nov_item_description": "have central alarm system inspected and necessary repairs made. at time of inspection, system's \"trouble\" light was illuminated.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611342",
+  "item_sequence_number": "869871",
+  "primary_key": "201611342-869871",
+  "date_filed": "2016-04-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869796",
+  "primary_key": "201611201-869796",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, #417",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869801",
+  "primary_key": "201611201-869801",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair/replace damaged window frames. 708 & 1001(h) sfhc",
+  "nov_item_description": "repair or replace damaged window frames located throughout unit so that all windows are weatherproof. at time of inspection, window frames were rotted in some areas and did not provide full weatherproofing. ***permit required*** if any replacement work is performed in order to comply with this notice a permit must first be obtained and then finalized.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869809",
+  "primary_key": "201611201-869809",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "lead hazard warning: disturbing lead based paint can be extremely dangerous to dwelling occupants and visitors, particularly to young children, pregnant women, pets, and to people performing work on the premises. for interior or exterior paint removal : always wet the surface, contain and properly dispose of leaded paint. if you are unsure whether the paint is leaded, you should test it prior to performing any work. if the paint is found to contain lead, you should consult with an expert about appropriate procedures. proper containment and 3-day notification is required for exterior jobs of more than 10 sq.ft. (sec.3423, sfbc) informational packets are available at (415) 558-6088. you can contact the san francisco childhood lead poisoning prevention program at: (415) 252-3800 for free advice. if you cause lead dust to be created, you could be liable for any illness caused by the dust. ordinance #446-97.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869806",
+  "primary_key": "201611201-869806",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "repair/replace malfunctioning appliance. 1001(e) sfhc",
+  "nov_item_description": "repair or replace malfunctioning oven/stove. at time of inspection, two burners did not operate nor did the oven.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869811",
+  "primary_key": "201611201-869811",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "please provide access to all common areas of building on re-inspection date in order to perform a complete routine inspection of the property.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869805",
+  "primary_key": "201611201-869805",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "make necessary repairs to tub/shower. 1001(b) sfhc",
+  "nov_item_description": "make necessary repairs to damaged shower/tub. at time of inspection several tiles had fallen off of the wall and were missing.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869812",
+  "primary_key": "201611201-869812",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869807",
+  "primary_key": "201611201-869807",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair damaged walls. 1001(b) sfhc",
+  "nov_item_description": "repair damaged wall in main room of unit below the windows. patch, resurface and re-paint.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201611201",
+  "item_sequence_number": "869808",
+  "primary_key": "201611201-869808",
+  "date_filed": "2016-04-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "remove or cover damaged paint in an approved manner to prevent a lead hazard. see lead hazard warning. 1301 sfhc",
+  "nov_item_description": "remove or cover damaged and peeling paint on window frames throughout unit in an approved manner. ***see lead hazard warning***",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201447992",
+  "item_sequence_number": "596245",
+  "primary_key": "201447992-596245",
+  "date_filed": "2014-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "important note: this property is defined as a nuisance per sec. 1001-d of the sfhc. please review the attached \"notice of violation warnings\" for information regarding failure to comply with this notice.",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201447992",
+  "item_sequence_number": "596227",
+  "primary_key": "201447992-596227",
+  "date_filed": "2014-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201447992",
+  "item_sequence_number": "596244",
+  "primary_key": "201447992-596244",
+  "date_filed": "2014-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide heat to each occupied habitable room for 13 hrs between 5:00 a.m. and 11:00 a.m. and between 3:00 p.m. and 10:00 p.m. capable to maintaining a min. room temp. of 68 degrees f. (20 degrees c.). (701c hc)",
+  "nov_item_description": "unit #415 and where required. please open for inspection boiler room and unit where thermostat is located, at time of reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201399477",
+  "primary_key": "201399477",
+  "date_filed": "2013-04-18T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Plumbing Inspection Division",
+  "assigned_division": "Plumbing Inspection Division",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "code_violation_desc": "No permit to operate the boiler. serial no 0190109930, CMC 1022",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201385401",
+  "item_sequence_number": "492679",
+  "primary_key": "201385401-492679",
+  "date_filed": "2013-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide heat to each occupied habitable room for 13 hrs between 5:00 a.m. and 11:00 a.m. and between 3:00 p.m. and 10:00 p.m. capable to maintaining a min. room temp. of 68 degrees f. (20 degrees c.). (701c hc)",
+  "nov_item_description": "repair and restore the heating system in unit #415 into its working condition. repair operation of radiator in front room. this is a 48-hour notice!",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201385401",
+  "item_sequence_number": "492680",
+  "primary_key": "201385401-492680",
+  "date_filed": "2013-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce avenue, unit #415",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201385401",
+  "item_sequence_number": "492681",
+  "primary_key": "201385401-492681",
+  "date_filed": "2013-01-23T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is his/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201172018",
+  "item_sequence_number": "432399",
+  "primary_key": "201172018-432399",
+  "date_filed": "2011-11-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "400 duboce ave - apt. #303",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201172018",
+  "item_sequence_number": "432439",
+  "primary_key": "201172018-432439",
+  "date_filed": "2011-11-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "provide proof/testing the existing smoke detector in apt.#303 is performed as required per san francisco housing code.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201172018",
+  "item_sequence_number": "432440",
+  "primary_key": "201172018-432440",
+  "date_filed": "2011-11-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector of those areas not accessed during the initial inspection as specified, and/or to provide access to all areas cited within this notice. if the property owner cannot attend the scheduled reinspection (as specified on this notice) it is he/her responsibility to secure a different inspection date and time with the inspector, and provide all tenants with notification as required by california civil code section 1954 (san francisco housing code section 303(b), if any dwellings, apartment units or guest rooms are to be accessed during the reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201172018",
+  "item_sequence_number": "432419",
+  "primary_key": "201172018-432419",
+  "date_filed": "2011-11-16T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair window (1001(b)(d) hc)",
+  "nov_item_description": "repair window sash cord in kitchen and window sash frame in bedroom of apt. #303. note: all windows must: 1. open & close easily. 2. stay open without outside assistance. 3. be repaired and/or adjusted so that window sash is in good condition & fits securely in window casing to prevent outside air and/or water from entering the interior.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201066180",
+  "primary_key": "201066180",
+  "date_filed": "2010-09-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Plumbing Inspection Division",
+  "assigned_division": "Plumbing Inspection Division",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "code_violation_desc": "No permit to operate the boiler. CMC 1023",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201066179",
+  "primary_key": "201066179",
+  "date_filed": "2010-09-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Plumbing Inspection Division",
+  "assigned_division": "Plumbing Inspection Division",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "code_violation_desc": "No permit to operate the boiler. CMC 1023",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201066184",
+  "primary_key": "201066184",
+  "date_filed": "2010-09-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Plumbing Inspection Division",
+  "assigned_division": "Plumbing Inspection Division",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "code_violation_desc": "No permit to operate the boiler. CMC 1023",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201039801",
+  "item_sequence_number": "336447",
+  "primary_key": "201039801-336447",
+  "date_filed": "2010-04-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201039801",
+  "item_sequence_number": "336442",
+  "primary_key": "201039801-336442",
+  "date_filed": "2010-04-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "eliminate rodent infestation (1001b, 1306 hc)",
+  "nov_item_description": "at time of inspection, signs of rodent infestation were present in garbage area on ground floor and in walkway along east side of the rear of the building. have licensed pest control contractor treat this and other areas of the building in approved manner to eliminate rodents. provide written documentation of treatment from pest control company at time of reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201039801",
+  "item_sequence_number": "336443",
+  "primary_key": "201039801-336443",
+  "date_filed": "2010-04-02T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "clean or sanitize (1306 hc)",
+  "nov_item_description": "thoroughly remove all rodent droppings and clean garbage area and along east side of the rear of the building.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336415",
+  "primary_key": "201036556-336415",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "restore required elevator to proper working condition (713, 1002-b hc)",
+  "nov_item_description": "interior door to elevator does not fully close. restore elevator door to proper working condition and provide documentation showing that the state permit to operate is current.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336416",
+  "primary_key": "201036556-336416",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "security requirements section",
+  "item": "repair lock at front gate (706, 1001-b hc)",
+  "nov_item_description": "lock on front gate is loose - repair.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336413",
+  "primary_key": "201036556-336413",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "provide adequate lighting (504g hc)",
+  "nov_item_description": "there is no working lighting in the exit pathway to the fillmore street exit between 112 and 113. provide required lighting in this exit pathway.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336414",
+  "primary_key": "201036556-336414",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "service central alarm system (908, 909 hc)",
+  "nov_item_description": "have licensed fire alarm company service / certify fire alarm system - required each year.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336411",
+  "primary_key": "201036556-336411",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "remove egress obstruction (801,1001(l) hc)",
+  "nov_item_description": "at time of inspection there were many bicycles locked to the handrails in the second exit egress ramp between the rear of the building and the church street exit. no stored items are permitted in this required egress corridor. within 48 hours, remove all stored items (bicycles) from egress pathway.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336418",
+  "primary_key": "201036556-336418",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice. it is the responsibility of the property owner to provide tenants with notification, as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during reinspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336412",
+  "primary_key": "201036556-336412",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "provide adequate lighting (504g hc)",
+  "nov_item_description": "there is no working lighting in the exit pathway to the church street exit. provide required lighting in this exit pathway.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036556",
+  "item_sequence_number": "336410",
+  "primary_key": "201036556-336410",
+  "date_filed": "2010-03-12T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "remove egress obstruction (801,1001-d,l hc)",
+  "nov_item_description": "at time of inspection there were several potted plants on the fire escape landing near unit #416. no stored items are permitted on fire escapes. within 48 hours, remove all stored items from fire escapes.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036451",
+  "item_sequence_number": "332685",
+  "primary_key": "201036451-332685",
+  "date_filed": "2010-03-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide heat to each occupied habitable room for 13 hrs between 5:00 a.m. and 11:00 a.m. and between 3:00 p.m. and 10:00 p.m. capable to maintaining a min. room temp. of 68 degrees f. (20 degrees c.). (701c hc)",
+  "nov_item_description": "at time of inspection, heat was inadequate in rooms on the 3rd and 4th floors. radiator pipes were cold. provide required heat during required times. at reinspection provide access to boiler room and time clocks.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201036451",
+  "item_sequence_number": "332686",
+  "primary_key": "201036451-332686",
+  "date_filed": "2010-03-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice. it is the responsibility of the property owner to provide tenants with notification, as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during reinspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201032503",
+  "item_sequence_number": "329661",
+  "primary_key": "201032503-329661",
+  "date_filed": "2010-01-29T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice. it is the responsibility of the property owner to provide tenants with notification, as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during reinspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "201032503",
+  "item_sequence_number": "329660",
+  "primary_key": "201032503-329660",
+  "date_filed": "2010-01-29T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "eliminate rodent infestation (1001b, 1306 hc)",
+  "nov_item_description": "evidence of rodents exist in the garbage area of this building. there are several openings in walls in this area. these openings may serve as an entrance or harborage for rodents. seal any openings in floors, walls and ceiling of the the garbage area of the building that are greater than 1/4 inch. keep secure lids on all garbage containers and keep all garbage in garbage cans. have licensed pest control contractor treat this area of the building in approved manner to eliminate rodents. provide written documentation of treatment from pest control company at time of reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200922635",
+  "item_sequence_number": "320347",
+  "primary_key": "200922635-320347",
+  "date_filed": "2009-09-22T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend the reinspection as scheduled on this notice of violation for the purpose of providing the inspector access to basement and fire sprinkler valves and to all areas cited within this notice. it is the responsibility of the property owner to provide tenants with notification, as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during reinspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200922635",
+  "item_sequence_number": "320346",
+  "primary_key": "200922635-320346",
+  "date_filed": "2009-09-22T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "clean or sanitize (1306 hc)",
+  "nov_item_description": "clean elevator and elevator shaft as needed to eliminate bad smell.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200922635",
+  "item_sequence_number": "320345",
+  "primary_key": "200922635-320345",
+  "date_filed": "2009-09-22T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "clean or sanitize (1306 hc)",
+  "nov_item_description": "clean concrete walkway between church street exit and sidewalk.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200922204",
+  "item_sequence_number": "317085",
+  "primary_key": "200922204-317085",
+  "date_filed": "2009-09-17T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200922204",
+  "item_sequence_number": "317084",
+  "primary_key": "200922204-317084",
+  "date_filed": "2009-09-17T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "restore elevator to proper working condition (713, 1002-b hc)",
+  "nov_item_description": "restore non-working elevator to proper working condition and provide documentation showing that the state permit to operate is current.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317057",
+  "primary_key": "200921876-317057",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "recharge/date tag fire extinguisher type 2a 10bc or equivalent (905,1001(m)hc)",
+  "nov_item_description": "recharge and date tag all fire extinguishers, over one year since last recharge.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317058",
+  "primary_key": "200921876-317058",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "remove unsafe structure (1001-b,d,j hc)",
+  "nov_item_description": "in second courtyard on the fillmore street side of the building, a substandard structure exists that is made of doors, wood and tarps. remove unsafe structure. building permit is required.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317063",
+  "primary_key": "200921876-317063",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "clean or sanitize (1306 hc)",
+  "nov_item_description": "garbage area is very dirty. thoroughly clean and sanitize all surfaces in this area.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317059",
+  "primary_key": "200921876-317059",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "building permit required (301 hc)",
+  "nov_item_description": "to remove or legalize unsafe structure in courtyard.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317053",
+  "primary_key": "200921876-317053",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317082",
+  "primary_key": "200921876-317082",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "repairs cited in this notice require a building permit. it is the responsibility of the owner to obtain (or have others obtain) any required permits before beginning work that requires permit(s). this case can not be abated until the housing inspector makes a final inspection to verify that all violations have been corrected and all required permits have been obtained and finalized. on reinspection day, present to the housing inspector the job card and any plans indicating that all work under permit is complete. prior to reinspection by housing inspector, call building inspector for building inspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317061",
+  "primary_key": "200921876-317061",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "repair plugged floor drain (1001f hc)",
+  "nov_item_description": "in first fillmore street courtyard, floor drain is plugged and backs up when it rains.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317055",
+  "primary_key": "200921876-317055",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "remove egress obstruction (801,1001(l) hc)",
+  "nov_item_description": "at courtyard on church street side, bicycles are chained to the handrails of the exit ramp. this ramp is a required exit pathway and no stored items are permitted on exit pathways. remove all stored items including bicycles from exit pathway.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317080",
+  "primary_key": "200921876-317080",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "security requirements section",
+  "item": "repair automated entry / intercom system (1001-b hc)",
+  "nov_item_description": "entry system was not operational at time of inspection - repair to proper working condition.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317081",
+  "primary_key": "200921876-317081",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "it is the property owner's responsibility to be present or direct his/her representative to attend, the reinspection as scheduled on this notice of violation for the purpose of providing entry to the inspector to all areas cited within this notice. it is the responsibility of the property owner to provide tenants with notification, as required by california civil code section 1954 (san francisco housing code section 303(b)), if any dwellings, apartment units or guest rooms are to be accessed during reinspection(s).",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317054",
+  "primary_key": "200921876-317054",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "repair damaged walkway (1001-b hc)",
+  "nov_item_description": "walkway between the building and the garbage area is deteriorated. wood decay exists and waterproofing surface is damaged. repair in approved manner.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317062",
+  "primary_key": "200921876-317062",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "eliminate rodent infestation (1001b, 1306 hc)",
+  "nov_item_description": "evidence of rodents exist in garbage area of this building. there are many openings in walls and floors. these openings may serve as an entrance or harborage for rodents. seal any openings in floors, walls and ceiling of the building that are greater than 1/4 inch. have licensed pest control contractor treat building in approved manner to eliminate rodents. provide written documentation of treatment from pest control company at time of reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200921876",
+  "item_sequence_number": "317060",
+  "primary_key": "200921876-317060",
+  "date_filed": "2009-09-14T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "repair deteriorated drainage pipes at exterior (1001f hc)",
+  "nov_item_description": "in first fillmore street courtyard, downspout drain from roof has fallen off the building. repair in approved manner so that all roof drainage is directed into the sanitary sewer system at this property.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200708811",
+  "primary_key": "200708811",
+  "date_filed": "2007-06-18T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Building Inspection Division",
+  "assigned_division": "Code Enforcement Section",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "work_without_permit": "Y",
+  "code_violation_desc": "A COMPLAINT HAS BEEN FILED WITH THIS DEPARTMENT REGARDING AN ATM MACHINE INSTALLED AT SOUTH ELEVATION OF BUILDING, NO BUILDING PERMIT EXISTS FOR THIS INSTALLATION, NO BUILDING PERMIT EXISTS FOR AWNING INSTALLED ABOVE ATM.",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200708811",
+  "primary_key": "200708811",
+  "date_filed": "2007-06-18T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Building Inspection Division",
+  "assigned_division": "Code Enforcement Section",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "work_without_permit": "Y",
+  "code_violation_desc": "You failed to comply with Notice of Violation dated 6/20/07 therefore this department has initiated abatement proceedings against the property.",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200344049",
+  "item_sequence_number": "132488",
+  "primary_key": "200344049-132488",
+  "date_filed": "2003-09-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "entrance to 400 duboce st.:",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200344049",
+  "item_sequence_number": "132489",
+  "primary_key": "200344049-132489",
+  "date_filed": "2003-09-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "security requirements section",
+  "item": "provide self-closing devices at exterior doors (706 hc)",
+  "nov_item_description": "front door to 400 duboce entrance: provide door closer and spring loaded deadlatch w/ minimum 1/2\" throw as required. door must close and lock without any outside assistance and unlock from the inside either automatically or with a thumblatch. note: owner's representative plans to replace door, sidelights, & frame with new. as discussed, a building permit is required to replace door/sidelight frame.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200344049",
+  "item_sequence_number": "132493",
+  "primary_key": "200344049-132493",
+  "date_filed": "2003-09-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "owner (or owner's representative) is required to complete all work & to meet the housing inspector by the reinspection date noted below. note: in order to avoid telephone tag, please do not leave phone messages to request alternate reinspection dates. please call & speak with me directly to reschedule a reinspection. otherwise feel free to leave messages regarding all other matters. i am available by phone between the hours of 8 & 9 am or 4 & 5 pm. if i do not answer the telephone during these hours, then follow my voice mail instructions and ask the attendant on duty for my whereabouts. thank you.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200344049",
+  "item_sequence_number": "132492",
+  "primary_key": "200344049-132492",
+  "date_filed": "2003-09-19T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "security requirements section",
+  "item": "building permit required (301 hc)",
+  "nov_item_description": "a building permit is required to replace door/sidelight frame. when all work is complete the district building inspector must inspect & sign the final inspection/job card before the housing inspector can abate this violation. please present the signed/finalized job card & application to the housing inspector at reinspection. please note: the building inspector is different than the housing inspector. please call 415.558.6096 to schedule an appointment with the building inspector before the reinspection date with the housing inspector (see bottom of notice for reinspection date)",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200343439",
+  "item_sequence_number": "131347",
+  "primary_key": "200343439-131347",
+  "date_filed": "2003-08-27T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "security requirements section",
+  "item": "repair entry door/intercom system (1001 (b.13) hc)",
+  "nov_item_description": "repair front door entry/intercom system as required.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200343439",
+  "item_sequence_number": "131355",
+  "primary_key": "200343439-131355",
+  "date_filed": "2003-08-27T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "inspector conducted inspection at the request of an anonymous complaint regarding front door. inspector could not gain entry at the time of inspection to verify working condition of front door, however please note: the housing code requires that all exterior doors close, latch & lock automatically (see 706 hc). please be sure that front door closes & locks at reinspection. owner (or owner's representative) is required to complete all work & to meet the housing inspector by the reinspection date noted below. note: in order to avoid telephone tag, please do not leave phone messages to request alternate reinspection dates. please call & speak with me directly to reschedule a reinspection. otherwise feel free to leave messages regarding all other matters. i am available by phone between the hours of 8 & 9 am or 4 & 5 pm. if i do not answer the telephone during these hours, then follow my voice mail instructions and ask the attendant on duty for my whereabouts. thank you.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200343439",
+  "item_sequence_number": "131341",
+  "primary_key": "200343439-131341",
+  "date_filed": "2003-08-27T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "front door to 400 duboce st.:",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200121557",
+  "item_sequence_number": "81783",
+  "primary_key": "200121557-81783",
+  "date_filed": "2001-10-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "smoke detection section",
+  "item": "repair smoke detector (908 911 hc)",
+  "nov_item_description": "repair damaged smoke detector as required",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200121557",
+  "item_sequence_number": "81748",
+  "primary_key": "200121557-81748",
+  "date_filed": "2001-10-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "apt.#305 @ 400 duboce: (1 of 79) units in a 5-story bldg w/ 4 floors of occupancy over basement.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200121557",
+  "item_sequence_number": "81784",
+  "primary_key": "200121557-81784",
+  "date_filed": "2001-10-11T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "sanitation section",
+  "item": "eliminate cockroach infestation (1001b, 1306 hc)",
+  "nov_item_description": "provide exterminator's contract for eliminating vermin specifically in apt.#305.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71372",
+  "primary_key": "200116222-71372",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "apt #213 & public areas of 400 duboce",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71374",
+  "primary_key": "200116222-71374",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "provide date tag for all fire extinguishers (905 hc)",
+  "nov_item_description": "you are required to date tag & recharge fire extinguishers on a yearly basis.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "74517",
+  "primary_key": "200116222-74517",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "addendum 5/24/01: provide plumbing permit (103.1.1 pc)",
+  "nov_item_description": "you are required to obtain a plumbing permit to insure proper installation of sump-pump: a copy of this notice is required to be submitted with the plumbing permit application. when work is complete the plumbing inspector must inspect and sign the final inspection/job card, before the housing inspector can abate this violation. please present the signed job card to the housing inspector at the time of reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71435",
+  "primary_key": "200116222-71435",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "disturbing lead based paint can be extremely dangerous to dwelling occupants and visitors, particularly to young children, pregnant women, pets, and to people performing work on the premises. for interior or exterior paint removal : always wet the surface, contain and properly dispose of leaded paint. if you are unsure whether the paint is leaded, you should test it prior to performing any work. if the paint is found to contain lead, you should consult with an expert about appropriate procedures. proper containment and 3-day notification is required for exterior jobs of more than 10 sq.ft. (sec.3604, sfbc) informational packets are available at (415) 558-6088. you can contact the san francisco childhood lead poisoning prevention program at: (415) 554-8930 for free advice. if you cause lead dust to be created, you could be liable for any illness caused by the dust. ordinance #446-97.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71379",
+  "primary_key": "200116222-71379",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "install directional signs at (801, 1001(m) hc)",
+  "nov_item_description": "all fire hose cabinets on each floor: provide a sign that identifies each fire hose cabinet. note: repair door on first floor fire hose cabinet as required to open it.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "74514",
+  "primary_key": "200116222-74514",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "addendum 5/24/01: remove egress obstruction at (801,1001(l) hc)",
+  "nov_item_description": "basement: remove excessive construction debris and provide 30\" min. to 42\" wide paths of travel through-out basement which lead to exit door.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71426",
+  "primary_key": "200116222-71426",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "provide deadlatch locks with min 1/2\" throw at exit doors (706 hc)",
+  "nov_item_description": "emergency egress gate to church st.: adjust lock as required so that door closes and locks w/out outside assistance.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71373",
+  "primary_key": "200116222-71373",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "recharge all fire extinguishers (905, 1001(m) hc)",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71382",
+  "primary_key": "200116222-71382",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "provide smoke enclosure doors (807 707 hc)",
+  "nov_item_description": "provide doors to hopper inlets for garbage chute at each floor.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71447",
+  "primary_key": "200116222-71447",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "i have scheduled a reinspection of your building on 5/16/01 at 10:00 am. reinspection of premise to include garage/storage/basement areas. please call if you have questions or concerns.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71433",
+  "primary_key": "200116222-71433",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "repair & re-paint damaged ceiling & walls (1001b,h,o; 1301 hc)",
+  "nov_item_description": "bedroom in apt.#213: repair the water damaged ceiling & walls in the bedroom and re-paint as required. ***note: you must first find the source of water damage before proceeding with any cosmetic repairs.***",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "74516",
+  "primary_key": "200116222-74516",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "plumbing and electrical section",
+  "item": "addendum 5/24/01: other plumbing and/or electrical violations (1001 hc)",
+  "nov_item_description": "basement: repair sump-pump as required to eliminate excess water flow in basement.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71434",
+  "primary_key": "200116222-71434",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "interior surfaces section",
+  "item": "remove or cover damaged paint in an approved manner to prevent a lead hazard. see attached lead hazard warning. (1301 hc)",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71378",
+  "primary_key": "200116222-71378",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "smoke detection section",
+  "item": "repair central alarm system (908, 909 hc)",
+  "nov_item_description": "provide annual certification of central alarm panel from a licensed fire/alarm system company.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71380",
+  "primary_key": "200116222-71380",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "repair smoke enclosure door closer (807,707 hc)",
+  "nov_item_description": "doors to enclosed interior stairwell: adjust all doors as required so that they close and latch without outside assistance. ground floor door at bottom of rear stair: repair door as required. door is presently non-operational. 4th floor double door to freight elev: repair slidebolt as required to keep one door panel in place as required. laundry rooms on each floor: adjust all doors as required so that they close and latch without outside assistance.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71444",
+  "primary_key": "200116222-71444",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide shutoff tool for gas utility shutoff (712 hc)",
+  "nov_item_description": "post attached diagrams & provide gas shut-off tool at areas where gas is to be shut off in the event of an emergency",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71442",
+  "primary_key": "200116222-71442",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "post enclosed gas meter instructional diagram in a public area. (712 hc)",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71375",
+  "primary_key": "200116222-71375",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "addendum 5/24/01: repair, maintain fire escape drop ladder in working condition (sec 908 hc)",
+  "nov_item_description": "upon reinspection, owner, owner's agent, or property manager must demonstrate working condition of all fire escape drop ladders. non-working fire escape ladders are a life safety hazard and must be corrected immediately. addendum 5/24/01: two fire escapes at fillmore st. & duboce st. proved non-operational. repair as required immediately.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "74515",
+  "primary_key": "200116222-74515",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "addendum 5/24/01: repair fire proofing with approved materials (hc 1001(m), 809)",
+  "nov_item_description": "boiler rm: repair damaged walls & ceilings as required for correct fire rating.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "200116222",
+  "item_sequence_number": "71381",
+  "primary_key": "200116222-71381",
+  "date_filed": "2001-04-05T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "fire section",
+  "item": "remove egress obstruction at (801,1001(l) hc)",
+  "nov_item_description": "garage door at church st.: it is strongly recommended that you provide a man-door in the roll-up garage door. however since this building was erected prior to the requirement for a second means of egress via a corridor exit, it is not required. you are required to obtain a building permit for the installation of man-door & garage door. when all work is complete the building inspector must inspect & sign the final inspection/job card before the housing inspector can abate this violation. please present the signed & finalized job card to the housing inspector at reinspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "199926291",
+  "item_sequence_number": "40684",
+  "primary_key": "199926291-40684",
+  "date_filed": "1999-10-08T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "50",
+  "street_name": "Church",
+  "street_suffix": "St",
+  "status": "not active",
+  "receiving_division": "Housing Inspection Services",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "inspector comments",
+  "nov_item_description": "no apparent violations at time of inspection.",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94114",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429331935,
+    37.769775712
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "199818023",
+  "item_sequence_number": "26090",
+  "primary_key": "199818023-26090",
+  "date_filed": "1998-12-22T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Department Of Bldg Inspection",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "other section",
+  "item": "provide heat to each occupied habitable room for 13 hrs between 5:00 a.m. and 11:00 a.m. and between 3:00 p.m. and 10:00 p.m. capable to maintaining a min. room temp. of 68 degrees f. (20 degrees c.). (701c hc)",
+  "nov_item_description": "unit 415",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ },
+ {
+  "complaint_number": "199818023",
+  "item_sequence_number": "26089",
+  "primary_key": "199818023-26089",
+  "date_filed": "1998-12-22T00:00:00.000",
+  "block": "0874",
+  "lot": "003",
+  "street_number": "400",
+  "street_name": "Duboce",
+  "street_suffix": "Av",
+  "status": "not active",
+  "receiving_division": "Department Of Bldg Inspection",
+  "assigned_division": "Housing Inspection Services",
+  "nov_category_description": "building section",
+  "item": "this notice includes violations for the areas noted.",
+  "nov_item_description": "unit 415",
+  "neighborhoods_analysis_boundaries": "Hayes Valley",
+  "supervisor_district": "8",
+  "zipcode": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.429615495,
+    37.769551309
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:11:57.000"
+ }
+]

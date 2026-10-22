@@ -1,0 +1,13 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "serverGens": {
+  "minServerGen": 5344790,
+  "serverGen": 5344790
+ },
+ "features": []
+}

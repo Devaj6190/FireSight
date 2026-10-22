@@ -1,0 +1,585 @@
+[
+ {
+  "permit_number": "EW202601121967",
+  "application_creation_date": "2026-01-12T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "1433 haight street #4 - replace knob & tube wiring",
+  "status": "complete",
+  "filed_date": "2026-01-12T00:00:00.000",
+  "issued_date": "2026-01-12T00:00:00.000",
+  "completed_date": "2026-03-17T00:00:00.000",
+  "permit_valuation": "10000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW202508258932",
+  "application_creation_date": "2025-08-25T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "new meter socket installed",
+  "status": "complete",
+  "filed_date": "2025-08-25T00:00:00.000",
+  "issued_date": "2025-08-25T00:00:00.000",
+  "completed_date": "2025-09-03T00:00:00.000",
+  "permit_valuation": "3000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202309129299",
+  "application_creation_date": "2023-09-12T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "amend to e/p e202308148717 to correct the description of work: rooftop solar install (53) 480w/pv modules: 25.4 kw w/ optimizers",
+  "status": "issued",
+  "filed_date": "2023-09-12T00:00:00.000",
+  "issued_date": "2023-09-12T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E202308148717",
+  "application_creation_date": "2023-08-14T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "rooftop solar 480 watts/pv modules = 53kw, w/optimizers",
+  "status": "complete",
+  "filed_date": "2023-08-14T00:00:00.000",
+  "issued_date": "2023-08-14T00:00:00.000",
+  "completed_date": "2023-09-01T00:00:00.000",
+  "permit_valuation": "82428",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20150212221",
+  "application_creation_date": "2015-02-12T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1429",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "addition of bathroom in store",
+  "status": "complete",
+  "filed_date": "2015-02-12T00:00:00.000",
+  "issued_date": "2015-02-12T00:00:00.000",
+  "completed_date": "2015-03-31T00:00:00.000",
+  "permit_valuation": "400",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20140808241",
+  "application_creation_date": "2014-08-08T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "final inspection on expired permit, cover exposed wiring",
+  "status": "complete",
+  "filed_date": "2014-08-08T00:00:00.000",
+  "issued_date": "2014-08-08T00:00:00.000",
+  "completed_date": "2014-08-11T00:00:00.000",
+  "permit_valuation": "50",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E20140624625",
+  "application_creation_date": "2014-06-24T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "double sided cabinet wall mount with 2 sets of neon artwork 29'xhx28'w",
+  "status": "complete",
+  "filed_date": "2014-06-24T00:00:00.000",
+  "issued_date": "2014-06-24T00:00:00.000",
+  "completed_date": "2014-08-07T00:00:00.000",
+  "permit_valuation": "250",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20130801361",
+  "application_creation_date": "2013-08-01T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "install new lights, receptacles, subpanel, waterheater, exhaust fan and power to sign",
+  "status": "complete",
+  "filed_date": "2013-08-01T00:00:00.000",
+  "issued_date": "2013-08-01T00:00:00.000",
+  "completed_date": "2014-05-23T00:00:00.000",
+  "permit_valuation": "62375",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20130402761",
+  "application_creation_date": "2013-04-02T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "relocation of 4 outlets due to seismic upgrade",
+  "status": "expired",
+  "filed_date": "2013-04-02T00:00:00.000",
+  "issued_date": "2013-04-02T00:00:00.000",
+  "permit_valuation": "0",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20121018881",
+  "application_creation_date": "2012-10-18T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1429",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "rewire store lighting and outlets.",
+  "status": "complete",
+  "filed_date": "2012-10-18T00:00:00.000",
+  "issued_date": "2012-10-18T00:00:00.000",
+  "completed_date": "2012-12-05T00:00:00.000",
+  "permit_valuation": "6000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20100831681",
+  "application_creation_date": "2010-08-31T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1427",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "install a light for changing room.",
+  "status": "complete",
+  "filed_date": "2010-08-31T00:00:00.000",
+  "issued_date": "2010-08-31T00:00:00.000",
+  "completed_date": "2010-09-03T00:00:00.000",
+  "permit_valuation": "1000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20100406141",
+  "application_creation_date": "2010-04-06T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1427",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "15 lights, 16 outlets, 5 switches, 1 exit/emergency",
+  "status": "complete",
+  "filed_date": "2010-04-06T00:00:00.000",
+  "issued_date": "2010-04-06T00:00:00.000",
+  "completed_date": "2010-08-06T00:00:00.000",
+  "permit_valuation": "7700",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20090810021",
+  "application_creation_date": "2009-08-10T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "400 amp underground electrical service 4 meters, 3 x 60 amp panels 1 x 200 amp panel. upgrade grounding system.",
+  "status": "complete",
+  "filed_date": "2009-08-10T00:00:00.000",
+  "issued_date": "2009-08-10T00:00:00.000",
+  "completed_date": "2009-09-25T00:00:00.000",
+  "permit_valuation": "20000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200901266072",
+  "application_creation_date": "2009-01-26T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "1. upgrade grounding on existing electrical service. 2. replace fuse disconnect supplying commerical store. 3. remove glass fuse panel in shoe store and install circuit breaker panel.",
+  "status": "expired",
+  "filed_date": "2009-01-26T00:00:00.000",
+  "issued_date": "2009-01-26T00:00:00.000",
+  "permit_valuation": "8500",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200810082240",
+  "application_creation_date": "2008-10-08T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "survey inspection for service upgrade.",
+  "status": "complete",
+  "filed_date": "2008-10-08T00:00:00.000",
+  "issued_date": "2008-10-08T00:00:00.000",
+  "completed_date": "2008-10-22T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20070522641",
+  "application_creation_date": "2007-05-22T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "unit": "0",
+  "description": "service replacement [scope of work does not include residential electric space heater installation.]",
+  "status": "complete",
+  "filed_date": "2007-05-22T00:00:00.000",
+  "issued_date": "2007-05-22T00:00:00.000",
+  "completed_date": "2008-10-08T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "EW20060110905",
+  "application_creation_date": "2006-01-10T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "renewal of expired permit for permit #e200410158826",
+  "status": "complete",
+  "filed_date": "2006-01-10T00:00:00.000",
+  "issued_date": "2006-01-10T00:00:00.000",
+  "completed_date": "2006-01-24T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E20041207833",
+  "application_creation_date": "2004-12-07T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "survey permit",
+  "status": "expired",
+  "filed_date": "2004-12-07T00:00:00.000",
+  "issued_date": "2004-12-07T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E20041207831",
+  "application_creation_date": "2004-12-07T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1433",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "install 3\" conduit under floor",
+  "status": "expired",
+  "filed_date": "2004-12-07T00:00:00.000",
+  "issued_date": "2004-12-07T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200410158826",
+  "application_creation_date": "2004-10-15T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1431",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "install plugs & sub panel & switches, 6 switches, 10 receptacles & 5 circuits",
+  "status": "complete",
+  "filed_date": "2004-10-15T00:00:00.000",
+  "issued_date": "2004-10-15T00:00:00.000",
+  "completed_date": "2006-01-24T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ },
+ {
+  "permit_number": "E200408236663",
+  "application_creation_date": "2004-08-23T00:00:00.000",
+  "block": "1244",
+  "lot": "030",
+  "street_number": "1427",
+  "street_name": "Haight",
+  "street_suffix": "St",
+  "description": "bring up to code electric conduit installed in passageway without permit",
+  "status": "complete",
+  "filed_date": "2004-08-23T00:00:00.000",
+  "issued_date": "2004-08-23T00:00:00.000",
+  "completed_date": "2004-09-17T00:00:00.000",
+  "neighborhoods_analysis_boundaries": "Haight Ashbury",
+  "supervisor_district": "5",
+  "zip_code": "94117",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890533,
+    37.769853185
+   ]
+  },
+  "point_source": "eas_address_point",
+  "data_as_of": "2026-10-22T05:04:32.000",
+  "data_loaded_at": "2026-10-22T05:25:44.000"
+ }
+]

@@ -1,0 +1,106 @@
+{
+ "objectIdFieldName": "FID",
+ "uniqueIdField": {
+  "name": "FID",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "DataField",
+   "type": "esriFieldTypeInteger",
+   "alias": "DataField",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "X",
+   "type": "esriFieldTypeDouble",
+   "alias": "X",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Y",
+   "type": "esriFieldTypeDouble",
+   "alias": "Y",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "XY",
+   "type": "esriFieldTypeString",
+   "alias": "XY",
+   "sqlType": "sqlTypeOther",
+   "length": 41,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "LabelField",
+   "type": "esriFieldTypeString",
+   "alias": "LabelField",
+   "sqlType": "sqlTypeOther",
+   "length": 204,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "InfoField",
+   "type": "esriFieldTypeString",
+   "alias": "InfoField",
+   "sqlType": "sqlTypeOther",
+   "length": 254,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 108566,
+    "DataField": 199499,
+    "X": 6009970.38295,
+    "Y": 2112379.67473,
+    "XY": "6009970.383,2112379.675",
+    "LabelField": "Washingtonia robusta - Mexican Fan Palm",
+    "InfoField": "Species: Washingtonia robusta - Mexican Fan Palm, Address: 1008 Mission StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.409136,
+    "y": 37.780759
+   }
+  },
+  {
+   "attributes": {
+    "FID": 108706,
+    "DataField": 15173,
+    "X": 6009997.61179,
+    "Y": 2112323.54052,
+    "XY": "6009997.612,2112323.541",
+    "LabelField": "Ficus microcarpa nitida 'Green Gem' - Indian Laurel Fig Tree 'Green Gem'",
+    "InfoField": "Species: Ficus microcarpa nitida 'Green Gem' - Indian Laurel Fig Tree 'Green Gem', Address: 1009 Mission StTree Count: 1"
+   },
+   "geometry": {
+    "x": -122.409038,
+    "y": 37.780607
+   }
+  }
+ ]
+}

@@ -1,0 +1,250 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "serverGens": {
+  "minServerGen": 5344790,
+  "serverGen": 5344790
+ },
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "name",
+   "type": "esriFieldTypeString",
+   "alias": "name",
+   "sqlType": "sqlTypeOther",
+   "length": 57,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "type",
+   "type": "esriFieldTypeString",
+   "alias": "type",
+   "sqlType": "sqlTypeOther",
+   "length": 5,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "address",
+   "type": "esriFieldTypeString",
+   "alias": "address",
+   "sqlType": "sqlTypeOther",
+   "length": 34,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "acronym",
+   "type": "esriFieldTypeString",
+   "alias": "acronym",
+   "sqlType": "sqlTypeOther",
+   "length": 12,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "agencyurl",
+   "type": "esriFieldTypeString",
+   "alias": "Website",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "operdays",
+   "type": "esriFieldTypeString",
+   "alias": "Operational Days",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": {
+    "type": "codedValue",
+    "name": "OperationalDays",
+    "codedValues": [
+     {
+      "name": "Sun-Sat",
+      "code": "Sun-Sat"
+     },
+     {
+      "name": "Mon-Fri",
+      "code": "Mon-Fri"
+     },
+     {
+      "name": "Sat-Sun",
+      "code": "Sat-Sun"
+     },
+     {
+      "name": "Other",
+      "code": "Other"
+     }
+    ]
+   },
+   "defaultValue": null
+  },
+  {
+   "name": "operhours",
+   "type": "esriFieldTypeString",
+   "alias": "Operational Hours",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": {
+    "type": "codedValue",
+    "name": "OperationalHours",
+    "codedValues": [
+     {
+      "name": "Daylight",
+      "code": "Daylight"
+     },
+     {
+      "name": "Other",
+      "code": "Other"
+     },
+     {
+      "name": "6:00am-7:00pm",
+      "code": "6:00am-7:00pm"
+     },
+     {
+      "name": "24 Hours/Day",
+      "code": "24 Hours/Day"
+     },
+     {
+      "name": "8:30am-5:00pm",
+      "code": "8:30am-5:00pm"
+     }
+    ]
+   },
+   "defaultValue": null
+  },
+  {
+   "name": "numbeds",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "Total beds",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "bedsavail",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "# Available beds",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "services",
+   "type": "esriFieldTypeString",
+   "alias": "Services",
+   "sqlType": "sqlTypeOther",
+   "length": 50,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "oshpd_id",
+   "type": "esriFieldTypeInteger",
+   "alias": "OSHPD ID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "facility_id",
+   "type": "esriFieldTypeInteger",
+   "alias": "Facility ID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 23,
+    "name": "Haight Ashbury Free Medical Clinic / Healthright 360",
+    "type": "PC",
+    "address": "558 CLAYTON STREET",
+    "acronym": null,
+    "agencyurl": "",
+    "operdays": null,
+    "operhours": null,
+    "numbeds": 0,
+    "bedsavail": null,
+    "services": "Free General Health",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1548203505630,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1548203505630,
+    "oshpd_id": 306380827,
+    "globalid": "eaf72070-afb7-43f7-b81e-ac870cb77d4b",
+    "facility_id": 220000190
+   },
+   "geometry": {
+    "x": -122.44858,
+    "y": 37.770192
+   }
+  }
+ ]
+}

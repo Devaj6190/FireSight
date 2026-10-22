@@ -1,0 +1,44 @@
+{
+ "apn": "3703081",
+ "block": "3703",
+ "lot": "081",
+ "eas_baseid": "364715",
+ "lat": 37.780703978046915,
+ "lon": -122.40945227130281,
+ "address": "1018 MISSION ST",
+ "eas_rows": [
+  {
+   "eas_baseid": "364715",
+   "eas_address_id": "581299",
+   "address_number": "1018",
+   "street_name": "MISSION",
+   "street_type": "ST",
+   "cnn": "9100000",
+   "street_full_street_name": "MISSION ST",
+   "parcel_number": "3703081",
+   "zip_code": "94103",
+   "address": "1018 MISSION ST",
+   "longitude": "-122.40945227130281",
+   "latitude": "37.780703978046915",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -122.409452271,
+     37.780703978
+    ]
+   },
+   "supdist": "SUPERVISORIAL DISTRICT 6",
+   "numbertext": "SIX",
+   "supervisor": "6",
+   "supdistpad": "06",
+   "supname": "Matt Dorsey",
+   "nhood": "South of Market",
+   "direct_source": "SF DBI",
+   "data_as_of": "2026-10-21T18:01:33.000",
+   "data_updated_at": "1970-01-01T00:00:00.000",
+   "data_loaded_at": "2026-10-21T20:15:21.146"
+  }
+ ],
+ "eas_ms": 570,
+ "address_like": "1018 MISSION%"
+}

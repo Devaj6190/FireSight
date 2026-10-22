@@ -1,0 +1,263 @@
+{
+ "objectIdFieldName": "objectid",
+ "uniqueIdField": {
+  "name": "objectid",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ccsf_entit",
+   "type": "esriFieldTypeString",
+   "alias": "ccsf_entit",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "supervisor",
+   "type": "esriFieldTypeString",
+   "alias": "supervisor",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "general_ty",
+   "type": "esriFieldTypeString",
+   "alias": "general_ty",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "category",
+   "type": "esriFieldTypeString",
+   "alias": "category",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "grade_rang",
+   "type": "esriFieldTypeString",
+   "alias": "grade_rang",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "upper_age",
+   "type": "esriFieldTypeString",
+   "alias": "upper_age",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "map_label",
+   "type": "esriFieldTypeString",
+   "alias": "map_label",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "campus_nam",
+   "type": "esriFieldTypeString",
+   "alias": "campus_nam",
+   "sqlType": "sqlTypeOther",
+   "length": 95,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cds_code",
+   "type": "esriFieldTypeString",
+   "alias": "cds_code",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "campus_add",
+   "type": "esriFieldTypeString",
+   "alias": "campus_add",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "lower_grad",
+   "type": "esriFieldTypeString",
+   "alias": "lower_grad",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "county_nam",
+   "type": "esriFieldTypeString",
+   "alias": "county_nam",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "county_fip",
+   "type": "esriFieldTypeString",
+   "alias": "county_fip",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "lower_age",
+   "type": "esriFieldTypeString",
+   "alias": "lower_age",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "upper_grad",
+   "type": "esriFieldTypeString",
+   "alias": "upper_grad",
+   "sqlType": "sqlTypeOther",
+   "length": 80,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid": 243,
+    "ccsf_entit": "Private",
+    "supervisor": "8",
+    "general_ty": "CDC",
+    "category": "Independent / Private",
+    "grade_rang": "PK",
+    "upper_age": "4",
+    "map_label": "CDC024",
+    "campus_nam": "Cross Cultural Family Center - Mary Lane Infant And Toddler Center",
+    "cds_code": "384001117",
+    "campus_add": "1 WEBSTER ST, SAN FRANCISCO, CA 94123",
+    "lower_grad": "-2",
+    "county_nam": "SAN FRANCISCO",
+    "county_fip": "06075",
+    "lower_age": "3",
+    "upper_grad": "-1",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1549673249045,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1549673249045,
+    "globalid": "179c99c1-73bc-44f1-b3a3-0aa56b6c2b69"
+   },
+   "geometry": {
+    "x": -122.428474,
+    "y": 37.769699
+   }
+  },
+  {
+   "attributes": {
+    "objectid": 84,
+    "ccsf_entit": "Private",
+    "supervisor": "8",
+    "general_ty": "CDC",
+    "category": "Independent / Private",
+    "grade_rang": "PK",
+    "upper_age": "4",
+    "map_label": "CDC041",
+    "campus_nam": "Friends Of Saint Francis Child Care Center",
+    "cds_code": "380504229",
+    "campus_add": "50 BELCHER ST, SAN FRANCISCO, CA 94114",
+    "lower_grad": "-2",
+    "county_nam": "SAN FRANCISCO",
+    "county_fip": "06075",
+    "lower_age": "3",
+    "upper_grad": "-1",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1549673249045,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1549673249045,
+    "globalid": "7ef2f2a0-f5b6-4699-b07c-2f825e3c6013"
+   },
+   "geometry": {
+    "x": -122.430344,
+    "y": 37.768589
+   }
+  }
+ ]
+}

@@ -1,0 +1,1850 @@
+[
+ {
+  "inspection_number": "618751",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2026-10-08T00:00:00.000",
+  "inspection_end_date": "2026-10-08T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "187.00",
+  "fee": "187.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2026-10-08T12:19:06.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "608895",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2025-10-30T00:00:00.000",
+  "inspection_end_date": "2025-10-30T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "126948",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2025-10-30T14:37:54.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "608957",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2025-10-30T00:00:00.000",
+  "inspection_end_date": "2026-09-16T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "126948",
+  "invoice_date": "2026-09-30T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "307.00",
+  "fee": "307.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2026-09-30T09:50:07.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "574645",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2025-10-29T00:00:00.000",
+  "inspection_end_date": "2025-10-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2025-12-03T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "188.00",
+  "fee": "188.00",
+  "paid_amount": "188.00",
+  "paid_date": "2026-01-02T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2026-01-02T15:24:45.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "603336",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2025-08-15T00:00:00.000",
+  "inspection_status": "Open/Follow-Up Needed",
+  "dbi_application_number": "202503142270",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2025-08-15T16:17:33.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "603267",
+  "inspection_type": "01",
+  "inspection_type_description": "Initial Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2025-08-06T00:00:00.000",
+  "inspection_status": "Open/Follow-Up Needed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2025-08-15T16:19:35.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "531886",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2024-10-14T00:00:00.000",
+  "inspection_end_date": "2024-10-14T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2024-10-25T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "183.00",
+  "fee": "183.00",
+  "paid_amount": "183.00",
+  "paid_date": "2024-11-12T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2024-11-12T15:37:01.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "558584",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2024-08-02T00:00:00.000",
+  "inspection_end_date": "2025-07-21T00:00:00.000",
+  "inspection_status": "Completed",
+  "dbi_application_number": "202406285463",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2025-07-21T16:21:54.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "547280",
+  "inspection_type": "45",
+  "inspection_type_description": "Water Flow - Records Analysis",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2024-07-15T00:00:00.000",
+  "inspection_end_date": "2024-07-15T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2024-07-18T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "144.00",
+  "fee": "144.00",
+  "penalty_amount": "0.00",
+  "posting_fee": "0",
+  "interest_amount": "0.00",
+  "paid_amount": "144.00",
+  "paid_date": "2024-06-17T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2024-07-18T07:57:37.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "488116",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2023-11-13T00:00:00.000",
+  "inspection_end_date": "2023-11-13T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2023-11-20T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "177.00",
+  "fee": "177.00",
+  "paid_amount": "177.00",
+  "paid_date": "2024-01-08T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2024-01-08T14:40:58.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "405610",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2022-12-01T00:00:00.000",
+  "inspection_end_date": "2022-12-01T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2022-12-16T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "167.00",
+  "fee": "167.00",
+  "paid_amount": "167.00",
+  "paid_date": "2023-02-01T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2023-02-01T09:39:10.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "445373",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2021-08-20T00:00:00.000",
+  "inspection_end_date": "2021-09-23T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "83186",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2021-10-22T15:17:30.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "418223",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2020-07-29T00:00:00.000",
+  "inspection_end_date": "2020-07-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "73998",
+  "invoice_date": "2020-08-10T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-08-10T09:52:26.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "417729",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2020-07-27T00:00:00.000",
+  "inspection_end_date": "2020-07-27T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "73998",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-08-04T08:05:20.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "371293",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2019-09-25T00:00:00.000",
+  "inspection_end_date": "2019-09-25T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2019-12-18T00:00:00.000",
+  "second_notice_date": "2020-08-10T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "157.00",
+  "fee": "157.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2021-11-29T14:11:58.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "389704",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2019-07-16T00:00:00.000",
+  "inspection_end_date": "2019-07-16T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "67880",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2019-07-17T10:00:16.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "341979",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2018-10-01T00:00:00.000",
+  "inspection_end_date": "2018-10-01T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2018-11-09T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "157.00",
+  "fee": "157.00",
+  "paid_amount": "157.00",
+  "paid_date": "2019-02-28T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:48.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "361549",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2018-07-13T00:00:00.000",
+  "inspection_end_date": "2018-07-13T00:00:00.000",
+  "inspection_status": "Completed",
+  "dbi_application_number": "201806262995",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-07-13T14:05:45.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "353629",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2018-06-29T00:00:00.000",
+  "inspection_end_date": "2018-06-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "62071",
+  "invoice_date": "2018-07-11T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-07-11T14:22:53.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "354160",
+  "inspection_type": "31",
+  "inspection_type_description": "DBI Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2018-06-26T00:00:00.000",
+  "inspection_end_date": "2018-06-26T00:00:00.000",
+  "inspection_status": "Completed",
+  "dbi_application_number": "201806202396",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-06-27T08:06:31.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "353332",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2018-06-06T00:00:00.000",
+  "inspection_end_date": "2018-06-06T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "61959",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-06-06T14:17:30.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "353331",
+  "inspection_type": "91W",
+  "inspection_type_description": "SRO Fire Prevention Workshop",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2018-06-05T00:00:00.000",
+  "inspection_end_date": "2018-06-05T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-06-13T13:05:08.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "310403",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2017-06-19T00:00:00.000",
+  "inspection_end_date": "2017-06-23T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "56265",
+  "invoice_date": "2017-06-28T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "240.00",
+  "fee": "240.00",
+  "paid_amount": "240.00",
+  "paid_date": "2017-08-02T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:44.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "310483",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-06-02T00:00:00.000",
+  "inspection_end_date": "2017-06-02T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "56291",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-06-02T09:37:45.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "310007",
+  "inspection_type": "91W",
+  "inspection_type_description": "SRO Fire Prevention Workshop",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-31T00:00:00.000",
+  "inspection_end_date": "2017-05-31T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-06-01T07:33:18.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "310205",
+  "inspection_type": "91W",
+  "inspection_type_description": "SRO Fire Prevention Workshop",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-31T00:00:00.000",
+  "inspection_end_date": "2017-05-31T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-06-06T09:12:31.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "310344",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-30T00:00:00.000",
+  "inspection_end_date": "2017-05-31T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "56265",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-05-31T08:49:14.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "340587",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "56247",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-01-02T18:27:32.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "309171",
+  "inspection_type": "21",
+  "inspection_type_description": "R2 Company Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-29T00:00:00.000",
+  "inspection_end_date": "2017-05-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "invoice_date": "2017-05-30T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "157.00",
+  "fee": "157.00",
+  "paid_amount": "157.00",
+  "paid_date": "2017-06-20T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:44.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "309270",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-05-08T00:00:00.000",
+  "inspection_end_date": "2017-05-08T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "55885",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-05-08T12:09:26.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "299138",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2017-01-20T00:00:00.000",
+  "inspection_end_date": "2017-01-24T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "49644",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2017-01-24T14:44:06.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "235084",
+  "inspection_type": "54",
+  "inspection_type_description": "Police Dept. Ref. Insp.",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2016-02-01T00:00:00.000",
+  "inspection_end_date": "2016-02-08T00:00:00.000",
+  "inspection_status": "Completed",
+  "referral_number": "32594",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "120.00",
+  "fee": "120.00",
+  "paid_amount": "120.00",
+  "paid_date": "2016-02-04T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:40.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "234599",
+  "inspection_type": "91",
+  "inspection_type_description": "SRO Sprinkler Ordinance Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2016-01-25T00:00:00.000",
+  "inspection_end_date": "2018-06-08T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "62071",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2018-06-12T08:41:37.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "227769",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2015-11-02T00:00:00.000",
+  "inspection_end_date": "2015-11-16T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "40987",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2015-11-16T15:48:53.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "212959",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2015-05-29T00:00:00.000",
+  "inspection_end_date": "2015-05-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "39047",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2015-05-29T15:04:19.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "191503",
+  "inspection_type": "22",
+  "inspection_type_description": "ACE Inspection - Follow Up",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2014-07-10T00:00:00.000",
+  "inspection_end_date": "2014-07-10T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2014-07-10T17:17:16.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "169744",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2013-08-16T00:00:00.000",
+  "inspection_end_date": "2013-10-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "27392",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2013-10-07T17:01:10.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "123000",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2012-05-14T00:00:00.000",
+  "inspection_end_date": "2012-06-04T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "17664",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2012-06-04T17:23:45.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "115526",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2012-01-19T00:00:00.000",
+  "inspection_end_date": "2012-01-20T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "16967",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2012-01-20T15:36:44.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "113711",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-11-14T00:00:00.000",
+  "inspection_end_date": "2011-11-18T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "16576",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-11-18T16:50:34.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "109806",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-07-29T00:00:00.000",
+  "inspection_end_date": "2011-07-29T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "15872",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-07-29T16:39:09.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "109137",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-07-07T00:00:00.000",
+  "inspection_end_date": "2011-07-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "15705",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-07-07T14:15:27.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "105138",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-07-07T00:00:00.000",
+  "inspection_end_date": "2011-07-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "15688",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-07-07T14:09:56.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "102166",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-04-01T00:00:00.000",
+  "inspection_end_date": "2011-04-27T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "15045",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-04-27T16:33:21.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "101961",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2011-03-29T00:00:00.000",
+  "inspection_end_date": "2011-04-01T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "15010",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2011-04-01T16:39:09.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "84717",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2010-06-04T00:00:00.000",
+  "inspection_end_date": "2010-06-14T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "13087",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2010-06-14T16:24:25.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "58960",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2010-04-05T00:00:00.000",
+  "inspection_end_date": "2008-12-15T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "8596",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2010-04-05T07:39:15.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "82880",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2010-04-02T00:00:00.000",
+  "inspection_end_date": "2010-04-02T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "12748",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2010-04-02T12:34:04.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "80941",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2010-02-02T00:00:00.000",
+  "inspection_end_date": "2010-02-23T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "12333",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2010-02-23T17:15:45.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "58446",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2008-11-13T00:00:00.000",
+  "inspection_end_date": "2008-11-25T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "8417",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2008-11-25T17:20:22.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "44195",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-10-22T00:00:00.000",
+  "inspection_end_date": "2007-10-22T00:00:00.000",
+  "inspection_status": "Completed",
+  "violation_number": "3007",
+  "invoice_date": "2007-10-25T00:00:00.000",
+  "second_notice_date": "2007-12-27T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "201.60",
+  "fee": "180.00",
+  "penalty_amount": "18.00",
+  "interest_amount": "3.60",
+  "paid_amount": "201.60",
+  "paid_date": "2008-02-12T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "43767",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-09-07T00:00:00.000",
+  "inspection_end_date": "2007-09-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "6256",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2007-09-11T07:44:51.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "42996",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-09-07T00:00:00.000",
+  "inspection_end_date": "2007-09-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "return_date": "2007-09-24T00:00:00.000",
+  "violation_number": "3007",
+  "invoice_date": "2007-10-10T00:00:00.000",
+  "second_notice_date": "2007-12-19T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "201.60",
+  "fee": "180.00",
+  "penalty_amount": "18.00",
+  "interest_amount": "3.60",
+  "paid_amount": "201.60",
+  "paid_date": "2008-02-12T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "37484",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-08-07T00:00:00.000",
+  "inspection_end_date": "2007-08-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "return_date": "2007-09-28T00:00:00.000",
+  "violation_number": "3007",
+  "invoice_date": "2007-08-08T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "80.00",
+  "fee": "80.00",
+  "paid_amount": "80.00",
+  "paid_date": "2007-08-20T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "37370",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-06-19T00:00:00.000",
+  "inspection_end_date": "2007-06-19T00:00:00.000",
+  "inspection_status": "Completed",
+  "violation_number": "3007",
+  "invoice_date": "2007-06-21T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "80.00",
+  "fee": "80.00",
+  "paid_amount": "80.00",
+  "paid_date": "2007-08-08T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "37193",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-05-09T00:00:00.000",
+  "inspection_end_date": "2007-05-09T00:00:00.000",
+  "inspection_status": "Completed",
+  "return_date": "2007-05-31T00:00:00.000",
+  "violation_number": "3007",
+  "invoice_date": "2007-05-17T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "80.00",
+  "fee": "80.00",
+  "paid_amount": "80.00",
+  "paid_date": "2007-06-13T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "36164",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-04-25T00:00:00.000",
+  "inspection_end_date": "2007-04-25T00:00:00.000",
+  "inspection_status": "Completed",
+  "return_date": "2007-05-30T00:00:00.000",
+  "violation_number": "3007",
+  "invoice_date": "2007-05-03T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "80.00",
+  "fee": "80.00",
+  "paid_amount": "80.00",
+  "paid_date": "2007-05-16T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "35886",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2007-03-12T00:00:00.000",
+  "inspection_end_date": "2007-03-12T00:00:00.000",
+  "inspection_status": "Completed",
+  "return_date": "2007-03-19T00:00:00.000",
+  "violation_number": "3007",
+  "invoice_date": "2007-03-22T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "80.00",
+  "fee": "80.00",
+  "paid_amount": "80.00",
+  "paid_date": "2007-04-09T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:23.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "35743",
+  "inspection_type": "04",
+  "inspection_type_description": "Complaint Inspection",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2007-02-28T00:00:00.000",
+  "inspection_end_date": "2007-02-28T00:00:00.000",
+  "inspection_status": "Completed",
+  "complaint_number": "4371",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2007-02-28T11:48:01.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "15561",
+  "inspection_type": "33",
+  "inspection_type_description": "Violation Inspection - NOV",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": true,
+  "inspection_start_date": "2005-11-23T00:00:00.000",
+  "inspection_end_date": "2005-11-23T00:00:00.000",
+  "inspection_status": "Completed",
+  "violation_number": "1558",
+  "invoice_date": "2005-11-30T00:00:00.000",
+  "second_notice_date": "2006-01-30T00:00:00.000",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "88.03",
+  "fee": "80.00",
+  "penalty_amount": "8.00",
+  "interest_amount": "0.03",
+  "paid_amount": "88.03",
+  "paid_date": "2006-02-14T00:00:00.000",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2020-07-16T15:25:21.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "15798",
+  "inspection_type": "98",
+  "inspection_type_description": "Reinspection - No Fee",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2005-11-23T00:00:00.000",
+  "inspection_end_date": "2005-11-23T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2008-01-16T10:07:29.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "15613",
+  "inspection_type": "98",
+  "inspection_type_description": "Reinspection - No Fee",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2005-11-09T00:00:00.000",
+  "inspection_end_date": "2005-11-10T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2008-01-16T10:07:14.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "14084",
+  "inspection_type": "98",
+  "inspection_type_description": "Reinspection - No Fee",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2005-11-07T00:00:00.000",
+  "inspection_end_date": "2005-11-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2008-01-16T10:08:04.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ },
+ {
+  "inspection_number": "15562",
+  "inspection_type": "98",
+  "inspection_type_description": "Reinspection - No Fee",
+  "address": "1018 - 1024 Mission St",
+  "zipcode": "94103",
+  "battalion": "03",
+  "station": "01",
+  "bfp_district": "03W",
+  "billable_inspection": false,
+  "inspection_start_date": "2005-11-07T00:00:00.000",
+  "inspection_end_date": "2005-11-07T00:00:00.000",
+  "inspection_status": "Completed",
+  "sent_to_bureau_of_delinquent_revenue": false,
+  "invoice_amount": "0.00",
+  "fee": "0.00",
+  "supervisor_district": "6",
+  "neighborhood_district": "South of Market",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    -122.40945227,
+    37.78070398
+   ]
+  },
+  "data_as_of": "2008-01-16T10:07:46.000",
+  "data_loaded_at": "2026-10-22T02:23:39.000"
+ }
+]

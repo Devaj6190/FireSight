@@ -1,0 +1,218 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.11 87bfad18",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-22T19:14:20Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "way",
+   "id": 28332430,
+   "center": {
+    "lat": 37.7810291,
+    "lon": -122.4097384
+   },
+   "tags": {
+    "highway": "residential",
+    "name": "Jessie Street",
+    "name:etymology": "Jessie Benton Fr\u00e9mont",
+    "name:etymology:wikidata": "Q6187624",
+    "name:etymology:wikipedia": "en:Jessie Benton Fr\u00e9mont",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Jessie",
+    "tiger:name_type": "St"
+   }
+  },
+  {
+   "type": "way",
+   "id": 88572941,
+   "center": {
+    "lat": 37.7800944,
+    "lon": -122.4098286
+   },
+   "tags": {
+    "highway": "secondary",
+    "lanes:bus:backward": "1",
+    "lanes:bus:forward": "1",
+    "lit": "yes",
+    "maxspeed": "20 mph",
+    "name": "Mission Street",
+    "sidewalk:both": "separate",
+    "surface": "asphalt",
+    "tiger:cfcc": "A41",
+    "tiger:county": "San Francisco, CA",
+    "tiger:name_base": "Mission",
+    "tiger:name_type": "St",
+    "trolley_wire": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 260345915,
+   "center": {
+    "lat": 37.780707,
+    "lon": -122.4094673
+   },
+   "tags": {
+    "addr:housenumber": "1018",
+    "addr:street": "Mission Street",
+    "building": "yes",
+    "height": "17",
+    "name": "Kean Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "way",
+   "id": 260345916,
+   "center": {
+    "lat": 37.7808629,
+    "lon": -122.4096789
+   },
+   "tags": {
+    "building": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 260345922,
+   "center": {
+    "lat": 37.7806869,
+    "lon": -122.4096897
+   },
+   "tags": {
+    "building": "yes",
+    "height": "10"
+   }
+  },
+  {
+   "type": "way",
+   "id": 260345927,
+   "center": {
+    "lat": 37.7809379,
+    "lon": -122.409184
+   },
+   "tags": {
+    "amenity": "community_centre",
+    "building": "yes",
+    "height": "17",
+    "name": "Bayanihan Community Center"
+   }
+  },
+  {
+   "type": "way",
+   "id": 805241234,
+   "center": {
+    "lat": 37.7808325,
+    "lon": -122.4094441
+   },
+   "tags": {
+    "access": "private",
+    "highway": "service"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1409789993,
+   "center": {
+    "lat": 37.7799611,
+    "lon": -122.4101742
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1409789994,
+   "center": {
+    "lat": 37.7798407,
+    "lon": -122.4100118
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1409789999,
+   "center": {
+    "lat": 37.7811868,
+    "lon": -122.4098173
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1409790000,
+   "center": {
+    "lat": 37.7809724,
+    "lon": -122.4097504
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1466077373,
+   "center": {
+    "lat": 37.7809098,
+    "lon": -122.4088239
+   },
+   "tags": {
+    "crossing": "traffic_signals",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1466077374,
+   "center": {
+    "lat": 37.7810448,
+    "lon": -122.4088369
+   },
+   "tags": {
+    "crossing": "traffic_signals",
+    "crossing:markings": "zebra",
+    "footway": "crossing",
+    "highway": "footway",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1513109410,
+   "center": {
+    "lat": 37.7806571,
+    "lon": -122.4089974
+   },
+   "tags": {
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1513109411,
+   "center": {
+    "lat": 37.78094,
+    "lon": -122.409142
+   },
+   "tags": {
+    "footway": "sidewalk",
+    "highway": "footway"
+   }
+  }
+ ]
+}

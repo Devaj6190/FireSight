@@ -1,0 +1,21 @@
+[
+ {
+  "block": "1244",
+  "lot": "030",
+  "parcel_number": "1244030",
+  "property_address": "1427 HAIGHT ST",
+  "address": "1427 HAIGHT ST, SAN FRANCISCO CA",
+  "tier": "4",
+  "status": "Work Complete, CFC Issued",
+  "bos_district": "5",
+  "point": {
+   "type": "Point",
+   "coordinates": [
+    -122.445890532,
+    37.769853186
+   ]
+  },
+  "data_as_of": "2026-10-07T01:03:51.476",
+  "data_loaded_at": "2026-10-07T01:05:53.822"
+ }
+]

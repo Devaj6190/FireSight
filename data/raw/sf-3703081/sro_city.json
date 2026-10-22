@@ -1,0 +1,121 @@
+{
+ "objectIdFieldName": "ObjectId",
+ "uniqueIdField": {
+  "name": "ObjectId",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "Full_Address",
+   "type": "esriFieldTypeString",
+   "alias": "Full Address",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Address__Clean_",
+   "type": "esriFieldTypeString",
+   "alias": "Address (Clean)",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "City",
+   "type": "esriFieldTypeString",
+   "alias": "City",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "State",
+   "type": "esriFieldTypeString",
+   "alias": "State",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ZIP_Code",
+   "type": "esriFieldTypeInteger",
+   "alias": "ZIP Code",
+   "sqlType": "sqlTypeInteger",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Longitude",
+   "type": "esriFieldTypeDouble",
+   "alias": "Longitude",
+   "sqlType": "sqlTypeFloat",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Latitude",
+   "type": "esriFieldTypeDouble",
+   "alias": "Latitude",
+   "sqlType": "sqlTypeFloat",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "City_Funded_or_Operated",
+   "type": "esriFieldTypeString",
+   "alias": "City Funded or Operated",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "Elevator",
+   "type": "esriFieldTypeString",
+   "alias": "Elevator",
+   "sqlType": "sqlTypeNVarchar",
+   "length": 4000,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "ObjectId",
+   "type": "esriFieldTypeOID",
+   "alias": "ObjectId",
+   "sqlType": "sqlTypeInteger",
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "Full_Address": "1018 MISSION ST, San Francisco, CA 94103",
+    "Address__Clean_": "1018 MISSION ST",
+    "City": "San Francisco",
+    "State": "CA",
+    "ZIP_Code": 94103,
+    "Longitude": -122.4094523,
+    "Latitude": 37.78070398,
+    "City_Funded_or_Operated": "N",
+    "Elevator": "N",
+    "ObjectId": 331
+   },
+   "geometry": {
+    "x": -122.409452,
+    "y": 37.780704
+   }
+  }
+ ]
+}

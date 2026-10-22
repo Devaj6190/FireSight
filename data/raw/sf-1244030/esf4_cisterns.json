@@ -1,0 +1,151 @@
+{
+ "objectIdFieldName": "objectid_1",
+ "uniqueIdField": {
+  "name": "objectid_1",
+  "isSystemMaintained": true
+ },
+ "globalIdFieldName": "globalid",
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "objectid_1",
+   "type": "esriFieldTypeOID",
+   "alias": "objectid_1",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeInteger",
+   "alias": "OBJECTID",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "cnn",
+   "type": "esriFieldTypeString",
+   "alias": "CNN",
+   "sqlType": "sqlTypeOther",
+   "length": 10,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "layer",
+   "type": "esriFieldTypeString",
+   "alias": "LAYER",
+   "sqlType": "sqlTypeOther",
+   "length": 20,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "intcnn",
+   "type": "esriFieldTypeDouble",
+   "alias": "INTCNN",
+   "sqlType": "sqlTypeOther",
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "location",
+   "type": "esriFieldTypeString",
+   "alias": "LOCATION",
+   "sqlType": "sqlTypeOther",
+   "length": 22,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "sqlType": "sqlTypeOther",
+   "length": 38,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_user",
+   "type": "esriFieldTypeString",
+   "alias": "created_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "created_date",
+   "type": "esriFieldTypeDate",
+   "alias": "created_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_user",
+   "type": "esriFieldTypeString",
+   "alias": "last_edited_user",
+   "sqlType": "sqlTypeOther",
+   "length": 255,
+   "domain": null,
+   "defaultValue": null
+  },
+  {
+   "name": "last_edited_date",
+   "type": "esriFieldTypeDate",
+   "alias": "last_edited_date",
+   "sqlType": "sqlTypeOther",
+   "length": 8,
+   "domain": null,
+   "defaultValue": null
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "objectid_1": 100,
+    "objectid": 100,
+    "cnn": "26345000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 26345000,
+    "location": "OAK & MASONIC",
+    "globalid": "2461bb41-c268-43a8-8f47-17d828a3d488",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.44573,
+    "y": 37.772085
+   }
+  },
+  {
+   "attributes": {
+    "objectid_1": 112,
+    "objectid": 112,
+    "cnn": "26332000",
+    "layer": "INTERSECTIONS",
+    "intcnn": 26332000,
+    "location": "MASONIC & FREDERICK",
+    "globalid": "44df0dae-215b-4ff6-b2aa-34095b7d85ab",
+    "created_user": "nancy.milholland_sfdem",
+    "created_date": 1537393710948,
+    "last_edited_user": "nancy.milholland_sfdem",
+    "last_edited_date": 1537393710948
+   },
+   "geometry": {
+    "x": -122.444745,
+    "y": 37.767431
+   }
+  }
+ ]
+}

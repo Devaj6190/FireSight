@@ -1,0 +1,64 @@
+[
+ {
+  "recordid": "19407",
+  "recordno": "BLDG-26-3352",
+  "recordtype": "Kitchen or bath remodeling permit",
+  "status_detail": "Active - Not Issued",
+  "submitted_date": "2026-10-01T12:33:58.000",
+  "parcel_number": "0874003",
+  "streetno": "400",
+  "streetname": "DUBOCE AVE",
+  "postalcode": "94117",
+  "url": {
+   "url": "https://sanfranciscoca.portal.opengov.com/records/19407"
+  },
+  "data_as_of": "2026-10-22T12:06:45.883",
+  "data_loaded_at": "2026-10-22T12:11:23.594"
+ },
+ {
+  "recordid": "14859",
+  "recordno": "ELEC-26-243",
+  "recordtype": "Electrical permit (standard)",
+  "status_detail": "Active - Issued",
+  "permit_issued": "Building Permit",
+  "submitted_date": "2026-09-17T10:46:10.000",
+  "permit_issued_date": "2026-10-02T11:33:00.000",
+  "submit_to_issue_cal": "16.0",
+  "submit_to_issue_biz": "12.0",
+  "expiration_date": "2027-10-02T11:33:20.690",
+  "last_doc": "Building Permit",
+  "last_doc_date": "2026-10-02T11:33:00.000",
+  "parcel_number": "0874003",
+  "streetno": "400",
+  "streetname": "DUBOCE AVE",
+  "postalcode": "94117",
+  "url": {
+   "url": "https://sanfranciscoca.portal.opengov.com/records/14859"
+  },
+  "data_as_of": "2026-10-22T12:06:45.883",
+  "data_loaded_at": "2026-10-22T12:11:23.594"
+ },
+ {
+  "recordid": "14851",
+  "recordno": "PLMB-26-260",
+  "recordtype": "Plumbing and mechanical permit",
+  "status_detail": "Active - Issued",
+  "permit_issued": "Building Permit",
+  "submitted_date": "2026-09-17T10:42:03.000",
+  "permit_issued_date": "2026-10-02T11:37:00.000",
+  "submit_to_issue_cal": "16.0",
+  "submit_to_issue_biz": "12.0",
+  "expiration_date": "2027-10-02T11:36:58.493",
+  "last_doc": "Building Permit",
+  "last_doc_date": "2026-10-02T11:37:00.000",
+  "parcel_number": "0874003",
+  "streetno": "400",
+  "streetname": "DUBOCE AVE",
+  "postalcode": "94117",
+  "url": {
+   "url": "https://sanfranciscoca.portal.opengov.com/records/14851"
+  },
+  "data_as_of": "2026-10-22T12:06:45.883",
+  "data_loaded_at": "2026-10-22T12:11:23.594"
+ }
+]
