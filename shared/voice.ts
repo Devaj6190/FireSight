@@ -165,7 +165,17 @@ export function spokenBeats(b: Building, max = 8): Beat[] {
       .filter((p) => floorOf(p) !== null && Math.abs(floorOf(p)! - fire) <= 1)
       .sort((x, y) => RANK[x.severity] - RANK[y.severity] || Math.abs(floorOf(x)! - fire) - Math.abs(floorOf(y)! - fire))
       .slice(0, 3);
-    out.push(near.length ? beat(`Near the fire floor: ${near.map(cite).join(". ")}.`, near, [], "fire") : beat(`No public record places a hazard on ${floorName(fire)} or the floors beside it.`, [], [fire], "fire"));
+    // What occupies the fire floor and the floor above, by type only (business licenses, OpenStreetMap indoor levels).
+    const uses = [fire, fire + 1].flatMap((f) => {
+      const occ = b.floorFacts?.find((x) => x.floor === f)?.occupants ?? [];
+      return occ.slice(0, 2).map((o) => `${floorName(f)}, ${o.kind.toLowerCase()}${o.hazard ? `, ${o.hazard.toLowerCase()}` : ""}, per ${o.source.replace(/\s*\(.*\)$/, "").replace(/^SF /, "S F ")}`);
+    });
+    const useText = uses.length ? `Use on record: ${uses.join(". ")}. ` : "";
+    out.push(
+      near.length
+        ? beat(`${useText}Near the fire floor: ${near.map(cite).join(". ")}.`, near, [fire], "fire")
+        : beat(`${useText}No public record places a hazard on ${floorName(fire)} or the floors beside it.`, [], [fire], "fire"),
+    );
   }
   const bring = bringBeat(b, verified, fire);
   if (bring) out.push(bring);
