@@ -75,7 +75,9 @@ export function spokenBeats(b: Building, max = 9): Beat[] {
     else out.push(beat(`No public record places a hazard on ${floorName(target)}.`, [], [target]));
   }
 
-  const people = verified.filter((p) => isPeople(p) && !used.has(p.id)).slice(0, 2).map(take);
+  // Floor-placed counts first (they light floors), then counts with no floor.
+  const floorOf = (p: Pin) => (p.anchor.kind === "floor" ? p.anchor.floor : Infinity);
+  const people = verified.filter((p) => isPeople(p) && !used.has(p.id)).sort((x, y) => floorOf(x) - floorOf(y)).slice(0, 3).map(take);
   if (people.length) out.push(beat(`People: ${people.map(cite).join(". ")}.`, people));
 
   const hazards = verified

@@ -1,4 +1,5 @@
-.voice-wrap { position: absolute; left: 16px; bottom: 68px; z-index: 6; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100% - 140px); pointer-events: none; }
+/* z-index 4: under the expanded sheet (5), so the mic never covers card text; voice keeps talking underneath. */
+.voice-wrap { position: absolute; left: 16px; bottom: 68px; z-index: 4; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100% - 140px); pointer-events: none; }
 .voice-wrap > * { pointer-events: auto; }
 .voice-mic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--fs-action, #ff9f1c); color: var(--fs-action-ink, #0d0f12); cursor: pointer; box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.6), 0 6px 18px rgba(0, 0, 0, 0.45); transition: transform 0.15s ease, background 0.2s ease; }
 .voice-mic:active { transform: scale(0.94); }
