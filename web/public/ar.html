@@ -62,8 +62,9 @@
   .card .x { position: absolute; right: 6px; top: 6px; width: 44px; height: 44px; border: 0; background: transparent; color: var(--action); font-size: 20px; }
   /* hotspot labels, pinned to the model: hazard colours on the left edge, glass behind the text */
   .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px; padding: 5px 9px; background: var(--strong); color: var(--ink); font: 500 12px/1.25 'Geist', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
-  .hs.fire, .hs.battery, .hs.danger { border-left-color: var(--danger); } .hs.caution { border-left-color: var(--caution); } .hs.people { border-left-color: var(--info); } .hs.unknown { border-left-color: var(--muted); color: #c3cad3; }
+  .hs.fire, .hs.battery, .hs.danger { border-left-color: var(--danger); } .hs.caution { border-left-color: var(--caution); } .hs.people, .hs.info { border-left-color: var(--info); } .hs.unit { border-left-color: #8b95a3; } .hs.unknown { border-left-color: var(--muted); color: #c3cad3; }
   .hs:not([data-visible]) { opacity: 0; }
+  body.floor .hs { white-space: nowrap; max-width: none; font-size: 10.5px; padding: 3px 7px; }
   body.pulled .hs, body.pulled .legend, body.pulled #seg, body.pulled #explode, body.pulled .note { display: none; }
   .legend .nb { color: var(--muted); margin-top: 2px; }
   @media (max-width: 480px) { body.tower .note { display: none; } }
@@ -123,7 +124,7 @@
     $('name').textContent = m.address;
     if (view === 'floor') {
       $('sub').textContent = `Inside floor ${m.floor} · 1:${Math.round(1 / m.scale)} · estimated`;
-      $('legend').innerHTML = dot('#ff4d4f', 'Hazard room (spot estimated)') + dot('#ffb020', 'Cooking (spot estimated)') + dot('#8b95a3', 'Stairs: not on record');
+      $('legend').innerHTML = dot('#ff4d4f', 'Hazard room (spot estimated)') + dot('#ffb020', 'Cooking, open permits, wind') + dot('#5ee1ff', 'Entrances, hydrants, people') + dot('#8b95a3', 'Stairs: not on record');
       $('note').textContent = m.banner;
       mv.alt = `Floor ${m.floor} of ${m.address}: schematic layout with hazard rooms glowing. No public floor plan exists.`;
     } else {
@@ -199,7 +200,8 @@
   function ui() {
     document.body.classList.toggle('pulled', pulled !== null);
     $('back-tower').hidden = pulled === null || !cardOpen;
-    $('go-floor').hidden = !(pulled !== null && cardOpen && fk && M && M.fireFloor === pulled);
+    $('go-floor').hidden = !(pulled !== null && cardOpen && M && (M.insideFloors || []).includes(pulled));
+    if (pulled !== null) $('go-floor').textContent = pulled === 0 ? 'Inside B1 →' : `Inside floor ${pulled} →`;
   }
   // dir 1 = out, -1 = back in. The clip holds its last frame when it finishes.
   function play(n, dir, done) {
@@ -273,6 +275,9 @@
     $('v-floor').setAttribute('aria-pressed', String(view === 'floor'));
     $('rail').hidden = view !== 'tower' || !M;
     $('explode').hidden = view !== 'tower' || !M;
+    $('seg').hidden = view === 'tower' && !fk;
+    if (view === 'floor') { const fl = Number(/-f(\d+)$/.exec(key)[1]); $('v-floor').textContent = fl === 0 ? 'Inside B1' : `Inside floor ${fl}`; }
+    else if (fk) $('v-floor').textContent = `Inside floor ${fk.split('-f')[1]}`;
     if (view === 'floor') { sel = null; card(null); }
     else if (sel !== null) { card(sel); cardOpen = true; ui(); }
     mv.setAttribute('camera-orbit', ORBIT[view]);
@@ -296,18 +301,14 @@
     $('rail').hidden = view !== 'tower';
     $('explode').hidden = view !== 'tower';
     get(id, 'buildings').then((b) => { B = b; }).catch(() => {});
-    if (m.fireFloor == null) return;
-    const fkey = `${id}-f${m.fireFloor}`;
-    // the toggle appears only when an inside-floor model exists
-    get(fkey).then((f) => {
-      fk = fkey;
-      $('go-floor').textContent = `Inside floor ${f.floor} →`;
-      $('go-floor').onclick = () => setView('floor', fk);
-      $('v-floor').textContent = `Inside floor ${f.floor}`;
-      $('seg').hidden = false;
-      $('v-tower').onclick = () => setView('tower');
+    // "Inside floor N" exists for every floor listed in insideFloors (web/scripts/ar-floor.mts)
+    $('v-tower').onclick = () => setView('tower');
+    $('go-floor').onclick = () => { if (pulled !== null) setView('floor', `${id}-f${pulled}`); };
+    if (m.fireFloor != null && (m.insideFloors || []).includes(m.fireFloor)) {
+      fk = `${id}-f${m.fireFloor}`; // the hero's fire floor also gets a Tower / Inside floor toggle
       $('v-floor').onclick = () => setView('floor', fk);
-    }).catch(() => {});
+      if (view === 'tower') { $('v-floor').textContent = `Inside floor ${m.fireFloor}`; $('seg').hidden = false; }
+    }
   }).catch(() => {});
   setView('tower');
 

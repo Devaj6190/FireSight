@@ -1,0 +1,122 @@
+{
+ "id": "sf-0874003-f4",
+ "address": "400 Duboce Ave",
+ "view": "floor",
+ "floor": 4,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan",
+ "hotspots": [
+  {
+   "id": "hydrant-water-esf4_hydrants_lp-611",
+   "text": "Hydrant 27 m E",
+   "tone": "info",
+   "position": "0.2354 0.0460 0.0132",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/4/query?where=objectid_12=611&outFields=*&f=json"
+  },
+  {
+   "id": "hydrant-water-esf4_hydrants_hp-617",
+   "text": "High-pressure hydrant 192 m ESE",
+   "tone": "info",
+   "position": "0.3001 0.1360 0.1949",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=617&outFields=*&f=json"
+  },
+  {
+   "id": "wind",
+   "text": "Wind 3 mph from SW · forecast",
+   "tone": "caution",
+   "position": "-0.2851 0.2260 0.2227",
+   "normal": "0 1 0",
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7696&longitude=-122.4296&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+  },
+  {
+   "id": "unit-1",
+   "text": "Unit 403",
+   "tone": "unit",
+   "position": "0.2205 0.3360 0.0225",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-2",
+   "text": "Unit 407",
+   "tone": "unit",
+   "position": "0.2403 0.4260 0.2197",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-3",
+   "text": "Unit 408 · kitchen / food space 2024",
+   "tone": "unit",
+   "position": "0.1092 0.5160 0.2277",
+   "normal": "0 1 0",
+   "source": "ftty-kx6y E202412058605"
+  },
+  {
+   "id": "unit-4",
+   "text": "Unit 409",
+   "tone": "unit",
+   "position": "-0.1015 0.0660 0.2536",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-5",
+   "text": "Unit 412",
+   "tone": "unit",
+   "position": "-0.1614 0.1560 0.1729",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-6",
+   "text": "Unit 413",
+   "tone": "unit",
+   "position": "-0.1987 0.2460 -0.0797",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-7",
+   "text": "Unit 414",
+   "tone": "unit",
+   "position": "-0.1736 0.3360 -0.2327",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-8",
+   "text": "Unit 415",
+   "tone": "unit",
+   "position": "-0.1013 0.4260 -0.1592",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-9",
+   "text": "Unit 418 · open permit",
+   "tone": "caution",
+   "position": "-0.0486 0.5160 -0.2478",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 202011048132"
+  },
+  {
+   "id": "unit-10",
+   "text": "Unit 420",
+   "tone": "unit",
+   "position": "-0.0392 0.0660 -0.1617",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "open",
+   "text": "Open permits",
+   "tone": "caution",
+   "position": "0.0365 0.1520 0.1413",
+   "normal": "0 1 0",
+   "source": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202412058605"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0365 0.2620 0.1413",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}

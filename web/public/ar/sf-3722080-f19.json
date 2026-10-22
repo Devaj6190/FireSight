@@ -1,0 +1,98 @@
+{
+ "id": "sf-3722080-f19",
+ "address": "140 New Montgomery St",
+ "view": "floor",
+ "floor": 19,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan · columns follow the structural system (SF Tall Building Inventory)",
+ "hotspots": [
+  {
+   "id": "entrance",
+   "text": "Entrances · OSM (3)",
+   "tone": "info",
+   "position": "-0.0349 0.0360 0.4647",
+   "normal": "0 1 0",
+   "source": "https://www.openstreetmap.org/node/8324272536"
+  },
+  {
+   "id": "street-1",
+   "text": "Minna St",
+   "tone": "unknown",
+   "position": "-0.2516 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-2",
+   "text": "New Montgomery St",
+   "tone": "unknown",
+   "position": "0.2606 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-3",
+   "text": "Natoma St",
+   "tone": "unknown",
+   "position": "0.2606 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-4",
+   "text": "Natoma St",
+   "tone": "unknown",
+   "position": "0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-5",
+   "text": "New Montgomery St",
+   "tone": "unknown",
+   "position": "0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-6",
+   "text": "Minna St",
+   "tone": "unknown",
+   "position": "-0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "hydrant-water-esf4_hydrants_hp-1143",
+   "text": "High-pressure hydrant 40 m NE",
+   "tone": "info",
+   "position": "0.2802 0.0460 -0.2108",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json"
+  },
+  {
+   "id": "wind",
+   "text": "Wind 6 mph from WSW · forecast",
+   "tone": "caution",
+   "position": "-0.3220 0.1360 0.1367",
+   "normal": "0 1 0",
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+  },
+  {
+   "id": "occ-r1",
+   "text": "Office · est.",
+   "tone": "unknown",
+   "position": "-0.2719 0.2460 0.0860",
+   "normal": "0 1 0",
+   "source": "https://data.sf.gov/resource/g8m3-pdis.json?uniqueid=1256618-07-201-0478138"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0652 0.2620 -0.0454",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}
