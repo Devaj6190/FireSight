@@ -1,0 +1,6 @@
+:root {
+  --fs-bg: #0d0f12;
+  --fs-ink: #f4f3ee;
+  color-scheme: dark;
+}
+html, body, #root { margin: 0; height: 100%; background: var(--fs-bg); color: var(--fs-ink); font-family: system-ui, sans-serif; }
