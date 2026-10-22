@@ -123,6 +123,25 @@ export interface Building {
   resolution: Resolution;
   fetchedAt: string;
   fallback?: { brief: Brief; answers: Answer[] }; // precomputed, used when offline or slow
+  floorFacts?: FloorFacts[]; // additive: one entry per floor (B1 only if a record says basement), bottom to top
+}
+
+// Per-floor summary (additive, Lane B builds it): everything the public record says about one floor,
+// including floors with no pin. Units and permits are lower bounds; nothing here is a floor plan.
+export interface FloorFacts {
+  floor: number; // contract numbering: 0 = B1, 1 = ground
+  label: string; // "Floor 22", "B1"
+  pinIds: string[]; // pins anchored to this floor, danger first
+  severity: Severity | null; // worst pin severity on the floor; null when no pin
+  units: string[]; // unit / suite numbers named in permits for this floor (lower bound)
+  permits: {
+    count: number; // permits whose text names this floor or one of its units
+    last: { date: string; text: string; datasetId: string; recordId: string; url: string } | null; // newest one
+  };
+  incidents: number; // SFFD incidents whose floor of origin is this floor
+  occupantLoad: number | null; // from SFFD assembly permits naming this floor
+  rooms: string[]; // rooms named in records: "Computer room", "Server room", "Fire pump room"
+  notOnRecord: string[]; // facts with no public record for this floor, e.g. "Stair locations"
 }
 
 // Compliance strip (Lane C owns the logic, Lane D renders).

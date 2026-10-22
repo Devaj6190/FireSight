@@ -265,6 +265,92 @@ def footprint_local(shape):
     return pts, lat0, lon0, abs(area) / 2
 
 
+# ---------------------------------------------------------------- per-floor summary
+ORD = {1: "1st", 2: "2nd", 3: "3rd"}
+ROOM_RX = [(r"computer room|battery room", "Battery / computer room"), (r"server room", "Server room"),
+           (r"fire pump", "Fire pump room"), (r"generator room|diesel", "Generator room"), (r"boiler", "Boiler room"),
+           (r"assembly", "Assembly space"), (r"kitchen", "Kitchen"), (r"elevator lobby", "Elevator lobby")]
+
+
+def floor_mentions(text, floors):
+    """Floors a permit's text names: '18th fl', 'floor 18', '3rd flr', unit numbers (311 -> 3, 2204 -> 22), basement, ground."""
+    t = (text or "").lower()
+    out = set()
+    for m in re.findall(r"\b(\d{1,2})(?:st|nd|rd|th)?\s*(?:fl|flr|floor)\b|\bfloor\s*(\d{1,2})\b|\blevel\s*(\d{1,2})\b", t):
+        n = int(next(x for x in m if x))
+        if 1 <= n <= floors:
+            out.add(n)
+    for u in units_in(t):
+        if 1 <= u // 100 <= floors:
+            out.add(u // 100)
+    if re.search(r"\bbasement\b|\blevel b1\b|\bb1\b|sub-?basement", t):
+        out.add(0)
+    if re.search(r"ground floor|\blobby\b|street level", t):
+        out.add(1)
+    return out
+
+
+def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fire_permits, tall_pct=None, residential=False):
+    has_b1 = any(p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == 0 for p in pins)
+    rank = {"danger": 0, "caution": 1, "info": 2}
+    # permits from every DBI system, newest first, each mapped to the floors its text names
+    sources = [("permits", "i98e-djp9", "permit_number", "filed_date"), ("electrical", "ftty-kx6y", "permit_number", "filed_date"),
+               ("plumbing", "a6aw-rudh", "permit_number", "filed_date")]
+    by_floor = {}
+    for key, ds, pk, dk in sources:
+        for r in (permits if key == "permits" else rows(bdir, key)):
+            for f in floor_mentions(r.get("description"), floors):
+                by_floor.setdefault(f, []).append((iso(r.get(dk)), clean(r.get("description") or "")[:160], ds, r.get(pk)))
+    origin = Counter()
+    for r in inc:
+        fl = num(r.get("floor_of_fire_origin"))
+        if fl is not None:
+            origin[0 if fl < 0 else fl] += 1
+    loads = Counter()
+    for fpm in current_fire_permits:
+        cond = clean(fpm.get("conditions_associated_with_granting_this_permit") or "")
+        if not re.search(r"assembly", fpm.get("permit_type_description") or "", re.I):
+            continue
+        parts = re.findall(r"(main|ground|first|second|third|fourth|fifth|sixth|\d{1,2}(?:st|nd|rd|th)?)\s+floor\s*[-:]\s*(\d+)\s*persons", cond, re.I)
+        for w, n_ in parts:
+            f = FLOOR_WORDS.get(w.lower()) or num(re.sub(r"\D", "", w))
+            if f and 1 <= f <= floors:
+                loads[f] += int(n_)
+        if not parts:
+            m = re.search(r"occupant load of (\d+)", cond)
+            fl = floor_mentions(cond, floors) or ({1} if re.search(r"main floor|ground floor", cond, re.I) else set())
+            if m and len(fl) == 1:
+                loads[next(iter(fl))] += int(m.group(1))
+    facts = []
+    for f in range(0 if has_b1 else 1, floors + 1):
+        own = [p for p in pins if p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == f]
+        own.sort(key=lambda p: rank[p["severity"]])
+        ps = sorted(by_floor.get(f, []), key=lambda x: x[0], reverse=True)
+        text = " ".join(f"{p['label']} {p['detail']}" for p in own).lower()
+        rooms = [name for rx, name in ROOM_RX if re.search(rx, text)]
+        missing = ["Stair locations", "Standpipe outlets"]
+        if tall_pct is not None and tall_pct < 100:
+            missing.append(f"Which areas are unsprinklered (building is {tall_pct}% sprinklered)")
+        if residential and not floor_units.get(f):
+            missing.append("Unit list (no permit names a unit on this floor)")
+        last = None
+        if ps:
+            d, t, ds, rec = ps[0]
+            last = {"date": d, "text": t, "datasetId": ds, "recordId": str(rec), "url": soda_url(ds, "permit_number", rec)}
+        facts.append({
+            "floor": f, "label": "B1" if f == 0 else f"Floor {f}",
+            "pinIds": [p["id"] for p in own],
+            "severity": own[0]["severity"] if own else None,
+            "units": [str(u) for u in sorted(floor_units.get(f, set()))],
+            "permits": {"count": len(ps), "last": last},
+            "incidents": origin.get(f, 0),
+            "occupantLoad": loads.get(f) or None,
+            "rooms": rooms,
+            "notOnRecord": missing,
+        })
+    return facts
+
+
 # ---------------------------------------------------------------- main fusion
 def build(bid):
     bdir = os.path.join(RAW, bid)
@@ -926,13 +1012,14 @@ def build(bid):
     # ---- order: danger first, then caution, then info
     sev_rank = {"danger": 0, "caution": 1, "info": 2}
     pins = sorted(P.items, key=lambda p: (sev_rank[p["severity"]], p["id"]))  # deterministic for refresh diffs
+    floor_facts = build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current, tall_pct=num((rows(bdir, "tall_building") or [{}])[0].get("percent_sprinklered")), residential=residential)
     addr_disp = (res.get("address") or "").title().replace(" Av", " Ave").replace("Avee", "Ave")
     building = {
         "id": bid, "apn": apn, "address": addr_disp,
         "centroid": {"lat": round(clat, 7), "lon": round(clon, 7)},
         "footprint": footprint, "heightM": height, "floors": floors, "floorHeightM": round(height / floors, 2),
         "yearBuilt": year_built, "constructionType": construction, "units": units, "rooms": rooms, "use": use,
-        "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers,
+        "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers, "floorFacts": floor_facts,
         "resolution": {"apn": apn, "easBaseId": res.get("eas_baseid"), "aliases": aliases, "links": links},
         "fetchedAt": man["fetchedAt"],
         "meta": {"footprintAsOf": fp_asof, "heightSource": "2010 LiDAR (hgt_median_m)", "footprintAreaM2": round(area_m2),
@@ -945,6 +1032,8 @@ def build(bid):
         prev = json.load(open(out, encoding="utf-8"))
         if prev.get("fallback"):
             building["fallback"] = prev["fallback"]
+        for k, v in (prev.get("meta") or {}).items():  # refresh.py's keys (refreshedAt, ...) survive a local rebuild
+            building["meta"].setdefault(k, v)
     building["meta"]["lotAreaM2"] = round(num(a0.get("lot_area")) * 0.0929) if num(a0.get("lot_area")) else None
     building["meta"]["buildingAreaM2"] = round(num(a0.get("property_area")) * 0.0929) if num(a0.get("property_area")) else None
     json.dump(building, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
