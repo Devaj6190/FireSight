@@ -64,6 +64,7 @@
   .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px; padding: 5px 9px; background: var(--strong); color: var(--ink); font: 500 12px/1.25 'Geist', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
   .hs.fire, .hs.battery, .hs.danger { border-left-color: var(--danger); } .hs.caution { border-left-color: var(--caution); } .hs.people { border-left-color: var(--info); } .hs.unknown { border-left-color: var(--muted); color: #c3cad3; }
   .hs:not([data-visible]) { opacity: 0; }
+  body.pulled .hs, body.pulled .legend, body.pulled #seg, body.pulled #explode, body.pulled .note { display: none; }
   .legend .nb { color: var(--muted); margin-top: 2px; }
   @media (max-width: 480px) { body.tower .note { display: none; } }
   @media (max-width: 480px) { .hs { font-size: 11px; padding: 4px 7px; max-width: 150px; } }
@@ -81,6 +82,8 @@
 <div class="tools">
   <div class="seg glass" id="seg" role="group" aria-label="Model" hidden><button type="button" id="v-tower" aria-pressed="true">Tower</button><button type="button" id="v-floor" aria-pressed="false">Inside floor</button></div>
   <button type="button" class="pill glass" id="explode" aria-pressed="true" hidden>Assemble</button>
+  <button type="button" class="pill glass" id="back-tower" hidden>← Back to tower</button>
+  <button type="button" class="pill glass" id="go-floor" hidden>Inside floor →</button>
   <p class="note" id="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
 </div>
 <div class="legend glass-strong" id="legend"></div>
@@ -187,15 +190,57 @@
     c.scrollTop = 0;
     c.querySelector('.x').onclick = () => select(null);
   }
+  // ---- pull-out: the picked floor slides toward you and grows while the rest fades (a baked glTF animation, plays in AR too) ----
+  const DUR = 1.2; // seconds, as baked by ar-model.mts
+  let pulled = null, fk = null, run = 0, cardOpen = false;
+  const clip = (n) => `pull-${n === 0 ? 'B1' : n}`;
+  const canPull = (n) => view === 'tower' && !assembled && (mv.availableAnimations || []).includes(clip(n));
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ui() {
+    document.body.classList.toggle('pulled', pulled !== null);
+    $('back-tower').hidden = pulled === null || !cardOpen;
+    $('go-floor').hidden = !(pulled !== null && cardOpen && fk && M && M.fireFloor === pulled);
+  }
+  // dir 1 = out, -1 = back in. The clip holds its last frame when it finishes.
+  function play(n, dir, done) {
+    const token = ++run;
+    let fin = false;
+    mv.animationName = clip(n);
+    mv.timeScale = reduced ? 50 * dir : dir;
+    mv.currentTime = dir > 0 ? 0 : DUR;
+    const end = () => {
+      mv.removeEventListener('finished', end);
+      if (token !== run || fin) return;
+      fin = true;
+      mv.pause();
+      mv.currentTime = dir > 0 ? DUR : 0;
+      done();
+    };
+    mv.addEventListener('finished', end);
+    mv.play({ repetitions: 1 });
+    // model-viewer loops the clip whatever "repetitions" says, so stop it on our own clock and hold the last frame
+    setTimeout(() => { if (token === run) end(); }, (DUR * 1000) / Math.abs(mv.timeScale) - 30);
+  }
   function select(n) {
+    const was = sel;
     sel = n === sel ? null : n;
     paint();
-    card(sel);
     document.querySelectorAll('#rail button').forEach((b) => {
       const on = sel !== null && Number(b.dataset.n) === sel;
       b.setAttribute('aria-pressed', String(on));
       if (on) b.scrollIntoView({ block: 'nearest' });
     });
+    cardOpen = false;
+    if (sel === null) {
+      card(null);
+      if (pulled !== null) { const p = pulled; pulled = null; ui(); play(p, -1, () => {}); }
+      return;
+    }
+    if (!canPull(sel)) { card(sel); cardOpen = true; ui(); return; }
+    card(null);
+    pulled = sel;
+    ui();
+    play(sel, 1, () => { if (sel === pulled) { card(sel); cardOpen = true; ui(); } });
   }
   function buildRail() {
     const rail = $('rail');
@@ -223,12 +268,13 @@
     if (current === key) return;
     current = key; view = next;
     document.body.className = view;
+    pulled = null; run++; cardOpen = false; ui();
     $('v-tower').setAttribute('aria-pressed', String(view === 'tower'));
     $('v-floor').setAttribute('aria-pressed', String(view === 'floor'));
     $('rail').hidden = view !== 'tower' || !M;
     $('explode').hidden = view !== 'tower' || !M;
     if (view === 'floor') { sel = null; card(null); }
-    else if (sel !== null) card(sel);
+    else if (sel !== null) { card(sel); cardOpen = true; ui(); }
     mv.setAttribute('camera-orbit', ORBIT[view]);
     mv.src = `/ar/${key}.glb`;
     get(view === 'floor' ? floorKey : id).then((m) => {
@@ -237,6 +283,7 @@
       showHotspots(view === 'tower' && assembled ? m.assembledHotspots || m.hotspots : m.hotspots);
     }).catch(() => { /* labels are optional; the model still shows */ });
   }
+  $('back-tower').onclick = () => select(null);
   $('explode').onclick = () => {
     assembled = !assembled;
     $('explode').textContent = assembled ? 'Explode' : 'Assemble';
@@ -250,9 +297,12 @@
     $('explode').hidden = view !== 'tower';
     get(id, 'buildings').then((b) => { B = b; }).catch(() => {});
     if (m.fireFloor == null) return;
-    const fk = `${id}-f${m.fireFloor}`;
+    const fkey = `${id}-f${m.fireFloor}`;
     // the toggle appears only when an inside-floor model exists
-    get(fk).then((f) => {
+    get(fkey).then((f) => {
+      fk = fkey;
+      $('go-floor').textContent = `Inside floor ${f.floor} →`;
+      $('go-floor').onclick = () => setView('floor', fk);
       $('v-floor').textContent = `Inside floor ${f.floor}`;
       $('seg').hidden = false;
       $('v-tower').onclick = () => setView('tower');
