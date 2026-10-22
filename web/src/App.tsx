@@ -184,14 +184,14 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   return (
     <>
       {hasB1 && (
-        <group ref={basement} position-y={-b.floorHeightM}>
+        <group ref={basement} position-y={-b.floorHeightM} visible={rooms === 'off' || target === 0}>
           {slab(0)}
           {onSlab(0, 1)}
           {roomsOf(0)}
         </group>
       )}
       {Array.from({ length: b.floors }, (_, i) => (
-        <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM}>
+        <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM} visible={rooms === 'off' || target === i + 1}>
           {slab(i + 1)}
           {onSlab(i + 1, i)}
           {roomsOf(i + 1)}
@@ -294,6 +294,6 @@ export default function App() {
         <meshStandardMaterial color={fs.sidewalk} transparent opacity={0.75} depthWrite={false} />
       </mesh>
     </Canvas>
-    <RoomsOverlay />
+    <RoomsOverlay onSelectPin={setSelectedPin} />
   </PhoneShell>
 }
