@@ -191,6 +191,19 @@ UNIT_RE = re.compile(r"(?:\bunit|\bapt\.?|\bapartment|#)\s*#?\s*(\d{3})\b", re.I
 FLR_RE = re.compile(r"\b(\d)(?:st|nd|rd|th)\s*(?:fl(?:oo)?r?\b|flr\b)", re.I)
 
 
+def own_address(addr, nums):
+    """True when a free-text address has no street number or one of this parcel's numbers."""
+    m = re.match(r"^\s*(\d+)", addr or "")
+    return not m or int(m.group(1)) in nums
+
+
+COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+
+
+def compass(deg):
+    return COMPASS[round((deg % 360) / 22.5) % 16]
+
+
 def units_in(text):
     return sorted({int(u) for u in UNIT_RE.findall(text or "")})
 
@@ -243,7 +256,20 @@ def build(bid):
     year_built = num(a0.get("year_property_built"))
     a_type = a0.get("construction_type")
     loc = re.sub(r"\s+", " ", re.sub(r"^0+|\b0+(?=\d)", "", (a0.get("property_location") or "").replace("0000 ", " "))).strip()
-    assessor_addr = re.sub(r"(\d+)\s+(\D+?)\s*(ST|AV|AVE|BLVD|WY|WAY|PL|DR|TER|CT|LN|RD)\d*$", r"\1 \2 \3", loc).strip()
+    loc = re.sub(r"(ST|AV|AVE|BLVD|WY|WAY|PL|DR|TER|CT|LN|RD)\d+$", r"\1", loc)  # "...MISSION ST0000"
+    two = re.match(r"^(\d+)\s+(\d+)\s+(.*)$", loc)  # assessor ranges read "1024 1018 MISSION ST"
+    if two:
+        lo, hi = sorted(int(x) for x in two.group(1, 2))
+        loc = f"{lo}-{hi} {two.group(3)}" if lo != hi else f"{lo} {two.group(3)}"
+    assessor_addr = loc.strip()
+    # every street number this parcel answers to (EAS, assessor range, permits, fire violations "1018 - 1024")
+    own_nums = {int(res["address_like"].split()[0])}
+    for txt in [loc] + [f"{p.get('street_number', '')}" for p in permits[:50]] + [v.get("address", "") for v in rows(bdir, "fire_violations")] + [i.get("address", "") for i in rows(bdir, "fire_inspections")[:20]]:
+        m = re.match(r"^\s*(\d+)(?:\s*-\s*(\d+))?", str(txt))
+        if m:
+            a_, b_ = int(m.group(1)), int(m.group(2) or m.group(1))
+            if abs(b_ - a_) <= 30:
+                own_nums.update(range(min(a_, b_), max(a_, b_) + 1))
     permit_addr = None
     if permits:
         p0 = permits[0]
@@ -274,12 +300,15 @@ def build(bid):
     land = rows(bdir, "landuse")
     lu_units = num(land[0].get("resunits")) if land else None
     unit_sources = []
-    if a_units:
+    if a_units and "hotel" in (a0.get("use_definition") or "").lower() and num(a0.get("number_of_rooms")):
+        a_units = num(a0.get("number_of_rooms"))  # hotels: the roll counts the business as units, rooms are the sleeping units
+        unit_sources.append(("assessor (rooms)", a_units, ev("wv5m-vpq2", f"{apn}-{a0.get('closed_roll_year')}", a_url, a_asof, "assessor number_of_rooms (hotel use)")))
+    elif a_units:
         unit_sources.append(("assessor", a_units, ev("wv5m-vpq2", f"{apn}-{a0.get('closed_roll_year')}", a_url, a_asof, "assessor number_of_units")))
     if p_units:
         pp = next(p for p in permits if num(p.get("existing_units")) == p_units)
         unit_sources.append(("permits", p_units, ev("i98e-djp9", pp["permit_number"], soda_url("i98e-djp9", "permit_number", pp["permit_number"]), iso(pp.get("filed_date")), f"mode of existing_units across {len(permits)} permits")))
-    if lu_units:
+    if lu_units and "hotel" not in (a0.get("use_definition") or "").lower():  # land use counts hotel rooms as visitor space
         unit_sources.append(("land use", lu_units, ev("c5ge-t6pj", apn, soda_url("c5ge-t6pj", "mapblklot", apn), iso(land[0].get("data_as_of")), "land use resunits")))
     distinct = sorted({v for _, v, _ in unit_sources})
     units = None
@@ -358,8 +387,8 @@ def build(bid):
               f"On the city soft-story list (tier {s.get('tier')}), status \"{s.get('status')}\": weak ground floor by design.", floor(1),
               [ev("beah-shgi", apn, soda_url("beah-shgi", "parcel_number", apn), iso(s.get("data_as_of")), "soft-story list by block + lot")])
 
-    # ---- fire incidents
-    inc = rows(bdir, "fire_incidents")
+    # ---- fire incidents (radius matches can pull in neighbours: keep only this building's street numbers)
+    inc = [r for r in rows(bdir, "fire_incidents") if own_address(r.get("address"), own_nums)]
     groups = {"building": [], "cooking": [], "malfunction": [], "outside": []}
     for r in inc:
         sit = (r.get("primary_situation") or "").lower()
@@ -416,7 +445,7 @@ def build(bid):
         P.add("inspection", i["inspection_number"], "info", (i.get("inspection_type_description") or "R2 inspection").upper(),
               f"{i.get('inspection_type_description')}, status {i.get('inspection_status')}. SFFD inspection {i['inspection_number']} on {iso(i['inspection_start_date'])}.", BLDG,
               [ev("wb4c-6hwj", i["inspection_number"], soda_url("wb4c-6hwj", "inspection_number", i["inspection_number"]), iso(i["inspection_start_date"]), "address or 15 m radius match")])
-    fcomp = [c for c in rows(bdir, "fire_complaints") if iso(c.get("received_date")) >= "2024-01-01"]
+    fcomp = [c for c in rows(bdir, "fire_complaints") if iso(c.get("received_date")) >= "2024-01-01" and own_address(c.get("address"), own_nums)]
     if fcomp:
         kinds = Counter(c.get("complaint_item_type_description") for c in fcomp)
         P.add("complaint", "fire-complaints", "caution", f"{len(fcomp)} FIRE SAFETY COMPLAINTS SINCE 2024",
@@ -490,8 +519,17 @@ def build(bid):
         n = nearest(key, layer, oidf)
         if n:
             d, b, a, oid = n
-            extra = f" at {a.get('location')}" if a.get("location") else ""
-            P.add("water", f"{key}-{oid}", sev, f"{lab} {d} M", f"{what}{extra}, {d} m at bearing {b} deg (SF DEM layer, 2018 snapshot; positions may have changed).", ground(d, b),
+            extra = f" at {a['location'].strip()}" if (a.get("location") or "").strip() else ""
+            hid = (a.get("hyd_id_new") or a.get("hydrant_id") or "").strip()
+            zone = (a.get("pr_system") or "").strip().title()
+            if hid:
+                extra += f", hydrant #{hid}"
+            if zone:
+                extra += f", {zone} pressure zone"
+            others = sum(1 for f in feats(bdir, key) if geom_point(f) and dist_bearing(lat, lon, *geom_point(f))[0] <= (150 if "hydrant" in key else 400)) - 1
+            more = f" {others} more within {150 if 'hydrant' in key else 400} m." if others > 0 else ""
+            P.add("water", f"{key}-{oid}", sev, f"{lab} {d} M {compass(b)}",
+                  f"{what}{extra}, {d} m to the {compass(b)} (bearing {b} deg).{more} SF DEM layer, 2018 snapshot: positions may have changed, check on arrival.", ground(d, b),
                   [ev(layer, oid, agol_url(layer, oidf, oid), water_asof, f"nearest within buffer, {d} m", "SF DEM Firefighting ESF-4")])
     fr = feats(bdir, "esf4_first_run")
     if fr:
@@ -616,13 +654,24 @@ def build(bid):
               [ev("nuek-vuh3", c["call_number"], soda_url("nuek-vuh3", "call_number", c["call_number"]), iso(c["received_dttm"]), "within 120 m, distinct incident_number") for c in list(inc_ids.values())[:3]])
 
     # ---- now: wind, air, quakes, alerts
-    wx = dload(bdir, "weather").get("current")
-    if wx:
-        wdir = wx.get("wind_direction_10m")
-        to = (wdir + 180) % 360 if wdir is not None else 0
-        P.add("wind", "now", "info", f"WIND {wx.get('wind_speed_10m')} MPH FROM {wdir} DEG",
-              f"Open-Meteo at {wx.get('time')}: wind {wx.get('wind_speed_10m')} mph from {wdir} deg, gusts {wx.get('wind_gusts_10m')} mph, humidity {wx.get('relative_humidity_2m')}%. Smoke drifts toward {to} deg.",
-              ground(30, to), [ev("open-meteo", wx.get("time"), "https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current=wind_speed_10m,wind_direction_10m" % (round(lat, 4), round(lon, 4)), str(wx.get("time"))[:10], "model forecast at the centroid", "Open-Meteo")])
+    wxd = dload(bdir, "weather")
+    wx = wxd.get("current")
+    if wx and wx.get("wind_direction_10m") is not None:
+        wdir = wx["wind_direction_10m"]
+        to = (wdir + 180) % 360
+        spd, gust = wx.get("wind_speed_10m"), wx.get("wind_gusts_10m")
+        hr = wxd.get("hourly") or {}
+        gmax = max([g for g in hr.get("wind_gusts_10m") or [] if g is not None], default=None)
+        dirs = [x for x in hr.get("wind_direction_10m") or [] if x is not None]
+        shift = dirs and max(abs(((x - wdir + 180) % 360) - 180) for x in dirs) >= 45
+        strong = (gust or 0) >= 25 or (gmax or 0) >= 25
+        P.add("wind", "now", "caution" if strong or shift else "info", f"WIND {round(spd)} MPH FROM {compass(wdir)}, SMOKE TO {compass(to)}",
+              f"Model wind at {str(wx.get('time')).replace('T', ' ')} local: {spd} mph from the {compass(wdir)} ({wdir} deg), gusts {gust} mph, humidity {wx.get('relative_humidity_2m')}%. "
+              f"Smoke and fire spread push toward the {compass(to)}: that side is the exposure." + (f" Next 6 h: gusts up to {gmax} mph" if gmax else "")
+              + ("; direction shifts by 45 deg or more." if shift else ".") + " Forecast model, not a station reading.",
+              ground(30, to), [ev("open-meteo", wx.get("time"), "https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph" % (round(lat, 4), round(lon, 4)), str(wx.get("time"))[:10], "model forecast at the centroid; anchor points downwind", "Open-Meteo")])
+    elif not wx:
+        unknowns.append("Wind: weather service did not answer at build time")
     aq = dload(bdir, "air_quality").get("current")
     if aq:
         P.add("air", "aqi", "info", f"AIR QUALITY AQI {aq.get('us_aqi')}", f"Open-Meteo US AQI {aq.get('us_aqi')}, PM2.5 {aq.get('pm2_5')} ug/m3 at {aq.get('time')}.", ground(0, 0),
