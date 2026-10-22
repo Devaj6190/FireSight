@@ -28,14 +28,14 @@ export type Ctx = {
 const DEG = Math.PI / 180
 // design.md s4 reduced motion: keep every position change, drop the motion
 export const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
-const t = (s: number) => (reduce ? 0.001 : s)
+export const t = (s: number) => (reduce ? 0.001 : s)
 const rgb = (hex: string) => {
   const { r, g, b } = new THREE.Color(hex)
   return { r, g, b }
 }
 const pos = (c: Ctx) => c.slabs.slice(1).map((g) => g.position)
 // the idle drift keeps turning the camera, so take the short way round to an azimuth
-const near = (from: number, to: number) => from + ((((to - from + Math.PI) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) - Math.PI
+export const near = (from: number, to: number) => from + ((((to - from + Math.PI) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) - Math.PI
 // portrait phones see less across than up: back off so the fan fits the narrow side
 const fit = (c: Ctx) => Math.max(1, 0.8 / c.aspect)
 
@@ -50,7 +50,7 @@ function fan(c: Ctx) {
 // focus: the floor and any answer floors full, the floor above (fire spreads up) and nearby danger floors half-lit, the rest dim
 const HALF = 0.4
 const DIM = 0.15
-const fadeFor = (f: number, c: Ctx) => {
+export const fadeFor = (f: number, c: Ctx) => {
   if ((c.target === null && !c.lit.length) || f === c.target || c.lit.includes(f)) return 1
   return c.target !== null && (f === c.target + 1 || (c.hot.has(f) && Math.abs(f - c.target) <= 4)) ? HALF : DIM
 }
