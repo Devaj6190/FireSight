@@ -372,11 +372,18 @@ def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fir
     # permits from every DBI system, newest first, each mapped to the floors its text names
     sources = [("permits", "i98e-djp9", "permit_number", "filed_date"), ("electrical", "ftty-kx6y", "permit_number", "filed_date"),
                ("plumbing", "a6aw-rudh", "permit_number", "filed_date")]
-    by_floor = {}
+    by_floor, unit_work = {}, {}
     for key, ds, pk, dk in sources:
         for r in (permits if key == "permits" else rows(bdir, key)):
-            for f in floor_mentions(r.get("description"), floors):
-                by_floor.setdefault(f, []).append((iso(r.get(dk)), permit_kind(r.get("description")), ds, r.get(pk)))
+            desc = r.get("description")
+            st = (r.get("status") or "").lower()
+            is_open = st in ("filed", "issued", "approved", "plancheck", "reinstated", "triage")  # not complete/expired/cancelled
+            kind = permit_kind(desc)
+            for f in floor_mentions(desc, floors):
+                by_floor.setdefault(f, []).append((iso(r.get(dk)), kind, ds, r.get(pk), is_open))
+            for u in units_in((desc or "").lower()):
+                if 1 <= u // 100 <= floors:
+                    unit_work.setdefault(u // 100, []).append({"unit": str(u), "kind": kind, "date": iso(r.get(dk)), "open": is_open, "datasetId": ds, "recordId": str(r.get(pk))})
     origin = Counter()
     for r in inc:
         fl = num(r.get("floor_of_fire_origin"))
@@ -411,7 +418,7 @@ def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fir
             missing.append("Unit list (no permit names a unit on this floor)")
         last = None
         if ps:
-            d, t, ds, rec = ps[0]
+            d, t, ds, rec, _ = ps[0]
             last = {"date": d, "text": t, "datasetId": ds, "recordId": str(rec), "url": soda_url(ds, "permit_number", rec)}
         facts.append({
             "floor": f, "label": "B1" if f == 0 else f"Floor {f}",
@@ -423,6 +430,9 @@ def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fir
             "occupantLoad": loads.get(f) or None,
             "rooms": rooms,
             "notOnRecord": missing,
+            "unitWork": sorted(unit_work.get(f, []), key=lambda w: w["date"], reverse=True)[:40],
+            "openPermits": sum(1 for x in ps if x[4]),
+            "recentKinds": sorted({k for x in ps if x[0] >= "2024-10-22" for k in x[1].split(" · ") if k != "Permitted work"}),
         })
     return facts
 

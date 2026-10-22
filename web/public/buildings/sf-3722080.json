@@ -2757,7 +2757,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 1,
@@ -2796,6 +2799,198 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [
+    {
+     "unit": "104",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "117",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "119",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "120",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "124",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "129",
+     "kind": "Kitchen / food space · Plumbing work",
+     "date": "2019-12-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20191213882"
+    },
+    {
+     "unit": "155",
+     "kind": "Structural work · Tenant remodel",
+     "date": "2017-08-07",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201708074050"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire sprinkler work",
+     "date": "2014-10-23",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201410239681"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire sprinkler work · Demolition · Tenant remodel",
+     "date": "2014-09-23",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201409237029"
+    },
+    {
+     "unit": "155",
+     "kind": "Permitted work",
+     "date": "2014-08-15",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201408153920"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Mechanical work",
+     "date": "2014-07-18",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201407181563"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Mechanical work",
+     "date": "2014-07-17",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201407171451"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Tenant remodel · Mechanical work",
+     "date": "2014-07-15",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201407151248"
+    },
+    {
+     "unit": "155",
+     "kind": "Electrical work",
+     "date": "2014-06-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201406067698"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Kitchen / food space · Tenant remodel",
+     "date": "2014-05-28",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201405286811"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Mechanical work",
+     "date": "2014-05-22",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201405226553"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire sprinkler work · Structural work · Electrical work",
+     "date": "2014-05-08",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201405085258"
+    },
+    {
+     "unit": "155",
+     "kind": "Structural work · Tenant remodel · Electrical work",
+     "date": "2014-04-02",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201404022250"
+    },
+    {
+     "unit": "155",
+     "kind": "Permitted work",
+     "date": "2014-03-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201403060029"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire sprinkler work",
+     "date": "2014-02-25",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201402259242"
+    },
+    {
+     "unit": "155",
+     "kind": "Fire alarm work · Fire sprinkler work · Structural work",
+     "date": "2014-02-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201402067940"
+    },
+    {
+     "unit": "155",
+     "kind": "Kitchen / food space",
+     "date": "2014-01-14",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201401146187"
+    },
+    {
+     "unit": "155",
+     "kind": "Kitchen / food space · Electrical work · Mechanical work",
+     "date": "2013-12-19",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201312194599"
+    }
+   ],
+   "openPermits": 8,
+   "recentKinds": [
+    "Elevator work",
+    "Server / data room",
+    "Tenant remodel"
    ]
   },
   {
@@ -2828,7 +3023,27 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "201",
+     "kind": "Fire sprinkler work",
+     "date": "2021-12-02",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202112023542"
+    },
+    {
+     "unit": "209",
+     "kind": "Permitted work",
+     "date": "2020-01-02",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202001021181"
+    }
+   ],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 3,
@@ -2857,7 +3072,19 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "300",
+     "kind": "Structural work · Demolition · Electrical work",
+     "date": "2021-12-10",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202112104154"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 4,
@@ -2884,7 +3111,27 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "428",
+     "kind": "Structural work · Tenant remodel · Electrical work",
+     "date": "2014-04-02",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201404022250"
+    },
+    {
+     "unit": "428",
+     "kind": "Permitted work",
+     "date": "2014-03-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201403060029"
+    }
+   ],
+   "openPermits": 4,
+   "recentKinds": []
   },
   {
    "floor": 5,
@@ -2911,6 +3158,16 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 1,
+   "recentKinds": [
+    "Demolition",
+    "Electrical work",
+    "Fire alarm work",
+    "Fire sprinkler work",
+    "Mechanical work",
+    "Tenant remodel"
    ]
   },
   {
@@ -2936,7 +3193,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 7,
@@ -2961,6 +3221,14 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": [
+    "Mechanical work",
+    "Plumbing work",
+    "Server / data room",
+    "Tenant remodel"
    ]
   },
   {
@@ -2986,7 +3254,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 9,
@@ -3011,6 +3282,11 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 4,
+   "recentKinds": [
+    "Electrical work"
    ]
   },
   {
@@ -3042,7 +3318,51 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "1003",
+     "kind": "Restroom work",
+     "date": "2023-04-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230420395"
+    },
+    {
+     "unit": "1008",
+     "kind": "Restroom work",
+     "date": "2023-04-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230420395"
+    },
+    {
+     "unit": "1010",
+     "kind": "Restroom work",
+     "date": "2023-04-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230420395"
+    },
+    {
+     "unit": "1011",
+     "kind": "Restroom work",
+     "date": "2023-04-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230420395"
+    },
+    {
+     "unit": "1035",
+     "kind": "Restroom work",
+     "date": "2023-04-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230420395"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 11,
@@ -3069,6 +3389,16 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": [
+    "Demolition",
+    "Electrical work",
+    "Fire alarm work",
+    "Fire sprinkler work",
+    "Structural work",
+    "Tenant remodel"
    ]
   },
   {
@@ -3099,7 +3429,43 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "1222",
+     "kind": "Server / data room · Restroom work · Mechanical work",
+     "date": "2023-02-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230213731"
+    },
+    {
+     "unit": "1223",
+     "kind": "Server / data room · Restroom work · Mechanical work",
+     "date": "2023-02-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230213731"
+    },
+    {
+     "unit": "1226",
+     "kind": "Server / data room · Restroom work · Mechanical work",
+     "date": "2023-02-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230213731"
+    },
+    {
+     "unit": "1241",
+     "kind": "Server / data room · Restroom work · Mechanical work",
+     "date": "2023-02-13",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230213731"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 13,
@@ -3126,7 +3492,27 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "1304",
+     "kind": "Electrical work · Plumbing work",
+     "date": "2022-08-02",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20220802684"
+    },
+    {
+     "unit": "1304",
+     "kind": "Electrical work · Plumbing work",
+     "date": "2022-03-08",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20220308450"
+    }
+   ],
+   "openPermits": 0,
+   "recentKinds": []
   },
   {
    "floor": 14,
@@ -3151,6 +3537,11 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 0,
+   "recentKinds": [
+    "Structural work"
    ]
   },
   {
@@ -3178,7 +3569,19 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "1500",
+     "kind": "Permitted work",
+     "date": "2022-02-09",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202202091311"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 16,
@@ -3203,7 +3606,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 17,
@@ -3228,7 +3634,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 18,
@@ -3259,7 +3668,19 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "1835",
+     "kind": "Permitted work",
+     "date": "2022-06-27",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202206277152"
+    }
+   ],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 19,
@@ -3284,7 +3705,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 3,
+   "recentKinds": []
   },
   {
    "floor": 20,
@@ -3324,6 +3748,334 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [
+    {
+     "unit": "2025",
+     "kind": "Fire alarm work · Fire sprinkler work",
+     "date": "2026-01-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202601093510"
+    },
+    {
+     "unit": "2025",
+     "kind": "Mechanical work",
+     "date": "2026-01-08",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202601083449"
+    },
+    {
+     "unit": "2023",
+     "kind": "Fire sprinkler work",
+     "date": "2025-12-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202512091298"
+    },
+    {
+     "unit": "2024",
+     "kind": "Permitted work",
+     "date": "2024-09-03",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202409039914"
+    },
+    {
+     "unit": "2024",
+     "kind": "Fire alarm work · Fire sprinkler work · Tenant remodel",
+     "date": "2024-06-27",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202406275354"
+    },
+    {
+     "unit": "2024",
+     "kind": "Fire sprinkler work",
+     "date": "2024-04-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202404301064"
+    },
+    {
+     "unit": "2024",
+     "kind": "Fire sprinkler work · Tenant remodel",
+     "date": "2024-04-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202404301062"
+    },
+    {
+     "unit": "2022",
+     "kind": "Permitted work",
+     "date": "2024-02-14",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202402145866"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire alarm work · Fire sprinkler work · Tenant remodel",
+     "date": "2023-03-10",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202303103419"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire sprinkler work · Elevator work",
+     "date": "2023-03-10",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202303103418"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire sprinkler work",
+     "date": "2023-02-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202302091701"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire alarm work · Fire sprinkler work · Tenant remodel",
+     "date": "2022-11-16",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202211166618"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire sprinkler work",
+     "date": "2022-11-16",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202211166615"
+    },
+    {
+     "unit": "2022",
+     "kind": "Permitted work",
+     "date": "2022-11-10",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202211106250"
+    },
+    {
+     "unit": "2022",
+     "kind": "Permitted work",
+     "date": "2022-07-15",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202207158589"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire sprinkler work",
+     "date": "2022-06-22",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20220622527"
+    },
+    {
+     "unit": "2022",
+     "kind": "Fire sprinkler work",
+     "date": "2022-06-07",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20220607101"
+    },
+    {
+     "unit": "2019",
+     "kind": "Fire alarm work · Mechanical work",
+     "date": "2021-04-29",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202104299577"
+    },
+    {
+     "unit": "2020",
+     "kind": "Fire sprinkler work",
+     "date": "2020-11-17",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202011179110"
+    },
+    {
+     "unit": "2020",
+     "kind": "Fire alarm work · Fire sprinkler work · Tenant remodel",
+     "date": "2020-11-05",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202011058299"
+    },
+    {
+     "unit": "2019",
+     "kind": "Permitted work",
+     "date": "2020-07-01",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202007019470"
+    },
+    {
+     "unit": "2019",
+     "kind": "Fire sprinkler work · Tenant remodel",
+     "date": "2019-12-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201912068874"
+    },
+    {
+     "unit": "2017",
+     "kind": "Fire alarm work",
+     "date": "2017-09-08",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201709087349"
+    },
+    {
+     "unit": "2025",
+     "kind": "Fire alarm work",
+     "date": "2017-09-08",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201709087349"
+    },
+    {
+     "unit": "2014",
+     "kind": "Fire sprinkler work",
+     "date": "2015-07-14",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201507141380"
+    },
+    {
+     "unit": "2013",
+     "kind": "Plumbing work",
+     "date": "2015-03-23",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201503231643"
+    },
+    {
+     "unit": "2014",
+     "kind": "Structural work",
+     "date": "2014-11-12",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201411121251"
+    },
+    {
+     "unit": "2014",
+     "kind": "Permitted work",
+     "date": "2014-10-28",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201410280131"
+    },
+    {
+     "unit": "2014",
+     "kind": "Permitted work",
+     "date": "2014-06-16",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201406168426"
+    },
+    {
+     "unit": "2014",
+     "kind": "Mechanical work",
+     "date": "2014-02-07",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201402077997"
+    },
+    {
+     "unit": "2013",
+     "kind": "Kitchen / food space",
+     "date": "2014-01-14",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201401146187"
+    },
+    {
+     "unit": "2013",
+     "kind": "Fire sprinkler work · Elevator work",
+     "date": "2013-11-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201311041019"
+    },
+    {
+     "unit": "2013",
+     "kind": "Tenant remodel · Electrical work",
+     "date": "2013-10-31",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201310310746"
+    },
+    {
+     "unit": "2013",
+     "kind": "Tenant remodel",
+     "date": "2013-10-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201310300678"
+    },
+    {
+     "unit": "2013",
+     "kind": "Tenant remodel",
+     "date": "2013-10-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201310300674"
+    },
+    {
+     "unit": "2013",
+     "kind": "Fire alarm work · Tenant remodel · Mechanical work",
+     "date": "2013-10-28",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201310280324"
+    },
+    {
+     "unit": "2013",
+     "kind": "Fire sprinkler work",
+     "date": "2013-08-09",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201308093964"
+    },
+    {
+     "unit": "2012",
+     "kind": "Permitted work",
+     "date": "2013-07-05",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201307051245"
+    },
+    {
+     "unit": "2012",
+     "kind": "Permitted work",
+     "date": "2013-06-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201306048674"
+    },
+    {
+     "unit": "2012",
+     "kind": "Permitted work",
+     "date": "2013-05-23",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201305237744"
+    }
+   ],
+   "openPermits": 8,
+   "recentKinds": [
+    "Fire alarm work",
+    "Fire sprinkler work",
+    "Mechanical work"
    ]
   },
   {
@@ -3351,6 +4103,12 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 3,
+   "recentKinds": [
+    "Fire sprinkler work",
+    "Tenant remodel"
    ]
   },
   {
@@ -3380,7 +4138,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 23,
@@ -3410,6 +4171,13 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 3,
+   "recentKinds": [
+    "Electrical work",
+    "Fire alarm work",
+    "Fire sprinkler work"
    ]
   },
   {
@@ -3437,7 +4205,19 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "2412",
+     "kind": "Plumbing work · Mechanical work",
+     "date": "2020-02-28",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20200228175"
+    }
+   ],
+   "openPermits": 4,
+   "recentKinds": []
   },
   {
    "floor": 25,
@@ -3464,6 +4244,13 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
+   ],
+   "unitWork": [],
+   "openPermits": 1,
+   "recentKinds": [
+    "Fire alarm work",
+    "Fire sprinkler work",
+    "Mechanical work"
    ]
   },
   {
@@ -3489,7 +4276,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Which areas are unsprinklered (building is 90% sprinklered)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 2,
+   "recentKinds": []
   }
  ],
  "resolution": {

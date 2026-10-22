@@ -2430,7 +2430,51 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "101",
+     "kind": "Restroom work",
+     "date": "2019-02-25",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201902253771"
+    },
+    {
+     "unit": "102",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    },
+    {
+     "unit": "103",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    },
+    {
+     "unit": "170",
+     "kind": "Fire sprinkler work",
+     "date": "2003-05-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200305094211"
+    },
+    {
+     "unit": "170",
+     "kind": "Fire sprinkler work",
+     "date": "2002-10-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200210048278"
+    }
+   ],
+   "openPermits": 0,
+   "recentKinds": []
   },
   {
    "floor": 2,
@@ -2462,6 +2506,45 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
+   ],
+   "unitWork": [
+    {
+     "unit": "208",
+     "kind": "Restroom work · Electrical work",
+     "date": "2025-03-25",
+     "open": true,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202503251166"
+    },
+    {
+     "unit": "211",
+     "kind": "Restroom work",
+     "date": "2022-12-13",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202212138228"
+    },
+    {
+     "unit": "202",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    },
+    {
+     "unit": "203",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    }
+   ],
+   "openPermits": 2,
+   "recentKinds": [
+    "Electrical work",
+    "Restroom work"
    ]
   },
   {
@@ -2492,6 +2575,28 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
+   ],
+   "unitWork": [
+    {
+     "unit": "302",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    },
+    {
+     "unit": "303",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    }
+   ],
+   "openPermits": 0,
+   "recentKinds": [
+    "Roof work"
    ]
   },
   {
@@ -2521,7 +2626,19 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "403",
+     "kind": "Permitted work",
+     "date": "2009-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200903093698"
+    }
+   ],
+   "openPermits": 0,
+   "recentKinds": []
   },
   {
    "floor": 5,
@@ -2548,7 +2665,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Unit list (no permit names a unit on this floor)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 0,
+   "recentKinds": []
   }
  ],
  "resolution": {

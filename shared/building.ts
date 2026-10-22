@@ -142,6 +142,10 @@ export interface FloorFacts {
   occupantLoad: number | null; // from SFFD assembly permits naming this floor
   rooms: string[]; // rooms named in records: "Computer room", "Server room", "Fire pump room"
   notOnRecord: string[]; // facts with no public record for this floor, e.g. "Stair locations"
+  // additive (for the in-floor view): per-unit work from permits naming the unit, newest first
+  unitWork?: { unit: string; kind: string; date: string; open: boolean; datasetId: string; recordId: string }[];
+  openPermits?: number; // permits naming this floor that are filed/issued but not complete: expect open walls
+  recentKinds?: string[]; // work categories on this floor in the last 2 years, e.g. ["Fire alarm work", "Tenant remodel"]
 }
 
 // Compliance strip (Lane C owns the logic, Lane D renders).

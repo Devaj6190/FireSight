@@ -3108,7 +3108,10 @@
     "Stair locations",
     "Standpipe outlets",
     "Unit list (no permit names a unit on this floor)"
-   ]
+   ],
+   "unitWork": [],
+   "openPermits": 0,
+   "recentKinds": []
   },
   {
    "floor": 1,
@@ -3146,7 +3149,195 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "109",
+     "kind": "Structural work · Kitchen / food space · Restroom work",
+     "date": "2022-04-05",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202204051568"
+    },
+    {
+     "unit": "109",
+     "kind": "Fire alarm work · Kitchen / food space · Restroom work",
+     "date": "2022-04-05",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202204059408"
+    },
+    {
+     "unit": "110",
+     "kind": "Permitted work",
+     "date": "2021-01-19",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202101192898"
+    },
+    {
+     "unit": "110",
+     "kind": "Structural work",
+     "date": "2021-01-07",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202101072232"
+    },
+    {
+     "unit": "101",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2020-12-06",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20201206893"
+    },
+    {
+     "unit": "101",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2020-11-10",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202011101592"
+    },
+    {
+     "unit": "101",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2020-11-02",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202011027974"
+    },
+    {
+     "unit": "116",
+     "kind": "Permitted work",
+     "date": "2020-09-14",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202009140335"
+    },
+    {
+     "unit": "116",
+     "kind": "Permitted work",
+     "date": "2020-08-24",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202008249900"
+    },
+    {
+     "unit": "116",
+     "kind": "Permitted work",
+     "date": "2020-08-13",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202008131688"
+    },
+    {
+     "unit": "113",
+     "kind": "Structural work · Kitchen / food space · Restroom work",
+     "date": "2019-12-12",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "201912129361"
+    },
+    {
+     "unit": "113",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2019-12-12",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201912126176"
+    },
+    {
+     "unit": "104",
+     "kind": "Structural work",
+     "date": "2019-07-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201907095413"
+    },
+    {
+     "unit": "104",
+     "kind": "Permitted work",
+     "date": "2019-07-09",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201907092531"
+    },
+    {
+     "unit": "104",
+     "kind": "Permitted work",
+     "date": "2019-07-09",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20190709362"
+    },
+    {
+     "unit": "101",
+     "kind": "Fire alarm work · Electrical work",
+     "date": "2019-01-23",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201901238622"
+    },
+    {
+     "unit": "118",
+     "kind": "Fire alarm work · Kitchen / food space · Restroom work",
+     "date": "2018-10-31",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201810316868"
+    },
+    {
+     "unit": "118",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2018-09-07",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201809079428"
+    },
+    {
+     "unit": "115",
+     "kind": "Structural work",
+     "date": "2014-08-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201408042955"
+    },
+    {
+     "unit": "104",
+     "kind": "Kitchen / food space · Restroom work · Plumbing work",
+     "date": "2012-05-17",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20120517112"
+    },
+    {
+     "unit": "107",
+     "kind": "Kitchen / food space · Electrical work",
+     "date": "2012-04-03",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201204031826"
+    },
+    {
+     "unit": "104",
+     "kind": "Kitchen / food space · Restroom work · Electrical work",
+     "date": "2012-01-18",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E20120118211"
+    },
+    {
+     "unit": "104",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-12-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201112090434"
+    }
+   ],
+   "openPermits": 2,
+   "recentKinds": []
   },
   {
    "floor": 2,
@@ -3178,7 +3369,163 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "211",
+     "kind": "Mechanical work",
+     "date": "2023-04-17",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20230417285"
+    },
+    {
+     "unit": "212",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2022-06-01",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E20220601514"
+    },
+    {
+     "unit": "212",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2022-06-01",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20220601192"
+    },
+    {
+     "unit": "212",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2022-05-06",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202205063754"
+    },
+    {
+     "unit": "211",
+     "kind": "Permitted work",
+     "date": "2013-04-22",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E20130422163"
+    },
+    {
+     "unit": "211",
+     "kind": "Permitted work",
+     "date": "2013-04-22",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20130422166"
+    },
+    {
+     "unit": "204",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2012-01-17",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E20120117184"
+    },
+    {
+     "unit": "204",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2012-01-17",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20120117750"
+    },
+    {
+     "unit": "204",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2012-01-13",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201201132195"
+    },
+    {
+     "unit": "215",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-12-12",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201112120469"
+    },
+    {
+     "unit": "215",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-12-12",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201112129557"
+    },
+    {
+     "unit": "211",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-05-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201105045353"
+    },
+    {
+     "unit": "211",
+     "kind": "Kitchen / food space · Restroom work · Electrical work",
+     "date": "2011-05-04",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201105044664"
+    },
+    {
+     "unit": "203",
+     "kind": "Electrical work",
+     "date": "2011-02-17",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201102172959"
+    },
+    {
+     "unit": "203",
+     "kind": "Restroom work",
+     "date": "2011-02-17",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20110217140"
+    },
+    {
+     "unit": "203",
+     "kind": "Permitted work",
+     "date": "2011-02-11",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201102110144"
+    },
+    {
+     "unit": "203",
+     "kind": "Restroom work",
+     "date": "2010-03-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201003097786"
+    },
+    {
+     "unit": "203",
+     "kind": "Restroom work",
+     "date": "2010-03-09",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201003095860"
+    },
+    {
+     "unit": "203",
+     "kind": "Restroom work",
+     "date": "2010-03-09",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20100309518"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": []
   },
   {
    "floor": 3,
@@ -3217,7 +3564,283 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
-   ]
+   ],
+   "unitWork": [
+    {
+     "unit": "314",
+     "kind": "Kitchen / food space · Tenant remodel",
+     "date": "2022-11-15",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202211156546"
+    },
+    {
+     "unit": "314",
+     "kind": "Kitchen / food space · Tenant remodel",
+     "date": "2022-11-15",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202211153601"
+    },
+    {
+     "unit": "313",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2021-12-28",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202112287541"
+    },
+    {
+     "unit": "313",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2021-12-28",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20211228207"
+    },
+    {
+     "unit": "313",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2021-12-06",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202112063729"
+    },
+    {
+     "unit": "303",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2020-08-23",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20200823031"
+    },
+    {
+     "unit": "303",
+     "kind": "Kitchen / food space · Tenant remodel",
+     "date": "2020-08-19",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202008199772"
+    },
+    {
+     "unit": "303",
+     "kind": "Kitchen / food space",
+     "date": "2020-07-21",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202007210534"
+    },
+    {
+     "unit": "308",
+     "kind": "Structural work",
+     "date": "2019-12-23",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201912230417"
+    },
+    {
+     "unit": "308",
+     "kind": "Electrical work",
+     "date": "2019-12-23",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201912236388"
+    },
+    {
+     "unit": "311",
+     "kind": "Kitchen / food space · Restroom work · Electrical work",
+     "date": "2019-10-16",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201910164889"
+    },
+    {
+     "unit": "311",
+     "kind": "Kitchen / food space · Restroom work · Plumbing work",
+     "date": "2019-10-16",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20191016352"
+    },
+    {
+     "unit": "311",
+     "kind": "Structural work · Kitchen / food space · Restroom work",
+     "date": "2019-10-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201910043620"
+    },
+    {
+     "unit": "311",
+     "kind": "Permitted work",
+     "date": "2019-09-03",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201909030483"
+    },
+    {
+     "unit": "311",
+     "kind": "Permitted work",
+     "date": "2019-09-03",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201909033832"
+    },
+    {
+     "unit": "305",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2019-06-12",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20190612629"
+    },
+    {
+     "unit": "307",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-04-18",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201904188407"
+    },
+    {
+     "unit": "307",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-04-18",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E20190418708"
+    },
+    {
+     "unit": "307",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-04-18",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20190418054"
+    },
+    {
+     "unit": "305",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-03-26",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201903266228"
+    },
+    {
+     "unit": "313",
+     "kind": "Permitted work",
+     "date": "2013-06-12",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201306129272"
+    },
+    {
+     "unit": "313",
+     "kind": "Permitted work",
+     "date": "2013-06-12",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201306129271"
+    },
+    {
+     "unit": "303",
+     "kind": "Kitchen / food space",
+     "date": "2012-03-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201203307251"
+    },
+    {
+     "unit": "319",
+     "kind": "Fire alarm work · Kitchen / food space · Restroom work",
+     "date": "2011-09-08",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201109087531"
+    },
+    {
+     "unit": "319",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-09-08",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20110908843"
+    },
+    {
+     "unit": "319",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2011-09-07",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201109073976"
+    },
+    {
+     "unit": "313",
+     "kind": "Permitted work",
+     "date": "2011-02-17",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201102172960"
+    },
+    {
+     "unit": "313",
+     "kind": "Permitted work",
+     "date": "2011-02-11",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201102110146"
+    },
+    {
+     "unit": "311",
+     "kind": "Permitted work",
+     "date": "2011-02-11",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201102110145"
+    },
+    {
+     "unit": "313",
+     "kind": "Structural work · Kitchen / food space · Restroom work",
+     "date": "2008-08-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200808048301"
+    },
+    {
+     "unit": "313",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2008-08-04",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E200808049742"
+    },
+    {
+     "unit": "313",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2008-08-04",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20080804007"
+    },
+    {
+     "unit": "311",
+     "kind": "Permitted work",
+     "date": "2007-07-03",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200707035880"
+    },
+    {
+     "unit": "311",
+     "kind": "Structural work · Kitchen / food space · Restroom work",
+     "date": "2007-05-11",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "200705111105"
+    }
+   ],
+   "openPermits": 0,
+   "recentKinds": []
   },
   {
    "floor": 4,
@@ -3254,6 +3877,198 @@
    "notOnRecord": [
     "Stair locations",
     "Standpipe outlets"
+   ],
+   "unitWork": [
+    {
+     "unit": "408",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2024-12-05",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202412058605"
+    },
+    {
+     "unit": "408",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2024-12-05",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20241205409"
+    },
+    {
+     "unit": "408",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2024-10-22",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202410223487"
+    },
+    {
+     "unit": "412",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2021-10-20",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202110200839"
+    },
+    {
+     "unit": "412",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2021-10-20",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E202110206258"
+    },
+    {
+     "unit": "412",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2021-10-20",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20211020008"
+    },
+    {
+     "unit": "409",
+     "kind": "Permitted work",
+     "date": "2020-12-06",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20201206891"
+    },
+    {
+     "unit": "418",
+     "kind": "Kitchen / food space · Restroom work · Tenant remodel",
+     "date": "2020-12-06",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PW20201206892"
+    },
+    {
+     "unit": "418",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2020-11-10",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202011101587"
+    },
+    {
+     "unit": "409",
+     "kind": "Permitted work",
+     "date": "2020-11-10",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "EW202011101582"
+    },
+    {
+     "unit": "409",
+     "kind": "Permitted work",
+     "date": "2020-11-04",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "202011048153"
+    },
+    {
+     "unit": "418",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2020-11-04",
+     "open": true,
+     "datasetId": "i98e-djp9",
+     "recordId": "202011048132"
+    },
+    {
+     "unit": "414",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-10-23",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201910235051"
+    },
+    {
+     "unit": "414",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-10-09",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201910094064"
+    },
+    {
+     "unit": "403",
+     "kind": "Kitchen / food space · Restroom work",
+     "date": "2019-06-14",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201906143467"
+    },
+    {
+     "unit": "420",
+     "kind": "Restroom work · Tenant remodel",
+     "date": "2017-06-30",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201706300783"
+    },
+    {
+     "unit": "420",
+     "kind": "Restroom work · Tenant remodel",
+     "date": "2017-06-30",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201706306046"
+    },
+    {
+     "unit": "420",
+     "kind": "Restroom work · Tenant remodel",
+     "date": "2017-06-30",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20170630639"
+    },
+    {
+     "unit": "415",
+     "kind": "Permitted work",
+     "date": "2014-04-03",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20140403607"
+    },
+    {
+     "unit": "407",
+     "kind": "Kitchen / food space · Electrical work",
+     "date": "2012-05-16",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201205162744"
+    },
+    {
+     "unit": "413",
+     "kind": "Restroom work · Tenant remodel",
+     "date": "2011-08-26",
+     "open": false,
+     "datasetId": "i98e-djp9",
+     "recordId": "201108263366"
+    },
+    {
+     "unit": "413",
+     "kind": "Restroom work · Tenant remodel",
+     "date": "2011-08-26",
+     "open": false,
+     "datasetId": "ftty-kx6y",
+     "recordId": "E201108267232"
+    },
+    {
+     "unit": "413",
+     "kind": "Restroom work",
+     "date": "2011-08-26",
+     "open": false,
+     "datasetId": "a6aw-rudh",
+     "recordId": "PP20110826583"
+    }
+   ],
+   "openPermits": 1,
+   "recentKinds": [
+    "Kitchen / food space",
+    "Restroom work",
+    "Tenant remodel"
    ]
   }
  ],
