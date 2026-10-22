@@ -5,6 +5,10 @@ import { evaluateCompliance } from "../../shared/compliance.ts";
 import { answer, makeBrief } from "./ai/brief.ts";
 import { saveStrike } from "./strike.ts";
 
+try {
+  process.loadEnvFile(); // api/.env (gitignored)
+} catch {}
+
 const app = new Hono();
 
 const isBuilding = (b: unknown): b is Building =>
