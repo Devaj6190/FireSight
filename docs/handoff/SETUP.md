@@ -215,7 +215,7 @@ export default { fetch(request: Request) { return app.fetch(request); } };
    - Root Directory: `web`.
    - "Include files outside the root directory in the Build Step": ON.
    - Node 22.x.
-   - Env vars, Production and Preview: `ANTHROPIC_API_KEY` (entered by Vidyut, marked Sensitive) and `FIRESIGHT_CASES_DIR=/tmp/cases`.
+   - Env vars, Production and Preview: `ANTHROPIC_API_KEY` (entered by Devaj, marked Sensitive) and `FIRESIGHT_CASES_DIR=/tmp/cases`.
    - Dependencies stay in `api/package.json`: the install command installs them.
    - `web` needs `typescript` 5.7 or newer: it has 6.0.
 
