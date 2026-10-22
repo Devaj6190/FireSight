@@ -220,6 +220,82 @@ FLR_RE = re.compile(r"\b(\d)(?:st|nd|rd|th)\s*(?:fl(?:oo)?r?\b|flr\b)", re.I)
 FLOOR_WORDS = {"main": 1, "ground": 1, "first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5, "sixth": 6}
 
 
+# Free text from permits and complaints can name tenants, owners or permit holders ("... for the X remodel").
+# Rather than chase name patterns, keep ONLY construction vocabulary, numbers and unit/floor markers: any proper noun
+# that is not in this list disappears. Applied to every permit- or complaint-derived string that reaches the JSON.
+SAFE_WORDS = set("""
+a an and the of to in on at with for from by per as or no not new existing e n all only each both
+unit units apt apartment suite ste room rooms floor floors fl flr flrs level levels story stories basement roof rooftop
+ground lobby penthouse mezzanine garage parking podium tower building bldg exterior interior facade front rear side
+st nd rd th first second third fourth fifth sixth
+remodel remodeling renovate renovation renovations alteration alterations repair repairs replace replacement replacing
+install installation installing new upgrade upgrades update modify modification modifications relocate relocation
+demo demolition demolish remove removal reinstall convert conversion addition add adding expand extension
+ti tenant improvement improvements build buildout build-out fitout fit-out
+kitchen kitchens bath baths bathroom bathrooms restroom restrooms toilet shower laundry washer dryer closet bedroom
+living office offices conference break pantry storage stair stairs stairway stairwell corridor hallway hall elevator
+elevators escalator lift shaft vestibule entry entrance exit exits egress door doors window windows wall walls
+partition partitions ceiling ceilings floor-to-ceiling slab slabs beam beams column columns joist joists footing
+foundation shear load-bearing bearing non-bearing structural seismic retrofit soft-story steel concrete wood framing frame
+fire alarm alarms sprinkler sprinklers standpipe smoke detector detectors sounder sounders horn strobe strobes facp panel
+life safety emergency lighting generator generators pump pumps battery batteries ess storage solar pv photovoltaic
+modules module inverter inverters ev charger chargers electrical electric wiring circuit circuits outlet outlets lights
+lighting service meter panelboard switchgear transformer plumbing mechanical hvac duct ducts ductwork exhaust ventilation
+boiler boilers water heater heaters gas line lines pipe piping sewer drain drains fixtures fixture cabinet cabinets
+counter counters flooring finishes finish paint painting drywall insulation roofing reroof membrane deck decks balcony
+balconies fire-escape escape escapes railing railings guardrail sign signs signage awning facade
+server data computer telecom mdf idf it equipment mep anchorage support loads
+food facility employees restaurant cafe kitchenette dining assembly event occupancy load
+work works partial mounted watts kw kwh ref reference plans plan scope same kind in-kind like provide providing
+sq ft opening openings makeup air terminate comply code codes required final inspection obtain approved under
+revision revised previous previously complete completed existing reroofing re-roof
+""".split())
+
+
+def scrub_text(text, limit=160):
+    t = clean(text or "").lower()
+    t = re.sub(r"[\"“”'‘’][^\"“”'‘’]{1,80}[\"“”'‘’]", " ", t)  # quoted names
+    out = []
+    for tok in re.findall(r"[a-z0-9#/&.-]+|[,;:()]", t):
+        w = tok.strip(".")
+        if re.fullmatch(r"#?\d+[a-z]?|\d+(st|nd|rd|th)|\d+/\d+|[,;:()]", w) or w in SAFE_WORDS:
+            out.append(w)
+        elif out and out[-1] != "…":
+            out.append("…")  # a dropped word (possibly a name) leaves an ellipsis, never the word
+    s = " ".join(out)
+    s = re.sub(r"\s+([,;:)])", r"\1", s).replace("( ", "(")
+    s = re.sub(r"(… ?)+", "… ", s).strip(" …,;:")
+    s = re.sub(r"\b(for|at|by|of|the|and|to)( (for|at|by|of|the|and|to))*\s*(…|$)", "", s).strip(" …,;:")
+    return (s[:limit].rsplit(" ", 1)[0] + "…") if len(s) > limit else s
+
+
+# What a permit is about, as a short name-free phrase for the floor panel ("Fire alarm work · Remodel").
+PERMIT_KINDS = [
+    (r"fire alarm|smoke detector|strobe|horn|sounder|facp|nfpa 72", "Fire alarm work"),
+    (r"sprinkler|standpipe|fire only", "Fire sprinkler work"),
+    (r"battery|energy storage|\bess\b|ups\b", "Battery / UPS work"),
+    (r"solar|photovoltaic|\bpv\b", "Solar work"),
+    (r"server|data room|computer room|telecom|mdf|idf", "Server / data room"),
+    (r"structural|load[- ]bearing|shear|seismic|retrofit|beam|column|foundation", "Structural work"),
+    (r"elevator|escalator", "Elevator work"),
+    (r"kitchen|food facility|restaurant|cafe", "Kitchen / food space"),
+    (r"bath|restroom|toilet|shower", "Restroom work"),
+    (r"demo(lition)?\b|demolish", "Demolition"),
+    (r"\bti\b|tenant improvement|remodel|renovat|alteration|build-?out|fit-?out|interior", "Tenant remodel"),
+    (r"electric|lighting|wiring|circuit|outlet|panelboard|switchgear", "Electrical work"),
+    (r"plumb|water heater|gas line|pipe|drain|sewer", "Plumbing work"),
+    (r"hvac|mechanical|duct|exhaust|ventilation|boiler", "Mechanical work"),
+    (r"roof", "Roof work"),
+    (r"sign|awning", "Signage"),
+]
+
+
+def permit_kind(text):
+    t = (text or "").lower()
+    kinds = [name for rx, name in PERMIT_KINDS if re.search(rx, t)]
+    return " · ".join(kinds[:3]) or "Permitted work"
+
+
 def nov_summary(n):
     """One plain phrase from a DBI NOV row: category if present, else the violation text minus boilerplate."""
     if n.get("nov_category_description"):
@@ -263,6 +339,102 @@ def footprint_local(shape):
     if area < 0:
         pts.reverse()  # CCW
     return pts, lat0, lon0, abs(area) / 2
+
+
+# ---------------------------------------------------------------- per-floor summary
+ORD = {1: "1st", 2: "2nd", 3: "3rd"}
+ROOM_RX = [(r"computer room|battery room", "Battery / computer room"), (r"server room", "Server room"),
+           (r"fire pump", "Fire pump room"), (r"generator room|diesel", "Generator room"), (r"boiler", "Boiler room"),
+           (r"assembly", "Assembly space"), (r"kitchen", "Kitchen"), (r"elevator lobby", "Elevator lobby")]
+
+
+def floor_mentions(text, floors):
+    """Floors a permit's text names: '18th fl', 'floor 18', '3rd flr', unit numbers (311 -> 3, 2204 -> 22), basement, ground."""
+    t = (text or "").lower()
+    out = set()
+    for m in re.findall(r"\b(\d{1,2})(?:st|nd|rd|th)?\s*(?:fl|flr|floor)\b|\bfloor\s*(\d{1,2})\b|\blevel\s*(\d{1,2})\b", t):
+        n = int(next(x for x in m if x))
+        if 1 <= n <= floors:
+            out.add(n)
+    for u in units_in(t):
+        if 1 <= u // 100 <= floors:
+            out.add(u // 100)
+    if re.search(r"\bbasement\b|\blevel b1\b|\bb1\b|sub-?basement", t):
+        out.add(0)
+    if re.search(r"ground floor|\blobby\b|street level", t):
+        out.add(1)
+    return out
+
+
+def build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current_fire_permits, tall_pct=None, residential=False):
+    has_b1 = any(p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == 0 for p in pins)
+    rank = {"danger": 0, "caution": 1, "info": 2}
+    # permits from every DBI system, newest first, each mapped to the floors its text names
+    sources = [("permits", "i98e-djp9", "permit_number", "filed_date"), ("electrical", "ftty-kx6y", "permit_number", "filed_date"),
+               ("plumbing", "a6aw-rudh", "permit_number", "filed_date")]
+    by_floor, unit_work = {}, {}
+    for key, ds, pk, dk in sources:
+        for r in (permits if key == "permits" else rows(bdir, key)):
+            desc = r.get("description")
+            st = (r.get("status") or "").lower()
+            is_open = st in ("filed", "issued", "approved", "plancheck", "reinstated", "triage")  # not complete/expired/cancelled
+            kind = permit_kind(desc)
+            for f in floor_mentions(desc, floors):
+                by_floor.setdefault(f, []).append((iso(r.get(dk)), kind, ds, r.get(pk), is_open))
+            for u in units_in((desc or "").lower()):
+                if 1 <= u // 100 <= floors:
+                    unit_work.setdefault(u // 100, []).append({"unit": str(u), "kind": kind, "date": iso(r.get(dk)), "open": is_open, "datasetId": ds, "recordId": str(r.get(pk))})
+    origin = Counter()
+    for r in inc:
+        fl = num(r.get("floor_of_fire_origin"))
+        if fl is not None:
+            origin[0 if fl < 0 else fl] += 1
+    loads = Counter()
+    for fpm in current_fire_permits:
+        cond = clean(fpm.get("conditions_associated_with_granting_this_permit") or "")
+        if not re.search(r"assembly", fpm.get("permit_type_description") or "", re.I):
+            continue
+        parts = re.findall(r"(main|ground|first|second|third|fourth|fifth|sixth|\d{1,2}(?:st|nd|rd|th)?)\s+floor\s*[-:]\s*(\d+)\s*persons", cond, re.I)
+        for w, n_ in parts:
+            f = FLOOR_WORDS.get(w.lower()) or num(re.sub(r"\D", "", w))
+            if f and 1 <= f <= floors:
+                loads[f] += int(n_)
+        if not parts:
+            m = re.search(r"occupant load of (\d+)", cond)
+            fl = floor_mentions(cond, floors) or ({1} if re.search(r"main floor|ground floor", cond, re.I) else set())
+            if m and len(fl) == 1:
+                loads[next(iter(fl))] += int(m.group(1))
+    facts = []
+    for f in range(0 if has_b1 else 1, floors + 1):
+        own = [p for p in pins if p["anchor"].get("kind") == "floor" and p["anchor"].get("floor") == f]
+        own.sort(key=lambda p: rank[p["severity"]])
+        ps = sorted(by_floor.get(f, []), key=lambda x: x[0], reverse=True)
+        text = " ".join(f"{p['label']} {p['detail']}" for p in own).lower()
+        rooms = [name for rx, name in ROOM_RX if re.search(rx, text)]
+        missing = ["Stair locations", "Standpipe outlets"]
+        if tall_pct is not None and tall_pct < 100:
+            missing.append(f"Which areas are unsprinklered (building is {tall_pct}% sprinklered)")
+        if residential and not floor_units.get(f):
+            missing.append("Unit list (no permit names a unit on this floor)")
+        last = None
+        if ps:
+            d, t, ds, rec, _ = ps[0]
+            last = {"date": d, "text": t, "datasetId": ds, "recordId": str(rec), "url": soda_url(ds, "permit_number", rec)}
+        facts.append({
+            "floor": f, "label": "B1" if f == 0 else f"Floor {f}",
+            "pinIds": [p["id"] for p in own],
+            "severity": own[0]["severity"] if own else None,
+            "units": [str(u) for u in sorted(floor_units.get(f, set()))],
+            "permits": {"count": len(ps), "last": last},
+            "incidents": origin.get(f, 0),
+            "occupantLoad": loads.get(f) or None,
+            "rooms": rooms,
+            "notOnRecord": missing,
+            "unitWork": sorted(unit_work.get(f, []), key=lambda w: w["date"], reverse=True)[:40],
+            "openPermits": sum(1 for x in ps if x[4]),
+            "recentKinds": sorted({k for x in ps if x[0] >= "2024-10-22" for k in x[1].split(" · ") if k != "Permitted work"}),
+        })
+    return facts
 
 
 # ---------------------------------------------------------------- main fusion
@@ -431,7 +603,7 @@ def build(bid):
                       f"{when[:4]} permit says the solar hot-water tank{' (' + gal.group(1) + ' gallons)' if gal else ''} is located in the basement.", floor(0),
                       [ev(ds, p["permit_number"], soda_url(ds, "permit_number", p["permit_number"]), when, "permit text says 'basement' -> floor 0")])
             rule = f"keyword '{tag}' in permit text" + (f"; unit {us[0]} -> floor {us[0] // 100}" if (us and tag == "structural") else rule_extra)
-            P.add("permit", f"{tag}-{p['permit_number']}", sev, lab, f"{when[:4]} permit ({done}): \"{p.get('description', '').strip()[:220]}\"", anchor,
+            P.add("permit", f"{tag}-{p['permit_number']}", sev, lab, f"{when[:4]} permit ({done}): {scrub_text(p.get('description'), 200)}.", anchor,
                   [ev(ds, p["permit_number"], soda_url(ds, "permit_number", p["permit_number"]), when, rule)])
     act = [p for p in rows(bdir, "permitsf") if (p.get("status_detail") or "").lower().startswith("active")]
     if act:
@@ -623,7 +795,7 @@ def build(bid):
     for fl, ps in sorted(recent_fl.items(), key=lambda kv: -len(kv[1]))[:5]:
         p0 = ps[0]
         P.add("permit", f"buildout-f{fl}", "caution", f"RECENT BUILD-OUT, FLOOR {fl}",
-              f"{len(ps)} permit(s) since Oct 2024 name floor {fl}; newest {iso(p0.get('filed_date'))} ({p0.get('status')}): \"{clean(p0.get('description') or '')[:120]}\". Expect open ceilings or changed layout.", floor(fl),
+              f"{len(ps)} permit(s) since Oct 2024 name floor {fl}; newest {iso(p0.get('filed_date'))} ({p0.get('status')}): {permit_kind(p0.get("description"))}. Expect open ceilings or changed layout.", floor(fl),
               [ev("i98e-djp9", p["permit_number"], soda_url("i98e-djp9", "permit_number", p["permit_number"]), iso(p.get("filed_date")), f"permit text '{fl}th floor' -> floor {fl}") for p in ps[:3]])
 
     # ---- DBI complaints / NOVs
@@ -633,7 +805,7 @@ def build(bid):
         d = c.get("complaint_description") or ""
         base = "basement" in d.lower()
         P.add("complaint", c["complaint_number"], "caution", "OPEN COMPLAINT: BASEMENT WORK" if base else f"OPEN DBI COMPLAINT {iso(c['date_filed'])[:4]}",
-              f"Active DBI complaint filed {iso(c['date_filed'])}: \"{clean(d.strip().split('.')[0])[:120]}\".", floor(0) if base else BLDG,
+              f"Active DBI complaint filed {iso(c['date_filed'])}: {scrub_text(d.strip().split('.')[0], 120)}.", floor(0) if base else BLDG,
               [ev("gm2e-bten", c["complaint_number"], soda_url("gm2e-bten", "complaint_number", c["complaint_number"]), iso(c["date_filed"]), "block + lot" + ("; text says basement -> floor 0" if base else ""))])
     nov = rows(bdir, "dbi_nov")
     unsafe = [n for n in nov if (n.get("unsafe_building") or "").upper() == "Y"]
@@ -926,13 +1098,14 @@ def build(bid):
     # ---- order: danger first, then caution, then info
     sev_rank = {"danger": 0, "caution": 1, "info": 2}
     pins = sorted(P.items, key=lambda p: (sev_rank[p["severity"]], p["id"]))  # deterministic for refresh diffs
+    floor_facts = build_floor_facts(bdir, pins, floors, floor_units, permits, inc, current, tall_pct=num((rows(bdir, "tall_building") or [{}])[0].get("percent_sprinklered")), residential=residential)
     addr_disp = (res.get("address") or "").title().replace(" Av", " Ave").replace("Avee", "Ave")
     building = {
         "id": bid, "apn": apn, "address": addr_disp,
         "centroid": {"lat": round(clat, 7), "lon": round(clon, 7)},
         "footprint": footprint, "heightM": height, "floors": floors, "floorHeightM": round(height / floors, 2),
         "yearBuilt": year_built, "constructionType": construction, "units": units, "rooms": rooms, "use": use,
-        "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers,
+        "pins": pins, "conflicts": conflicts, "unknowns": unknowns, "layers": layers, "floorFacts": floor_facts,
         "resolution": {"apn": apn, "easBaseId": res.get("eas_baseid"), "aliases": aliases, "links": links},
         "fetchedAt": man["fetchedAt"],
         "meta": {"footprintAsOf": fp_asof, "heightSource": "2010 LiDAR (hgt_median_m)", "footprintAreaM2": round(area_m2),
@@ -945,6 +1118,8 @@ def build(bid):
         prev = json.load(open(out, encoding="utf-8"))
         if prev.get("fallback"):
             building["fallback"] = prev["fallback"]
+        for k, v in (prev.get("meta") or {}).items():  # refresh.py's keys (refreshedAt, ...) survive a local rebuild
+            building["meta"].setdefault(k, v)
     building["meta"]["lotAreaM2"] = round(num(a0.get("lot_area")) * 0.0929) if num(a0.get("lot_area")) else None
     building["meta"]["buildingAreaM2"] = round(num(a0.get("property_area")) * 0.0929) if num(a0.get("property_area")) else None
     json.dump(building, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)

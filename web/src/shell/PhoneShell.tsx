@@ -7,19 +7,28 @@ import { Provenance, ResolutionView } from './Provenance.tsx'
 import { Freshness, useRefreshRuns } from './Freshness.tsx'
 import { BUILDINGS, floorLabel, HERO_DISPATCH, localTime } from './model.ts'
 import { VoiceCommand } from './voice/VoiceCommand.tsx'
+import { FloorPanel, FloorRail, floorName } from './Floors.tsx'
+import { useStore } from '../store.ts'
 import './phone.css'
 
-type Page = 'sizeup' | 'dispatch' | 'ask' | 'brief' | 'resolution' | 'records' | 'limits' | 'sources' | 'eval' | 'notes' | 'refresh' | 'crew' | 'pin'
+type Page = 'sizeup' | 'floor' | 'dispatch' | 'ask' | 'brief' | 'resolution' | 'records' | 'limits' | 'sources' | 'eval' | 'notes' | 'refresh' | 'crew' | 'pin'
 type Props = {
   building: Building; children: ReactNode; phase: string; selectedPin?: Pin; focusedFloors: number[]
   onBuilding: (id: string) => void; onDispatch: (text: string) => Promise<void>
   onToggle: () => void; onSelectPin: (pin: Pin | undefined) => void
   onHighlight: (floors: number[], ids: string[]) => void; onAddPin: (pin: Pin) => void
 }
-const tabs: [Page, string][] = [['sizeup', 'Size-up'], ['brief', 'Brief'], ['resolution', 'Resolution'], ['records', 'Records'], ['limits', 'Limits'], ['sources', 'Sources'], ['notes', 'Add note'], ['refresh', 'Changes'], ['eval', 'Eval']]
+const tabs: [Page, string][] = [['sizeup', 'Size-up'], ['floor', 'Floors'], ['brief', 'Brief'], ['resolution', 'Resolution'], ['records', 'Records'], ['limits', 'Limits'], ['sources', 'Sources'], ['notes', 'Add note'], ['refresh', 'Changes'], ['eval', 'Eval']]
 
 export function PhoneShell({ building: b, children, phase, selectedPin, focusedFloors, onBuilding, onDispatch, onToggle, onSelectPin, onHighlight, onAddPin }: Props) {
-  const [page, setPage] = useState<Page>('sizeup')
+  const target = useStore(s => s.target)
+  const [page, setPage] = useState<Page>(() => target !== null ? 'floor' : 'sizeup')
+  const [panelFloor, setPanelFloor] = useState<number | null>(target)
+  // any focus (floor rail, dispatch, voice, ?focus=) opens that floor's panel; clearing focus keeps the last floor
+  useEffect(() => {
+    if (target === null) return
+    setPanelFloor(target); setPage('floor'); onSelectPin(undefined); setMessage('')
+  }, [target]) // eslint-disable-line react-hooks/exhaustive-deps
   const [expanded, setExpanded] = useState(() => b.pins.some(p => p.origin === 'dispatch'))
   const [dispatch, setDispatch] = useState(HERO_DISPATCH)
   const [dispatchBusy, setDispatchBusy] = useState(false)
@@ -43,6 +52,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
   const rank = { danger: 0, caution: 1, info: 2 }
   const topPins = [...b.pins].sort((a, c) => rank[a.severity] - rank[c.severity]).slice(0, 3)
 
+  function openFloor(f: number) { onSelectPin(undefined); setPanelFloor(f); setPage('floor'); setMessage('') }
   function navigate(next: Page) { onSelectPin(undefined); setPage(next); setExpanded(next !== 'sizeup'); setMessage('') }
   function selectPin(p: Pin) { onSelectPin(p); setExpanded(true) }
   function highlight(ids: string[]) { onHighlight(b.pins.filter(p => ids.includes(p.id) && p.anchor.kind === 'floor').map(p => p.anchor.kind === 'floor' ? p.anchor.floor : 1), ids) }
@@ -50,7 +60,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
   async function submitDispatch() {
     if (!dispatch.trim()) return
     setDispatchBusy(true); setMessage('')
-    try { await onDispatch(dispatch); navigate('sizeup'); setExpanded(true) } catch (e) { setMessage(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setDispatchBusy(false) }
+    try { await onDispatch(dispatch); navigate(useStore.getState().target !== null ? 'floor' : 'sizeup'); setExpanded(true) } catch (e) { setMessage(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setDispatchBusy(false) }
   }
   async function askQuestion(q: string) {
     if (!q.trim() || asking) return
@@ -78,14 +88,17 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
       {children}
       <div className="phone-scene-meta"><span>{phase.toUpperCase()}</span></div>
       <button className="phone-dispatch-shortcut" onClick={() => navigate('dispatch')}>Paste dispatch ↗</button>
+      <FloorRail building={b} target={target} variant="float" onSelect={openFloor} />
       <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} onAddPin={onAddPin} />
     </main>
     <section className={`phone-sheet ${expanded || selectedPin ? 'expanded' : ''}`} aria-label="Building information">
-      <div className="phone-sheet-top"><button className="phone-handle" aria-label={expanded ? 'Collapse information sheet' : 'Expand information sheet'} aria-expanded={expanded} onClick={() => { if (selectedPin) { onSelectPin(undefined); setPage('sizeup') } setExpanded(!expanded) }}><span /></button><div className="phone-row"><span className="phone-eyebrow">{selected === 'pin' ? 'Source record' : tabs.find(t => t[0] === page)?.[1] ?? page}</span><button className="phone-close" onClick={() => { if (selectedPin) onSelectPin(undefined); setExpanded(false); setPage('sizeup') }}>Close ×</button></div></div>
+      <div className="phone-sheet-top"><button className="phone-handle" aria-label={expanded ? 'Collapse information sheet' : 'Expand information sheet'} aria-expanded={expanded} onClick={() => { if (selectedPin) { onSelectPin(undefined); setPage('sizeup') } setExpanded(!expanded) }}><span /></button><div className="phone-row"><span className="phone-eyebrow">{selected === 'pin' ? 'Source record' : selected === 'floor' && panelFloor !== null ? floorName(panelFloor) : tabs.find(t => t[0] === page)?.[1] ?? page}</span><button className="phone-close" onClick={() => { if (selectedPin) onSelectPin(undefined); setExpanded(false); setPage('sizeup') }}>Close ×</button></div></div>
+      <FloorRail building={b} target={target} variant="strip" onSelect={openFloor} />
       <nav className="phone-tabs" aria-label="Information panels">{tabs.map(([id, label]) => <button key={id} aria-current={selected === id ? 'page' : undefined} onClick={() => navigate(id)}>{label}</button>)}</nav>
       <div className="phone-sheet-body">
         {message && <p className="phone-message" role="status">{message}</p>}
         {selected === 'sizeup' && <>{b.pins.some(p => p.origin === 'dispatch') && <ComplianceStrip building={b} onSelectPins={highlight} />}<div className="phone-row"><span className="phone-eyebrow">Priority records</span><span className="phone-mono">{b.pins.length} PINS</span></div><ul className="phone-pins">{topPins.map(p => <li key={p.id}><button onClick={() => selectPin(p)}><span className={`phone-dot ${p.severity}`} /><span><strong>{p.label}</strong><small>{floorLabel(p)} · {p.evidence[0]?.source ?? p.origin} · {p.evidence[0]?.asOf ?? 'user supplied'}{p.stale ? ' · STALE' : ''}</small></span><span>↗</span></button></li>)}</ul><button className="phone-text-button" onClick={() => navigate('records')}>View all {b.pins.length} records →</button><div className="phone-tags">{b.unknowns.slice(0, 3).map(u => <span className="phone-claim unverifiable" key={u}>{u}: UNKNOWN</span>)}</div>{expanded && !b.pins.some(p => p.origin === 'dispatch') && <ComplianceStrip building={b} onSelectPins={highlight} />}</>}
+        {selected === 'floor' && <FloorPanel building={b} floor={panelFloor} onSelectPin={selectPin} />}
         {selected === 'dispatch' && <form onSubmit={e => { e.preventDefault(); void submitDispatch() }}><h2>Dispatch → building → floor</h2><p className="phone-muted">Simulated CAD input. Only cached addresses can be resolved in this prototype.</p><label>Dispatch message<textarea value={dispatch} onChange={e => setDispatch(e.target.value)} rows={4} maxLength={1000} /></label><button className="phone-primary" disabled={dispatchBusy || !dispatch.trim()}>{dispatchBusy ? 'Resolving…' : 'Resolve and explode'}</button></form>}
         {selected === 'ask' && <section><h2>Ask the records</h2><p className="phone-muted">Answers cite records. A missing public fact stays unverifiable.</p><div className="phone-questions">{SUGGESTED_QUESTIONS.map(q => <button key={q} disabled={asking} onClick={() => void askQuestion(q)}>{q} ↗</button>)}</div><form onSubmit={e => { e.preventDefault(); void askQuestion(question) }}><label>Your question<input value={question} onChange={e => setQuestion(e.target.value)} maxLength={300} placeholder="Where are the people?" /></label><button className="phone-primary" disabled={asking || !question.trim()}>{asking ? 'Checking cited records…' : 'Ask'}</button></form>{answer && <div className="phone-answer" role="status"><span className={`phone-claim ${answer.claim}`}>{answer.claim.toUpperCase()} · {answerSource === 'fallback' ? 'SAVED ANSWER' : 'MODEL ANSWER'}</span><p>{answer.text}</p><div className="phone-tags">{answer.unknowns.map(u => <span key={u} className="phone-claim unverifiable">{u}: UNVERIFIABLE</span>)}</div>{answer.pinIds.map(id => { const p = b.pins.find(v => v.id === id); return p && <button className="phone-text-button" key={id} onClick={() => selectPin(p)}>{p.label} · source ↗</button> })}</div>}{!b.fallback && <p className="phone-muted">Saved offline answers have not been supplied for this snapshot.</p>}</section>}
         {selected === 'brief' && <BriefSheet building={b} onSelectPins={highlight} onSend={lines => { setApproved(lines); navigate('crew') }} />}
