@@ -45,6 +45,31 @@ def dload(bdir, key):
     return d if isinstance(d, dict) else {}  # failed fetches are saved as error strings
 
 
+DATE_RE = re.compile(r"^(19|20)\d\d-\d\d-\d\d")
+ARCGIS_DATE_KEYS = re.compile(r"(last_edited_date|editdate|edit_date|created_date|creationdate)", re.I)
+
+
+def newest_record_date(bdir, key):
+    """Newest date inside a source's records (not the fetch date): the sources drawer shows real data age."""
+    d = load(bdir, key)
+    best = ""
+    if isinstance(d, list):
+        for r in d[:500]:
+            for k, v in r.items():
+                if k in ("data_loaded_at",) or not isinstance(v, str) or not DATE_RE.match(v):
+                    continue
+                if v[:10] <= TODAY.isoformat() and v[:10] > best:
+                    best = v[:10]
+    elif isinstance(d, dict) and d.get("features"):
+        for f in d["features"][:500]:
+            for k, v in (f.get("attributes") or {}).items():
+                if ARCGIS_DATE_KEYS.search(k) and isinstance(v, (int, float)) and v > 0:
+                    iv = iso(v)
+                    if iv <= TODAY.isoformat() and iv > best:
+                        best = iv
+    return best or None
+
+
 def rows(bdir, key):
     d = load(bdir, key)
     return d if isinstance(d, list) else []
@@ -819,11 +844,11 @@ def build(bid):
         if k in ("footprint_pt", "softstory"):
             continue
         layers.append({"layer": k, "status": m["status"], "ms": m["ms"], "datasetId": m["datasetId"], "source": m["source"], "records": m["records"],
-                       "asOf": man["fetchedAt"][:10]})
+                       "asOf": newest_record_date(bdir, k) or man["fetchedAt"][:10], "fetchedAt": man["fetchedAt"][:10]})
 
     # ---- order: danger first, then caution, then info
     sev_rank = {"danger": 0, "caution": 1, "info": 2}
-    pins = sorted(P.items, key=lambda p: sev_rank[p["severity"]])
+    pins = sorted(P.items, key=lambda p: (sev_rank[p["severity"]], p["id"]))  # deterministic for refresh diffs
     addr_disp = (res.get("address") or "").title().replace(" Av", " Ave").replace("Avee", "Ave")
     building = {
         "id": bid, "apn": apn, "address": addr_disp,
