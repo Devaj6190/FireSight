@@ -61,7 +61,11 @@ export function SourcesDrawer({ building, defaultOpen = false }: Props) {
                     <span className={`fsp-result ${l.status}`}>{l.records ?? 0} · {STATUS_LABEL[l.status]}</span>
                   </div>
                   <span className="fsp-asof">
-                    {l.datasetId ?? l.layer} · fetched {l.asOf ?? 'unknown'}
+                    {l.datasetId ?? l.layer} · {l.status === 'fetch_failed'
+                      ? (l.lastGoodAt
+                        ? `did not answer at the last refresh${l.fetchedAt ? ` (${l.fetchedAt})` : ''}; showing the last good copy from ${l.lastGoodAt}, records to ${l.asOf ?? 'unknown'}`
+                        : 'did not answer and no earlier copy exists: this layer is missing')
+                      : `newest record ${l.asOf ?? 'unknown'}${l.fetchedAt ? ` · fetched ${l.fetchedAt}` : ''}`}
                     {lag ? ` · ${lag.note}` : ''}
                     {lag?.ageYear ? <span className="fsp-age"> AGE {lag.ageYear}</span> : null}
                   </span>
