@@ -108,3 +108,6 @@ export interface ComplianceRow {
 
 ## Start
 Run `date`, `git fetch && git checkout lane-c-ai`, read the files listed above, then begin with "Do now". Push to your lane branch at least every 30 minutes.
+
+## Setup and integration checklist (added 12:30; details in docs/handoff/SETUP.md)
+Built on `lane-c-ai`: API (section 4), `shared/client.ts` (section 6), compliance (section 7), eval (section 8), precompute (section 5), MCP (section 9). Remaining: put the key in `api/.env`, run the first live brief, `npm run precompute`, `npm run eval`, PR after review, MCP on the presenting laptop after CP2 with Vidyut's OK, and the API deploy with Lane D (section 10).
