@@ -109,3 +109,7 @@
 .floor-action { margin-top: 10px; min-height: 44px; padding: 0 16px; border: 0; border-radius: 22px; background: var(--fl-accent-fill); color: var(--fl-accent); font-weight: 600 !important; font-size: 14px !important; }
 .floor-action[aria-pressed='true'] { background: var(--fl-accent); color: #fff; }
 .floor-action:active { transform: scale(0.98); }
+
+/* arrival brief: people lead the panel; a report is the one red row on it */
+.floor-people h3 { color: var(--fs-ink, #f5f5f7); }
+.floor-report { background: rgba(255, 69, 58, 0.1); border-radius: 12px; }

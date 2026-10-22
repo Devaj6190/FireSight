@@ -121,6 +121,11 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
   const canRooms = phase === 'exploded' && target === floor
   const roomsOn = rooms === 'on' || rooms === 'opening'
   const roomNames = facts?.rooms ?? []
+  // reported people (voice/dispatch "REPORT: PEOPLE, FLOOR n", crew notes about people) lead the panel
+  const isReport = (p: Pin) => p.origin !== 'public' && /^REPORT\b|\b(people|persons?|victims?|trapped|occupants?|child|children)\b/i.test(p.label)
+  const reports = pins.filter(isReport)
+  const hazards = pins.filter((p) => !isReport(p))
+  const occupants = facts?.occupants ?? []
 
   return (
     <section className="floor-panel" aria-label={`${floorName(floor)} information`}>
@@ -133,11 +138,41 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
       </div>
       <p className="floor-summary">{summary(info)}</p>
 
-      {pins.length > 0 && (
+      {/* Arrival brief: people first. Reports from dispatch or the crew, then who the records say is usually here. */}
+      <div className="floor-section floor-people">
+        <h3>People on this floor</h3>
+        {reports.length > 0 && (
+          <ul className="floor-list">
+            {reports.map((p) => (
+              <li key={p.id}>
+                <button type="button" className="floor-pin floor-report" onClick={() => onSelectPin(p)}>
+                  <span className="floor-sev danger" aria-hidden="true" />
+                  <span className="floor-pin-text">
+                    <strong>{displayLabel(p.label.replace(/^REPORT:\s*/i, 'Reported: '))}</strong>
+                    <small>{p.origin === 'dispatch' ? 'Dispatch' : p.origin === 'crew' ? 'Crew' : 'Report'} · not verified</small>
+                  </span>
+                  <span className="floor-chev" aria-hidden="true">›</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {(occupancy || occupants.length > 0) ? (
+          <dl className="floor-facts">
+            {facts?.occupantLoad != null && <><dt>Up to</dt><dd>{facts.occupantLoad} people<small>SFFD assembly permit occupant load</small></dd></>}
+            {occupants.length > 0 && <><dt>Usually here</dt><dd>{occupants.map((o) => o.kind + (o.unit ? ` (${o.unit})` : '')).join(' · ')}<small>Business licenses and OpenStreetMap, by type only</small></dd></>}
+            {units.length > 0 && <><dt>Known units</dt><dd>{units.join(', ')}<small>Lower bound: only units named in permits</small></dd></>}
+          </dl>
+        ) : (
+          !reports.length && <p className="floor-line floor-quiet">No occupancy on public record for this floor. Search it.</p>
+        )}
+      </div>
+
+      {hazards.length > 0 && (
         <div className="floor-section">
           <h3>Hazards and records on this floor</h3>
           <ul className="floor-list">
-            {pins.map((p) => (
+            {hazards.map((p) => (
               <li key={p.id}>
                 <button type="button" className="floor-pin" onClick={() => onSelectPin(p)}>
                   <span className={`floor-sev ${p.severity}`} aria-hidden="true" />
@@ -157,13 +192,30 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
         </div>
       )}
 
-      {occupancy && (
+      {(above !== null || below !== null) && (
         <div className="floor-section">
-          <h3>Occupancy</h3>
-          <dl className="floor-facts">
-            {units.length > 0 && <><dt>Known units</dt><dd>{units.join(', ')}<small>Lower bound: only units named in permits</small></dd></>}
-            {facts?.occupantLoad != null && <><dt>Occupant load</dt><dd>{facts.occupantLoad} people<small>From SFFD assembly permit</small></dd></>}
-          </dl>
+          <h3>Adjacent floors</h3>
+          <ul className="floor-list">
+            {[above, below].map((f, i) => {
+              if (f === null) return null
+              const n = floorInfo(b, f)
+              const top = n.pins[0]
+              const people = n.facts?.occupantLoad
+              const usual = n.facts?.occupants?.[0]?.kind
+              return (
+                <li key={f}>
+                  <button type="button" className="floor-pin" onClick={() => go(f)}>
+                    <span className={`floor-sev ${n.severity ?? 'none'}`} aria-hidden="true" />
+                    <span className="floor-pin-text">
+                      <strong>{i === 0 ? 'Above' : 'Below'}: {floorName(f)}</strong>
+                      <small>{[people != null ? `up to ${people} people` : usual, top ? displayLabel(top.label) : 'no hazards on record'].filter(Boolean).join(' · ')}{i === 0 ? ' · fire spreads up' : ''}</small>
+                    </span>
+                    <span className="floor-chev" aria-hidden="true">›</span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       )}
 
