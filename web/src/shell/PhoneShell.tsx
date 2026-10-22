@@ -3,7 +3,7 @@ import { ChevronDown, ChevronLeft, ClipboardCheck, Crosshair, Droplet, Ellipsis,
 import type { Answer, BriefLine, Building, Pin } from '../../../shared/building.ts'
 import { ask } from '../../../shared/client.ts'
 import { useStore } from '../store.ts'
-import { BriefSheet, EvalScreen } from './brief/index.ts'
+import { ArrivalCard, BriefSheet, EvalScreen } from './brief/index.ts'
 import { ComplianceStrip, LimitsPanel, SourcesDrawer } from './panels/index.ts'
 import { Provenance, ResolutionView } from './Provenance.tsx'
 import { Freshness, useRefreshRuns } from './Freshness.tsx'
@@ -12,6 +12,7 @@ import { counts, dispatchFloor, floorName, keyFacts } from './facts.ts'
 import { tap } from './motion.ts'
 import { AskView, FloorsView, HazardsView, MoreView, NoteView, PinRow, RespondView, WaterView, type HazardFilter } from './views.tsx'
 import { VoiceCommand } from './voice/VoiceCommand.tsx'
+import { ArButton } from './ArButton.tsx'
 import './phone.css'
 
 type Tab = 'hazards' | 'floors' | 'water' | 'ask' | 'brief' | 'note' | 'more'
@@ -44,7 +45,14 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   const sheet = useRef<HTMLElement>(null)
   const drag = useRef<{ y: number; dy: number } | null>(null)
   const active = useRef(true)
+  const quiet = useRef(false) // a focus this shell asked for while showing a record: stay on the record's page
   useEffect(() => { active.current = true; return () => { active.current = false } }, [])
+  // any other focus (3D tap, dispatch, voice, ?focus=) brings up that floor's panel
+  useEffect(() => {
+    if (target === null) return
+    if (quiet.current) { quiet.current = false; return }
+    setPage('floors'); onSelectPin(undefined)
+  }, [target]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (!toast) return; const id = setTimeout(() => setToast(undefined), 3200); return () => clearTimeout(id) }, [toast])
 
   const { runs, unavailable } = useRefreshRuns()
@@ -69,7 +77,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
     setPage(next); setOpen(true)
   }
   function back() { onSelectPin(undefined); if (!selectedPin) setPage(isTab(page) ? page : PARENT[page] ?? 'hazards'); setDir(-1) }
-  function selectPin(p: Pin) { onSelectPin(p); setOpen(true); if (p.anchor.kind === 'floor') onFocusFloor(p.anchor.floor) }
+  function selectPin(p: Pin) { onSelectPin(p); setOpen(true); if (p.anchor.kind === 'floor' && p.anchor.floor !== target) { quiet.current = true; onFocusFloor(p.anchor.floor) } }
   function highlight(ids: string[]) { onHighlight(b.pins.filter(p => ids.includes(p.id) && p.anchor.kind === 'floor').map(p => p.anchor.kind === 'floor' ? p.anchor.floor : 1), ids) }
 
   async function askQuestion(q: string) {
@@ -84,7 +92,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
     onAddPin(pin)
     say(`Pinned to ${floorLabel(pin)} · unverified`)
   }
-  async function dispatch(text: string) { await onDispatch(text); setPage('hazards'); setFilter('danger'); setOpen(true) }
+  async function dispatch(text: string) { await onDispatch(text); quiet.current = true; setPage('hazards'); setFilter('danger'); setOpen(true) } // the arrival brief leads
 
   // phone: drag the sheet header up or down; a short drag snaps back
   const onDown = (e: PointerEvent) => {
@@ -123,7 +131,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
       <button className={`fs-badge ${c.danger ? 'danger' : 'caution'}`} key={`${b.id}-${c.danger}`} onClick={() => { setFilter(c.danger ? 'danger' : 'caution'); if (page !== 'hazards' || !isOpen) go('hazards') }} aria-label={`${c.danger || c.caution} ${c.danger ? 'danger' : 'caution'} records`}>
         <TriangleAlert size={18} aria-hidden /><b>{c.danger || c.caution}</b><small>{c.danger ? 'DANGER' : 'CAUTION'}</small>
       </button>
-      <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} />
+      <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} onAddPin={onAddPin} />
     </header>
 
     <div className="fs-body">
@@ -145,6 +153,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
             {phase === 'exploded' || phase === 'collapsing' ? <Shrink size={22} aria-hidden /> : <Expand size={22} aria-hidden />}
             <span key={phase}>{busy ? phase === 'exploding' ? 'Opening…' : 'Closing…' : phase === 'exploded' ? 'Collapse' : 'Explode'}</span>
           </button>
+          <ArButton building={b} />
           <button className="fs-round" aria-label="Reset view" title="Reset view" disabled={busy || rooms !== 'off'} onClick={() => { tap(); resetView() }}><RotateCcw size={22} /></button>
         </div>
       </div>
@@ -168,8 +177,8 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
                 <Provenance pin={selectedPin} />
                 {selectedPin.anchor.kind === 'floor' && <button className="fs-btn wide" onClick={() => { onFocusFloor(selectedPin.anchor.kind === 'floor' ? selectedPin.anchor.floor : null); onSelectPin(undefined); setPage('floors') }}><Layers size={18} aria-hidden />Open {floorLabel(selectedPin)}</button>}
               </> : <>
-                {page === 'hazards' && <HazardsView b={b} filter={filter} setFilter={setFilter} onPin={selectPin} onPins={highlight} onFloor={onFocusFloor} onOpen={go} newIds={newIds} />}
-                {page === 'floors' && <FloorsView b={b} target={target} lit={lit} phase={phase} rooms={rooms} onFloor={onFocusFloor} onToggle={onToggle} onRooms={toggleRooms} onPin={selectPin} />}
+                {page === 'hazards' && <HazardsView b={b} arrival={b.pins.some(p => p.origin === 'dispatch') && <ArrivalCard building={b} onSelect={onHighlight} />} filter={filter} setFilter={setFilter} onPin={selectPin} onPins={highlight} onFloor={onFocusFloor} onOpen={go} newIds={newIds} />}
+                {page === 'floors' && <FloorsView b={b} target={target} lit={lit} phase={phase} onFloor={onFocusFloor} onToggle={onToggle} onPin={selectPin} />}
                 {page === 'water' && <WaterView b={b} onPin={selectPin} />}
                 {page === 'ask' && <AskView b={b} asking={asking} answer={answer} answerSource={answerSource} onAsk={q => void askQuestion(q)} onPin={selectPin} />}
                 {page === 'brief' && <BriefSheet building={b} onSelectPins={highlight} onSend={lines => { setApproved(lines); go('crew') }} />}

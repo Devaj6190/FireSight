@@ -1,9 +1,10 @@
 // Field shell panels: one job each, large targets, data first. PhoneShell owns navigation and app state.
 import { useState, type CSSProperties, type ReactNode } from 'react'
-import { Boxes, Check, ChevronRight, CircleDashed, ClipboardCheck, Database, Flame, History, Layers, Link2, ListFilter, MapPin, Navigation2, Plus, ScanSearch, Search, ShieldCheck, Siren, Wind, X, FlaskConical } from 'lucide-react'
+import { Boxes, Check, ChevronRight, CircleDashed, ClipboardCheck, Database, Flame, History, Layers, Link2, ListFilter, MapPin, Navigation2, Plus, ScanSearch, Search, ShieldCheck, Siren, Wind, FlaskConical, LayoutGrid } from 'lucide-react'
 import type { Answer, Building, Pin } from '../../../shared/building.ts'
 import { SUGGESTED_QUESTIONS } from '../../../shared/client.ts'
 import { ComplianceStrip } from './panels/index.ts'
+import { FloorPanel } from './Floors.tsx'
 import { BUILDINGS, floorLabel, localTime } from './model.ts'
 import { bySeverity, counts, dispatchFloor, dispatchOf, floorName, floorSummaries, roofPins, siteOf, occupancyOf, type SiteItem } from './facts.ts'
 import { tap, useCountUp } from './motion.ts'
@@ -38,8 +39,8 @@ function Stat({ n, label, tone, on, onClick }: { n: number; label: string; tone:
 }
 
 export type HazardFilter = 'danger' | 'caution' | 'stale' | 'conflict' | 'unknown'
-export function HazardsView({ b, filter, setFilter, onPin, onPins, onFloor, onOpen, newIds }: {
-  b: Building; filter: HazardFilter; setFilter: (f: HazardFilter) => void; onPin: (p: Pin) => void
+export function HazardsView({ b, arrival, filter, setFilter, onPin, onPins, onFloor, onOpen, newIds }: {
+  b: Building; arrival?: ReactNode; filter: HazardFilter; setFilter: (f: HazardFilter) => void; onPin: (p: Pin) => void
   onPins: (ids: string[]) => void; onFloor: (f: number) => void; onOpen: (page: 'records' | 'floors') => void; newIds: Set<string>
 }) {
   const c = counts(b)
@@ -51,6 +52,7 @@ export function HazardsView({ b, filter, setFilter, onPin, onPins, onFloor, onOp
       <div><small>DISPATCH · SIMULATED</small><strong>{d.label}</strong></div>
       {df !== null && <button className="fs-btn amber" onClick={() => { tap(); onFloor(df); onOpen('floors') }}>Floor {floorName(df)}</button>}
     </div>}
+    {arrival}
     <div className="fs-stats" role="group" aria-label="Filter hazards">
       <Stat n={c.danger} label="Danger" tone="danger" on={filter === 'danger'} onClick={() => setFilter('danger')} />
       <Stat n={c.caution} label="Caution" tone="caution" on={filter === 'caution'} onClick={() => setFilter('caution')} />
@@ -69,9 +71,9 @@ export function HazardsView({ b, filter, setFilter, onPin, onPins, onFloor, onOp
   </>
 }
 
-export function FloorsView({ b, target, lit, phase, rooms, onFloor, onToggle, onRooms, onPin }: {
-  b: Building; target: number | null; lit: number[]; phase: string; rooms: string
-  onFloor: (f: number | null) => void; onToggle: () => void; onRooms: () => void; onPin: (p: Pin) => void
+export function FloorsView({ b, target, lit, phase, onFloor, onToggle, onPin }: {
+  b: Building; target: number | null; lit: number[]; phase: string
+  onFloor: (f: number | null) => void; onToggle: () => void; onPin: (p: Pin) => void
 }) {
   const floors = floorSummaries(b)
   const roof = roofPins(b)
@@ -79,7 +81,6 @@ export function FloorsView({ b, target, lit, phase, rooms, onFloor, onToggle, on
   const busy = phase === 'exploding' || phase === 'collapsing'
   const open = phase === 'exploded' || phase === 'exploding'
   const current = target === null ? undefined : floors.find(f => f.floor === target)
-  const shown = current ? [...(current.floor === b.floors ? roof : []), ...current.pins] : []
   return <>
     <div className="fs-seg" data-on={open ? 1 : 0} role="group" aria-label="Model view">
       <span className="fs-seg-thumb" aria-hidden />
@@ -87,16 +88,13 @@ export function FloorsView({ b, target, lit, phase, rooms, onFloor, onToggle, on
       <button aria-pressed={open} disabled={busy} onClick={() => { if (!open) { tap(); onToggle() } }}><Layers size={18} aria-hidden />Exploded</button>
     </div>
     {current
-      ? <section className="fs-floorcard fs-rise" key={current.floor}>
-        <header>
-          <div><small>FOCUSED</small><b>{current.floor === 0 ? 'B1' : `Floor ${current.floor}`}</b></div>
-          <button className="fs-btn" aria-pressed={rooms === 'on'} disabled={phase !== 'exploded' || rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); onRooms() }}>{rooms === 'off' ? 'Rooms' : 'Floors'}</button>
-          <button className="fs-icon-btn" aria-label="Clear floor focus" onClick={() => onFloor(null)}><X size={20} /></button>
-        </header>
-        {shown.length ? <ul className="fs-list">{shown.map((p, i) => <PinRow key={p.id} pin={p} i={i} onPin={onPin} />)}</ul> : <p className="fs-muted">No public record places anything on this floor. That is not the same as nothing being there.</p>}
-      </section>
+      ? <div className="fs-rise" key={current.floor}>
+        <button className="fs-btn wide fs-allfloors" onClick={() => { tap(); onFloor(null) }}><LayoutGrid size={18} aria-hidden />All floors</button>
+        {current.floor === b.floors && roof.length > 0 && <ul className="fs-list">{roof.map((p, i) => <PinRow key={p.id} pin={p} i={i} onPin={onPin} />)}</ul>}
+        <FloorPanel building={b} floor={current.floor} onSelectPin={onPin} />
+      </div>
       : <p className="fs-hint fs-rise"><MapPin size={16} aria-hidden />Tap a floor to bring it forward in 3D.</p>}
-    <div className="fs-elevator" aria-label="Floors, top to bottom">
+    {!current && <div className="fs-elevator" aria-label="Floors, top to bottom">
       {floors.map((f, i) => {
         const on = target === f.floor
         return <button key={f.floor} style={at(i)} className={`fs-floor${on ? ' on' : ''}${lit.includes(f.floor) ? ' lit' : ''}${f.floor === df ? ' fire' : ''}`} aria-pressed={on}
@@ -107,8 +105,8 @@ export function FloorsView({ b, target, lit, phase, rooms, onFloor, onToggle, on
           <span className="fs-floor-dots">{f.danger > 0 && <i className="d">{f.danger}</i>}{f.caution > 0 && <i className="c">{f.caution}</i>}</span>
         </button>
       })}
-    </div>
-    {roof.length > 0 && <p className="fs-muted">Roof records ({roof.length}) show with floor {b.floors}.</p>}
+    </div>}
+    {!current && roof.length > 0 && <p className="fs-muted">Roof records ({roof.length}) show with floor {b.floors}.</p>}
   </>
 }
 

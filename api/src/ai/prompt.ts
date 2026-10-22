@@ -24,7 +24,7 @@ Copy rules (radio cadence):
 
 Pre-plan elements (set element to the id a line fills, else null): ${ELEMENTS.map((e) => `${e.id} ${e.name}`).join("; ")}.`;
 
-const BRIEF_BASE = `Write the size-up brief for this building. Order: dispatch focus first if there is a dispatch pin, then construction and collapse, life hazard (units, floors, occupancy), roof energy (PV, battery), protection systems and violations, water, wind, history. 6 to 12 lines. End with unverifiable lines for the key unknowns (stairs, standpipe, roof access and any other the pins show are missing). List those unknowns in unknowns too.`;
+const BRIEF_BASE = `Write the size-up brief for this call, life first: only facts that change how the arriving crew finds and protects people. Order: (1) the dispatch and every later dispatch report, with floor; (2) people: reported people, then recorded occupant loads, units or assembly by floor, the fire floor and floors above first; (3) hazards on the fire floor and one floor above and below (energy storage, hazardous materials, sprinkler gaps, fire history there); (4) water and access: sprinkler coverage, fire pump, hydrants, elevator problems; (5) construction only if it changes the job. Leave out area-wide context, old history and permits far from the fire. 5 to 8 lines. End with unverifiable lines for the key unknowns (stairs, standpipe, roof access and any other the pins show are missing). List those unknowns in unknowns too.`;
 
 // Lines the officer struck on this building before; the eval fails if one comes back.
 export function briefTask(struck: string[] = []): string {
@@ -34,7 +34,7 @@ export function briefTask(struck: string[] = []): string {
 
 export function askTask(question: string): string {
   return `The officer asks: "${question.replace(/"/g, "'")}"
-Answer from the pins only, 2 sentences max. Set floors to every floor the answer is about (1 = ground) so the app can light them. If no pin answers it, claim "unverifiable" and list what has no public record in unknowns (short nouns, e.g. "stair locations").`;
+Answer from the pins only, 2 sentences max. If there are dispatch pins, relate the answer to their floors (the fire floor, reported people). Set floors to every floor the answer is about (1 = ground) so the app can light them. If no pin answers it, claim "unverifiable" and list what has no public record in unknowns (short nouns, e.g. "stair locations").`;
 }
 
 // The building as the model sees it: no precomputed fallback (it contains answers).

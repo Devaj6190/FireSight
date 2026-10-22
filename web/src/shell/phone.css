@@ -292,6 +292,25 @@
 .fs-sheet .fsp-row { border-radius: 16px; background: var(--raise); }
 .fs-sheet .fsp-eyebrow { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .14em; }
 
+/* floor panel (Floors.tsx) and arrival brief, in this shell's tokens */
+.fs-app { --fl-accent: var(--fs-action); --fl-accent-fill: color-mix(in srgb, var(--fs-action) 16%, transparent); --fl-danger: var(--danger); --fl-caution: var(--caution); --fl-info: var(--info); --fl-verified: #8fd694; --fl-conflict: var(--caution); --fl-fill: var(--raise-2); --fl-material: var(--fs-surface); --fl-font: 'IBM Plex Sans', system-ui, sans-serif; }
+.fs-allfloors { margin: 0 0 6px; }
+.fs-sheet .floor-title { margin: 6px 0 2px; font: 700 32px/1 var(--display); letter-spacing: .02em; text-transform: uppercase; }
+.fs-sheet .floor-step button { width: 52px; height: 52px; border-radius: 16px; background: var(--raise); border: 1.5px solid var(--fs-line); color: var(--fs-action); font-size: 16px !important; transition: transform .2s var(--spring); }
+.fs-sheet .floor-section { border-top: 1px solid var(--fs-line); }
+.fs-sheet .floor-section h3 { font: 700 14px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--fs-muted); }
+.fs-sheet .floor-list { display: flex; flex-direction: column; gap: 8px; }
+.fs-sheet .floor-pin { padding: 12px 14px; border: 1px solid var(--fs-line); border-radius: 16px; background: var(--raise); transition: transform .22s var(--spring); }
+.fs-sheet .floor-pin:active { opacity: 1; transform: scale(.98); }
+.fs-sheet .floor-pin-text strong { font: 600 17px/1.15 var(--display); letter-spacing: .025em; }
+.fs-sheet .floor-report { border-color: color-mix(in srgb, var(--danger) 50%, var(--fs-line)); background: color-mix(in srgb, var(--danger) 10%, var(--raise)); }
+.fs-sheet .floor-action { min-height: 48px; border-radius: 14px; font: 700 16px/1 var(--display) !important; letter-spacing: .06em; text-transform: uppercase; }
+.fs-sheet .floor-action[aria-pressed='true'] { color: var(--fs-action-ink); }
+.fs-sheet .fsa { margin: 0 0 12px; }
+.fs-app .rooms-banner { top: 14px; right: 12px; background: rgba(15, 14, 12, .86); -webkit-backdrop-filter: none; backdrop-filter: none; border: 1px dashed var(--fs-muted); color: var(--fs-ink); font: 600 9.5px/1.3 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+@media (max-width: 899px) { .fs-app .rooms-banner { top: 62px; left: 12px; right: auto; } }
+.fs-dock .phone-ar { position: static; height: 60px; padding: 0 18px; border-radius: 18px; font: 700 18px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 10px 24px rgba(0, 0, 0, .3); }
+
 /* record detail, resolution, changes, crew card */
 .phone-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .phone-mono, .phone-eyebrow { font: 600 10.5px/1.5 var(--mono, monospace); color: var(--fs-muted); letter-spacing: .08em; text-transform: uppercase; }

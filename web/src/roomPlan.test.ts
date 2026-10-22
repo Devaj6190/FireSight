@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import type { Building } from '../../shared/building'
-import { area, planFloor } from './rooms.ts'
+import { area, planFloor } from './roomPlan.ts'
 
 const b = JSON.parse(readFileSync(new URL('../public/buildings/sf-3722080.json', import.meta.url), 'utf8')) as Building
 const on = (f: number) => b.pins.filter((p) => p.anchor.kind === 'floor' && p.anchor.floor === f)

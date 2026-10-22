@@ -27,9 +27,66 @@ if (canSpeak) {
   window.speechSynthesis.onvoiceschanged = pickVoice
 }
 
-// Queue one utterance per sentence: Chrome cuts off long single utterances.
+// Natural voice from /api/tts (ElevenLabs) when the server has a key; otherwise, or on any failure, the browser voice.
+let tts: 'unknown' | 'on' | 'off' = 'unknown'
+let session = 0
+let aborter: AbortController | null = null
+let audio: HTMLAudioElement | null = null
+
+async function clip(text: string, signal: AbortSignal): Promise<string> {
+  const res = await fetch('/api/tts', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text }), signal })
+  if (!res.ok) throw new Error(`tts ${res.status}`)
+  return URL.createObjectURL(await res.blob())
+}
+
+function play(url: string): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    const a = new Audio(url)
+    audio = a
+    a.onended = () => resolve()
+    a.onerror = () => reject(new Error('audio'))
+    a.play().catch(reject)
+  }).finally(() => URL.revokeObjectURL(url))
+}
+
 export function speak(sentences: string[], onLine?: (s: string, i: number) => void, onDone?: () => void) {
-  if (!canSpeak) return onDone?.()
+  stopSpeaking()
+  const id = ++session
+  if (tts === 'off' || typeof fetch === 'undefined') return browserSpeak(sentences, onLine, onDone)
+  const ctl = new AbortController()
+  aborter = ctl
+  // Fetch every sentence at once so playback has no gaps; give up on the natural voice if the first takes over 5 s.
+  const clips = sentences.map((s) => clip(s, ctl.signal))
+  clips.forEach((p) => p.catch(() => {}))
+  void (async () => {
+    for (let i = 0; i < sentences.length; i++) {
+      let url: string
+      try {
+        url = i === 0 ? await Promise.race([clips[0], new Promise<string>((_, rej) => setTimeout(() => rej(new Error('slow')), 5000))]) : await clips[i]
+      } catch {
+        if (id !== session) return
+        if (i === 0) tts = 'off'
+        ctl.abort()
+        return browserSpeak(sentences.slice(i), (s, j) => onLine?.(s, i + j), onDone)
+      }
+      if (id !== session) return URL.revokeObjectURL(url)
+      tts = 'on'
+      onLine?.(sentences[i], i)
+      try {
+        await play(url)
+      } catch {
+        if (id !== session) return
+        return browserSpeak(sentences.slice(i + 1), (s, j) => onLine?.(s, i + 1 + j), onDone)
+      }
+      if (id !== session) return
+    }
+    onDone?.()
+  })()
+}
+
+// Browser voice: one utterance per sentence, since Chrome cuts off long single utterances.
+function browserSpeak(sentences: string[], onLine?: (s: string, i: number) => void, onDone?: () => void) {
+  if (!canSpeak || !sentences.length) return onDone?.()
   window.speechSynthesis.cancel()
   sentences.forEach((s, i) => {
     const u = new SpeechSynthesisUtterance(s)
@@ -42,6 +99,11 @@ export function speak(sentences: string[], onLine?: (s: string, i: number) => vo
 }
 
 export function stopSpeaking() {
+  session++
+  aborter?.abort()
+  aborter = null
+  audio?.pause()
+  audio = null
   if (canSpeak) window.speechSynthesis.cancel()
 }
 

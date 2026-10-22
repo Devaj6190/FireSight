@@ -68,6 +68,25 @@ app.post("/api/ask", async (c) => {
   }
 });
 
+// Natural voice for the spoken brief (ElevenLabs). Off without a key: the phone falls back to the browser voice.
+app.post("/api/tts", async (c) => {
+  const key = process.env.ELEVENLABS_API_KEY;
+  if (!key) return c.json({ error: "tts off" }, 503);
+  const { text } = await c.req.json<{ text: unknown }>();
+  if (typeof text !== "string" || !text.trim() || text.length > 600) return c.json({ error: "text required (600 chars max)" }, 400);
+  const voice = process.env.ELEVENLABS_VOICE_ID || "nPczCjzI2devNBz1zQrb";
+  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_128`, {
+    method: "POST",
+    headers: { "xi-api-key": key, "content-type": "application/json", accept: "audio/mpeg" },
+    body: JSON.stringify({ text: text.trim(), model_id: process.env.ELEVENLABS_MODEL || "eleven_flash_v2_5" }),
+  });
+  if (!res.ok) {
+    console.error("tts failed:", res.status, (await res.text().catch(() => "")).slice(0, 300));
+    return c.json({ error: "tts failed" }, 502);
+  }
+  return new Response(res.body, { headers: { "content-type": "audio/mpeg", "cache-control": "no-store" } });
+});
+
 app.post("/api/strike", async (c) => {
   const { building, line, reason } = await c.req.json<{ building: unknown; line: unknown; reason?: unknown }>();
   if (!isBuilding(building) || !isLine(line)) return c.json({ error: "building and line required" }, 400);

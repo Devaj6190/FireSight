@@ -295,5 +295,157 @@
    }
   ],
   "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:00+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 2,
+  "ms": 44250,
+  "added": [
+   {
+    "pinId": "aerial-osm-entrance-4915914627",
+    "label": "ENTRANCE (MAIN) 5 M"
+   }
+  ],
+  "removed": [],
+  "changed": [],
+  "note": "+1 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:00+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 41213,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:41+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 56342,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:44+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 45840,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T22:01:14+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 7,
+  "ms": 41435,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T22:01:14+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 51690,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T22:01:55+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 61016,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T22:02:05+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 49037,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T22:05:26+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40396,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:993: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-10-22T22:05:26+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 147488,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T22:06:07+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 142822,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "3 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T22:07:54+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 143308,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]

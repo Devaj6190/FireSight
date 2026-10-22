@@ -123,6 +123,54 @@ export interface Building {
   resolution: Resolution;
   fetchedAt: string;
   fallback?: { brief: Brief; answers: Answer[] }; // precomputed, used when offline or slow
+  floorFacts?: FloorFacts[]; // additive: one entry per floor (B1 only if a record says basement), bottom to top
+  // additive: structural facts from the Tall Building Inventory (5kya-mfst), null for buildings not in it
+  // additive: the site as an arriving crew sees it. All positions are real (local meters, x east, y north, centroid origin).
+  site?: {
+    sides: { edge: number; street: string; bearingDeg: number }[]; // footprint edge index -> the street that face is on (OSM)
+    entrances: { x: number; y: number; kind: string; source: string; url: string }[]; // OSM entrance / parking entrance nodes
+    floorAreaM2: number; // footprint area: the size of each floor to search
+    maxSpanM: number; // longest straight distance across the floor (hose stretch / search)
+    perimeterM: number;
+    code: { text: string; citation: string }[]; // code requirements, labeled as code, never as observed facts
+  } | null;
+  structure?: {
+    system: string | null; // "Steel Moment Frame - Space"
+    material: string | null; // "Steel"
+    description: string | null; // "L-shaped building; 26 story steel space frame"
+    typicalStoryFt: number | null; // 13
+    firstStoryFt: number | null; // 19
+    basePlanFt: [number, number] | null; // [160, 147]
+    foundation: string | null; // "Pile"
+    storiesBelow: number | null;
+    source: { datasetId: string; recordId: string; asOf: string; url: string };
+  } | null;
+}
+
+// Per-floor summary (additive, Lane B builds it): everything the public record says about one floor,
+// including floors with no pin. Units and permits are lower bounds; nothing here is a floor plan.
+export interface FloorFacts {
+  floor: number; // contract numbering: 0 = B1, 1 = ground
+  label: string; // "Floor 22", "B1"
+  pinIds: string[]; // pins anchored to this floor, danger first
+  severity: Severity | null; // worst pin severity on the floor; null when no pin
+  units: string[]; // unit / suite numbers named in permits for this floor (lower bound)
+  permits: {
+    count: number; // permits whose text names this floor or one of its units
+    last: { date: string; text: string; datasetId: string; recordId: string; url: string } | null; // newest one
+  };
+  incidents: number; // SFFD incidents whose floor of origin is this floor
+  occupantLoad: number | null; // from SFFD assembly permits naming this floor
+  rooms: string[]; // rooms named in records: "Computer room", "Server room", "Fire pump room"
+  notOnRecord: string[]; // facts with no public record for this floor, e.g. "Stair locations"
+  // additive (for the in-floor view): per-unit work from permits naming the unit, newest first
+  unitWork?: { unit: string; kind: string; date: string; open: boolean; datasetId: string; recordId: string }[];
+  openPermits?: number; // permits naming this floor that are filed/issued but not complete: expect open walls
+  recentKinds?: string[]; // work categories on this floor in the last 2 years, e.g. ["Fire alarm work", "Tenant remodel"]
+  // additive: what occupies the floor, by type only (never business names), from business licenses and OSM indoor tags
+  occupants?: { kind: string; hazard: string | null; unit: string | null; source: string; datasetId: string; recordId: string; url: string }[];
+  // additive: Planning Department records naming this floor (category only), with a public PIM link
+  planning?: { date: string; kind: string; recordId: string; url: string }[];
 }
 
 // Compliance strip (Lane C owns the logic, Lane D renders).
