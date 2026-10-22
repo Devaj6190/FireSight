@@ -1,111 +1,72 @@
-// Second explode level: the focused floor opens into an ESTIMATED architectural plan (archPlan.ts): columns from the
-// structural system, a core with elevators and two stairs, a corridor ring, offices out to the facade, and the hazard
-// rooms a public record names. Same motion language as explode.ts: one gsap timeline, the camera lands last.
-// Nothing here is surveyed; the overlay says so on screen whenever the plan is showing.
+// Second explode level: the focused floor opens into an isolated architectural cutaway (cutawayGeometry.ts) with
+// mesh equipment symbols for the records anchored to it (EquipmentAsset.tsx, floorMarkers.ts). The footprint is
+// recorded; the facade treatment, the assets and their spots on the floor are illustrative, and the overlay says so.
+// Same motion language as explode.ts: one gsap timeline, the camera lands last.
 import { Html } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { archPlan, type Rect, type Seg } from './archPlan.ts'
-import { fadeFor, near, reduce, t, type Ctx } from './explode'
+import { arrival } from './arrival.ts'
+import { cutawayGeometry } from './cutawayGeometry.ts'
+import { EquipmentAsset } from './EquipmentAsset.tsx'
+import { fadeFor, near, t, type Ctx } from './explode'
+import { floorIncident } from './floorIncident.ts'
+import { floorMarkers } from './floorMarkers.ts'
 import { type Pin, type Reveal } from './Pins'
-import { planFloor } from './roomPlan.ts'
 import { useStore, type Phase } from './store'
+import { fs } from './tokens'
 import type { Building } from '../../shared/building'
 import './rooms.css'
 
-const DEG = Math.PI / 180
-const PITCH = 34 * DEG // camera off vertical: a plan you can still read as 3D
-const OTHER = 0 // other floors while the plan shows: gone
-const SLAB = 0.3
-const WALL_H = 1.2
-const HAZ = { danger: '#ff453a', caution: '#ff9f0a' }
-
 type Level = { fade: { a: number }; top: THREE.Material; side: THREE.Material; edge: THREE.Material }
 type Play = (run: (c: Ctx) => void, next?: Phase) => () => void
+export const compass: { el: HTMLElement | null } = { el: null }
+const DEG = Math.PI / 180
+const noRaycast = () => null
+// Night Glass: a dark drafting sheet under the glass chrome; ?night=0 keeps the pale paper of the daytime map
+const ink = fs.night
+  ? { paper: '#080c12', slab: '#1b222c', fireSlab: '#2c1517', wall: '#232b36', glass: fs.action, line: '#c4cfdc', fireLine: fs.danger, ghost: '#5b6573', grid: '#3a4656', lower: '#3a4656' }
+  : { paper: '#eeeee9', slab: '#fafbf7', fireSlab: '#fff0e8', wall: '#fafbf6', glass: '#8eabb5', line: '#384343', fireLine: '#b14b31', ghost: '#7f8c8a', grid: '#b4bfba', lower: '#cbd0cb' }
 
-// rotation -90 deg on x as the slabs: plan x -> x, y (north) -> -z
-const segProps = ([[ax, ay], [bx, by]]: Seg, y: number, h: number, th: number) => ({
-  position: [(ax + bx) / 2, y + h / 2, -(ay + by) / 2] as [number, number, number],
-  rotation: [0, Math.atan2(by - ay, bx - ax), 0] as [number, number, number],
-  scale: [Math.hypot(bx - ax, by - ay) + th, h, th] as [number, number, number],
-})
-const rectProps = (r: Rect, y: number, h: number) => ({
-  position: [r.c[0], y + h / 2, -r.c[1]] as [number, number, number],
-  rotation: [0, r.angle, 0] as [number, number, number],
-  scale: [r.w, h, r.d] as [number, number, number],
-})
-
-export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
+export function Rooms({ b, floor, level, chips, play, onSelectPin }: {
   b: Building
   floor: number // contract numbering, 0 = B1
   height: number // slab thickness
   level: Level
-  chips: Reveal[] // every chip on the stacked view; hidden while the plan shows
+  chips: Reveal[] // every chip on the stacked view; hidden while the cutaway shows
   play: Play
   onSelectPin: (pin: Pin) => void
 }) {
   const rooms = useStore((s) => s.rooms)
   const setRooms = useStore((s) => s.setRooms)
-  const toggle = useStore((s) => s.toggleRooms)
+  const size = useThree((s) => s.size)
+  const framedSize = useRef('')
   const root = useRef<THREE.Group>(null)
-  const rise = useRef<THREE.Group>(null)
-  const labels = useRef<(HTMLDivElement | null)[]>([])
+  const reveal = useRef<THREE.Group>(null)
   const saved = useRef<Ctx['pose']>(null)
-
-  const pins = useMemo(() => b.pins.filter((p) => p.anchor.kind === 'floor' && Math.min(p.anchor.floor, b.floors) === floor), [b, floor])
-  const plan = useMemo(() => planFloor(b, floor, pins), [b, floor, pins]) // framing only: centre, extents, long axis
-  const arch = useMemo(() => archPlan(b, floor, pins), [b, floor, pins])
-  const colH = Math.max(1.5, height - SLAB)
-
-  const res = useMemo(() => {
-    const opaque = { transparent: true, opacity: 0 }
-    const m = {
-      slab: new THREE.MeshStandardMaterial({ color: '#e9e7e2', roughness: 0.95, ...opaque }),
-      corridor: new THREE.MeshStandardMaterial({ color: '#cfd3d8', roughness: 0.95, ...opaque, polygonOffset: true, polygonOffsetFactor: -1 }),
-      wall: new THREE.MeshStandardMaterial({ color: '#f7f7f5', roughness: 0.85, ...opaque }),
-      facade: new THREE.MeshStandardMaterial({ color: '#dfe3e8', roughness: 0.4, metalness: 0.1, ...opaque }),
-      coreWall: new THREE.MeshStandardMaterial({ color: '#b9bdc3', roughness: 0.8, ...opaque }),
-      column: new THREE.MeshStandardMaterial({ color: '#3a3f47', roughness: 0.6, ...opaque }),
-      shaft: new THREE.MeshStandardMaterial({ color: '#2b3038', roughness: 0.35, metalness: 0.7, ...opaque }),
-      stair: new THREE.MeshStandardMaterial({ color: '#c8ccd2', roughness: 0.8, ...opaque }),
-      tread: new THREE.LineBasicMaterial({ color: '#7d838c', ...opaque }),
-    }
-    const box = new THREE.BoxGeometry(1, 1, 1)
-    const slab = new THREE.ExtrudeGeometry(new THREE.Shape(b.footprint.map(([x, y]) => new THREE.Vector2(x, y))), { depth: SLAB, bevelEnabled: false })
-    const treads = new THREE.BufferGeometry().setFromPoints(
-      arch.stairs.flatMap((s) => s.treads.flatMap(([[ax, ay], [bx, by]]) => [new THREE.Vector3(ax, SLAB + 0.62, -ay), new THREE.Vector3(bx, SLAB + 0.62, -by)])),
-    )
-    const haz = arch.rooms.map((r) => {
-      const c = HAZ[r.tone]
-      return {
-        geo: r.polys.map((p) => new THREE.ShapeGeometry(new THREE.Shape(p.map(([x, y]) => new THREE.Vector2(x, y))))),
-        floor: new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.35, roughness: 0.7, transparent: true, opacity: 0, polygonOffset: true, polygonOffsetFactor: -2 }),
-        glow: new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }),
-      }
-    })
-    return { m, box, slab, treads, haz }
-  }, [b.footprint, arch])
-  useEffect(
-    () => () => {
-      Object.values(res.m).forEach((x) => x.dispose())
-      ;[res.box, res.slab, res.treads].forEach((g) => g.dispose())
-      res.haz.forEach((h) => [...h.geo, h.floor, h.glow].forEach((x) => x.dispose()))
-    },
-    [res],
-  )
-  const colRef = useRef<THREE.InstancedMesh>(null)
-  useEffect(() => {
-    const im = colRef.current
-    if (!im) return
-    const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), arch.angle)
-    const mtx = new THREE.Matrix4()
-    arch.columns.forEach(([x, y], i) => im.setMatrixAt(i, mtx.compose(new THREE.Vector3(x, SLAB + colH / 2, -y), q, new THREE.Vector3(0.6, colH, 0.6))))
-    im.instanceMatrix.needsUpdate = true
-  }, [arch, colH])
-
+  const model = useMemo(() => cutawayGeometry(b.footprint, b.floorHeightM), [b.footprint, b.floorHeightM])
   const shown = useMemo(() => ({ v: 0 }), [])
-  const grow = useMemo(() => ({ v: 0 }), [])
+  const incident = useMemo(() => floorIncident(b, floor), [b, floor])
+  const markers = useMemo(() => floorMarkers(b, floor), [b, floor])
+  const mat = useMemo(() => {
+    const base = { transparent: true, opacity: 0, toneMapped: false }
+    return {
+      paper: new THREE.MeshBasicMaterial({ ...base, color: ink.paper, depthWrite: false, depthTest: false }),
+      slab: new THREE.MeshBasicMaterial({ ...base, color: ink.slab }),
+      wall: new THREE.MeshStandardMaterial({ ...base, color: ink.wall, roughness: 0.85, metalness: 0 }),
+      glass: new THREE.MeshBasicMaterial({ ...base, color: ink.glass, depthWrite: false }),
+      line: new THREE.LineBasicMaterial({ ...base, color: ink.line, depthWrite: false }),
+      ghost: new THREE.LineBasicMaterial({ ...base, color: ink.ghost, depthWrite: false }),
+      grid: new THREE.LineBasicMaterial({ ...base, color: ink.grid, depthWrite: false }),
+      lower: new THREE.MeshBasicMaterial({ ...base, color: ink.lower, depthWrite: false }),
+    }
+  }, [])
+  const screen = useMemo(() => new THREE.PlaneGeometry(12000, 12000), [])
+  useEffect(() => () => {
+    Object.values(mat).forEach((m) => m.dispose())
+    Object.values(model).forEach((g) => g instanceof THREE.BufferGeometry && g.dispose())
+    screen.dispose()
+  }, [mat, model, screen])
   const setSlab = (v: boolean) => void (level.top.visible = level.side.visible = level.edge.visible = v)
   // a snap-off (another floor focused, an answer lit) unmounts mid-way: put the stacked floor back as it was
   useEffect(
@@ -116,113 +77,123 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
     [], // eslint-disable-line react-hooks/exhaustive-deps
   )
 
-  useFrame(({ clock }) => {
+  useFrame(({ camera }) => {
     const v = shown.v
-    const m = res.m
-    m.slab.opacity = v
-    m.corridor.opacity = v
-    m.wall.opacity = 0.9 * v
-    m.facade.opacity = 0.45 * v
-    m.coreWall.opacity = 0.95 * v
-    m.column.opacity = v
-    m.shaft.opacity = v
-    m.stair.opacity = v
-    m.tread.opacity = v
-    ;[m.slab, m.corridor, m.column, m.shaft, m.stair].forEach((x) => (x.transparent = v < 0.999))
-    if (rise.current) rise.current.scale.y = Math.max(0.001, grow.v)
-    const pulse = reduce ? 0.5 : 0.5 + 0.5 * Math.sin(clock.elapsedTime * 2.2)
-    for (const h of res.haz) {
-      h.floor.opacity = 0.55 * v
-      h.floor.emissiveIntensity = 0.25 + 0.3 * pulse
-      h.glow.opacity = v * (0.12 + 0.12 * pulse)
+    const fire = incident.here.length > 0 // a dispatch or crew report on this floor, never a historical record
+    mat.paper.opacity = v
+    mat.slab.color.set(fire ? ink.fireSlab : ink.slab)
+    mat.line.color.set(fire ? ink.fireLine : ink.line)
+    mat.slab.opacity = v
+    mat.wall.opacity = v
+    mat.glass.opacity = (fs.night ? 0.14 : 0.19) * v
+    mat.line.opacity = 0.8 * v
+    mat.ghost.opacity = 0.4 * v
+    mat.grid.opacity = (fs.night ? 0.35 : 0.23) * v
+    mat.lower.opacity = (fs.night ? 0.3 : 0.16) * v
+    if (reveal.current) reveal.current.scale.y = Math.max(0.001, v)
+    if (compass.el) {
+      const dir = camera.getWorldDirection(new THREE.Vector3())
+      compass.el.style.transform = `rotate(${Math.atan2(-dir.x, -dir.z)}rad)`
     }
-    labels.current.forEach((d) => d && (d.style.opacity = String(v)))
   })
 
   const open = (c: Ctx) => {
     saved.current ??= { ...c.pose }
     const w = root.current!.getWorldPosition(new THREE.Vector3())
-    // the plan's long axis along the canvas's long side
-    const tall = c.aspect < 1
-    const A = plan.longAngle + (tall ? 0 : Math.PI / 2)
-    const th = Math.atan2(-Math.cos(A), Math.sin(A))
-    const theta = [th, th + Math.PI].map((x) => near(c.pose.theta, x)).reduce((m, x) => (Math.abs(x - c.pose.theta) < Math.abs(m - c.pose.theta) ? x : m))
-    const [up, across] = tall ? [plan.long, plan.short] : [plan.short, plan.long]
-    const fov = 2 * Math.tan(20 * DEG) // camera fov is 40 (App.tsx)
-    const r = 1.45 * Math.max((up * Math.cos(PITCH)) / fov, across / (fov * c.aspect))
-    const lift = (0.05 * fov * r) / Math.cos(PITCH)
+    const [x0, x1, y0, y1] = model.bounds
+    // frame ONLY this floor: hydrants belong at street level, not floating on floor 22
+    const r = Math.hypot(x1 - x0, y1 - y0) * Math.max(1.32, 1.32 / c.aspect)
     c.tl
-      .to(chips, { v: 0, duration: t(0.3), ease: 'power2.in' }, 0)
-      .to(c.fades, { a: (f: number) => (f === floor ? 1 : OTHER), duration: t(0.8), ease: 'sine.inOut' }, 0)
-      .to(shown, { v: 1, duration: t(0.7), ease: 'power2.out' }, t(0.3))
-      .call(() => setSlab(false), [], t(0.95))
-      .to(grow, { v: 1, duration: t(1.1), ease: 'power3.out' }, t(0.7))
-      .to(c.pose, { phi: PITCH, theta, r, tx: w.x + plan.center[0] + lift * Math.sin(theta), ty: w.y + SLAB, tz: w.z - plan.center[1] + lift * Math.cos(theta), duration: t(1.9), ease: 'sine.inOut' }, 0)
+      .to(chips, { v: 0, duration: t(0.25), ease: 'power2.in' }, 0)
+      .to(c.fades, { a: (f: number) => (f === floor ? 1 : 0), duration: t(0.7), ease: 'sine.inOut' }, 0)
+      .call(() => setSlab(false), [], t(0.3))
+      .to(shown, { v: 1, duration: t(1.1), ease: 'power2.inOut' }, t(0.25))
+      .to(c.pose, { phi: 53 * DEG, theta: near(c.pose.theta, 18 * DEG), r, tx: w.x + (x0 + x1) / 2, ty: w.y, tz: w.z - (y0 + y1) / 2, duration: t(1.6), ease: 'power3.inOut' }, 0)
       .call(() => setRooms('on'))
   }
   const close = (c: Ctx) => {
     const next = useStore.getState().collapseAfterRooms // the floors collapse right after: don't bring this floor's chip back
-    c.tl
-      .to(grow, { v: 0, duration: t(0.6), ease: 'power2.in' }, 0)
-      .call(() => setSlab(true), [], t(0.5))
-      .to(shown, { v: 0, duration: t(0.5), ease: 'power2.in' }, t(0.5))
-    if (saved.current) c.tl.to(c.pose, { ...saved.current, duration: t(1.5), ease: 'sine.inOut' }, 0)
-    if (!next) c.tl.to(chips, { v: 1, duration: t(0.6), ease: 'power2.out' }, t(1.1)).to(c.fades, { a: (f: number) => fadeFor(f, c), duration: t(0.8), ease: 'sine.inOut' }, t(0.6))
+    c.tl.call(() => setSlab(true), [], t(0.5)).to(shown, { v: 0, duration: t(0.65), ease: 'power2.in' }, 0)
+    if (saved.current) c.tl.to(c.pose, { ...saved.current, duration: t(1.3), ease: 'power3.inOut' }, 0)
+    if (!next) c.tl.to(chips, { v: 1, duration: t(0.4), ease: 'power2.out' }, t(0.9)).to(c.fades, { a: (f: number) => fadeFor(f, c), duration: t(0.7), ease: 'sine.inOut' }, t(0.6))
     c.tl.call(() => setRooms('off'))
   }
 
+  // refit when the canvas changes size (a phone rotating, a window resized) so the floor stays framed
   useEffect(() => {
-    if (rooms === 'opening') {
-      navigator.vibrate?.(20)
+    const key = `${size.width}:${size.height}`
+    if (rooms === 'opening' || (rooms === 'on' && (shown.v === 0 || framedSize.current !== key))) {
+      if (rooms === 'opening') navigator.vibrate?.(20)
+      framedSize.current = key
       return play(open)
     }
+    if (rooms === 'on') setSlab(false)
     if (rooms === 'closing') return play(close)
-  }, [rooms]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [rooms, size.width, size.height]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const elev = arch.shafts.length ? arch.shafts.reduce((s, r) => [s[0] + r.c[0] / arch.shafts.length, s[1] + r.c[1] / arch.shafts.length], [0, 0]) : arch.core.c
-  const tags: { key: string; at: [number, number]; text: string; cls: string; pin?: Pin }[] = [
-    { key: 'elev', at: [elev[0], elev[1]], text: arch.elevators > 1 ? 'Elevators' : 'Elevator', cls: 'arch' },
-    // stairs: never drawn or placed. One plain note at the core, no position implied
-    { key: 'stairs', at: [arch.core.c[0], arch.core.c[1] - arch.core.d / 2 - 2.5], text: 'Stairs: not on public record · verify on arrival', cls: 'arch unknown' },
-    ...arch.rooms.map((r) => ({ key: r.name, at: r.c, text: `${r.name} · spot estimated`, cls: `arch hz ${r.tone}`, pin: r.pin })),
-  ]
   return (
     <group ref={root}>
-      <mesh geometry={res.slab} material={res.m.slab} rotation-x={-Math.PI / 2} onClick={(e) => (e.stopPropagation(), toggle())} />
-      <mesh geometry={res.box} material={res.m.corridor} {...rectProps(arch.corridor, SLAB, 0.02)} />
-      {res.haz.map((h, i) =>
-        h.geo.map((g, k) => (
-          <group key={`${i}-${k}`}>
-            <mesh geometry={g} material={h.floor} rotation-x={-Math.PI / 2} position-y={SLAB + 0.03} />
-            <mesh geometry={g} material={h.glow} rotation-x={-Math.PI / 2} position-y={SLAB + 0.05} />
-          </group>
-        )),
-      )}
-      <group ref={rise} scale-y={0.001}>
-        {arch.facade.map((s, i) => <mesh key={`f${i}`} geometry={res.box} material={res.m.facade} {...segProps(s, SLAB, WALL_H * 0.8, 0.18)} />)}
-        {arch.walls.map((s, i) => <mesh key={`w${i}`} geometry={res.box} material={res.m.wall} {...segProps(s, SLAB, WALL_H, 0.14)} />)}
-        {arch.coreWalls.map((s, i) => <mesh key={`c${i}`} geometry={res.box} material={res.m.coreWall} {...segProps(s, SLAB, WALL_H + 0.3, 0.3)} />)}
-        {arch.shafts.map((r, i) => <mesh key={`e${i}`} geometry={res.box} material={res.m.shaft} {...rectProps(r, SLAB - 0.25, WALL_H + 0.45)} />)}
-        {b.structure && <instancedMesh key={arch.columns.length} ref={colRef} args={[res.box, res.m.column, arch.columns.length]} frustumCulled={false} />}
+      <mesh geometry={screen} material={mat.paper} rotation-x={-Math.PI / 2} position-y={-2.5} renderOrder={1} raycast={noRaycast} />
+      <mesh geometry={model.plate} material={mat.lower} position-y={-1.6} renderOrder={2} raycast={noRaycast} />
+      <lineSegments geometry={model.plateEdges} material={mat.ghost} position-y={-1.6} renderOrder={3} raycast={noRaycast} />
+      <mesh geometry={model.plate} material={mat.slab} renderOrder={4} raycast={noRaycast} />
+      <lineSegments geometry={model.plateEdges} material={mat.line} renderOrder={5} raycast={noRaycast} />
+      <lineSegments geometry={model.grid} material={mat.grid} renderOrder={5} raycast={noRaycast} />
+      <group ref={reveal}>
+        <mesh geometry={model.walls} material={mat.wall} renderOrder={6} raycast={noRaycast} />
+        <mesh geometry={model.windows} material={mat.glass} renderOrder={7} raycast={noRaycast} />
+        <lineSegments geometry={model.ink} material={mat.line} renderOrder={8} raycast={noRaycast} />
       </group>
-      {tags.map((g, i) => (
-        <Html key={g.key} center position={[g.at[0], SLAB + WALL_H + 0.6, -g.at[1]]} zIndexRange={[g.pin ? 6 : 4, 0]} style={{ pointerEvents: g.pin ? 'auto' : 'none' }}>
-          <div ref={(d) => void (labels.current[i] = d)} className={`room-label ${g.cls}`} style={{ opacity: 0, cursor: g.pin ? 'pointer' : undefined }} onClick={g.pin ? () => onSelectPin(g.pin!) : undefined}>
-            {g.text}
-          </div>
-        </Html>
+      {rooms === 'on' && markers.map((m, i) => (
+        <group key={m.id} position={[m.at[0], 0.35, -m.at[1]]}>
+          <EquipmentAsset marker={m} onSelect={() => m.pin && onSelectPin(m.pin)} />
+          <Html position={[0, 8, 0]} center zIndexRange={[11, 7]}>
+            <button className={`floor-map-marker ${m.kind}`} onClick={() => m.pin && onSelectPin(m.pin)} disabled={!m.pin} aria-label={`${m.title}. Position unverified.${m.pin ? ' Open source record.' : ''}`}>
+              <span className="floor-marker-number">{String(i + 1).padStart(2, '0')}</span>
+              <span><strong>{m.title}</strong><small>Position unverified{m.pin?.stale ? ' · stale' : ''}</small></span>
+            </button>
+          </Html>
+        </group>
       ))}
     </group>
   )
 }
 
-// DOM over the stage: while the plan shows, the estimate note (never off while the plan is up). The Rooms toggle lives in the shell dock
+// DOM over the stage while the cutaway shows: which floor, the incident state, the compass and the illustrative note
+// (never off while the cutaway is up). The toggle lives in the shell dock and the floor panel; the floor's people,
+// hazards, floor above and water stay in the sheet's floor panel
 export function RoomsOverlay() {
-  const { phase, target, rooms } = useStore()
-  if (phase !== 'exploded' || target === null || rooms === 'off') return null
+  const { phase, target, rooms, building, setBuilding } = useStore()
+  const a = useMemo(() => (building && target !== null ? arrival(building, target) : null), [building, target])
+  const incident = useMemo(() => (building && target !== null ? floorIncident(building, target) : null), [building, target])
+  if (phase !== 'exploded' || target === null || rooms === 'off' || !building || !a || !incident) return null
+  const name = target === 0 ? 'B1' : String(target).padStart(2, '0')
+  const where = target === 0 ? 'B1' : `floor ${target}`
+  const mine = `crew-fire-${target}`
+  // reports live only in the in-memory building: nothing is saved or transmitted, a reload clears them
+  const markFire = () => {
+    const pin: Pin = { id: mine, layer: 'crew_note', origin: 'crew', severity: 'danger', label: `Reported fire, ${target === 0 ? 'basement' : `floor ${target}`}`, detail: 'User marked fire on this floor in the prototype. Exact position is unknown. Not independently verified.', anchor: { kind: 'floor', floor: target }, claim: 'unverifiable', evidence: [], stale: false }
+    setBuilding({ ...building, pins: [...building.pins.filter((p) => p.id !== mine), pin] })
+  }
+  const here = incident.here.length > 0
   return (
-    <p className="rooms-banner" role="note" title="No public floor plan exists. Column spacing follows the structural system recorded in the SF Tall Building Inventory (5kya-mfst). Corridor and room grid are schematic. Stairs are not drawn: their location is not public. Hazard rooms are named in cited records; their spot on the floor is estimated.">
-      {useStore.getState().building?.structure ? 'Columns: structural system per SF Tall Building Inventory · ' : ''}Corridor and rooms schematic · stairs not drawn
-    </p>
+    <div className="cutaway-overlay">
+      <div className="cutaway-orientation" aria-hidden="true"><div ref={(d) => void (compass.el = d)}><b>N</b><span>↑</span></div></div>
+      <div className="cutaway-column">
+        <header className="cutaway-heading">
+          <span className="cutaway-eyebrow">Floor cutaway · hazards & systems</span>
+          <h2><span>Floor</span> {name}</h2>
+          <p>{a.level} · {a.areaText}</p>
+        </header>
+        <aside className={`cutaway-incident${here ? ' reported' : ''}`} aria-label="Incident location" aria-live="polite">
+          <span className="incident-kicker">{here ? 'Reported incident' : 'Incident location'}</span>
+          <strong>{here ? `Fire / smoke reported · ${where}` : incident.fires.length ? 'Fire reported elsewhere' : 'Fire location not reported'}</strong>
+          <p>{here ? 'Floor-level report. Exact position unknown.' : incident.fires.length ? incident.fires.map((p) => (p.anchor.kind === 'floor' ? `Floor ${p.anchor.floor === 0 ? 'B1' : p.anchor.floor}` : p.anchor.kind === 'roof' ? 'Roof' : 'Floor unspecified')).join(' · ') : 'Selecting a floor does not locate the fire.'}</p>
+          {here ? <small>{[...new Set(incident.here.map((p) => (p.origin === 'dispatch' ? 'Dispatch report' : 'Crew report')))].join(' · ')} · unverified</small> : <button type="button" onClick={markFire}>Report fire on this floor</button>}
+          {building.pins.some((p) => p.id === mine) && <button type="button" onClick={() => setBuilding({ ...building, pins: building.pins.filter((p) => p.id !== mine) })}>Clear my report</button>}
+        </aside>
+        <p className="cutaway-caption" role="note">Recorded footprint · illustrative facade<small>Illustrative 3D assets · positions, dimensions and counts unverified</small></p>
+      </div>
+    </div>
   )
 }
