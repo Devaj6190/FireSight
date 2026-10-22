@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Building, ComplianceRow } from '../../../../shared/building.ts'
 import { compliance } from '../../../../shared/client.ts'
 import './panels.css'
+import { displayLabel } from '../Floors.tsx'
 
 type Props = {
   building: Building
@@ -56,7 +57,7 @@ export function ComplianceStrip({ building, onSelectPins }: Props) {
                     const e = p?.evidence[0]
                     return (
                       <li key={id}>
-                        <span>{p?.label ?? id}</span>
+                        <span>{p ? displayLabel(p.label) : id}</span>
                         {e && <span className="fsp-asof">{e.source} · {e.recordId} · {e.asOf.slice(0, 10)}</span>}
                       </li>
                     )

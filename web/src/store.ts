@@ -6,6 +6,7 @@ import type { Answer, Building } from '../../shared/building'
 
 export type Phase = 'assembled' | 'exploding' | 'exploded' | 'collapsing' // plan.md s4
 export type RoomsPhase = 'off' | 'opening' | 'on' | 'closing' // second level: the focused floor split into rooms
+export type Inset = { top: number; right: number; bottom: number; left: number } // px of the canvas the shell's chrome covers
 
 type Store = {
   building?: Building
@@ -15,6 +16,7 @@ type Store = {
   rooms: RoomsPhase
   collapseAfterRooms: boolean // collapse asked while rooms were open: rooms close first, then the floors
   view: number // bumped by resetView: the scene flies the camera back to the framing for the current phase
+  inset: Inset // the camera frames the building in the canvas minus this (the canvas itself never resizes)
   setBuilding: (b: Building) => void
   setPhase: (p: Phase) => void
   explode: () => void
@@ -24,6 +26,7 @@ type Store = {
   toggleRooms: () => void
   setRooms: (r: RoomsPhase) => void
   resetView: () => void
+  setInset: (inset: Inset) => void
 }
 
 export const useStore = create<Store>((set, get) => ({
@@ -33,6 +36,7 @@ export const useStore = create<Store>((set, get) => ({
   rooms: 'off',
   collapseAfterRooms: false,
   view: 0,
+  inset: { top: 0, right: 0, bottom: 0, left: 0 },
   setBuilding: (building) => set({ building }),
   setPhase: (phase) => set({ phase }),
   explode: () => void (get().phase === 'assembled' && set({ phase: 'exploding' })),
@@ -67,4 +71,8 @@ export const useStore = create<Store>((set, get) => ({
     }
   },
   resetView: () => set({ view: get().view + 1 }),
+  setInset: (inset) => {
+    const o = get().inset
+    if (inset.top !== o.top || inset.right !== o.right || inset.bottom !== o.bottom || inset.left !== o.left) set({ inset })
+  },
 }))

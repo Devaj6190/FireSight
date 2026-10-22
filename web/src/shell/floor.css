@@ -1,8 +1,8 @@
 /* Floor rail + floor panel. Uses the main tokens (--fs-*) with local aliases; blue is the only tap accent,
    red/orange only for hazards. */
-.phone-app {
-  --fl-accent: #0a84ff;
-  --fl-accent-fill: rgba(10, 132, 255, 0.18);
+:root {
+  --fl-accent: #3d8bff;
+  --fl-accent-fill: rgba(61, 139, 255, 0.18);
   --fl-danger: #ff453a;
   --fl-caution: #ff9f0a;
   --fl-info: #64d2ff;
@@ -10,7 +10,7 @@
   --fl-conflict: #bf5af2;
   --fl-fill: rgba(118, 118, 128, 0.24);
   --fl-material: rgba(23, 26, 31, 0.74);
-  --fl-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI Variable Text', 'Segoe UI', Roboto, system-ui, sans-serif;
+  --fl-font: var(--fs-sans);
 }
 
 /* ---- severity dot ---- */
@@ -36,7 +36,7 @@
 .floor-rail-btn[aria-current] .floor-rail-count { color: rgba(255, 255, 255, 0.85); }
 .floor-rail-num { flex: 1; }
 .floor-rail-count { font-size: 11px; font-weight: 500; color: var(--fs-muted); }
-.phone-app .floor-rail-btn:focus-visible { outline: 2px solid var(--fl-accent); outline-offset: 2px; }
+.fs-app .floor-rail-btn:focus-visible { outline: 2px solid var(--fl-accent); outline-offset: 2px; }
 
 /* desktop: frosted vertical rail floating on the scene's right edge (left of the sidebar) */
 .floor-rail--float { display: none; }
@@ -66,7 +66,7 @@
 /* ---- panel ---- */
 .floor-panel { font-family: var(--fl-font); }
 .floor-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.phone-app .floor-title { font: 700 24px/1.2 var(--fl-font); letter-spacing: -0.01em; margin: 4px 0 2px; }
+.fs-app .floor-title { font: 700 24px/1.2 var(--fl-font); letter-spacing: -0.01em; margin: 4px 0 2px; }
 .floor-summary { margin: 0 0 6px; color: var(--fs-muted); font-size: 14px; font-variant-numeric: tabular-nums; }
 .floor-step { display: flex; gap: 6px; }
 .floor-step button { width: 44px; height: 44px; border-radius: 22px; border: 0; background: var(--fl-fill); color: var(--fl-accent); font-size: 13px !important; }
@@ -74,7 +74,7 @@
 .floor-step button:disabled { color: var(--fs-muted); }
 
 .floor-section { padding: 14px 0 4px; border-top: 0.5px solid var(--fs-line); margin-top: 10px; }
-.phone-app .floor-section h3 { margin: 0 0 8px; font: 600 12px/1.3 var(--fl-font); text-transform: uppercase; letter-spacing: 0.02em; color: var(--fs-muted); }
+.fs-app .floor-section h3 { margin: 0 0 8px; font: 600 12px/1.3 var(--fl-font); text-transform: uppercase; letter-spacing: 0.02em; color: var(--fs-muted); }
 
 .floor-list { list-style: none; margin: 0; padding: 0; }
 .floor-list li + li { border-top: 0.5px solid var(--fs-line); }
@@ -99,11 +99,11 @@
 .floor-facts dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .floor-facts dd small { display: block; color: var(--fs-muted); font-size: 12px; margin-top: 2px; }
 
-.phone-app .floor-line { margin: 0 0 8px; font-size: 14px; font-variant-numeric: tabular-nums; }
-.phone-app .floor-quiet { color: var(--fs-muted); }
+.fs-app .floor-line { margin: 0 0 8px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.fs-app .floor-quiet { color: var(--fs-muted); }
 .floor-permit { padding: 10px 12px; border-radius: 12px; background: var(--fl-fill); }
 .floor-permit small { color: var(--fs-muted); font-size: 12px; }
-.phone-app .floor-permit p { margin: 4px 0; font-size: 14px; overflow-wrap: anywhere; }
+.fs-app .floor-permit p { margin: 4px 0; font-size: 14px; overflow-wrap: anywhere; }
 .floor-permit a { display: inline-flex; align-items: center; min-height: 44px; color: var(--fl-accent); text-decoration: none; font-weight: 600; font-size: 14px; }
 
 .floor-action { margin-top: 10px; min-height: 44px; padding: 0 16px; border: 0; border-radius: 22px; background: var(--fl-accent-fill); color: var(--fl-accent); font-weight: 600 !important; font-size: 14px !important; }

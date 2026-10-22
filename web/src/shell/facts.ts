@@ -11,11 +11,11 @@ export const compass = (deg: number) => COMPASS[Math.round((((deg % 360) + 360) 
 
 export type Fact = { id: string; text: string; tone?: 'danger' | 'caution' | 'unknown' }
 
-// "1 (permits, constr type 1)" -> TYPE I; "5 (permits, wood frame (5)); D (assessor)" -> TYPE V WOOD
+// "1 (permits, constr type 1)" -> Type I; "5 (permits, wood frame (5)); D (assessor)" -> Type V wood
 export function constructionFact(raw: string | null): Fact {
   const n = Number(raw?.match(/^\s*(\d)\b/)?.[1])
-  if (!n || n > 5) return { id: 'type', text: 'TYPE ?', tone: 'unknown' }
-  return n === 5 ? { id: 'type', text: 'TYPE V WOOD', tone: 'danger' } : { id: 'type', text: `TYPE ${ROMAN[n]}`, tone: n >= 3 ? 'caution' : undefined }
+  if (!n || n > 5) return { id: 'type', text: 'Type ?', tone: 'unknown' }
+  return n === 5 ? { id: 'type', text: 'Type V wood', tone: 'danger' } : { id: 'type', text: `Type ${ROMAN[n]}`, tone: n >= 3 ? 'caution' : undefined }
 }
 
 export const hasBasement = (b: Building) => b.pins.some(p => p.anchor.kind === 'floor' && p.anchor.floor === 0)
@@ -24,13 +24,13 @@ export const dispatchFloor = (b: Building) => { const a = dispatchOf(b)?.anchor;
 export const floorName = (f: number) => (f === 0 ? 'B1' : String(f))
 
 export function keyFacts(b: Building): Fact[] {
-  const facts: Fact[] = [{ id: 'floors', text: `${b.floors} FL` }, constructionFact(b.constructionType)]
+  const facts: Fact[] = [{ id: 'floors', text: `${b.floors} fl` }, constructionFact(b.constructionType)]
   const sprinkler = b.pins.map(p => p.label.match(/(\d+%)\s+SPRINKLERED/)?.[1]).find(Boolean)
-  if (sprinkler) facts.push({ id: 'sprinkler', text: `${sprinkler} SPRINKLERED`, tone: sprinkler === '100%' ? undefined : 'caution' })
-  facts.push({ id: 'height', text: `${Math.round(b.heightM)} M` })
-  if (b.yearBuilt) facts.push({ id: 'year', text: `BUILT ${b.yearBuilt}` })
+  if (sprinkler) facts.push({ id: 'sprinkler', text: `${sprinkler} sprinklered`, tone: sprinkler === '100%' ? undefined : 'caution' })
+  facts.push({ id: 'height', text: `${Math.round(b.heightM)} m` })
+  if (b.yearBuilt) facts.push({ id: 'year', text: `Built ${b.yearBuilt}` })
   if (hasBasement(b)) facts.push({ id: 'b1', text: 'B1' })
-  if (b.units) facts.push({ id: 'units', text: `${b.units} UNITS` })
+  if (b.units) facts.push({ id: 'units', text: `${b.units} units` })
   return facts
 }
 

@@ -6,6 +6,27 @@ Handoff for the next design pass on the field shell (`web/src/shell/`). Written 
 
 **Not in scope:** new data, new panels, changes to the contract in `shared/building.ts`, or changes to the explode choreography in `explode.ts`. Camera framing is the one exception (section 7).
 
+## 0. Status after review (Oct 22, evening)
+
+The product owner reviewed this doc. Their decisions:
+
+- **Keep v1's structure and layout.** The top bar, the 7-tab nav (bottom on phone, right rail on desktop), the bottom sheet and the model controls stay where they are. The layout changes in section 5 (a floating command bar capsule, a 5-tab dock with a "+" action and a "⋯" menu, moving the rail to the left) and the floor tape in section 6.9 are **not adopted**.
+- **Do the restyle and smoothness work.** Colors, fonts, glass, lighter controls and the smoothness fixes were implemented on `claude/jolly-pascal-cuq932` (see the checklist in section 12 for what is done).
+- **No chips crowding the exploded fan.** See section 7b.
+- **Next up, after the UI and the floor view are finished:** the test fire scenario (section 13).
+
+What was built, in short:
+
+| Area | Done |
+|---|---|
+| Smoothness | The canvas is full-screen and never resizes. The camera frames the building in the area the chrome leaves uncovered (`FrameInset` in `App.tsx`, section 7). The desktop panel overlays the 3D and slides with `transform`. Entrance cascades and the hazard count-ups play once per building, not on every tab visit. The phone sheet snaps by flick speed and rubber-bands past its ends. |
+| Tokens | Section 3 colors in `index.css`; `tokens.ts` mirrors them. The `--lg-*` (rooms) and `--fl-*` (floor panel) sets are now aliases of `--fs-*`. |
+| Type | Geist and Geist Mono (`@fontsource/geist`, `@fontsource/geist-mono`; the static packages, because the 3D text needs `.woff`). Record labels go through `displayLabel()`. Uppercase is left only for mono eyebrows, small status tags and the notice. |
+| Glass | Top bar, nav, sheet, model controls, chips and toasts are frosted glass over the 3D. `?glass=0` gives solid panels; phones with 4 or fewer cores, or under 45 fps after load, switch to solid automatically (`?glass=1` overrides). |
+| Controls | Lighter buttons (44–48 px visual, 48 px hit areas kept). Explode is the one blue fill and turns to glass once exploded, with a progress line while it moves. The hazard counters are a single readout row with a share bar. The dispatch floor and the fire marker are danger red, not amber. |
+| Night city | The default. `?night=0` brings back the daytime map for comparison. |
+| Not done | Motion library springs (CSS easing is used instead; no new dependency), audio-reactive mic ring, number roll per digit, the 3-snap sheet. None of these block the demo. |
+
 ## 1. What is wrong with v1
 
 The product owner's verdict on v1: the fonts and colors are wrong, and the big buttons don't feel smooth. Specifically:
@@ -230,6 +251,17 @@ useEffect(() => {
 - Tween the offset over 300 ms with the same spring as the panel: `animate(current, target, { type: 'spring', … , onUpdate })`. Don't jump it.
 - `explode.ts`'s `fit()` keeps using `size.width / size.height`. Shrink the effective aspect by the inset when the inspector is open (`aspect = (w - inset.right) / (h - inset.bottom)`) so the fan still fits.
 
+## 7b. Pins on the exploded fan
+
+Product owner: when the building explodes, the chips should not sit on the floors, because they take up too much space.
+
+- Exploded with no focus: every pin is a **dot** on its floor (danger dots glow red). No stems, no chips. The dot keeps a minimum on-screen size (5 px radius) so it stays visible from far out.
+- Focus a floor (tap it, pick it in Floors, a dispatch, voice, `?focus=`): that floor's chip grows out of its dot. Floors an Ask answer names get their chips too. Roof records follow the top floor; site records follow the ground floor.
+- Tapping a dot still opens its record in the panel.
+- Chips are kept inside the uncovered part of the canvas: never under the top bar, the nav or the open panel.
+
+Code: `labelled` in `Slabs` (`App.tsx`) and `PinMarker` / `Declutter` (`Pins.tsx`).
+
 ## 8. Motion
 
 Use **Motion** (`npm i motion` in `web/`, import from `motion/react`) for UI motion. Keep GSAP for the 3D timelines (`explode.ts`), and don't mix them on the same element.
@@ -302,13 +334,28 @@ Free tier: catalog search plus 2 component installs a day, so spend the installs
 
 ## 12. Acceptance checklist
 
+Checked items were verified on the branch (build, tests and headless screenshots at 390 × 844 and 1440 × 900). Unchecked items need a real device or have not been done.
+
 - [ ] 60 fps on the demo Android phone during: tab switch, sheet drag, inspector open and close, and explode (Chrome DevTools performance trace, no long frames over 32 ms in the shell).
-- [ ] The canvas element's size never changes after load (verify with a `ResizeObserver` log).
-- [ ] No uppercase text outside eyebrows, 3D chips and the notice.
-- [ ] Amber and red appear only on hazards; blue only on interactive and selected things.
+- [x] The canvas element's size never changes after load (it fills the screen behind the chrome; only the projection changes).
+- [x] No uppercase text outside eyebrows, small status tags, 3D chip source lines and the notice.
+- [x] Amber and red appear only on hazards; blue only on interactive and selected things.
 - [ ] Every tappable control has a hit area of at least 48 × 48 px.
 - [ ] Body text contrast is ≥ 4.5:1 over the brightest part of the city (white roof) behind the glass.
 - [ ] Reduced motion: no transforms animate; state is still clear.
-- [ ] `?glass=0` / low-power gives solid panels and no `backdrop-filter`.
+- [x] `?glass=0` / low-power gives solid panels and no `backdrop-filter`.
 - [ ] Data rules unchanged: stale, unknown and conflict are always visible; every fact still opens its source record; "Not for operational use" is always on screen.
 - [ ] `npx tsc -b`, `npm run build`, `npx oxlint` and `node --test` for the web tests (`src/shell/facts.test.ts`, `src/store.test.ts`, `src/roomPlan.test.ts`, `src/cityMesh.test.ts`, `src/shell/model.test.ts`) all pass.
+- [x] Exploded fan: dots only until a floor is focused (section 7b).
+
+## 13. Future plans: test fire scenario
+
+To build **after** the UI work above and the floor view (inside-a-floor, PR #34 and `docs/challenges-floor-view.md`) are finished. It is the demo's walkthrough:
+
+1. **Start a test fire.** One control ("Run test fire") puts a simulated fire in the building. It is clearly labeled as a drill everywhere it appears ("Test fire · simulated", like today's simulated dispatch) and never mixes with real records.
+2. **Fire floor in 3D.** The building explodes and frames the fire floor. That floor glows red and carries its chip. The floors above it are marked as exposure floors, since fire spreads up.
+3. **Click into the fire.** Tapping the fire floor opens the floor view for that floor: people on the floor first, then hazards, then what is above and below.
+4. **Walk the floors.** Step up and down from the fire floor (the floor panel's up and down steps, or by tapping floors in the fan), seeing people, hazards and recent work on each, so a crew can size up the floors above.
+5. **Brief.** The arrival brief and the size-up brief read from the test fire, so the whole flow can be rehearsed end to end.
+
+Open questions for that work: where the "Run test fire" control lives without changing the layout (probably the Respond page, next to the simulated dispatch), whether a test fire can start on any floor or only on preset ones, and how the fire's spread over time is shown, if at all.

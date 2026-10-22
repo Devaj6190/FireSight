@@ -6,7 +6,7 @@ import * as THREE from 'three'
 import { collapse, explode, focus, frame, near, reduce, t, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { Rooms, RoomsOverlay } from './Rooms.tsx'
-import { useStore, type Phase } from './store'
+import { useStore, type Inset, type Phase } from './store'
 import { City } from './City'
 import { facade } from './cityMesh'
 import { fs } from './tokens'
@@ -17,6 +17,33 @@ import { BUILDINGS, dispatchBuilding, dispatchPin } from './shell/model'
 const GAP = 0.15 // between slabs, plan.md s3
 const INTRO = 4.2 // s, the opening fly-in from over the city
 const SOLID = { a: 1 }
+const FOV = 40 // deg, vertical, over the uncovered part of the canvas
+
+// The canvas never resizes (resizing it during a panel animation reallocated the GL buffers every frame). Instead the
+// projection is shifted and widened so the area the shell's chrome leaves uncovered sees exactly what a canvas of
+// that size would: setViewOffset moves the optical centre into it, and the fov grows so it still spans FOV.
+// The inset eases to its new value at about the sheet's pace.
+function FrameInset() {
+  const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera
+  const size = useThree((s) => s.size)
+  const cur = useRef<Inset | null>(null)
+  const last = useRef('')
+  useFrame((_, dt) => {
+    const to = useStore.getState().inset
+    const c = (cur.current ??= { ...to })
+    const k = reduce ? 1 : 1 - Math.exp(-Math.min(dt, 0.1) * 10)
+    for (const side of ['top', 'right', 'bottom', 'left'] as const) c[side] = Math.abs(to[side] - c[side]) < 0.5 ? to[side] : c[side] + (to[side] - c[side]) * k
+    const key = `${size.width},${size.height},${c.top},${c.right},${c.bottom},${c.left}`
+    if (key === last.current) return
+    last.current = key
+    const { width: w, height: h } = size
+    const vh = Math.max(1, h - c.top - c.bottom)
+    camera.fov = (2 * Math.atan((Math.tan((FOV * Math.PI) / 360) * h) / vh) * 180) / Math.PI
+    camera.setViewOffset(w, h, (c.right - c.left) / 2, (c.bottom - c.top) / 2, w, h)
+    camera.updateProjectionMatrix()
+  })
+  return null
+}
 
 function spanOf(b: Building) {
   const xs = b.footprint.map((p) => p[0])
@@ -121,6 +148,10 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     for (const l of levels) l.top.opacity = l.side.opacity = l.edge.opacity = l.fade.a
   })
 
+  const visibleAspect = () => {
+    const i = useStore.getState().inset
+    return Math.max(1, size.width - i.left - i.right) / Math.max(1, size.height - i.top - i.bottom)
+  }
   const play = (run: (c: Ctx) => void, next?: Phase) => {
     const c = controls.current!
     const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(c.target))
@@ -144,7 +175,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       tl, pose, home: home.current!, target, lit, hot,
       slabs: slabs.current, basement: hasB1 ? basement.current : null,
       edges: levels.map((l) => l.edge.color), fades: levels.map((l) => l.fade), pins: groups.map((g) => g.reveal),
-      floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b), aspect: size.width / size.height,
+      floorH: b.floorHeightM, heightM: b.heightM, floors: b.floors, span: spanOf(b), aspect: visibleAspect(),
     })
     return () => {
       tl.kill()
@@ -172,8 +203,12 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     if (phase === 'assembled' && end) return play((c) => void c.tl.to(c.pose, { ...end, theta: near(c.pose.theta, end.theta), duration: t(1.1), ease: 'power3.inOut' }, 0))
   }, [view]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // exploded, the fan stays clear: every pin is a dot (danger glows), and only the focused floor and the floors an
+  // answer names carry their chip. Roof records ride the top floor, site records the ground floor
+  const shown = target === null ? lit : [target, ...lit]
+  const labelled = (key: number | string) => shown.includes(key === 'roof' ? b.floors : key === 'site' ? 1 : (key as number))
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
-    <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} /></group>
+    <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} labelled={labelled(g.key)} /></group>
   )
   const top = b.floorHeightM - GAP
   const onSlab = (f: number, s: number) =>
@@ -295,8 +330,10 @@ export default function App() {
     <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, far: 8000, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
       <color attach="background" args={[fs.sky]} />
       <fog attach="fog" args={[fs.sky, d * 1.2, d * 5]} />
-      <hemisphereLight args={['#ffffff', fs.sidewalk, 1.1]} />
-      <directionalLight position={[80, 140, 60]} intensity={1.7} />
+      <hemisphereLight args={['#ffffff', fs.sidewalk, fs.night ? 0.6 : 1.1]} />
+      <directionalLight position={[80, 140, 60]} intensity={fs.night ? 1.5 : 1.7} />
+      {fs.night && <directionalLight position={[-90, 60, -120]} color="#6fa8ff" intensity={0.6} />}
+      <FrameInset />
       <City id={b.id} />
       <Slabs b={b} onSelectPin={setSelectedPin} />
       <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>

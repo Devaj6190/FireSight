@@ -1,4 +1,4 @@
-/* Night Watch tokens (docs/design.md s2), scoped so the sheet works before the shell defines them globally. */
+/* Night Glass tokens (docs/handoff/design-v2.md s3), scoped so the sheet works before the shell defines them globally. */
 .fsb {
   --b-bg: var(--fs-bg, #0d0f12);
   --b-surface: var(--fs-surface, #171a1f);
@@ -10,8 +10,8 @@
   --b-danger: var(--fs-danger, #e5261f);
   --b-caution: var(--fs-caution, #ffb020);
   --b-info: var(--fs-info, #8ecae6);
-  --b-mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --b-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --b-mono: var(--fs-mono);
+  --b-sans: var(--fs-sans);
   font-family: var(--b-sans);
   color: var(--b-ink);
   background: var(--b-surface);
@@ -26,8 +26,8 @@
 .fsb-tag { font: 600 10px/12px var(--b-mono); padding: 3px 6px; border-radius: 6px; border: 1px solid var(--b-line); color: var(--b-muted); }
 .fsb-tag.offline { border-color: var(--b-caution); color: var(--b-caution); }
 .fsb-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.fsb-line { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: var(--b-bg); border: 1px solid var(--b-line); }
-.fsb-line.approved { border-color: color-mix(in srgb, var(--b-info) 60%, var(--b-line)); }
+.fsb-line { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: var(--fs-raise, var(--b-bg)); border: 1px solid transparent; }
+.fsb-line.approved { border-color: color-mix(in srgb, var(--b-action) 55%, transparent); }
 .fsb-line.struck { opacity: 0.5; }
 .fsb-line.struck .fsb-text { text-decoration: line-through; }
 .fsb-body { min-width: 0; display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
@@ -38,13 +38,15 @@
 .fsb-claim.unverifiable { border: 1.5px dashed var(--b-muted); color: var(--b-muted); }
 .fsb-claim.conflict { background: var(--b-caution); color: var(--b-bg); }
 .fsb-actions { display: flex; gap: 6px; }
-.fsb-btn { min-width: 48px; min-height: 48px; border-radius: 12px; border: 1px solid var(--b-line); background: transparent; color: var(--b-ink); font: 700 18px/1 var(--b-sans); cursor: pointer; }
+.fsb-btn { min-width: 48px; min-height: 48px; border-radius: 12px; border: 1px solid var(--b-line); background: transparent; color: var(--b-ink); font: 500 17px/1 var(--b-sans); cursor: pointer; transition: background .15s, transform .16s cubic-bezier(.22, 1, .36, 1); }
+.fsb-btn:active { transform: scale(.94); }
 .fsb-btn:focus-visible, .fsb-primary:focus-visible { outline: 2px solid var(--b-action); outline-offset: 2px; }
-.fsb-btn.on.ok { background: var(--b-info); color: var(--b-bg); border-color: var(--b-info); }
+.fsb-btn.on.ok { background: var(--b-action); color: #fff; border-color: var(--b-action); }
 .fsb-btn.on.no { background: var(--b-danger); color: #fff; border-color: var(--b-danger); }
 .fsb-saved { font: 500 10px/12px var(--b-mono); color: var(--b-caution); }
 .fsb-counts { font: 400 11px/16px var(--b-mono); color: var(--b-muted); }
-.fsb-primary { min-height: 52px; border-radius: 14px; border: 0; background: var(--b-action); color: var(--b-action-ink); font: 700 15px/1 var(--b-sans); letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
+.fsb-primary { min-height: 48px; border-radius: 12px; border: 0; background: var(--b-action); color: var(--b-action-ink); font: 500 15px/1 var(--b-sans); box-shadow: 0 4px 14px var(--fs-action-glow, transparent); cursor: pointer; transition: transform .16s cubic-bezier(.22, 1, .36, 1); }
+.fsb-primary:active:not(:disabled) { transform: scale(.97); }
 .fsb-primary:disabled { opacity: 0.5; cursor: default; }
 .fsb-msg { font: 400 13px/18px var(--b-sans); color: var(--b-muted); margin: 0; }
 .fsb-msg.err { color: var(--b-caution); }
@@ -53,8 +55,8 @@
 @media (prefers-reduced-motion: reduce) { .fsb-skel { animation: none; } }
 /* Eval screen */
 .fse-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.fse-stat { background: var(--b-bg); border: 1px solid var(--b-line); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
-.fse-num { font: 700 28px/32px var(--b-sans); font-variant-numeric: tabular-nums; }
+.fse-stat { background: var(--fs-raise, var(--b-bg)); border: 1px solid transparent; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 2px; }
+.fse-num { font: 500 28px/32px var(--b-mono); font-variant-numeric: tabular-nums; }
 .fse-num.good { color: var(--b-info); }
 .fse-num.bad { color: var(--b-danger); }
 .fse-label { font: 500 10px/12px var(--b-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--b-muted); }
@@ -62,13 +64,14 @@
 /* Arrival card: one row per spoken beat; the left rule colour says what kind of line it is. */
 .fsa { border-radius: 14px; padding: 10px 0 4px; background: transparent; }
 .fsa-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.fsa-row button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--b-bg); border: 1px solid var(--b-line); border-left: 3px solid var(--b-muted); color: var(--b-ink); font: 400 14px/19px var(--b-sans); cursor: pointer; }
+.fsa-row button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; background: var(--fs-raise, var(--b-bg)); border: 1px solid transparent; border-left: 3px solid var(--b-muted); color: var(--b-ink); font: 400 14px/19px var(--b-sans); cursor: pointer; }
 .fsa-row button:disabled { cursor: default; opacity: 1; }
 .fsa-sec { font: 600 10px/13px var(--b-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--b-muted); }
 .fsa-row.people button { border-left-color: var(--b-danger); }
 .fsa-row.people .fsa-sec { color: var(--b-danger); }
-.fsa-row.fire button, .fsa-row.bring button { border-left-color: var(--b-action); }
-.fsa-row.fire .fsa-sec, .fsa-row.bring .fsa-sec { color: var(--b-action); }
+.fsa-row.fire button { border-left-color: var(--b-danger); }
+.fsa-row.fire .fsa-sec { color: var(--b-danger); }
+.fsa-row.bring button { border-left-color: var(--b-ink); }
 .fsa-row.access button { border-left-color: var(--b-info); }
 .fsa-row.verify button { border-left-style: dashed; }
 .fsa-row.people button, .fsa-row.fire button { font-size: 16px; line-height: 22px; }

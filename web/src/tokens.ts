@@ -1,17 +1,23 @@
-// Night Watch tokens (docs/design.md s2), warmed to soot; keep in step with index.css. For R3F materials
-export const fs = {
-  bg: '#0f0e0c',
-  line: '#36312b',
-  action: '#ff9f1c',
+// Night Glass tokens (docs/handoff/design-v2.md s3); keep in step with index.css. For R3F materials.
+// The city is drawn at night by default so it sits under the dark glass; ?night=0 brings back the daytime map.
+const night = typeof location === 'undefined' || new URLSearchParams(location.search).get('night') !== '0'
+
+const ui = {
+  bg: '#05070a',
+  line: '#3a4656',
+  action: '#3d8bff',
   slab: '#262b33',
   slabTop: '#3a414b',
   ground: '#13161b',
-  ink: '#f5f1e8',
-  surface: '#191715',
-  muted: '#a39b8f',
-  danger: '#e5261f',
+  ink: '#eef2f6',
+  surface: '#0c0f14',
+  muted: '#8b95a3',
+  danger: '#ff4d4f',
   caution: '#ffb020',
-  // city context, flat daytime map style: the hero keeps the darker outline so it reads first
+}
+
+// city context, flat map style: the hero keeps the brighter outline so it reads first
+const day = {
   sky: '#dfe6ed',
   land: '#ebe7e0',
   sidewalk: '#d6d1c8',
@@ -25,3 +31,18 @@ export const fs = {
   heroGlass: '#74879b',
   facade: '#d9c6a5', // hero walls: cream terracotta piers (140 New Montgomery)
 }
+const dark: typeof day = {
+  sky: '#070b11',
+  land: '#0c1118',
+  sidewalk: '#141b24',
+  street: '#1b2430',
+  park: '#0f1d17',
+  roof: '#1a222d',
+  cityGlass: '#2a3a4d',
+  cityLabel: '#4c5868',
+  walls: ['#1c242f', '#202935', '#232c38', '#1a212b', '#263447', '#1e2631'],
+  heroGlass: '#3b5574',
+  facade: '#cdb38a', // the hero stays warm so it reads first against the night city
+}
+
+export const fs = { ...ui, ...(night ? dark : day), night }
