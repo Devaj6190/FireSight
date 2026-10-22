@@ -153,5 +153,54 @@
   "removed": [],
   "changed": [],
   "note": "error: build failed: e.py\", line 880, in <module>\n    build(b)\n  File \"/home/runner/work/FireSight/FireSight/scripts/build_fixture.py\", line 264, in build\n    f0 = fp[0]\n         ~~^^^\nIndexError: list index out of range\n"
+ },
+ {
+  "at": "2026-10-22T20:35:24+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 5,
+  "ms": 41850,
+  "added": [
+   {
+    "pinId": "aerial-osm-entrance-4915914627",
+    "label": "ENTRANCE (MAIN) 5 M"
+   }
+  ],
+  "removed": [],
+  "changed": [],
+  "note": "+1 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:35:24+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 4,
+  "ms": 41835,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:36:06+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 3,
+  "ms": 44157,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:36:06+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 88,
+  "sourcesFailed": 3,
+  "ms": 114580,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
