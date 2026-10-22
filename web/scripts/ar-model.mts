@@ -26,8 +26,9 @@ const gap = h * 0.7 // exploded spacing
 const people = new Set(b.pins.filter((p) => /\b(people|occupants|units)\b/i.test(p.label) && p.anchor.kind === 'floor').map((p) => (p.anchor as { floor: number }).floor))
 const hasB1 = b.floorFacts?.some((f) => f.floor === 0) || b.pins.some((p) => p.anchor.kind === 'floor' && p.anchor.floor === 0)
 
-const mat = (color: string, emissive = '#000000', e = 0) => new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: e, roughness: 0.6, metalness: 0.05 })
-const M = { fire: mat('#e5261f', '#e5261f', 0.6), exposure: mat('#ff9f1c', '#ff9f1c', 0.2), people: mat('#3b82f6', '#3b82f6', 0.2), floor: mat('#d9dce1'), base: mat('#2a2f37') }
+// emissiveIntensity stays 1 so the exporter adds no optional glTF extension (some AR viewers reject them)
+const mat = (color: string, emissive = '#000000') => new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: 1, roughness: 0.6, metalness: 0.05 })
+const M = { fire: mat('#e5261f', '#8a1612'), exposure: mat('#ff9f1c', '#33200a'), people: mat('#3b82f6', '#0c1a33'), floor: mat('#d9dce1'), base: mat('#2a2f37') }
 
 const shape = new THREE.Shape(b.footprint.map(([x, y]) => new THREE.Vector2(x, y)))
 const plate = new THREE.ExtrudeGeometry(shape, { depth: slab, bevelEnabled: false })
