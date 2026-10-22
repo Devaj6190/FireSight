@@ -262,10 +262,22 @@ def build(bid):
 
     # ---- geometry
     fp = rows(bdir, "footprint") or rows(bdir, "footprint_pt")
-    f0 = fp[0]
-    footprint, clat, clon, area_m2 = footprint_local(f0["shape"])
-    height = round(float(f0["hgt_median_m"]), 1)
-    fp_asof = iso(f0.get("data_as_of"))
+    prev_path = os.path.join(OUT, bid + ".json")
+    if fp:
+        f0 = fp[0]
+        footprint, clat, clon, area_m2 = footprint_local(f0["shape"])
+        height = round(float(f0["hgt_median_m"]), 1)
+        fp_asof = iso(f0.get("data_as_of"))
+    elif os.path.exists(prev_path):  # outline fetch failed (timeout/throttle): keep the last good geometry
+        prev = json.load(open(prev_path, encoding="utf-8"))
+        footprint, height = prev["footprint"], prev["heightM"]
+        clat, clon = prev["centroid"]["lat"], prev["centroid"]["lon"]
+        area_m2 = (prev.get("meta") or {}).get("footprintAreaM2") or 0
+        fp_asof = (prev.get("meta") or {}).get("footprintAsOf", "")
+        fp = [{"sf16_bldgid": "last-good"}]  # non-empty so the resolution link still counts the record
+        unknowns.append("Building outline: DataSF did not answer at refresh time; geometry kept from the previous refresh")
+    else:
+        raise RuntimeError(f"{bid}: no footprint fetched and no previous file to fall back on")
 
     # ---- assessor + permits: stories, units, type
     ass = rows(bdir, "assessor")
