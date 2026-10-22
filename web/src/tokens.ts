@@ -11,4 +11,11 @@ export const fs = {
   muted: '#9aa0a8',
   danger: '#e5261f',
   caution: '#ffb020',
+  // city context (night): neighbours stay darker than the hero so it reads first
+  city: '#2a3039',
+  street: '#1d2128',
+  glass: '#141a22',
+  windowWarm: '#ffc27a',
+  windowCool: '#9fc4ff',
+  facade: '#c8b9a0', // 140 New Montgomery: cream terracotta piers
 }
