@@ -225,6 +225,9 @@ def sources(b):
     return S
 
 
+CRITICAL = {"footprint", "footprint_pt", "assessor", "permits"}  # the model and header depend on these
+
+
 def overpass(lat, lon):
     q = f"""[out:json][timeout:50];
 (way(around:15,{lat},{lon})["building"];
@@ -271,6 +274,10 @@ def main():
             url = "https://overpass-api.de/api/interpreter (POST, see fetch_sources.py)"
         else:
             st, ms, d = http(url)
+            if k in CRITICAL and (st != 200 or not isinstance(d, list) or not d):  # slow sources time out in CI: retry once
+                time.sleep(3)
+                st, ms2, d = http(url, timeout=90)
+                ms += ms2
         return k, ds, name, url, st, ms, d
 
     t0 = time.time()
