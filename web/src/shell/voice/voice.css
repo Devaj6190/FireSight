@@ -1,11 +1,24 @@
-.voice-wrap { position: absolute; left: 12px; bottom: 12px; z-index: 6; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100% - 140px); pointer-events: none; }
+.voice-wrap { position: absolute; left: 16px; bottom: 68px; z-index: 6; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100% - 140px); pointer-events: none; }
 .voice-wrap > * { pointer-events: auto; }
-.voice-mic { width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--fs-action, #ff9f1c); color: var(--fs-action-ink, #0d0f12); font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.6); }
+.voice-mic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--fs-action, #ff9f1c); color: var(--fs-action-ink, #0d0f12); cursor: pointer; box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.6), 0 6px 18px rgba(0, 0, 0, 0.45); transition: transform 0.15s ease, background 0.2s ease; }
+.voice-mic:active { transform: scale(0.94); }
 .voice-mic:focus-visible { outline: 2px solid var(--fs-ink, #f4f3ee); outline-offset: 3px; }
 .voice-mic.listening { background: var(--fs-danger, #e5261f); color: #fff; animation: voice-pulse 1.2s ease-out infinite; }
-.voice-mic.thinking { opacity: 0.7; }
-.voice-caption { margin: 0; padding: 8px 10px; border-radius: 12px; background: rgba(13, 15, 18, 0.88); border: 1px solid var(--fs-line, #2a2f37); color: var(--fs-ink, #f4f3ee); font: 500 13px/18px 'IBM Plex Sans', system-ui, sans-serif; }
+.voice-mic.speaking { animation: voice-glow 1.6s ease-in-out infinite; }
+.voice-mic.thinking { opacity: 0.75; animation: voice-glow 0.8s ease-in-out infinite; }
+.voice-bars { display: flex; align-items: center; gap: 3px; height: 22px; }
+.voice-bars i { width: 4px; height: 100%; border-radius: 2px; background: currentColor; animation: voice-bar 0.9s ease-in-out infinite; }
+.voice-bars i:nth-child(2) { animation-delay: 0.15s; }
+.voice-bars i:nth-child(3) { animation-delay: 0.3s; }
+.voice-bars i:nth-child(4) { animation-delay: 0.45s; }
+.voice-caption { margin: 0; padding: 8px 10px 9px; border-radius: 10px; background: rgba(13, 15, 18, 0.9); border: 1px solid var(--fs-line, #2a2f37); border-left-width: 3px; color: var(--fs-ink, #f4f3ee); font: 500 13px/18px 'IBM Plex Sans', system-ui, sans-serif; backdrop-filter: blur(6px); animation: voice-in 0.18s ease-out; }
+.voice-who { display: block; margin-bottom: 2px; font: 600 10px/14px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: 0.08em; color: var(--fs-muted, #9aa3ad); }
 .voice-caption.listening { border-color: var(--fs-danger, #e5261f); }
+.voice-caption.listening .voice-who { color: var(--fs-danger, #e5261f); }
 .voice-caption.speaking { border-color: var(--fs-action, #ff9f1c); }
+.voice-caption.speaking .voice-who { color: var(--fs-action, #ff9f1c); }
 @keyframes voice-pulse { 0% { box-shadow: 0 0 0 0 rgba(229, 38, 31, 0.55); } 100% { box-shadow: 0 0 0 16px rgba(229, 38, 31, 0); } }
-@media (prefers-reduced-motion: reduce) { .voice-mic.listening { animation: none; } }
+@keyframes voice-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(255, 159, 28, 0.12); } }
+@keyframes voice-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@keyframes voice-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .voice-mic, .voice-bars i, .voice-caption { animation: none !important; } }

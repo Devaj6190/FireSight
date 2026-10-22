@@ -28,14 +28,14 @@ if (canSpeak) {
 }
 
 // Queue one utterance per sentence: Chrome cuts off long single utterances.
-export function speak(sentences: string[], onLine?: (s: string) => void, onDone?: () => void) {
+export function speak(sentences: string[], onLine?: (s: string, i: number) => void, onDone?: () => void) {
   if (!canSpeak) return onDone?.()
   window.speechSynthesis.cancel()
   sentences.forEach((s, i) => {
     const u = new SpeechSynthesisUtterance(s)
     if (voice) u.voice = voice
     u.rate = 1.05
-    u.onstart = () => onLine?.(s)
+    u.onstart = () => onLine?.(s, i)
     if (i === sentences.length - 1) u.onend = () => onDone?.()
     window.speechSynthesis.speak(u)
   })
