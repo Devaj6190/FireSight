@@ -800,7 +800,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "RECENT BUILD-OUT, FLOOR 11",
-   "detail": "2 permit(s) since Oct 2024 name floor 11; newest 2025-10-31 (complete): \"11th floor: interior t.i. ; demolition and construction of non-structural partitions, new lighting, finishes, and instal\". Expect open ceilings or changed layout.",
+   "detail": "2 permit(s) since Oct 2024 name floor 11; newest 2025-10-31 (complete): Structural work · Demolition · Tenant remodel. Expect open ceilings or changed layout.",
    "anchor": {
     "kind": "floor",
     "floor": 11
@@ -832,7 +832,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "RECENT BUILD-OUT, FLOOR 21",
-   "detail": "1 permit(s) since Oct 2024 name floor 21; newest 2024-12-02 (complete): \"21st fl - add 5, relocate 1 sprinkler per ti 64. job#24-680\". Expect open ceilings or changed layout.",
+   "detail": "1 permit(s) since Oct 2024 name floor 21; newest 2024-12-02 (complete): Fire sprinkler work · Tenant remodel. Expect open ceilings or changed layout.",
    "anchor": {
     "kind": "floor",
     "floor": 21
@@ -856,7 +856,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "RECENT BUILD-OUT, FLOOR 23",
-   "detail": "2 permit(s) since Oct 2024 name floor 23; newest 2025-04-29 (issued): \"23rd fl - fire only work to add a speaker/strobe for the 2 person protable phone booth installed under pa 87\". Expect open ceilings or changed layout.",
+   "detail": "2 permit(s) since Oct 2024 name floor 23; newest 2025-04-29 (issued): Fire alarm work · Fire sprinkler work. Expect open ceilings or changed layout.",
    "anchor": {
     "kind": "floor",
     "floor": 23
@@ -888,7 +888,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "RECENT BUILD-OUT, FLOOR 25",
-   "detail": "3 permit(s) since Oct 2024 name floor 25; newest 2026-01-09 (complete): \"25th fl ref pa# 2025-1112-9428: fire only work. addition of 2 speaker/strobes.\". Expect open ceilings or changed layout.",
+   "detail": "3 permit(s) since Oct 2024 name floor 25; newest 2026-01-09 (complete): Fire alarm work · Fire sprinkler work. Expect open ceilings or changed layout.",
    "anchor": {
     "kind": "floor",
     "floor": 25
@@ -928,7 +928,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "RECENT BUILD-OUT, FLOOR 5",
-   "detail": "2 permit(s) since Oct 2024 name floor 5; newest 2025-12-09 (complete): \"5th fl ref pa # 2023-1109-0498: add 6 relocate 10 fire sprinkler. job #25-686\". Expect open ceilings or changed layout.",
+   "detail": "2 permit(s) since Oct 2024 name floor 5; newest 2025-12-09 (complete): Fire sprinkler work. Expect open ceilings or changed layout.",
    "anchor": {
     "kind": "floor",
     "floor": 5
@@ -960,7 +960,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "SERVER ROOM, FLOOR 18",
-   "detail": "2022 permit (completed): \"18th fl: structural support/analysis for mep equipment in server room and anchorage details and analysis of loads on (e) structure.\"",
+   "detail": "2022 permit (completed): 18th fl: structural … for mep equipment in server room and anchorage … of loads on (e).",
    "anchor": {
     "kind": "floor",
     "floor": 18
@@ -984,7 +984,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "SERVER ROOM 2026",
-   "detail": "2026 permit (status issued): \"furnish and install cat6 plenum rated cable to idf room\"",
+   "detail": "2026 permit (status issued): and install … to idf room.",
    "anchor": {
     "kind": "building"
    },
@@ -1007,7 +1007,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 2011: STRUCTURAL WORK",
-   "detail": "2013 permit (completed): \"revision to pa# 2011/10/17/6931. strengthening of structural steel floors 26 to penthouse.\"",
+   "detail": "2013 permit (completed): revision of structural steel floors 26 to penthouse.",
    "anchor": {
     "kind": "floor",
     "floor": 20
@@ -1031,7 +1031,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 2014: STRUCTURAL WORK",
-   "detail": "2014 permit (status issued): \"20th floor: revision to pa#2014.0402.2250 to provide structural details for fire smoke accordian door. maher n/a.\"",
+   "detail": "2014 permit (status issued): 20th floor: revision to provide structural … for fire smoke … door.",
    "anchor": {
     "kind": "floor",
     "floor": 20
@@ -1055,7 +1055,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 155: STRUCTURAL WORK",
-   "detail": "2017 permit (status issued): \"20th fl - interior non-structural partitions, ceilings, doors & hardware. mep under separate permit. n/a ordinance #155-13\"",
+   "detail": "2017 permit (status issued): 20th fl … interior … partitions, ceilings, doors … mep under.",
    "anchor": {
     "kind": "floor",
     "floor": 1
@@ -1079,7 +1079,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 300: STRUCTURAL WORK",
-   "detail": "2021 permit (completed): \"3rd fl, ste 300 - demo of (e) non-structural partitions, electrical & finishes. no ceiling work.\"",
+   "detail": "2021 permit (completed): 3rd fl, ste 300 … demo of (e) … partitions, electrical … finishes no ceiling work.",
    "anchor": {
     "kind": "floor",
     "floor": 3
@@ -1103,7 +1103,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "STRUCTURAL WORK 2026",
-   "detail": "2026 permit (status issued): \"suite 1: interior improvements to an existing restaurant, not structural scope of work, no work at mezzannine. electrical scope under separate permit. no exterior alterations. no change in use or occupancy. ref demo perm\"",
+   "detail": "2026 permit (status issued): suite 1: interior improvements to an existing restaurant, not structural scope of work, no work electrical scope under … no exterior alterations no … in … or occupancy ref demo … 25.",
    "anchor": {
     "kind": "building"
    },
@@ -1427,7 +1427,7 @@
    "origin": "public",
    "severity": "info",
    "label": "ELEVATOR WORK 2025",
-   "detail": "2025 permit (completed): \"7th/f interior t.i. elevator lobby, reception area, single offices, conferrence rooms, open office area, welless room, data/server, breakroom, mech, electrical & plumbing\"",
+   "detail": "2025 permit (completed): interior … elevator lobby, … , … offices, … rooms, … office … , … room, … , … , … , electrical … plumbing.",
    "anchor": {
     "kind": "building"
    },
@@ -1450,7 +1450,7 @@
    "origin": "public",
    "severity": "info",
    "label": "FIRE ALARM WORK 2024",
-   "detail": "2024 permit (completed): \"14th fl - fire only for datarobot renovation. 1 smoke detector and 7 speaker/strobes added, as well as the relocations of 1 smoke detector and 2 speaker/strobes. ref pa 02\"",
+   "detail": "2024 permit (completed): 14th fl … fire only renovation 1 smoke detector and 7 … , as … as of 1 smoke detector and 2 … ref … 02.",
    "anchor": {
     "kind": "building"
    },
@@ -1584,7 +1584,7 @@
    "origin": "public",
    "severity": "info",
    "label": "SPRINKLER WORK 2026",
-   "detail": "2026 permit (status issued): \"25th floor-fire sprinkler t.i. relocate 4 heads. add 2 heads. total 6. ref #28\"",
+   "detail": "2026 permit (status issued): 25th … sprinkler … relocate 4 … add 2 … 6 ref #28.",
    "anchor": {
     "kind": "building"
    },
@@ -2741,7 +2741,7 @@
     "count": 14,
     "last": {
      "date": "2024-01-23",
-     "text": "basement level parking garage - (1) hardwired connection to condenser unit. es16500",
+     "text": "Permitted work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202401236306",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202401236306"
@@ -2781,7 +2781,7 @@
     "count": 50,
     "last": {
      "date": "2025-12-31",
-     "text": "7th/f interior t.i. elevator lobby, reception area, single offices, conferrence rooms, open office area, welless room, data/server, breakroom, mech, electrical ",
+     "text": "Server / data room · Elevator work · Tenant remodel",
      "datasetId": "i98e-djp9",
      "recordId": "202512313131",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202512313131"
@@ -2813,7 +2813,7 @@
     "count": 27,
     "last": {
      "date": "2024-04-19",
-     "text": "2nd fl low voltage - install (40) cat-6 cables. ref ew2024-0130-6445 tc1837",
+     "text": "Permitted work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202404198178",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202404198178"
@@ -2844,7 +2844,7 @@
     "count": 18,
     "last": {
      "date": "2023-03-09",
-     "text": "horizontal cabling and connectivity to multiple floor, outlet and furniture locations on the 3rd floor",
+     "text": "Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202303099569",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202303099569"
@@ -2871,7 +2871,7 @@
     "count": 21,
     "last": {
      "date": "2024-03-22",
-     "text": "fire only work to obtain an as built permit for additional devices floor 4 superset remodel. 6 speaker strobes 1 module added. ref 96",
+     "text": "Fire alarm work · Fire sprinkler work · Tenant remodel",
      "datasetId": "i98e-djp9",
      "recordId": "202403228378",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202403228378"
@@ -2898,7 +2898,7 @@
     "count": 14,
     "last": {
      "date": "2026-01-12",
-     "text": "work category: 5p; new breakroom sink finishes on the 5th floor kmc # 25074",
+     "text": "Permitted work",
      "datasetId": "a6aw-rudh",
      "recordId": "PW20260112769",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20260112769"
@@ -2923,7 +2923,7 @@
     "count": 4,
     "last": {
      "date": "2013-04-25",
-     "text": "add & relocate fire sprklr. heads per t.i. total heads=199. 4th fl:12 add&10 relo, 5th fl:15 add & 5 relocate, 6th fl. 7 add & 4 relo, 7th fl. 14 add & 8 relo, ",
+     "text": "Permitted work",
      "datasetId": "i98e-djp9",
      "recordId": "201304255424",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201304255424"
@@ -2948,7 +2948,7 @@
     "count": 8,
     "last": {
      "date": "2026-02-23",
-     "text": "work category: 5m; installation of hhw and chilled water piping for new hvac equipment, 7th floor. ar&b job # 26-011",
+     "text": "Mechanical work",
      "datasetId": "a6aw-rudh",
      "recordId": "PMW20260223788",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PMW20260223788"
@@ -2973,7 +2973,7 @@
     "count": 7,
     "last": {
      "date": "2015-03-30",
-     "text": "8th floor: to establish an occupant load for training multi purpose room for sffd public assembly permit. maher - not req'd",
+     "text": "Permitted work",
      "datasetId": "i98e-djp9",
      "recordId": "201503302266",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201503302266"
@@ -2998,7 +2998,7 @@
     "count": 20,
     "last": {
      "date": "2026-09-08",
-     "text": "26701-140 new mont. 9th fl. (47)lighting (38)controls (47) power outlets (9)life safety",
+     "text": "Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202609087761",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202609087761"
@@ -3029,7 +3029,7 @@
     "count": 9,
     "last": {
      "date": "2023-05-08",
-     "text": "10/f: fire work only to add 1 2-way comm system station for the \"allen and overy\" remodel on floor 10. ref permit 43.",
+     "text": "Tenant remodel",
      "datasetId": "i98e-djp9",
      "recordId": "202305087270",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202305087270"
@@ -3056,7 +3056,7 @@
     "count": 17,
     "last": {
      "date": "2026-03-26",
-     "text": "safe-off. install lighting, power, fire alarm devices and low-voltage rough-in for ti at intersect - 140 new montgomery street, 11th floor.",
+     "text": "Fire alarm work · Tenant remodel · Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202603263780",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202603263780"
@@ -3086,7 +3086,7 @@
     "count": 13,
     "last": {
      "date": "2023-05-17",
-     "text": "modular office furniture installation of (12) work stations on the 12th floor.",
+     "text": "Permitted work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202305171202",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202305171202"
@@ -3113,7 +3113,7 @@
     "count": 16,
     "last": {
      "date": "2022-08-02",
-     "text": "work category: 5p; 13th floor:pantry#1304: rough-in and trim sanitary sewer, sanitary vent, and domestic water piping as required for (1) sink, (1) faucet, (1) ",
+     "text": "Electrical work · Plumbing work",
      "datasetId": "a6aw-rudh",
      "recordId": "PW20220802684",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20220802684"
@@ -3138,7 +3138,7 @@
     "count": 12,
     "last": {
      "date": "2024-10-22",
-     "text": "modular furniture installation of 64 height adjustable desks w/beam power runs at 140 new montgomery on the 14th flr",
+     "text": "Structural work",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202410221986",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202410221986"
@@ -3165,7 +3165,7 @@
     "count": 12,
     "last": {
      "date": "2022-05-03",
-     "text": "15th fl: fire work only to obtain an as-built permit for the \"datarobot\" remodel. these drawings indicate the addition of 2 smoke detectors installed with the w",
+     "text": "Fire alarm work · Tenant remodel",
      "datasetId": "i98e-djp9",
      "recordId": "202205033420",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202205033420"
@@ -3190,7 +3190,7 @@
     "count": 14,
     "last": {
      "date": "2022-08-12",
-     "text": "16/f: fire only work to add one 2 way comm station at the elevator lobby on floor 16; no ref permit app#",
+     "text": "Fire sprinkler work · Elevator work",
      "datasetId": "i98e-djp9",
      "recordId": "202208120414",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202208120414"
@@ -3215,7 +3215,7 @@
     "count": 9,
     "last": {
      "date": "2018-02-20",
-     "text": "17th flr: as builts to reflect actual locations pof speakers and speaker/strobes which were not relocated (per sffd",
+     "text": "Fire alarm work",
      "datasetId": "i98e-djp9",
      "recordId": "201802201624",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201802201624"
@@ -3244,7 +3244,7 @@
     "count": 24,
     "last": {
      "date": "2022-12-06",
-     "text": "work category: 5p; add (1) new electric water heater with (1) expansion tank for (1) new dishwasher at existing microkitchen on the 18th floor",
+     "text": "Kitchen / food space · Electrical work · Plumbing work",
      "datasetId": "a6aw-rudh",
      "recordId": "PW20221206110",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20221206110"
@@ -3271,7 +3271,7 @@
     "count": 12,
     "last": {
      "date": "2020-11-10",
-     "text": "fire alarm work to add a 2-way communication station on floor 19; no ref permit app number",
+     "text": "Fire alarm work",
      "datasetId": "i98e-djp9",
      "recordId": "202011108647",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202011108647"
@@ -3311,7 +3311,7 @@
     "count": 63,
     "last": {
      "date": "2026-01-09",
-     "text": "25th fl ref pa# 2025-1112-9428: fire only work. addition of 2 speaker/strobes.",
+     "text": "Fire alarm work · Fire sprinkler work",
      "datasetId": "i98e-djp9",
      "recordId": "202601093510",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202601093510"
@@ -3338,7 +3338,7 @@
     "count": 14,
     "last": {
      "date": "2024-12-23",
-     "text": "21st fl ti - 2500sf of work area and installing approx 44 devices. ref 64 ec3427",
+     "text": "Tenant remodel",
      "datasetId": "ftty-kx6y",
      "recordId": "EW202412233178",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202412233178"
@@ -3365,7 +3365,7 @@
     "count": 10,
     "last": {
      "date": "2015-07-06",
-     "text": "22nd flr: food facility for employees in office building, ref. 63; maher n/a",
+     "text": "Kitchen / food space",
      "datasetId": "i98e-djp9",
      "recordId": "201507060692",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201507060692"
@@ -3395,7 +3395,7 @@
     "count": 19,
     "last": {
      "date": "2025-07-31",
-     "text": "online electrical permit: category 4a: installation of fire warning and controlled devices of up to 2,500 ft². extend fire alarm notification circuit and instal",
+     "text": "Fire alarm work · Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "E202507314381",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202507314381"
@@ -3424,7 +3424,7 @@
     "count": 15,
     "last": {
      "date": "2020-11-19",
-     "text": "work category: 5p; 24th floor: relocate (1) ada toilet.",
+     "text": "Restroom work",
      "datasetId": "a6aw-rudh",
      "recordId": "PW20201119482",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20201119482"
@@ -3451,7 +3451,7 @@
     "count": 8,
     "last": {
      "date": "2026-01-09",
-     "text": "25th fl ref pa# 2025-1112-9428: fire only work. addition of 2 speaker/strobes.",
+     "text": "Fire alarm work · Fire sprinkler work",
      "datasetId": "i98e-djp9",
      "recordId": "202601093510",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202601093510"
@@ -3476,7 +3476,7 @@
     "count": 16,
     "last": {
      "date": "2023-03-07",
-     "text": "26th fl - fire only work to add 1 2-way comm station on floor 26th at the elevator lobby. ref pa 2022-0915-2565.",
+     "text": "Fire sprinkler work · Elevator work",
      "datasetId": "i98e-djp9",
      "recordId": "202303073120",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202303073120"

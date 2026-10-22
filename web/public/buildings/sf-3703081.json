@@ -335,7 +335,7 @@
    "origin": "public",
    "severity": "danger",
    "label": "UNREINFORCED MASONRY RETROFIT 1999",
-   "detail": "1999 permit (status expired): \"seismic rtrofit of unreinforced masonry building per ord.\"",
+   "detail": "1999 permit (status expired): seismic … building per.",
    "anchor": {
     "kind": "building"
    },
@@ -383,7 +383,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "OPEN DBI COMPLAINT 2020",
-   "detail": "Active DBI complaint filed 2020-03-10: \"Complaint generated routine initiated by cts #202022841\".",
+   "detail": "Active DBI complaint filed 2020-03-10: #202022841.",
    "anchor": {
     "kind": "building"
    },
@@ -406,7 +406,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "OPEN DBI COMPLAINT 2022",
-   "detail": "Active DBI complaint filed 2022-02-10: \"Violations observed while inspecting for cts #202287129\".",
+   "detail": "Active DBI complaint filed 2022-02-10: #202287129.",
    "anchor": {
     "kind": "building"
    },
@@ -774,7 +774,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "FIRE ESCAPE WORK 2026",
-   "detail": "2026 permit (completed): \"repair &repaint wood windows where needed.reseal windows whre needed.repair brick mortar deterioration,lubricate fire escape accordian ladders.remove and repaint rusted areas on fire escape landings,metal cornices&canopy\"",
+   "detail": "2026 permit (completed): repair … wood windows … windows … , … fire escape … on fire escape … , … roof … at level 3 window opening (… st).",
    "anchor": {
     "kind": "building"
    },
@@ -797,7 +797,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "STRUCTURAL WORK 2004",
-   "detail": "2004 permit (status expired): \"replacing of steel beam in kind beneath sidewalk and replacing of approx 90 sf or sidewalk\"",
+   "detail": "2004 permit (status expired): replacing of steel beam in kind … and replacing 90 … or.",
    "anchor": {
     "kind": "building"
    },
@@ -1232,7 +1232,7 @@
    "origin": "public",
    "severity": "info",
    "label": "ELEVATOR WORK 2005",
-   "detail": "2005 permit (completed): \"modify opening for elevator door at all stops. comply with nov 200561190.\"",
+   "detail": "2005 permit (completed): modify opening for elevator door at all … comply with … 200561190.",
    "anchor": {
     "kind": "building"
    },
@@ -1255,7 +1255,7 @@
    "origin": "public",
    "severity": "info",
    "label": "FIRE ALARM WORK 2025",
-   "detail": "2025 permit (status issued): \"remove and replace existing facp (5700 sk) with facp (6808 sk). provide and install one new cellular communicator. remove & replace existing bells with a/v hornstrobe,smoke detector & pull station. provide & install 2 bp\"",
+   "detail": "2025 permit (status issued): remove and replace existing facp (5700 … ) with facp (6808 … ) … provide and install … new … remove … replace existing … with … , smoke detector … provide … install 2 … new … to facp fire alarm … to….",
    "anchor": {
     "kind": "building"
    },
@@ -1278,7 +1278,7 @@
    "origin": "public",
    "severity": "info",
    "label": "SPRINKLER WORK 2024",
-   "detail": "2024 permit (completed): \"provide fire sprinkler heads in new added bathrooms\"",
+   "detail": "2024 permit (completed): provide fire sprinkler … in new … bathrooms.",
    "anchor": {
     "kind": "building"
    },
@@ -2418,7 +2418,7 @@
     "count": 5,
     "last": {
      "date": "2022-12-22",
-     "text": "motion sensors added for new lights, 14 n lights in hallway per flr 4 flrs total and 4 n lights in lobby area, new electrical sub panels on flrs 2-4",
+     "text": "Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "E202212224253",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202212224253"
@@ -2450,7 +2450,7 @@
     "count": 6,
     "last": {
      "date": "2025-03-25",
-     "text": "#208-(n) electrical for bathroom",
+     "text": "Restroom work · Electrical work",
      "datasetId": "ftty-kx6y",
      "recordId": "E202503251166",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202503251166"
@@ -2480,7 +2480,7 @@
     "count": 2,
     "last": {
      "date": "2026-05-12",
-     "text": "repair &repaint wood windows where needed.reseal windows whre needed.repair brick mortar deterioration,lubricate fire escape accordian ladders.remove and repain",
+     "text": "Roof work",
      "datasetId": "i98e-djp9",
      "recordId": "202605121118",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202605121118"
@@ -2509,7 +2509,7 @@
     "count": 1,
     "last": {
      "date": "2009-03-09",
-     "text": "replacing baseboards, less than 10% plaster/drywall repair, painting, carpet & pad replacement for #403, #303, #302, third floor hallway, #203, #202, second flo",
+     "text": "Permitted work",
      "datasetId": "i98e-djp9",
      "recordId": "200903093698",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=200903093698"
@@ -2535,7 +2535,7 @@
     "count": 1,
     "last": {
      "date": "2022-04-28",
-     "text": "to comply w/ nov# 20203312: replace (4) fire escape windows with double hung windows (2-5th fl). windows in showers opposite 401 abd 201 to be infilled on separ",
+     "text": "Restroom work",
      "datasetId": "i98e-djp9",
      "recordId": "202204283236",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202204283236"

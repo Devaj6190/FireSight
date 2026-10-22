@@ -335,7 +335,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "ROOFTOP SOLAR PV PERMIT 2022 (ISSUED)",
-   "detail": "2022 permit (status issued): \"rooftop solar. (53) 480w pv modules with optimizers.\"",
+   "detail": "2022 permit (status issued): rooftop solar (53) 480w pv modules with.",
    "anchor": {
     "kind": "roof"
    },
@@ -358,7 +358,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "STRUCTURAL WORK 2015",
-   "detail": "2015 permit (completed): \"soft story retrofit - revision to appl #2014.1107.1069: construction phase change to work presently underway on soft story reinforcement. change pilings at moment frame foundation to \"micropile\".\"",
+   "detail": "2015 permit (completed): story retrofit … revision : … to work … on … story … frame foundation.",
    "anchor": {
     "kind": "building"
    },
@@ -1752,7 +1752,7 @@
     "count": 4,
     "last": {
      "date": "2014-11-07",
-     "text": "soft story upgrade, (per sfbc chapter 34b, fema p-807); one accessible restroom at 1st flr for retail 1429. electrical & mechanical under separate permits for t",
+     "text": "Restroom work · Electrical work · Mechanical work",
      "datasetId": "i98e-djp9",
      "recordId": "201411071069",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201411071069"
@@ -1777,7 +1777,7 @@
     "count": 1,
     "last": {
      "date": "2012-10-03",
-     "text": "strengthening 2nd floor framing and voluntary strenghtening for seismic forces. mech and electrical under separated permit.",
+     "text": "Structural work · Electrical work",
      "datasetId": "i98e-djp9",
      "recordId": "201210031266",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201210031266"

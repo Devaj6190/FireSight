@@ -700,7 +700,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "OPEN DBI COMPLAINT 2026",
-   "detail": "Active DBI complaint filed 2026-07-08: \"Various issues\".",
+   "detail": "Active DBI complaint filed 2026-07-08: .",
    "anchor": {
     "kind": "building"
    },
@@ -723,7 +723,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "OPEN DBI COMPLAINT 2026",
-   "detail": "Active DBI complaint filed 2026-08-06: \"I would like to have both an electrical and a plumbing inspection\".",
+   "detail": "Active DBI complaint filed 2026-08-06: like both an electrical and a plumbing inspection.",
    "anchor": {
     "kind": "building"
    },
@@ -746,7 +746,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "OPEN COMPLAINT: BASEMENT WORK",
-   "detail": "Active DBI complaint filed 2026-08-07: \"Possible construction/work being done without a permit in the basement are\".",
+   "detail": "Active DBI complaint filed 2026-08-07: a … in the basement.",
    "anchor": {
     "kind": "floor",
     "floor": 0
@@ -1110,7 +1110,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "EV CHARGER PERMIT 2013 (EXPIRED)",
-   "detail": "2013 permit (status expired): \"installation of (1) 20 to 70 amp ev car charger connected to solar permit e43\"",
+   "detail": "2013 permit (status expired): installation of (1) 20 to 70 … ev … charger … to solar.",
    "anchor": {
     "kind": "building"
    },
@@ -1133,7 +1133,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "ROOFTOP SOLAR PV PERMIT 2013 (EXPIRED)",
-   "detail": "2013 permit (status expired): \"install 10 roof mounted solar pv modules 300 watts per module, install 10 interactive inverters 300 power ratings at 3.0 kw for e44\"",
+   "detail": "2013 permit (status expired): install 10 roof mounted solar pv modules 300 watts per module, install 10 … inverters 300 … kw.",
    "anchor": {
     "kind": "roof"
    },
@@ -1156,7 +1156,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "SOLAR HOT WATER ON ROOF 2019",
-   "detail": "2019 permit (completed): \"installation of 36 solar thermal modules and (1) 3000 gallon tank for solar plumbing system. tank will be located in basement.\"",
+   "detail": "2019 permit (completed): installation of 36 solar … modules and (1) 3000 … for solar plumbing … in basement.",
    "anchor": {
     "kind": "roof"
    },
@@ -1179,7 +1179,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 115: STRUCTURAL WORK",
-   "detail": "2014 permit (completed): \"unit #115: markoff structural wood destroying organismm report #145356, item 1\"",
+   "detail": "2014 permit (completed): unit #115: … structural wood … #145356, … 1.",
    "anchor": {
     "kind": "floor",
     "floor": 1
@@ -1203,7 +1203,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "STRUCTURAL WORK 2016",
-   "detail": "2016 permit (completed): \"soft story retrofit per sfbc chapter 34b, 2012 iebc appendix a-4. add new wood shear walls at basement, add holdowns at ends of shear walls & anchor bolts to (e) foundation.\"",
+   "detail": "2016 permit (completed): story retrofit per … 34b, 2012 … add new wood shear walls at basement, add … of shear walls … to (e) foundation.",
    "anchor": {
     "kind": "building"
    },
@@ -1226,7 +1226,7 @@
    "origin": "public",
    "severity": "caution",
    "label": "UNIT 311: STRUCTURAL WORK",
-   "detail": "2019 permit (completed): \"unit 311 - 3rd flr - remodel kitchen, bath, structural work in kitchen. partial demo of e load-bearing wall in kitchen. ref#83.\"",
+   "detail": "2019 permit (completed): unit 311 … 3rd flr … remodel kitchen, bath, structural work in kitchen partial demo of e load-bearing wall in kitchen.",
    "anchor": {
     "kind": "floor",
     "floor": 3
@@ -1876,7 +1876,7 @@
    "origin": "public",
    "severity": "info",
    "label": "FIRE ALARM WORK 2024",
-   "detail": "2024 permit (completed): \"upgrade fire alarm system to current codes, nfpa 72 (2022). to comply with sffc sec. 1103.7.6.1 to provide low frequency sounders in sleeping areas.\"",
+   "detail": "2024 permit (completed): upgrade fire alarm … codes, … 72 (2022) … to comply with … to provide … sounders in.",
    "anchor": {
     "kind": "building"
    },
@@ -1938,7 +1938,7 @@
    "origin": "public",
    "severity": "info",
    "label": "ROOF WORK 2016",
-   "detail": "2016 permit (completed): \"re-roofing\"",
+   "detail": "2016 permit (completed): .",
    "anchor": {
     "kind": "roof"
    },
@@ -3095,7 +3095,7 @@
     "count": 3,
     "last": {
      "date": "2019-04-30",
-     "text": "installation of 36 solar thermal modules and (1) 3000 gallon tank for solar plumbing system. tank will be located in basement.",
+     "text": "Solar work · Plumbing work",
      "datasetId": "i98e-djp9",
      "recordId": "201904309275",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=201904309275"
@@ -3134,7 +3134,7 @@
     "count": 23,
     "last": {
      "date": "2022-04-05",
-     "text": "apt 109. rehab (e) kitchen and (e) bathroom. no structural work. no moving wall.",
+     "text": "Structural work · Kitchen / food space · Restroom work",
      "datasetId": "i98e-djp9",
      "recordId": "202204051568",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202204051568"
@@ -3166,7 +3166,7 @@
     "count": 19,
     "last": {
      "date": "2023-04-17",
-     "text": "work category: 8p; replacement of steam boiler. remove old steam boiler serial # 211-12383-1296 from record",
+     "text": "Mechanical work",
      "datasetId": "a6aw-rudh",
      "recordId": "PW20230417285",
      "url": "https://data.sf.gov/resource/a6aw-rudh.json?permit_number=PW20230417285"
@@ -3203,7 +3203,7 @@
     "count": 34,
     "last": {
      "date": "2022-11-15",
-     "text": "apt #314- remodeling (e) kitchen. no moving walls, no exterior work.",
+     "text": "Kitchen / food space · Tenant remodel",
      "datasetId": "i98e-djp9",
      "recordId": "202211156546",
      "url": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202211156546"
@@ -3242,7 +3242,7 @@
     "count": 23,
     "last": {
      "date": "2024-12-05",
-     "text": "unit 408: remodel kitchen and bathroom: new subpanel: add/ replace switches, lights, and receptical as needed.",
+     "text": "Kitchen / food space · Restroom work · Tenant remodel",
      "datasetId": "ftty-kx6y",
      "recordId": "E202412058605",
      "url": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202412058605"
