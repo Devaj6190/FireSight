@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import type { Answer, Building } from '../../../../shared/building.ts'
+import type { Answer, Building, Pin } from '../../../../shared/building.ts'
 import { ask, SUGGESTED_QUESTIONS } from '../../../../shared/client.ts'
-import { spokenBeats, spokenSource, type Beat } from '../../../../shared/voice.ts'
+import { parseDispatchText } from '../../../../shared/dispatch.ts'
+import { reportBeats, spokenBeats, spokenSource, type Beat } from '../../../../shared/voice.ts'
 import { dispatchBuilding } from '../model.ts'
 import { canListen, canSpeak, listen, speak, stopSpeaking } from './speech.ts'
 import './voice.css'
@@ -12,14 +13,33 @@ type Props = {
   onDispatch: (text: string) => Promise<void>
   onHighlight: (floors: number[], ids: string[]) => void
   onToggle: () => void
+  onAddPin: (pin: Pin) => void
 }
 
 // Survives the shell remounting when a dispatch switches buildings: the size-up is read once the dispatch pin lands.
 const pending = { readout: false }
 
 const FIRE = /\b(fire|smoke|flames?|alarm|dispatch|structure|responding)\b/i
+const PEOPLE = /\b(people|persons?|victims?|occupants?|someone|trapped|caller|child|children|kids?)\b/i
 
-export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onToggle }: Props) {
+// A dispatch update ("people trapped on 23") becomes a dispatch pin, so the brief, Ask and the 3D all see it.
+function reportPin(text: string, floor: number): Pin {
+  const at = new Date().toISOString()
+  return {
+    id: `dispatch-report-${at.replace(/\D/g, '').slice(0, 17)}`,
+    layer: 'dispatch',
+    origin: 'dispatch',
+    severity: 'danger',
+    label: `REPORT: PEOPLE, FLOOR ${floor}`,
+    detail: `Dispatch update: "${text.trim().slice(0, 200)}"`,
+    anchor: { kind: 'floor', floor },
+    claim: 'verified',
+    evidence: [{ source: 'Dispatch (CAD)', datasetId: 'dispatch', recordId: at, url: '', asOf: at.slice(0, 10), rule: `dispatch update names floor ${floor}` }],
+    stale: false,
+  }
+}
+
+export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onToggle, onAddPin }: Props) {
   const [state, setState] = useState<'idle' | 'listening' | 'thinking' | 'speaking'>('idle')
   const [caption, setCaption] = useState('')
   const [step, setStep] = useState<[number, number]>([0, 0])
@@ -84,6 +104,14 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
     if (/\b(size.?up|brief|read it|summary|what do we have)\b/i.test(t)) return say(spokenBeats(b))
 
     const target = dispatchBuilding(t)
+    const reported = parseDispatchText(t).floor
+    if (target === null && PEOPLE.test(t) && reported !== null && reported >= 0 && reported <= b.floors) {
+      const pin = reportPin(t, reported)
+      const next = { ...b, pins: [...b.pins, pin] }
+      onAddPin(pin)
+      say(reportBeats(next, pin))
+      return
+    }
     if (target === '') return say(["That address isn't cached. I have 140 New Montgomery, 400 Duboce, 1018 Mission and 1433 Haight."])
     if (target !== null || FIRE.test(t)) {
       setState('thinking')
