@@ -7,6 +7,7 @@ import { Provenance, ResolutionView } from './Provenance.tsx'
 import { Freshness, useRefreshRuns } from './Freshness.tsx'
 import { BUILDINGS, floorLabel, HERO_DISPATCH, localTime } from './model.ts'
 import { VoiceCommand } from './voice/VoiceCommand.tsx'
+import { ArButton } from './ArButton.tsx'
 import { FloorPanel, FloorRail, floorName } from './Floors.tsx'
 import { useStore } from '../store.ts'
 import './phone.css'
@@ -89,6 +90,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, focusedF
       <div className="phone-scene-meta"><span>{phase.toUpperCase()}</span></div>
       <button className="phone-dispatch-shortcut" onClick={() => navigate('dispatch')}>Paste dispatch ↗</button>
       <FloorRail building={b} target={target} variant="float" onSelect={openFloor} />
+      <ArButton building={b} />
       <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} onAddPin={onAddPin} />
     </main>
     <section className={`phone-sheet ${expanded || selectedPin ? 'expanded' : ''}`} aria-label="Building information">
