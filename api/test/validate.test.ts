@@ -123,3 +123,59 @@ describe("spokenSizeUp (voice readout from cited records)", () => {
     expect(speakable("BATTERY ROOM 33.6 GAL")).toBe("Battery room 33.6 gallons");
   });
 });
+
+import { readFileSync } from "node:fs";
+import { parseDispatch } from "../../shared/dispatch.ts";
+import { reportBeats, spokenBrief } from "../../shared/voice.ts";
+import type { Building } from "../../shared/building.ts";
+
+const real = (id: string): Building => JSON.parse(readFileSync(new URL(`../../web/public/buildings/${id}.json`, import.meta.url), "utf8"));
+const withDispatch = (bl: Building, text: string): Building => ({ ...bl, pins: [...bl.pins, parseDispatch(text, bl)] });
+const words = (t: string) => t.split(/\s+/).filter(Boolean).length;
+
+describe("spokenBrief (short voice version)", () => {
+  it("140 New Montgomery: five beats or fewer, about 45 words, address first, fire floor, ends with verify", () => {
+    const beats = spokenBrief(withDispatch(real("sf-3722080"), "Structure fire, 140 New Montgomery St, smoke reported 22nd floor."));
+    const lines = beats.map((x) => x.text);
+    expect(beats.length).toBeLessThanOrEqual(5);
+    expect(lines[0]).toBe("140 New Montgomery St, 26 stories, fire floor 22.");
+    expect(lines.join(" ")).toMatch(/\b22\b/);
+    expect(lines.at(-1)).toMatch(/^Verify .* on arrival/);
+    expect(words(lines.join(" "))).toBeLessThanOrEqual(56);
+    // trimmed for speech: no per-source phrases, no "live", no citation years
+    expect(lines.join(" ")).not.toMatch(/\bper (fire permit|building permit|tall building|open-meteo)|\blive\b|\b(19|20)\d\d\b/i);
+    // floors still light per sentence
+    expect(beats[0].floors).toContain(22);
+    expect(beats[1].floors).toContain(22);
+  });
+  it("400 Duboce works too", () => {
+    const beats = spokenBrief(withDispatch(real("sf-0874003"), "Structure fire, 400 Duboce Ave, smoke from unit 311"));
+    expect(beats.length).toBeLessThanOrEqual(5);
+    expect(beats[0].text).toBe("400 Duboce Ave, 4 stories, fire floor 3.");
+    expect(beats.at(-1)?.text).toMatch(/^Verify .* on arrival/);
+  });
+  it("fixture hero speaks the cited hazard near the fire floor and the verify line", () => {
+    const beats = spokenBrief(hero());
+    expect(beats[0].text).toBe("400 Duboce Ave, 4 stories, fire floor 3.");
+    expect(beats.some((x) => /unit 311/i.test(x.text) && x.pinIds.includes("permit-201910044012"))).toBe(true);
+    expect(beats.at(-1)?.text).toBe("Verify stairs and standpipe on arrival; sources on screen.");
+  });
+  it("works without a dispatch (no fire floor)", () => {
+    const beats = spokenBrief({ ...hero(), pins: hero().pins.filter((p) => p.origin !== "dispatch") });
+    expect(beats[0].text).toBe("400 Duboce Ave, 4 stories.");
+    expect(beats.at(-1)?.text).toMatch(/^Verify/);
+  });
+});
+
+describe("reportBeats (short)", () => {
+  it("people on floor 23 of 140 New Montgomery: three beats, floor 23 first, verify last", () => {
+    const bl = withDispatch(real("sf-3722080"), "Structure fire, 140 New Montgomery St, smoke reported 22nd floor.");
+    const r = { ...parseDispatch("Caller reports people trapped on floor 23", bl), id: "dispatch-report-1", label: "REPORT: PEOPLE, FLOOR 23" };
+    const beats = reportBeats({ ...bl, pins: [...bl.pins, r] }, r);
+    expect(beats.length).toBeLessThanOrEqual(3);
+    expect(beats[0].text).toBe("Copy, people on floor 23, one floor above the fire.");
+    expect(beats.at(-1)?.text).toBe("Verify stairs to floor 23 on arrival.");
+    expect(beats.every((x) => x.floors.includes(23) || x.pinIds.length > 0)).toBe(true);
+    expect(beats.map((x) => x.text).join(" ")).not.toMatch(/\bper (fire|building|S F|tall|open)|\blive\b/i);
+  });
+});

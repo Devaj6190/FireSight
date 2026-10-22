@@ -30,13 +30,44 @@ if (canSpeak) {
 // Natural voice from /api/tts (ElevenLabs) when the server has a key; otherwise, or on any failure, the browser voice.
 let tts: 'unknown' | 'on' | 'off' = 'unknown'
 let session = 0
-let aborter: AbortController | null = null
 let audio: HTMLAudioElement | null = null
 
-async function clip(text: string, signal: AbortSignal): Promise<string> {
-  const res = await fetch('/api/tts', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text }), signal })
-  if (!res.ok) throw new Error(`tts ${res.status}`)
-  return URL.createObjectURL(await res.blob())
+// Clips are cached by text, so a brief prefetched while the dispatch resolves plays the moment the floors land.
+// Prefetches are never aborted by stopSpeaking(): the audio is reusable, only playback stops.
+type Cached = { promise: Promise<Blob>; blob?: Blob }
+const clips = new Map<string, Cached>()
+
+function clip(text: string): Promise<string> {
+  let c = clips.get(text)
+  if (!c) {
+    const entry: Cached = { promise: Promise.resolve(new Blob()) }
+    entry.promise = fetch('/api/tts', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text }) })
+      .then((res) => {
+        if (!res.ok) throw new Error(`tts ${res.status}`)
+        return res.blob()
+      })
+      .then((blob) => (entry.blob = blob))
+    entry.promise.catch(() => clips.delete(text))
+    clips.set(text, (c = entry))
+  }
+  return c.promise.then((blob) => URL.createObjectURL(blob))
+}
+
+// Start fetching natural-voice audio for sentences that will be spoken soon. Silent on failure.
+export function prefetch(sentences: string[]) {
+  if (tts === 'off' || typeof fetch === 'undefined') return
+  sentences.forEach((s) => clip(s).then((u) => URL.revokeObjectURL(u), () => {}))
+}
+
+// Instant acknowledgement: the cached natural clip if it is already here, otherwise the browser voice (never waits on the network).
+export function ack(text: string) {
+  stopSpeaking()
+  const blob = clips.get(text)?.blob
+  if (!blob || tts === 'off') return browserSpeak([text])
+  const id = session
+  play(URL.createObjectURL(blob)).catch(() => {
+    if (id === session) browserSpeak([text])
+  })
 }
 
 function play(url: string): Promise<void> {
@@ -53,20 +84,17 @@ export function speak(sentences: string[], onLine?: (s: string, i: number) => vo
   stopSpeaking()
   const id = ++session
   if (tts === 'off' || typeof fetch === 'undefined') return browserSpeak(sentences, onLine, onDone)
-  const ctl = new AbortController()
-  aborter = ctl
   // Fetch every sentence at once so playback has no gaps; give up on the natural voice if the first takes over 5 s.
-  const clips = sentences.map((s) => clip(s, ctl.signal))
-  clips.forEach((p) => p.catch(() => {}))
+  const urls = sentences.map((s) => clip(s))
+  urls.forEach((p) => p.catch(() => {}))
   void (async () => {
     for (let i = 0; i < sentences.length; i++) {
       let url: string
       try {
-        url = i === 0 ? await Promise.race([clips[0], new Promise<string>((_, rej) => setTimeout(() => rej(new Error('slow')), 5000))]) : await clips[i]
+        url = i === 0 ? await Promise.race([urls[0], new Promise<string>((_, rej) => setTimeout(() => rej(new Error('slow')), 5000))]) : await urls[i]
       } catch {
         if (id !== session) return
         if (i === 0) tts = 'off'
-        ctl.abort()
         return browserSpeak(sentences.slice(i), (s, j) => onLine?.(s, i + j), onDone)
       }
       if (id !== session) return URL.revokeObjectURL(url)
@@ -100,8 +128,6 @@ function browserSpeak(sentences: string[], onLine?: (s: string, i: number) => vo
 
 export function stopSpeaking() {
   session++
-  aborter?.abort()
-  aborter = null
   audio?.pause()
   audio = null
   if (canSpeak) window.speechSynthesis.cancel()
