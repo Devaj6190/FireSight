@@ -1,0 +1,173 @@
+{
+ "id": "sf-3722080-f20",
+ "address": "140 New Montgomery St",
+ "view": "floor",
+ "floor": 20,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan · columns follow the structural system (SF Tall Building Inventory)",
+ "hotspots": [
+  {
+   "id": "entrance",
+   "text": "Entrances · OSM (3)",
+   "tone": "info",
+   "position": "-0.0349 0.0360 0.4647",
+   "normal": "0 1 0",
+   "source": "https://www.openstreetmap.org/node/8324272536"
+  },
+  {
+   "id": "street-1",
+   "text": "Minna St",
+   "tone": "unknown",
+   "position": "-0.2516 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-2",
+   "text": "New Montgomery St",
+   "tone": "unknown",
+   "position": "0.2606 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-3",
+   "text": "Natoma St",
+   "tone": "unknown",
+   "position": "0.2606 0.0300 0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-4",
+   "text": "Natoma St",
+   "tone": "unknown",
+   "position": "0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-5",
+   "text": "New Montgomery St",
+   "tone": "unknown",
+   "position": "0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "street-6",
+   "text": "Minna St",
+   "tone": "unknown",
+   "position": "-0.2698 0.0300 -0.2606",
+   "normal": "0 1 0",
+   "source": "OpenStreetMap"
+  },
+  {
+   "id": "hydrant-water-esf4_hydrants_hp-1143",
+   "text": "High-pressure hydrant 40 m NE",
+   "tone": "info",
+   "position": "0.2802 0.0460 -0.2108",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json"
+  },
+  {
+   "id": "wind",
+   "text": "Wind 6 mph from WSW · forecast",
+   "tone": "caution",
+   "position": "-0.3220 0.1360 0.1367",
+   "normal": "0 1 0",
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+  },
+  {
+   "id": "unit-1",
+   "text": "Unit 2011",
+   "tone": "unit",
+   "position": "0.2236 0.2460 0.0524",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-2",
+   "text": "Unit 2012",
+   "tone": "unit",
+   "position": "0.2780 0.3360 0.1094",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-3",
+   "text": "Unit 2013 · open permit",
+   "tone": "caution",
+   "position": "0.2173 0.4260 0.1713",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 201308093964"
+  },
+  {
+   "id": "unit-4",
+   "text": "Unit 2014 · open permit",
+   "tone": "caution",
+   "position": "0.1337 0.5160 0.1479",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 201411121251"
+  },
+  {
+   "id": "unit-5",
+   "text": "Unit 2017",
+   "tone": "unit",
+   "position": "-0.2286 0.0660 0.1353",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-6",
+   "text": "Unit 2019 · open permit",
+   "tone": "caution",
+   "position": "-0.1808 0.1560 0.0870",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 202007019470"
+  },
+  {
+   "id": "unit-7",
+   "text": "Unit 2020",
+   "tone": "unit",
+   "position": "-0.2535 0.2460 0.0590",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-8",
+   "text": "Unit 2022 · open permit",
+   "tone": "caution",
+   "position": "-0.1490 0.3360 0.0086",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 202402145866"
+  },
+  {
+   "id": "unit-9",
+   "text": "Unit 2023 · fire sprinkler work 2025",
+   "tone": "unit",
+   "position": "-0.1215 0.4260 -0.0756",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 202512091298"
+  },
+  {
+   "id": "unit-10",
+   "text": "Unit 2024",
+   "tone": "unit",
+   "position": "-0.0669 0.5160 -0.1312",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "open",
+   "text": "Open permits",
+   "tone": "caution",
+   "position": "0.0652 0.0620 -0.0454",
+   "normal": "0 1 0",
+   "source": "https://data.sf.gov/resource/i98e-djp9.json?permit_number=202601093510"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0652 0.2620 -0.0454",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}

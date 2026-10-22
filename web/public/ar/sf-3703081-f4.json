@@ -1,0 +1,49 @@
+{
+ "id": "sf-3703081-f4",
+ "address": "1018 Mission St",
+ "view": "floor",
+ "floor": 4,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan",
+ "hotspots": [
+  {
+   "id": "hydrant-water-esf4_hydrants_hp-1462",
+   "text": "High-pressure hydrant 41 m S",
+   "tone": "info",
+   "position": "0.0224 0.0460 0.1593",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1462&outFields=*&f=json"
+  },
+  {
+   "id": "wind",
+   "text": "Wind 6 mph from WSW · forecast",
+   "tone": "caution",
+   "position": "-0.1525 0.1360 0.0647",
+   "normal": "0 1 0",
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7807&longitude=-122.4095&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+  },
+  {
+   "id": "unit-1",
+   "text": "Unit 403",
+   "tone": "unit",
+   "position": "-0.0895 0.2460 -0.0472",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "fire",
+   "text": "4 fires here · 2012",
+   "tone": "danger",
+   "position": "0.0051 0.3320 0.0015",
+   "normal": "0 1 0",
+   "source": "SFFD incidents"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0029 0.2620 0.0005",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}

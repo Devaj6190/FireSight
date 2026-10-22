@@ -1,0 +1,80 @@
+{
+ "id": "sf-3703081-f2",
+ "address": "1018 Mission St",
+ "view": "floor",
+ "floor": 2,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan",
+ "hotspots": [
+  {
+   "id": "hydrant-water-esf4_hydrants_hp-1462",
+   "text": "High-pressure hydrant 41 m S",
+   "tone": "info",
+   "position": "0.0224 0.0460 0.1593",
+   "normal": "0 1 0",
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1462&outFields=*&f=json"
+  },
+  {
+   "id": "wind",
+   "text": "Wind 6 mph from WSW · forecast",
+   "tone": "caution",
+   "position": "-0.1525 0.1360 0.0647",
+   "normal": "0 1 0",
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7807&longitude=-122.4095&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+  },
+  {
+   "id": "unit-1",
+   "text": "Unit 202",
+   "tone": "unit",
+   "position": "0.0888 0.2460 0.0497",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-2",
+   "text": "Unit 203",
+   "tone": "unit",
+   "position": "0.0324 0.3360 0.1053",
+   "normal": "0 1 0"
+  },
+  {
+   "id": "unit-3",
+   "text": "Unit 208 · restroom work 2025 · open permit",
+   "tone": "caution",
+   "position": "-0.0892 0.4260 -0.0467",
+   "normal": "0 1 0",
+   "source": "ftty-kx6y E202503251166"
+  },
+  {
+   "id": "unit-4",
+   "text": "Unit 211 · open permit",
+   "tone": "caution",
+   "position": "-0.0303 0.5160 -0.1038",
+   "normal": "0 1 0",
+   "source": "i98e-djp9 202212138228"
+  },
+  {
+   "id": "fire",
+   "text": "4 fires here · 2012",
+   "tone": "danger",
+   "position": "0.0051 0.0620 0.0015",
+   "normal": "0 1 0",
+   "source": "SFFD incidents"
+  },
+  {
+   "id": "open",
+   "text": "Open permits",
+   "tone": "caution",
+   "position": "0.0029 0.1520 0.0005",
+   "normal": "0 1 0",
+   "source": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=E202503251166"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0029 0.2620 0.0005",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}
