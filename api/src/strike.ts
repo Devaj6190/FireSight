@@ -16,12 +16,22 @@ export interface StrikeCase {
   struckAt: string;
 }
 
+const safe = (s: string) => s.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 64);
+
 export async function saveStrike(b: Building, line: BriefLine, reason?: string): Promise<StrikeCase> {
   const struckAt = new Date().toISOString();
-  const id = `${b.id}-${line.id}-${struckAt.replace(/[:.]/g, "")}`;
-  const c: StrikeCase = { id, buildingId: b.id, line: { ...line, status: "struck" }, reason: reason ?? null, struckAt };
+  const id = `${safe(b.id)}-${safe(line.id)}-${struckAt.replace(/[:.]/g, "")}`;
+  const file = path.resolve(CASES_DIR, `${id}.json`);
+  if (!file.startsWith(path.resolve(CASES_DIR) + path.sep)) throw new Error("bad case path");
+  const c: StrikeCase = {
+    id,
+    buildingId: b.id,
+    line: { id: line.id, text: line.text.slice(0, 300), pinIds: line.pinIds.slice(0, 20), claim: line.claim, status: "struck" },
+    reason: reason ? reason.slice(0, 300) : null,
+    struckAt,
+  };
   await mkdir(CASES_DIR, { recursive: true });
-  await writeFile(path.join(CASES_DIR, `${id}.json`), JSON.stringify(c, null, 2) + "\n");
+  await writeFile(file, JSON.stringify(c, null, 2) + "\n");
   return c;
 }
 
@@ -33,7 +43,7 @@ export async function loadStrikes(buildingId?: string): Promise<StrikeCase[]> {
     return [];
   }
   const cases = await Promise.all(files.map(async (f) => JSON.parse(await readFile(path.join(CASES_DIR, f), "utf8")) as StrikeCase));
-  return cases.filter((c) => !buildingId || c.buildingId === buildingId);
+  return cases.filter((c) => typeof c.line?.text === "string" && (!buildingId || c.buildingId === buildingId));
 }
 
 const norm = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();

@@ -8,7 +8,8 @@ export type DropReason =
   | "unknown_pin" // cites a pin id that is not in building.pins
   | "uncited" // verified or conflict line with no pins
   | "unsupported_verified" // verified line, but no cited pin is itself verified with evidence
-  | "unsupported_conflict"; // conflict line, but no cited pin is in a recorded conflict
+  | "unsupported_conflict" // conflict line, but no cited pin is in a recorded conflict
+  | "unverifiable_asserts"; // unverifiable line that states a fact instead of "Unknown: ..."
 
 export interface Dropped { text: string; pinIds: string[]; claim: string; reason: DropReason }
 
@@ -21,6 +22,9 @@ function conflictPinIds(b: Building): Set<string> {
   }
   return ids;
 }
+
+// An unverifiable brief line may only name what is unknown, never assert it.
+export const UNKNOWN_LINE = /^unknown:/i;
 
 export function checkLine(b: Building, line: Pick<DraftLine, "text" | "pinIds" | "claim">): DropReason | null {
   if (!line.text.trim()) return "empty_text";
@@ -42,7 +46,7 @@ export function validateBrief(b: Building, drafts: DraftLine[]): { lines: BriefL
   const dropped: Dropped[] = [];
   for (const d of drafts) {
     const pinIds = [...new Set(d.pinIds)];
-    const reason = checkLine(b, { ...d, pinIds });
+    const reason = checkLine(b, { ...d, pinIds }) ?? (d.claim === "unverifiable" && !UNKNOWN_LINE.test(d.text.trim()) ? "unverifiable_asserts" : null);
     if (reason) {
       dropped.push({ text: d.text, pinIds, claim: d.claim, reason });
       continue;
@@ -72,8 +76,10 @@ export function validateAnswer(b: Building, question: string, d: DraftAnswer): {
       dropped: { text: d.text, pinIds, claim: d.claim, reason },
     };
   }
+  // An unverifiable answer says only what has no record; the model's own wording could assert a guess.
+  const text = d.claim === "unverifiable" ? (d.unknowns.length ? `No public record: ${d.unknowns.join(", ")}.` : NO_RECORD) : d.text.trim();
   return {
-    answer: { question, text: d.text.trim(), pinIds, claim: d.claim, highlight: { floors, pinIds }, unknowns: d.unknowns },
+    answer: { question, text, pinIds, claim: d.claim, highlight: { floors, pinIds }, unknowns: d.unknowns },
     dropped: null,
   };
 }

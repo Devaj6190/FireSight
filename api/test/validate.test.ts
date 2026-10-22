@@ -78,3 +78,18 @@ describe("repeatsStrike", () => {
     expect(repeatsStrike({ id: "b1", text: "Type 5, 4 stories.", pinIds: ["construction-mode"], claim: "verified", status: "pending" }, c)).toBe(false);
   });
 });
+
+describe("unverifiable lines cannot assert facts", () => {
+  it("drops an unverifiable brief line that is not 'Unknown: ...'", () => {
+    const { lines, dropped } = validateBrief(b, [
+      { text: "Building fully sprinklered.", pinIds: [], claim: "unverifiable", element: null },
+      { text: "Unknown: stairs, standpipe.", pinIds: [], claim: "unverifiable", element: null },
+    ]);
+    expect(lines.map((l) => l.text)).toEqual(["Unknown: stairs, standpipe."]);
+    expect(dropped[0].reason).toBe("unverifiable_asserts");
+  });
+  it("replaces an unverifiable answer's text with the unknowns", () => {
+    const { answer } = validateAnswer(b, "Is it sprinklered?", { text: "Yes, fully.", pinIds: [], claim: "unverifiable", floors: [], unknowns: ["sprinkler coverage"] });
+    expect(answer.text).toBe("No public record: sprinkler coverage.");
+  });
+});

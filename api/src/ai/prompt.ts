@@ -10,7 +10,7 @@ Grounding rules:
 - State only what pins say. Every line cites the ids of the pins it states in pinIds. Never use outside knowledge about this address, San Francisco or building types.
 - claim "verified": the cited pins are verified records and the line says no more than they do.
 - claim "conflict": sources disagree (a pin with claim "conflict", or pins listed in the building's conflicts). Say both values: "Conflict: tax roll 78 units, permits 79."
-- claim "unverifiable": a size-up fact with no record (stairs, standpipe, roof access, fire department connection, utility shutoffs). Cite no pins. Never guess it.
+- claim "unverifiable": a size-up fact with no record (stairs, standpipe, roof access, fire department connection, utility shutoffs). The line must start with "Unknown:" and only name what is unknown: "Unknown: stairs, standpipe, roof access." Cite no pins. Never guess it.
 - Lines that break these rules are deleted by a validator and counted against you.
 
 Copy rules (radio cadence):
@@ -34,7 +34,7 @@ export function briefTask(struck: string[] = []): string {
 
 export function askTask(question: string): string {
   return `The officer asks: "${question.replace(/"/g, "'")}"
-Answer from the pins only, 2 sentences max. Set floors to every floor the answer is about (1 = ground) so the app can light them. If no pin answers it, claim "unverifiable", say what has no public record, and list it in unknowns.`;
+Answer from the pins only, 2 sentences max. Set floors to every floor the answer is about (1 = ground) so the app can light them. If no pin answers it, claim "unverifiable" and list what has no public record in unknowns (short nouns, e.g. "stair locations").`;
 }
 
 // The building as the model sees it: no precomputed fallback (it contains answers).

@@ -46,9 +46,12 @@ server.registerTool(
   },
   async ({ address }) => {
     const q = normAddress(address);
+    if (!q) return ok({ matches: [] });
+    // Whole-token prefix either way: "400 Duboce" matches "400 DUBOCE AVE", "40" does not.
+    const tokenPrefix = (a: string, b: string) => a === b || a.startsWith(`${b} `);
     const matches = loadAll().flatMap((b) => {
       const names = [b.address, ...b.resolution.aliases, ...b.resolution.links.map((l) => l.example)];
-      const hit = names.find((n) => n && (normAddress(n) === q || normAddress(n).startsWith(q) || q.startsWith(normAddress(n))));
+      const hit = names.find((n) => n && (tokenPrefix(normAddress(n), q) || tokenPrefix(q, normAddress(n))));
       return hit ? [{ apn: b.apn, buildingId: b.id, address: b.address, matched: hit, aliases: b.resolution.aliases }] : [];
     });
     return ok({ matches });

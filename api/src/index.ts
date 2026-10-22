@@ -11,8 +11,28 @@ try {
 
 const app = new Hono();
 
-const isBuilding = (b: unknown): b is Building =>
-  !!b && typeof b === "object" && typeof (b as Building).id === "string" && Array.isArray((b as Building).pins);
+const isBuilding = (b: unknown): b is Building => {
+  const x = b as Building;
+  return (
+    !!x && typeof x === "object" && typeof x.id === "string" && /^sf-\w{1,32}$/.test(x.id) &&
+    Array.isArray(x.pins) && Array.isArray(x.layers) && Array.isArray(x.conflicts) && typeof x.floors === "number"
+  );
+};
+
+const isLine = (l: unknown): l is BriefLine => {
+  const x = l as BriefLine;
+  return (
+    !!x && typeof x === "object" && typeof x.id === "string" && typeof x.text === "string" &&
+    Array.isArray(x.pinIds) && x.pinIds.every((p) => typeof p === "string") &&
+    ["verified", "unverifiable", "conflict"].includes(x.claim)
+  );
+};
+
+// Bad JSON or a malformed body is the caller's fault: 400, never a crash.
+app.onError((err, c) => {
+  console.error(err);
+  return c.json({ error: err instanceof SyntaxError ? "invalid JSON" : "bad request" }, err instanceof SyntaxError ? 400 : 500);
+});
 
 app.get("/api/health", (c) => c.json({ ok: true }));
 
@@ -23,6 +43,8 @@ app.post("/api/brief", async (c) => {
   try {
     const struck = (await loadStrikes(building.id)).map((s) => s.line.text);
     const { brief, dropped } = await makeBrief(building, struck);
+    // If the validator dropped every line, the officer gets the precomputed brief, not an empty sheet.
+    if (!brief.lines.length && building.fallback) return c.json({ brief: building.fallback.brief, dropped, source: "fallback" });
     return c.json({ brief, dropped, source: "model" });
   } catch (err) {
     console.error("brief failed:", err);
@@ -41,16 +63,16 @@ app.post("/api/ask", async (c) => {
     return c.json({ ...res, source: "model" });
   } catch (err) {
     console.error("ask failed:", err);
-    const canned = building.fallback?.answers.find((a) => a.question.toLowerCase() === question.trim().toLowerCase());
+    const canned = building.fallback?.answers?.find((a) => a.question.toLowerCase() === question.trim().toLowerCase());
     if (canned) return c.json({ answer: canned, dropped: null, source: "fallback" });
     return c.json({ error: "ask failed" }, 502);
   }
 });
 
 app.post("/api/strike", async (c) => {
-  const { building, line, reason } = await c.req.json<{ building: unknown; line: BriefLine; reason?: string }>();
-  if (!isBuilding(building) || !line?.id) return c.json({ error: "building and line required" }, 400);
-  return c.json(await saveStrike(building, line, reason));
+  const { building, line, reason } = await c.req.json<{ building: unknown; line: unknown; reason?: unknown }>();
+  if (!isBuilding(building) || !isLine(line)) return c.json({ error: "building and line required" }, 400);
+  return c.json(await saveStrike(building, line, typeof reason === "string" ? reason : undefined));
 });
 
 app.post("/api/compliance", async (c) => {
