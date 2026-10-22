@@ -210,7 +210,7 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
                     <span className={`floor-sev ${n.severity ?? 'none'}`} aria-hidden="true" />
                     <span className="floor-pin-text">
                       <strong>{i === 0 ? 'Above' : 'Below'}: {floorName(f)}</strong>
-                      <small>{[people != null ? `up to ${people} people` : usual, top ? displayLabel(top.label) : 'no hazards on record'].filter(Boolean).join(' · ')}{i === 0 ? ' · fire spreads up' : ''}</small>
+                      <small>{[people != null ? `up to ${people} people` : usual, top ? displayLabel(top.label) : 'no hazards on record'].filter(Boolean).join(' · ')}{i === 0 ? ' · floor above the fire' : ''}</small>
                     </span>
                     <span className="floor-chev" aria-hidden="true">›</span>
                   </button>

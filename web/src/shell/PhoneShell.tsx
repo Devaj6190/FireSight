@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
-import { ChevronDown, ChevronLeft, ClipboardCheck, Crosshair, Droplet, Ellipsis, Expand, Flame, Layers, MessageCircleQuestion, PenLine, RotateCcw, Shrink, TriangleAlert, X } from 'lucide-react'
+import { ChevronDown, ChevronLeft, Crosshair, Droplet, Ellipsis, Expand, Flame, Layers, MessageCircleQuestion, PenLine, RotateCcw, Shrink, TriangleAlert, X } from 'lucide-react'
 import type { Answer, BriefLine, Building, Pin } from '../../../shared/building.ts'
 import { ask } from '../../../shared/client.ts'
 import { useStore } from '../store.ts'
@@ -24,7 +24,7 @@ type Props = {
   onToggle: () => void; onSelectPin: (pin: Pin | undefined) => void
   onHighlight: (floors: number[], ids: string[]) => void; onFocusFloor: (floor: number | null) => void; onAddPin: (pin: Pin) => void
 }
-const TABS: [Tab, string, typeof Flame][] = [['hazards', 'Hazards', TriangleAlert], ['floors', 'Floors', Layers], ['water', 'Water', Droplet], ['ask', 'Ask', MessageCircleQuestion], ['brief', 'Brief', ClipboardCheck], ['note', 'Note', PenLine], ['more', 'More', Ellipsis]]
+const TABS: [Tab, string, typeof Flame][] = [['hazards', 'Hazards', TriangleAlert], ['floors', 'Floors', Layers], ['water', 'Water', Droplet], ['ask', 'Ask', MessageCircleQuestion], ['note', 'Note', PenLine], ['more', 'More', Ellipsis]]
 const PARENT: Record<Sub, Tab | null> = { records: 'more', sources: 'more', limits: 'more', changes: 'more', resolution: 'more', eval: 'more', crew: 'brief', respond: null }
 const TITLE: Record<Page, string> = { hazards: 'Hazards', floors: 'Floors', water: 'Water & site', ask: 'Ask the records', brief: 'Size-up brief', note: 'Crew note', more: 'More', records: 'All records', sources: 'Sources', limits: 'Limits', changes: 'Changes', resolution: 'Address resolution', eval: 'Eval', crew: 'Crew radio card', respond: 'Responding to' }
 const isTab = (p: Page): p is Tab => TABS.some(t => t[0] === p)
@@ -177,7 +177,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
     <header ref={topBar} className="fs-top">
       <span className="fs-brand" aria-label="FireSight"><Flame size={18} aria-hidden /><b>Fire<span>Sight</span></b></span>
       <button className="fs-address" onClick={() => go('respond')} aria-label={`Responding to ${b.address}. Change address or paste dispatch`}>
-        <small>Responding to <ChevronDown size={12} aria-hidden /></small>
+        <small>{b.pins.some(p => p.origin === 'dispatch') ? 'Responding to' : 'Building'} <ChevronDown size={12} aria-hidden /></small>
         <strong>{b.address}</strong>
       </button>
       <ul className="fs-facts" aria-label="Key facts">
@@ -192,7 +192,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
 
     <div className="fs-body">
       <div className="fs-stage-meta">
-        <p className="fs-notice">Not for operational use · records may be incomplete</p>
+        <p className="fs-notice">Not affiliated with SFFD · not for operational use · records may be incomplete</p>
         <p className="fs-credit">DataSF footprints · © OpenStreetMap contributors</p>
       </div>
 
@@ -231,6 +231,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
                 {selectedPin.anchor.kind === 'floor' && <button className="fs-btn wide" onClick={() => { onFocusFloor(selectedPin.anchor.kind === 'floor' ? selectedPin.anchor.floor : null); onSelectPin(undefined); setPage('floors') }}><Layers size={18} aria-hidden />Open {floorLabel(selectedPin)}</button>}
               </> : <>
                 {page === 'hazards' && <HazardsView b={b} arrival={b.pins.some(p => p.origin === 'dispatch') && <ArrivalCard building={b} onSelect={onHighlight} />} filter={filter} setFilter={setFilter} onPin={selectPin} onPins={highlight} onFloor={onFocusFloor} onOpen={go} newIds={newIds} />}
+                {page === 'floors' && b.pins.some(p => p.origin === 'dispatch') && <ArrivalCard building={b} onSelect={onHighlight} />}
                 {page === 'floors' && <FloorsView b={b} target={target} lit={lit} phase={phase} onFloor={onFocusFloor} onToggle={onToggle} onPin={selectPin} />}
                 {page === 'water' && <WaterView b={b} onPin={selectPin} />}
                 {page === 'ask' && <AskView b={b} asking={asking} answer={answer} answerSource={answerSource} onAsk={q => void askQuestion(q)} onPin={selectPin} />}
