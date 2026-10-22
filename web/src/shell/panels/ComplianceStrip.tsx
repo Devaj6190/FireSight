@@ -10,10 +10,10 @@ type Props = {
 
 const RESULT_LABEL = { pass: 'PASS', fail: 'FAIL', unknown: 'UNKNOWN', partial: 'PARTIAL' } as const
 
-// Allowed wording only (SETUP.md s7): "Meets" appears only when wording is "meets" and the result is pass.
+// Allowed wording only (SETUP.md s7): "Meets" / "Rule logic meets" appear only when the result is pass.
 export function wordingFor(r: ComplianceRow): string {
   if (r.wording === 'meets') return r.result === 'pass' ? `Meets ${r.citation}` : `Checked against ${r.citation}`
-  if (r.wording === 'rule logic meets') return `Rule logic meets ${r.citation}`
+  if (r.wording === 'rule logic meets') return r.result === 'pass' ? `Rule logic meets ${r.citation}` : `Checked against ${r.citation}`
   return `Maps to ${r.citation}`
 }
 
