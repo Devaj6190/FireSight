@@ -1,13 +1,13 @@
 // Second explode level: the focused floor splits into rooms that drift apart in plan, like an exploded floor plan.
 // Same motion language as explode.ts: one gsap timeline, long overlapping eases, the camera lands last.
-// The layout is schematic (rooms.ts); the overlay says so on screen whenever the rooms are showing.
+// The layout is schematic (roomPlan.ts); the overlay says so on screen whenever the rooms are showing.
 import { Html } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { fadeFor, near, t, type Ctx } from './explode'
 import { PinMarker, SEVERITY_ORDER, type Pin, type Reveal } from './Pins'
-import { planFloor, type Room } from './rooms'
+import { planFloor, type Room } from './roomPlan.ts'
 import { useStore, type Phase } from './store'
 import { fs } from './tokens'
 import type { Building } from '../../shared/building'
