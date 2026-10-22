@@ -1,6 +1,6 @@
 // Grounding eval: brief + 5 questions per cached building, through the same validator the app uses.
 // Prints measured counts and writes eval/last-run.json for the eval screen. Exit 1 if a struck line returns.
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Building } from "../../shared/building.ts";
@@ -59,9 +59,13 @@ for (const b of buildings) {
 }
 
 const run = { model: MODEL, ranAt: new Date().toISOString(), seconds: Math.round((Date.now() - started) / 1000), totals, dropReasons, perBuilding };
-writeFileSync(path.join(root, "eval/last-run.json"), JSON.stringify(run, null, 2) + "\n");
+const out = JSON.stringify(run, null, 2) + "\n";
+writeFileSync(path.join(root, "eval/last-run.json"), out);
+// Copy the web app can fetch at /eval/last-run.json for the eval screen.
+mkdirSync(path.join(root, "web/public/eval"), { recursive: true });
+writeFileSync(path.join(root, "web/public/eval/last-run.json"), out);
 console.log("\nGROUNDING EVAL");
 console.log(`buildings ${totals.buildings} · briefs ${totals.briefs} · lines ${totals.lines} (verified ${totals.verified}, unverifiable ${totals.unverifiable}, conflict ${totals.conflict})`);
 console.log(`uncited or unsupported lines dropped: ${totals.dropped} · answers ${totals.answers}, unverifiable ${totals.answersUnverifiable}, replaced by validator ${totals.answersDropped}`);
-console.log(`struck lines: ${totals.strikeCases} cases, ${totals.strikesRepeated} repeated · ${run.seconds}s · wrote eval/last-run.json`);
+console.log(`struck lines: ${totals.strikeCases} cases, ${totals.strikesRepeated} repeated · ${run.seconds}s · wrote eval/last-run.json and web/public/eval/last-run.json`);
 process.exit(totals.strikesRepeated ? 1 : 0);

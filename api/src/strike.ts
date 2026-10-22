@@ -4,7 +4,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { BriefLine, Building } from "../../shared/building.ts";
 
-export const CASES_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../eval/cases");
+// FIRESIGHT_CASES_DIR overrides it on hosts with a read-only disk (e.g. /tmp/cases on serverless).
+export const CASES_DIR =
+  process.env.FIRESIGHT_CASES_DIR ?? path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../eval/cases");
 
 export interface StrikeCase {
   id: string;
