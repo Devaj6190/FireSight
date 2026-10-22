@@ -8,6 +8,7 @@ import { FloorPanel, displayLabel } from './Floors.tsx'
 import { BUILDINGS, floorLabel, localTime } from './model.ts'
 import { bySeverity, counts, dispatchFloor, dispatchOf, floorName, floorSummaries, roofPins, siteOf, occupancyOf, type SiteItem } from './facts.ts'
 import { tap, useCountUp } from './motion.ts'
+import { FIRE_TEST } from '../scenario.ts'
 
 const at = (i: number) => ({ '--i': i }) as CSSProperties
 
@@ -215,10 +216,10 @@ export function RespondView({ b, initial, onBuilding, onDispatch }: { b: Buildin
   const [text, setText] = useState(initial)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  async function submit() {
-    if (!text.trim()) return
+  async function submit(line = text) {
+    if (!line.trim()) return
     setBusy(true); setError(''); tap(14)
-    try { await onDispatch(text) } catch (e) { setError(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setBusy(false) }
+    try { await onDispatch(line) } catch (e) { setError(e instanceof Error ? e.message : 'Unable to resolve dispatch.') } finally { setBusy(false) }
   }
   return <>
     <form onSubmit={e => { e.preventDefault(); void submit() }}>
@@ -226,6 +227,12 @@ export function RespondView({ b, initial, onBuilding, onDispatch }: { b: Buildin
       {error && <p className="fs-error" role="alert">{error}</p>}
       <button className="fs-btn amber wide big" disabled={busy || !text.trim()}><Siren size={20} aria-hidden />{busy ? 'Resolving…' : 'Resolve dispatch'}</button>
     </form>
+    <h3 className="fs-h3">Test scenario</h3>
+    <button className="fs-more" disabled={busy} onClick={() => { setText(FIRE_TEST.dispatch); void submit(FIRE_TEST.dispatch) }}>
+      <span className="fs-more-ic"><Flame /></span>
+      <span><strong>Simulated fire · floor {FIRE_TEST.floor}, east wing</strong><small>140 New Montgomery St · tap the red area to open the floor at the fire</small></span>
+      <ChevronRight className="fs-chev" size={18} aria-hidden />
+    </button>
     <h3 className="fs-h3">Cached buildings</h3>
     <ul className="fs-list">{BUILDINGS.map((v, i) => <li key={v.id} className="fs-rise" style={at(i)}>
       <button className={`fs-more${v.id === b.id ? ' on' : ''}`} aria-current={v.id === b.id || undefined} onClick={() => { tap(); onBuilding(v.id) }}>

@@ -1,4 +1,4 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
@@ -6,6 +6,9 @@ import * as THREE from 'three'
 import { collapse, explode, focus, frame, near, reduce, t, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { Rooms, RoomsOverlay } from './Rooms.tsx'
+import { FireZone } from './Fire.tsx'
+import { archPlan } from './archPlan.ts'
+import { FIRE_TEST, fireFor } from './scenario'
 import { useStore, type Inset, type Phase } from './store'
 import { City } from './City'
 import { facade } from './cityMesh'
@@ -51,11 +54,19 @@ function spanOf(b: Building) {
   return Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys))
 }
 
+// pin chips fade out instead of hiding (Pins.tsx), so a hit only counts where the chip, dot or glow is showing
+const seen = (o: THREE.Object3D) => {
+  const m = (o as THREE.Mesh).material as THREE.Material | THREE.Material[] | undefined
+  return (!m || Array.isArray(m) || m.opacity > 0.05) && ((o as { fillOpacity?: number }).fillOpacity ?? 1) > 0.05
+}
+const onShownPin = (e: ThreeEvent<MouseEvent>) =>
+  e.intersections.some((i) => { for (let o: THREE.Object3D | null = i.object; o; o = o.parent) if (o.userData.pin) return seen(i.object); return false })
+
 // floor in contract numbering (0 = B1), clamped to the model; building-wide pins cluster on the roof, site pins at grade
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, lit, rooms, view, setPhase, toggleRooms } = useStore()
+  const { phase, target, lit, rooms, view, fire, setPhase } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -106,6 +117,12 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     return [byX.at(-1)!, byX[0]]
   }, [b])
   useEffect(() => () => (geo.dispose(), edges.dispose()), [geo, edges])
+  // the fire area on the plan the rooms level will draw: same pins as Rooms.tsx gets, so the cells match
+  const fireArea = useMemo(() => {
+    if (!fire || fire.floor > b.floors) return undefined
+    const on = b.pins.filter((p) => p.anchor.kind === 'floor' && Math.min(p.anchor.floor, b.floors) === fire.floor)
+    return archPlan(b, fire.floor, on, fire.dir).fire
+  }, [b, fire])
   // ?focus=22 stands in for the dispatch box until Lane D wires parseDispatch to focus(); here, not at fetch time,
   // because the chip fonts suspend this subtree and the timeline needs the slabs mounted
   useEffect(() => {
@@ -190,6 +207,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     }
     if (phase === 'collapsing') return play(collapse, 'assembled')
     if (phase === 'exploded') {
+      if (useStore.getState().rooms !== 'off') return // a floor tap went straight to its rooms: Rooms.tsx owns the camera
       if (target !== null || lit.length) navigator.vibrate?.(20)
       return play(focus)
     }
@@ -208,7 +226,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   const shown = target === null ? lit : [target, ...lit]
   const labelled = (key: number | string) => shown.includes(key === 'roof' ? b.floors : key === 'site' ? 1 : (key as number))
   const marker = (g: (typeof groups)[number], at: [number, number, number]) => (
-    <group key={g.key} onClick={e => { e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} labelled={labelled(g.key)} /></group>
+    <group key={g.key} userData={{ pin: true }} onClick={e => { if (!seen(e.object)) return; e.stopPropagation(); onSelectPin(g.pins[0]) }}><PinMarker pin={g.pins[0]} more={g.pins.length - 1} at={at} reveal={g.reveal} fade={typeof g.key === 'number' ? levels[g.key].fade : SOLID} labelled={labelled(g.key)} /></group>
   )
   const top = b.floorHeightM - GAP
   const onSlab = (f: number, s: number) =>
@@ -217,14 +235,34 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       return marker(g, [x, top, -y])
     })
 
-  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y. Tapping the focused floor opens its rooms
+  // taps on the model: the assembled building explodes; on the fan, any floor opens its rooms. While a plan shows, only
+  // its own floor answers (back to the floors); the faded-out floors around it stay out of the way
+  const tappable = (f: number) => {
+    const s = useStore.getState()
+    return s.phase === 'assembled' || (s.phase === 'exploded' && (s.rooms === 'off' || f === s.target))
+  }
+  // pin chips draw over the floors but can sit behind a slab in 3D: a tap that also hits a showing pin is the pin's
+  const onTap = (f: number) => (e: ThreeEvent<MouseEvent>) => {
+    if (e.delta > 6 || !tappable(f) || onShownPin(e)) return // the end of a camera drag, not a tap
+    e.stopPropagation()
+    const s = useStore.getState()
+    if (s.phase === 'assembled') s.explode()
+    else if (s.rooms === 'off') s.openFloor(f)
+    else s.toggleRooms()
+  }
+  const onHover = (f: number) => (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation()
+    document.body.style.cursor = tappable(f) ? 'pointer' : ''
+  }
+  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y
   const slab = (f: number) => (
-    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={f === target && phase === 'exploded' ? (e) => (e.stopPropagation(), toggleRooms()) : undefined}>
+    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={onTap(f)} onPointerOver={onHover(f)} onPointerOut={() => void (document.body.style.cursor = '')}>
       <lineSegments geometry={edges} material={levels[f].edge} />
     </mesh>
   )
   // the cutaway hides every other floor outright: faded to zero they still wrote depth and occluded it
   const shows = (f: number) => rooms === 'off' || rooms === 'closing' || f === target
+  const fireOn = (f: number) => fire && fireArea && fire.floor === f && <FireZone fire={fireArea} floor={f} height={top} side={fire.side} />
   const roomsOf = (f: number) =>
     f === target && rooms !== 'off' && (
       <Rooms b={b} floor={f} height={top} level={levels[f]} chips={groups.map((g) => g.reveal)} play={play} onSelectPin={onSelectPin} />
@@ -234,6 +272,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       {hasB1 && (
         <group ref={basement} position-y={-b.floorHeightM} visible={shows(0)}>
           {slab(0)}
+          {fireOn(0)}
           {onSlab(0, 1)}
           {roomsOf(0)}
         </group>
@@ -241,6 +280,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       {Array.from({ length: b.floors }, (_, i) => (
         <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM} visible={shows(i + 1)}>
           {slab(i + 1)}
+          {fireOn(i + 1)}
           {onSlab(i + 1, i)}
           {roomsOf(i + 1)}
           {i === 0 && groups.filter((g) => g.key === 'site').map((g) => marker(g, [west[0], top, -west[1]]))}
@@ -262,7 +302,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
 }
 
 export default function App() {
-  const { building: b, phase, setBuilding: setB, setPhase, focus, highlight, explode, collapse } = useStore()
+  const { building: b, phase, setBuilding: setB, setPhase, setFire, focus, highlight, explode, collapse } = useStore()
   const [buildingId, setBuildingId] = useState(() => {
     const id = new URLSearchParams(location.search).get('building')
     return BUILDINGS.some(v => v.id === id) ? id! : 'sf-3722080'
@@ -277,7 +317,7 @@ export default function App() {
   useEffect(() => {
     const controller = new AbortController()
     const sequence = ++loadSequence.current
-    setLoading(true); setError(''); setSelectedPin(undefined); useStore.setState({ target: null, phase: 'assembled' })
+    setLoading(true); setError(''); setSelectedPin(undefined); useStore.setState({ target: null, phase: 'assembled', rooms: 'off', fire: null, roomsAfterExplode: false })
     fetch(`${import.meta.env.BASE_URL}buildings/${buildingId}.json`, { signal: controller.signal })
       .then(r => { if (!r.ok) throw Error('Building snapshot is unavailable.'); return r.json() })
       .then((building: Building) => {
@@ -286,6 +326,7 @@ export default function App() {
         if (queuedDispatch.current) {
           const pin = dispatchPin(queuedDispatch.current, building)
           building = { ...building, pins: [...building.pins, pin] }
+          setFire(fireFor(queuedDispatch.current, pin.anchor.kind === 'floor' ? pin.anchor.floor : null))
           focus(pin.anchor.kind === 'floor' ? pin.anchor.floor : null)
           queuedDispatch.current = null
           setPhase('exploding')
@@ -314,9 +355,22 @@ export default function App() {
     const pin = dispatchPin(text, b)
     setB({ ...b, pins: [...b.pins.filter(p => p.origin !== 'dispatch'), pin] })
     setSelectedPin(undefined)
+    setFire(fireFor(text, pin.anchor.kind === 'floor' ? pin.anchor.floor : null))
     focus(pin.anchor.kind === 'floor' ? pin.anchor.floor : null)
     if (phase === 'assembled') setPhase('exploding')
   }
+
+  // ?scenario=fire22: the test fire (scenario.ts) is dispatched once the intro has landed, as if typed on the Respond page
+  const scenarioRan = useRef(false)
+  useEffect(() => {
+    if (!b || scenarioRan.current || new URLSearchParams(location.search).get('scenario') !== FIRE_TEST.id) return
+    if (b.id !== FIRE_TEST.buildingId) return changeBuilding(FIRE_TEST.buildingId)
+    const id = setTimeout(() => {
+      scenarioRan.current = true // set here, not above: StrictMode clears the first timer
+      void handleDispatch(FIRE_TEST.dispatch).catch(() => {})
+    }, reduce ? 600 : INTRO * 1000 + 300)
+    return () => clearTimeout(id)
+  }, [b]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading || !b || error) return <div className="phone-loading"><strong>FIRESIGHT</strong><p role="status">{error || 'Loading cited building snapshot…'}</p>{error && <button onClick={() => setRetry(v => v + 1)}>Retry building</button>}</div>
   const span = spanOf(b)

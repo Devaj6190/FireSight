@@ -6,10 +6,12 @@ import { Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
+import { archPlan } from './archPlan.ts'
 import { arrival } from './arrival.ts'
+import { FIRE } from './Fire.tsx'
 import { cutawayGeometry } from './cutawayGeometry.ts'
 import { EquipmentAsset } from './EquipmentAsset.tsx'
-import { fadeFor, near, t, type Ctx } from './explode'
+import { fadeFor, near, reduce, t, type Ctx } from './explode'
 import { floorIncident } from './floorIncident.ts'
 import { floorMarkers } from './floorMarkers.ts'
 import { type Pin, type Reveal } from './Pins'
@@ -48,6 +50,28 @@ export function Rooms({ b, floor, level, chips, play, onSelectPin }: {
   const shown = useMemo(() => ({ v: 0 }), [])
   const incident = useMemo(() => floorIncident(b, floor), [b, floor])
   const markers = useMemo(() => floorMarkers(b, floor), [b, floor])
+  // the fire area a dispatch side named (scenario.ts), on the same estimated cells the stacked view burns (App.tsx)
+  const fire = useStore((s) => (s.fire?.floor === floor ? s.fire : null))
+  const fireArea = useMemo(() => {
+    if (!fire) return undefined
+    const on = b.pins.filter((p) => p.anchor.kind === 'floor' && Math.min(p.anchor.floor, b.floors) === floor)
+    return archPlan(b, floor, on, fire.dir).fire
+  }, [b, floor, fire])
+  const burn = useMemo(
+    () =>
+      (fireArea?.cells ?? []).map((c) => {
+        const pts = c.poly.map(([x, y]) => new THREE.Vector2(x, y))
+        return {
+          heat: c.heat,
+          geo: new THREE.ShapeGeometry(new THREE.Shape(pts)),
+          ring: new THREE.BufferGeometry().setFromPoints(pts.map((p) => new THREE.Vector3(p.x, 0.36, -p.y))),
+          floor: new THREE.MeshBasicMaterial({ color: FIRE, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }),
+          line: new THREE.LineBasicMaterial({ color: '#ffb199', transparent: true, opacity: 0, toneMapped: false }),
+        }
+      }),
+    [fireArea],
+  )
+  useEffect(() => () => burn.forEach((f) => [f.geo, f.ring, f.floor, f.line].forEach((x) => x.dispose())), [burn])
   const mat = useMemo(() => {
     const base = { transparent: true, opacity: 0, toneMapped: false }
     return {
@@ -77,8 +101,13 @@ export function Rooms({ b, floor, level, chips, play, onSelectPin }: {
     [], // eslint-disable-line react-hooks/exhaustive-deps
   )
 
-  useFrame(({ camera }) => {
+  useFrame(({ camera, clock }) => {
     const v = shown.v
+    const flame = reduce ? 0.6 : 0.6 + 0.25 * Math.sin(clock.elapsedTime * 5.3) + 0.15 * Math.sin(clock.elapsedTime * 8.9 + 1.3)
+    for (const f of burn) {
+      f.floor.opacity = v * Math.min(1, f.heat * (0.7 + 0.3 * flame)) // origin near solid, spread about half
+      f.line.opacity = v * f.heat
+    }
     const fire = incident.here.length > 0 // a dispatch or crew report on this floor, never a historical record
     mat.paper.opacity = v
     mat.slab.color.set(fire ? ink.fireSlab : ink.slab)
@@ -102,13 +131,18 @@ export function Rooms({ b, floor, level, chips, play, onSelectPin }: {
     const w = root.current!.getWorldPosition(new THREE.Vector3())
     const [x0, x1, y0, y1] = model.bounds
     // frame ONLY this floor: hydrants belong at street level, not floating on floor 22
-    const r = Math.hypot(x1 - x0, y1 - y0) * Math.max(1.32, 1.32 / c.aspect)
+    let r = Math.hypot(x1 - x0, y1 - y0) * Math.max(1.32, 1.32 / c.aspect)
+    // reached from the fire: land on the fire area, closer in, with the rest of the floor around it
+    const at = useStore.getState().roomsAt === 'fire' && fireArea ? fireArea.c : null
+    const [mx, my] = [(x0 + x1) / 2, (y0 + y1) / 2]
+    const [cx, cy] = at ? [mx + 0.7 * (at[0] - mx), my + 0.7 * (at[1] - my)] : [mx, my]
+    if (at) r *= 0.8
     c.tl
       .to(chips, { v: 0, duration: t(0.25), ease: 'power2.in' }, 0)
       .to(c.fades, { a: (f: number) => (f === floor ? 1 : 0), duration: t(0.7), ease: 'sine.inOut' }, 0)
       .call(() => setSlab(false), [], t(0.3))
       .to(shown, { v: 1, duration: t(1.1), ease: 'power2.inOut' }, t(0.25))
-      .to(c.pose, { phi: 53 * DEG, theta: near(c.pose.theta, 18 * DEG), r, tx: w.x + (x0 + x1) / 2, ty: w.y, tz: w.z - (y0 + y1) / 2, duration: t(1.6), ease: 'power3.inOut' }, 0)
+      .to(c.pose, { phi: 53 * DEG, theta: near(c.pose.theta, 18 * DEG), r, tx: w.x + cx, ty: w.y, tz: w.z - cy, duration: t(1.6), ease: 'power3.inOut' }, 0)
       .call(() => setRooms('on'))
   }
   const close = (c: Ctx) => {
@@ -139,6 +173,19 @@ export function Rooms({ b, floor, level, chips, play, onSelectPin }: {
       <mesh geometry={model.plate} material={mat.slab} renderOrder={4} raycast={noRaycast} />
       <lineSegments geometry={model.plateEdges} material={mat.line} renderOrder={5} raycast={noRaycast} />
       <lineSegments geometry={model.grid} material={mat.grid} renderOrder={5} raycast={noRaycast} />
+      {burn.map((f, i) => (
+        <group key={`fire${i}`}>
+          <mesh geometry={f.geo} material={f.floor} rotation-x={-Math.PI / 2} position-y={0.34} renderOrder={5} raycast={noRaycast} />
+          <lineLoop geometry={f.ring} material={f.line} renderOrder={5} raycast={noRaycast} />
+        </group>
+      ))}
+      {rooms === 'on' && fire && fireArea && (
+        <Html position={[fireArea.c[0], 6, -fireArea.c[1]]} center zIndexRange={[12, 8]}>
+          <button className="fire-tag" onClick={() => { const p = b.pins.find((q) => q.origin === 'dispatch' && q.anchor.kind === 'floor' && q.anchor.floor === floor); if (p) onSelectPin(p) }} aria-label={`Fire area, ${fire.side}, simulated. Open the dispatch record`}>
+            <i aria-hidden />FIRE · {fire.side.toUpperCase()}<small>simulated · from dispatch</small>
+          </button>
+        </Html>
+      )}
       <group ref={reveal}>
         <mesh geometry={model.walls} material={mat.wall} renderOrder={6} raycast={noRaycast} />
         <mesh geometry={model.windows} material={mat.glass} renderOrder={7} raycast={noRaycast} />

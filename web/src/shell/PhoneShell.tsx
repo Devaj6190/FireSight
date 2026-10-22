@@ -49,7 +49,7 @@ function useSolid() {
 }
 
 export function PhoneShell({ building: b, children, phase, selectedPin, onBuilding, onDispatch, onToggle, onSelectPin, onHighlight, onFocusFloor, onAddPin }: Props) {
-  const { target, lit, rooms, toggleRooms, resetView } = useStore()
+  const { target, lit, rooms, fire, toggleRooms, goToFire, resetView } = useStore()
   const [page, setPage] = useState<Page>('hazards')
   const [open, setOpen] = useState(() => wide() || b.pins.some(p => p.origin === 'dispatch'))
   const [dir, setDir] = useState(0)
@@ -181,7 +181,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
         <strong>{b.address}</strong>
       </button>
       <ul className="fs-facts" aria-label="Key facts">
-        {df !== null && <li className="fs-fact fire" style={{ '--i': 0 } as CSSProperties}><button onClick={() => { onFocusFloor(df); go('floors') }}><Flame size={13} aria-hidden />Floor {floorName(df)}</button></li>}
+        {df !== null && <li className="fs-fact fire" style={{ '--i': 0 } as CSSProperties}><button onClick={() => { if (fire?.floor === df) goToFire(); else onFocusFloor(df); go('floors') }}><Flame size={13} aria-hidden />Floor {floorName(df)}</button></li>}
         {facts.map((f, i) => <li key={f.id} className={`fs-fact ${f.tone ?? ''}`} style={{ '--i': i + 1 } as CSSProperties}>{f.text}</li>)}
       </ul>
       <button className={`fs-badge ${c.danger ? 'danger' : 'caution'}`} key={`${b.id}-${c.danger}`} onClick={() => { setFilter(c.danger ? 'danger' : 'caution'); if (page !== 'hazards' || !isOpen) go('hazards') }} aria-label={`${c.danger || c.caution} ${c.danger ? 'danger' : 'caution'} records`}>
