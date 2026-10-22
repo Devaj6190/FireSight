@@ -30,6 +30,9 @@ const base = hasB1 ? 1 : 0
 type Kind = 'fire' | 'exposure' | 'people' | 'plain'
 const kindOf = (f: number): Kind => (f === fire ? 'fire' : fire !== null && f > fire ? 'exposure' : people.has(f) ? 'people' : 'plain')
 const nameOf = (f: number) => (f === 0 ? 'B1' : `Floor ${f}`)
+const nodeOf = (f: number) => (f === 0 ? 'fB1' : `f${f}`)
+const clipOf = (f: number) => `pull-${f === 0 ? 'B1' : f}`
+const ease = (p: number) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2) // easeInOutCubic
 
 // emissiveIntensity stays 1 so the exporter adds no optional glTF extension (some AR viewers reject them)
 const mat = (name: string, color: string, emissive = '#000000') => {
@@ -55,7 +58,7 @@ async function build(assembled: boolean) {
   floors.forEach((f, i) => {
     const [c, e] = PAL[kindOf(f)]
     const mesh = new THREE.Mesh(plate, mat(nameOf(f), c, e))
-    mesh.name = nameOf(f)
+    mesh.name = nodeOf(f) // the material keeps the readable name; node names must survive three's track-name sanitising
     mesh.position.y = (i - base) * (h + gap)
     root.add(mesh)
   })
@@ -89,9 +92,49 @@ async function build(assembled: boolean) {
   }).sort((a, c) => a.floor - c.floor)
   peoplePins.forEach((p, i) => hot.push({ id: `people-${p.floor}`, text: `${p.n} ${p.n === '1' && p.kind === 'units' ? 'unit' : p.kind} · floor ${p.floor}`, tone: 'people', ...pt(i % 2 === 0 ? 'right' : 'left', p.floor), floor: p.floor }))
 
+  // Pull-out clips (exploded variant only): clip "pull-N" slides floor N out of the tower toward the viewer (+z, the side the
+  // default camera looks from), lifts it to the tower's middle height, grows it and tilts its top toward the camera, while every
+  // other floor and the ground plate shrink to nothing (staggered by distance from N). model-viewer plays it, also in AR.
+  const clips: THREE.AnimationClip[] = []
+  if (!assembled) {
+    const DUR = 1.2, STEPS = 5
+    const times = Array.from({ length: STEPS + 1 }, (_, k) => (k * DUR) / STEPS)
+    const depth = Math.max(...ys) - Math.min(...ys)
+    const [cx, cy] = [(Math.max(...xs) + Math.min(...xs)) / 2, (Math.max(...ys) + Math.min(...ys)) / 2]
+    const ctr = new THREE.Vector3(cx, slab / 2, -cy) // pivot: the plate's own centre, so it grows in place
+    const midY = ((floors.length - 1) / 2 - base) * (h + gap) + slab / 2
+    const YAW = (25 * Math.PI) / 180 // the default camera-orbit azimuth in ar.html
+    const lift = 0.27 * floors.length * (h + gap) // lands above the middle so the info card does not cover it
+    const GROW = 1.25, TILT = (62 * Math.PI) / 180 // the camera looks down about 18 degrees, so tilt the top toward it until the plan faces you
+    floors.forEach((n, ni) => {
+      const tracks: THREE.KeyframeTrack[] = []
+      const pos0 = new THREE.Vector3(0, (ni - base) * (h + gap), 0)
+      const pos: number[] = [], scl: number[] = [], rot: number[] = []
+      for (const t of times) {
+        const p = ease(t / DUR)
+        const s = 1 + (GROW - 1) * p
+        const q = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), YAW * p).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), TILT * p)) // tilt, then turn to the default camera
+        const P = new THREE.Vector3(Math.sin(YAW) * depth * 0.6 * p, (midY + lift - (pos0.y + slab / 2)) * p, Math.cos(YAW) * depth * 0.6 * p) // along the camera direction
+        // node translation T so that the plate scales and tilts about its centre: T = pos0 + P + c - R S c
+        const T = pos0.clone().add(P).add(ctr).sub(ctr.clone().multiplyScalar(s).applyQuaternion(q))
+        pos.push(T.x, T.y, T.z); scl.push(s, s, s); rot.push(q.x, q.y, q.z, q.w)
+      }
+      tracks.push(new THREE.VectorKeyframeTrack(`${nodeOf(n)}.position`, times, pos), new THREE.VectorKeyframeTrack(`${nodeOf(n)}.scale`, times, scl), new THREE.QuaternionKeyframeTrack(`${nodeOf(n)}.quaternion`, times, rot))
+      floors.forEach((m, mi) => {
+        if (m === n) return
+        const d = Math.min(0.35, Math.abs(mi - ni) * 0.03) // nearer floors start to fade first
+        const sv = times.flatMap((t) => { const s = Math.max(0.001, 1 - ease(Math.min(1, Math.max(0, (t - d) / (DUR - d))))); return [s, s, s] })
+        tracks.push(new THREE.VectorKeyframeTrack(`${nodeOf(m)}.scale`, times, sv))
+      })
+      const gs = times.flatMap((t) => { const s = Math.max(0.001, 1 - ease(t / DUR)); return [s, s, s] })
+      tracks.push(new THREE.VectorKeyframeTrack('Ground.scale', times, gs))
+      clips.push(new THREE.AnimationClip(clipOf(n), DUR, tracks))
+    })
+  }
+
   const scene = new THREE.Scene()
   scene.add(root)
-  const glb = (await new GLTFExporter().parseAsync(scene, { binary: true })) as ArrayBuffer
+  const glb = (await new GLTFExporter().parseAsync(scene, { binary: true, animations: clips })) as ArrayBuffer
   const out = new URL(`../public/ar/${id}${assembled ? '-assembled' : ''}.glb`, import.meta.url)
   writeFileSync(out, Buffer.from(glb))
   console.log(`${id}${assembled ? ' assembled' : ''}: ${floors.length} floors, fire ${fire ?? 'none'}, ${(glb.byteLength / 1024).toFixed(0)} KB`)
