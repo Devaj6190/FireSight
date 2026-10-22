@@ -1067,7 +1067,7 @@
    "origin": "public",
    "severity": "info",
    "label": "R2 COMPANY INSPECTION",
-   "detail": "R2 Company Inspection, status Completed. SFFD inspection 618751 on 2026-10-08.",
+   "detail": "R2 Company Inspection, status Completed. SFFD inspection 618751 on 2026-10-08; 8 on record, newest first.",
    "anchor": {
     "kind": "building"
    },
