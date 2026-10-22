@@ -2,9 +2,5 @@
 .room-label { margin-top: 34px; display: flex; flex-direction: column; align-items: center; padding: 3px 6px; white-space: nowrap; border-radius: 6px; background: color-mix(in srgb, var(--fs-bg) 85%, transparent); border: 1px solid var(--fs-action); color: var(--fs-ink); font: 600 11px/1.3 'IBM Plex Sans', system-ui, sans-serif; letter-spacing: 0.03em; }
 .room-label span { font: 500 9px/1.3 'IBM Plex Mono', monospace; color: var(--fs-muted); }
 .room-label.core { margin-top: 0; border-style: dashed; border-color: var(--fs-muted); color: var(--fs-muted); font: 500 9.5px/1.3 'IBM Plex Mono', monospace; }
-/* sits in the status row, right of the phase, so it never covers chips (Pins.tsx reserves the top 36 px) */
+/* top right of the stage, clear of the notice on the left */
 .rooms-banner { position: absolute; top: 8px; right: 16px; margin: 0; pointer-events: auto; padding: 3px 7px; border: 1px dashed var(--fs-muted); border-radius: 5px; background: var(--fs-bg); color: var(--fs-ink); font: 10px/1.5 'IBM Plex Mono', monospace; }
-.rooms-toggle { position: absolute; bottom: 10px; right: 16px; min-height: 48px; padding: 8px 12px; background: var(--fs-surface); border: 1px solid var(--fs-action); border-radius: 10px; color: var(--fs-action); font: 600 13px 'IBM Plex Sans', system-ui, sans-serif; }
-.rooms-toggle[aria-pressed='true'] { background: var(--fs-action); color: var(--fs-action-ink); }
-.rooms-toggle:disabled { opacity: 0.6; }
-.rooms-toggle:focus-visible { outline: 2px solid var(--fs-action); outline-offset: 3px; }

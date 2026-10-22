@@ -1,14 +1,14 @@
-// Night Watch tokens (docs/design.md s2) for R3F materials
+// Night Watch tokens (docs/design.md s2), warmed to soot; keep in step with index.css. For R3F materials
 export const fs = {
-  bg: '#0d0f12',
-  line: '#2a2f37',
+  bg: '#0f0e0c',
+  line: '#36312b',
   action: '#ff9f1c',
   slab: '#262b33',
   slabTop: '#3a414b',
   ground: '#13161b',
-  ink: '#f4f3ee',
-  surface: '#171a1f',
-  muted: '#9aa0a8',
+  ink: '#f5f1e8',
+  surface: '#191715',
+  muted: '#a39b8f',
   danger: '#e5261f',
   caution: '#ffb020',
   // city context, flat daytime map style: the hero keeps the darker outline so it reads first

@@ -173,21 +173,13 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
   )
 }
 
-// DOM over the stage: the Rooms toggle and, while rooms show, the schematic disclaimer (never off while rooms are up)
+// DOM over the stage: while rooms show, the schematic disclaimer (never off while rooms are up). The toggle lives in the shell's dock.
 export function RoomsOverlay() {
-  const { phase, target, rooms, toggleRooms } = useStore()
-  if (phase !== 'exploded' || target === null) return null
-  const busy = rooms === 'opening' || rooms === 'closing'
+  const { phase, target, rooms } = useStore()
+  if (phase !== 'exploded' || target === null || rooms === 'off') return null
   return (
-    <>
-      {rooms !== 'off' && (
-        <p className="rooms-banner" role="note" title="Room shapes and the core are generated, not surveyed. Named rooms come from cited records; where they sit on the floor is not public.">
-          SCHEMATIC LAYOUT: NO PUBLIC FLOOR PLAN
-        </p>
-      )}
-      <button className="rooms-toggle" disabled={busy} aria-pressed={rooms === 'on'} onClick={toggleRooms}>
-        {rooms === 'off' ? `Rooms · floor ${target === 0 ? 'B1' : target}` : busy ? '…' : 'Back to floors'}
-      </button>
-    </>
+    <p className="rooms-banner" role="note" title="Room shapes and the core are generated, not surveyed. Named rooms come from cited records; where they sit on the floor is not public.">
+      SCHEMATIC LAYOUT: NO PUBLIC FLOOR PLAN
+    </p>
   )
 }
