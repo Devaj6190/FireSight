@@ -22,6 +22,30 @@ const pending = { readout: false }
 const FIRE = /\b(fire|smoke|flames?|alarm|dispatch|structure|responding)\b/i
 const PEOPLE = /\b(people|persons?|victims?|occupants?|someone|trapped|caller|child|children|kids?)\b/i
 
+type Intent = 'dispatch' | 'report' | 'question' | 'explode' | 'collapse' | 'brief' | 'stop'
+type Decision = { intent: Intent; confidence: number | null; model: string; ms: number }
+const MIN_CONFIDENCE = 0.5
+
+// Keyword rules: used when Jev is off, slow or unreachable.
+function ruleIntent(t: string): Intent {
+  if (/^(stop|quiet|cancel|shut up)\b/i.test(t)) return 'stop'
+  if (/\b(collapse|reset|close it)\b/i.test(t)) return 'collapse'
+  if (/\b(explode|open it|open up|show floors)\b/i.test(t)) return 'explode'
+  if (/\b(size.?up|brief|read it|summary|what do we have)\b/i.test(t)) return 'brief'
+  if (dispatchBuilding(t) === null && PEOPLE.test(t) && parseDispatchText(t).floor !== null) return 'report'
+  if (dispatchBuilding(t) !== null || FIRE.test(t)) return 'dispatch'
+  return 'question'
+}
+
+async function classify(text: string): Promise<Decision | null> {
+  try {
+    const res = await fetch('/api/intent', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text }), signal: AbortSignal.timeout(1500) })
+    return res.ok ? ((await res.json()) as Decision) : null
+  } catch {
+    return null
+  }
+}
+
 // A dispatch update ("people trapped on 23") becomes a dispatch pin, so the brief, Ask and the 3D all see it.
 function reportPin(text: string, floor: number): Pin {
   const at = new Date().toISOString()
@@ -53,6 +77,7 @@ async function warmBrief(text: string, target: string | null, current: Building)
 export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onToggle, onAddPin }: Props) {
   const [state, setState] = useState<'idle' | 'listening' | 'thinking' | 'speaking'>('idle')
   const [caption, setCaption] = useState('')
+  const [decision, setDecision] = useState<Decision | null>(null)
   const [step, setStep] = useState<[number, number]>([0, 0])
   const stopRef = useRef<() => void>(() => {})
 
@@ -102,23 +127,29 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
     const t = text.trim()
     if (!t) return setState('idle')
     setCaption(`“${t}”`)
-    if (/^(stop|quiet|cancel|shut up)\b/i.test(t)) {
+    // Jev decides what was meant; below its confidence threshold FireSight asks again instead of guessing.
+    const decision = await classify(t)
+    setDecision(decision)
+    if (decision && decision.confidence !== null && decision.confidence < MIN_CONFIDENCE) return say(['Say again?'])
+    const intent = decision?.intent ?? ruleIntent(t)
+    if (intent === 'stop') {
       stopSpeaking()
       return setState('idle')
     }
-    if (/\b(collapse|reset|close it)\b/i.test(t)) {
+    if (intent === 'collapse') {
       if (phase === 'exploded') onToggle()
       return say(['Collapsing.'])
     }
-    if (/\b(explode|open it|open up|show floors)\b/i.test(t)) {
+    if (intent === 'explode') {
       if (phase === 'assembled') onToggle()
       return say(['Opening the floors.'])
     }
-    if (/\b(size.?up|brief|read it|summary|what do we have)\b/i.test(t)) return say(spokenBrief(b))
+    if (intent === 'brief') return say(spokenBrief(b))
 
     const target = dispatchBuilding(t)
     const reported = parseDispatchText(t).floor
-    if (target === null && PEOPLE.test(t) && reported !== null && reported >= 0 && reported <= b.floors) {
+    if (intent === 'report' && target === null && (reported === null || reported < 0 || reported > b.floors)) return say(['Which floor?'])
+    if (intent === 'report' && target === null && reported !== null) {
       const pin = reportPin(t, reported)
       const next = { ...b, pins: [...b.pins, pin] }
       onAddPin(pin)
@@ -126,7 +157,7 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
       return
     }
     if (target === '') return say(["That address isn't cached. I have 140 New Montgomery, 400 Duboce, 1018 Mission and 1433 Haight."])
-    if (target !== null || FIRE.test(t)) {
+    if (intent === 'dispatch' || target !== null) {
       setState('thinking')
       pending.readout = true
       ack('Copy.')
@@ -175,7 +206,15 @@ export function VoiceCommand({ building: b, phase, onDispatch, onHighlight, onTo
     <div className={`voice-wrap ${state}`} aria-live="polite">
       {caption && (
         <p className={`voice-caption ${state}`}>
-          <span className="voice-who">{label}</span>
+          <span className="voice-who">
+            {label}
+            {decision && state !== 'listening' && (
+              <span className="voice-jev" title={`${decision.model} · ${decision.ms} ms`}>
+                JEV · {decision.intent}
+                {decision.confidence !== null ? ` · ${decision.confidence.toFixed(2)}` : ''}
+              </span>
+            )}
+          </span>
           {caption}
         </p>
       )}
