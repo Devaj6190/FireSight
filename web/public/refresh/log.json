@@ -202,5 +202,98 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:50:49+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 15625,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:50:49+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 48347,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:51:04+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 41300,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T20:51:37+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 88,
+  "sourcesFailed": 2,
+  "ms": 147293,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:23:07+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 6,
+  "ms": 84366,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:23:07+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 41244,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:23:48+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 2,
+  "ms": 42725,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:24:31+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 88,
+  "sourcesFailed": 0,
+  "ms": 80213,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "permit-permitsf-active",
+    "label": "11 OPEN PERMITS: WORK IN PROGRESS"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]

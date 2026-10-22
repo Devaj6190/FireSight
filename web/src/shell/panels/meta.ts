@@ -15,7 +15,7 @@ export function metaOf(b: Building): BuildingMeta {
   return ((b as Building & { meta?: BuildingMeta }).meta ?? {}) as BuildingMeta
 }
 
-// Datasets the city publishes late or only once. A layer's asOf is the fetch date, so the real lag is stated here.
+// Datasets the city publishes late or only once. A layer's asOf is its newest record date; the publishing lag is stated here.
 // ageYear: shown as an AGE tag and sorted to the bottom of the sources drawer.
 export const LAG: Record<string, { note: string; ageYear?: number }> = {
   fire_incidents: { note: 'about 4 weeks behind' },

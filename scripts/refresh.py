@@ -96,7 +96,8 @@ def keep_last_good(old, new):
     for i, l in enumerate(new.get("layers", [])):
         prev = old_layers.get(l["layer"])
         if l["status"] == "fetch_failed" and prev:
-            new["layers"][i] = {**prev, "status": "fetch_failed", "ms": l["ms"]}
+            last_good = prev.get("lastGoodAt") or ((prev.get("fetchedAt") or prev.get("asOf")) if prev.get("status") != "fetch_failed" else None)
+            new["layers"][i] = {**prev, "status": "fetch_failed", "ms": l["ms"], "fetchedAt": l.get("fetchedAt"), "lastGoodAt": last_good}
             failed_ds.update({l["datasetId"], l["layer"]})  # evidence may cite the layer key (e.g. osm)
     have = {p["id"] for p in new["pins"]}
     for p in old.get("pins", []):

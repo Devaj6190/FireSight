@@ -11,7 +11,7 @@ The recipe was researched against vercel.com docs and the vercel/vercel source, 
   - `.vercelignore`
   - this file
 - **The account:** use your own Vercel account (Devaj6190 owns the GitHub repo, so importing it is simplest). Tell Vidyut which account before connecting anything.
-- **The key:** Vidyut enters `ANTHROPIC_API_KEY` in the Vercel dashboard himself. Never put it in a file, a commit, chat or a screenshot.
+- **The key (updated 13:58):** Devaj owns the Vercel project, so Devaj adds `ANTHROPIC_API_KEY` there himself: his own Anthropic key, or Vidyut's sent by private DM. Never put it in a file, a commit, a group chat or a screenshot.
 - **Deploy from Git (import the GitHub repo), not from the CLI.** The CLI uploads `.env` files unless they are ignored. `.vercelignore` covers that, but Git deploys never see gitignored files at all.
 
 ## 1. Files to add (one PR from your branch)
@@ -65,7 +65,7 @@ Also add `.vercel` to the repo-root `.gitignore`.
 | Include files outside the root directory in the Build Step | **ON** (the function imports `../api` and `../shared`) |
 | Framework preset | Vite (build `npm run build`, output `dist`; the install command comes from `vercel.json`) |
 | Node.js version | 22.x (Settings, Build and Deployment) |
-| Env: `ANTHROPIC_API_KEY` | entered by Vidyut, marked Sensitive, Production + Preview |
+| Env: `ANTHROPIC_API_KEY` | entered by Devaj (his own key, or Vidyut's by private DM), marked Sensitive, Production + Preview |
 | Env: `FIRESIGHT_CASES_DIR` | `/tmp/cases` (the serverless disk is read-only; struck lines last only while the function is warm) |
 | Production branch | `main` (every merge redeploys; the 30-min data refresh commits redeploy too) |
 

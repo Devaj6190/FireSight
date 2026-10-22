@@ -46,6 +46,8 @@ export interface LayerStatus {
   datasetId?: string; // additive
   source?: string; // additive: human name for the sources drawer
   records?: number; // additive: rows matched
+  fetchedAt?: string; // additive: date of this fetch attempt
+  lastGoodAt?: string | null; // additive: date of the last successful fetch (kept when status is fetch_failed)
 }
 
 export interface Conflict {
