@@ -32,6 +32,8 @@ test('water sorted nearest first, titles without the distance', () => {
   const { water, wind } = siteOf(hero)
   assert.deepEqual(water.map(s => s.distanceM), [...water.map(s => s.distanceM)].sort((a, b) => a - b))
   assert.ok(water.every(s => !/\d+ M\b/.test(s.title)))
-  assert.equal(wind?.dir, 'N')
+  const w = hero.pins.find(p => p.layer === 'wind')!.anchor
+  assert.equal(wind?.dir, compass(w.kind === 'ground' ? w.bearingDeg : -1)) // live data: the refresh moves the wind
+  assert.equal(compass(359), 'N')
   assert.equal(compass(342), 'NNW')
 })
