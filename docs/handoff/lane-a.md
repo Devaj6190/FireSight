@@ -133,3 +133,5 @@ Run `date`, `git fetch && git checkout lane-a-3d`, read the files listed above, 
 
 9. **13:00: you own the Vercel deploy.** Step by step in `docs/handoff/deploy.md`. Preview URL target 14:15. Tell Vidyut which Vercel account first; Vidyut enters the API key himself.
 10. **13:00: the hero is 140 New Montgomery St (sf-3722080).** Make it the default building and keep `?building=sf-0874003` working. Rishit is rebuilding `sf-3722080.json` through the pipeline (layers, resolution, inspections): take his file over your hand-made one when his PR lands.
+
+**13:10: read `docs/plan/plan-v4-hero.md` section 2 (your lane) and section 1 (the new demo script).** Floor 0 means B1 (below grade), per the contract.

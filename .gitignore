@@ -1,2 +1,4 @@
 data/raw/
 data/evidence_check.json
+.vercel
+.env*

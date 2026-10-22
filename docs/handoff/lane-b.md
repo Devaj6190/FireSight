@@ -135,3 +135,5 @@ Run `date`, `git fetch && git checkout lane-b-data`, read the files listed above
 9. **Rebalance (12:57):** after `scripts/refresh.py` and the workflow, build `<LimitsPanel/>`, `<SourcesDrawer/>` and `<ComplianceStrip/>` in `web/src/shell/panels/` (SETUP.md "Rebalance"; content in SETUP.md sections 7 and 10 of the hub Final plan; compliance rows from `compliance(building)` in `shared/client.ts`).
 
 10. **13:00, top priority: the hero is now 140 New Montgomery St (3722/080).** Rebuild `web/public/buildings/sf-3722080.json` through `fetch_sources.py` and `build_fixture.py`, so it has layers, resolution links (aliases 140 and 138 New Montgomery), SFFD inspections (High Rise Annual Inspection), violations, fire permits (battery rooms, floors 22 and 23; B1 fire pump and diesel), Tall Building Inventory (90% sprinklered) and water. Devaj's hand-made file is on his branch; your built file replaces it. PR it as soon as it builds. Then do the refresh job and the panels.
+
+**13:10: read `docs/plan/plan-v4-hero.md` section 2 (your lane) and section 1 (the new demo script).** Floor 0 means B1 (below grade), per the contract.
