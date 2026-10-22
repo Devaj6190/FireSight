@@ -1,14 +1,17 @@
 // Floor pins: dot (+ soft glow for danger) on the slab, a leader stem, and a dark dated callout chip.
+// Only labelled pins (the focused floor's, see App.tsx) grow a stem and chip; the rest stay dots so the fan reads clear.
 // Chips are real 3D (troika text), not <Html>, so they also render inside a WebXR session (plan.md s3).
 // They are re-scaled every frame to a constant pixel size and drawn over the floors so they never hide.
 import { Billboard, Line, Text } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
-import sansBold from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff?url'
-import monoMedium from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff?url'
+import sansBold from '@fontsource/geist/files/geist-latin-600-normal.woff?url'
+import monoMedium from '@fontsource/geist-mono/files/geist-mono-latin-500-normal.woff?url'
 import { reduce } from './explode'
+import { useStore } from './store'
 import { fs } from './tokens'
+import { displayLabel } from './shell/Floors'
 
 import type { Pin } from '../../shared/building'
 export type { Pin }
@@ -33,7 +36,8 @@ const PAD_Y = 8
 const TEXT_X = PAD_X + 14 // after the severity dot
 const CHIP_H = 44
 const GAP = 6
-const TOP = 36 // px reserved for the status row
+const TOP = 28 // px reserved under the top bar for the notice line
+const DOT_PX = 5 // the dot never draws smaller than this radius on screen
 
 // Screen-space declutter. Every pin reports its stem top in screen px and its chip width; one pass per frame picks
 // the chip's side (toward screen centre), clamps it on screen, pushes overlapping chips up, and glides them there.
@@ -44,10 +48,13 @@ const slots = new Map<string, Slot>()
 export function Declutter() {
   const size = useThree((s) => s.size)
   useFrame(() => {
+    const inset = useStore.getState().inset // chips stay in the part of the canvas the shell leaves uncovered
+    const left = inset.left + 8, right = size.width - inset.right - 8, top = inset.top + TOP
+    const mid = (left + right) / 2
     const placed: { x0: number; x1: number; top: number; bottom: number }[] = []
     for (const s of [...slots.values()].filter((s) => s.on)
       .sort((a, b) => a.rank - b.rank || b.ay - a.ay)) { // danger keeps its spot; the rest fit around it
-      const x0 = Math.min(Math.max(s.ax < size.width / 2 ? s.ax + 8 : s.ax - 8 - s.w, 8), size.width - 8 - s.w)
+      const x0 = Math.min(Math.max(s.ax < mid ? s.ax + 8 : s.ax - 8 - s.w, left), right - s.w)
       let bottom = s.ay - GAP // screen y grows down; the chip sits just above its stem top
       for (let moved = true; moved; ) {
         moved = false
@@ -58,8 +65,8 @@ export function Declutter() {
           }
       }
       // no room left under the status row: fade the chip out (dot and stem stay) instead of piling chips up there
-      const fits = bottom >= TOP + CHIP_H
-      bottom = Math.max(bottom, TOP + CHIP_H)
+      const fits = bottom >= top + CHIP_H && bottom <= size.height - inset.bottom
+      bottom = Math.max(bottom, top + CHIP_H)
       if (fits) placed.push({ x0, x1: x0 + s.w, top: bottom - CHIP_H, bottom })
       const tx = x0 - s.ax
       const ty = s.ay - bottom
@@ -90,16 +97,16 @@ function roundedRect(w: number, h: number, r: number) {
   return new THREE.ShapeGeometry(s)
 }
 
-// soft warm radial falloff, drawn once and shared by every danger glow
+// soft red radial falloff, drawn once and shared by every danger glow
 const glowMap = (() => {
   const c = document.createElement('canvas')
   c.width = c.height = 128
   const g = c.getContext('2d')!
   const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64)
-  grad.addColorStop(0, 'rgba(255, 196, 110, 1)')
-  grad.addColorStop(0.22, 'rgba(255, 140, 40, 0.6)')
-  grad.addColorStop(0.55, 'rgba(255, 96, 20, 0.18)')
-  grad.addColorStop(1, 'rgba(255, 80, 0, 0)')
+  grad.addColorStop(0, 'rgba(255, 170, 160, 1)')
+  grad.addColorStop(0.22, 'rgba(255, 77, 79, 0.6)')
+  grad.addColorStop(0.55, 'rgba(255, 60, 60, 0.18)')
+  grad.addColorStop(1, 'rgba(255, 40, 40, 0)')
   g.fillStyle = grad
   g.fillRect(0, 0, 128, 128)
   const t = new THREE.CanvasTexture(c)
@@ -109,7 +116,7 @@ const glowMap = (() => {
 
 const overlay = (color: string) => new THREE.MeshBasicMaterial({ color, transparent: true, depthTest: false, depthWrite: false, fog: false, toneMapped: false })
 
-export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?: number; at: [number, number, number]; reveal: Reveal; fade: { a: number } }) {
+export function PinMarker({ pin, more = 0, at, reveal, fade, labelled = true }: { pin: Pin; more?: number; at: [number, number, number]; reveal: Reveal; fade: { a: number }; labelled?: boolean }) {
   const base = useRef<THREE.Mesh>(null)
   const stem = useRef<THREE.Group>(null)
   const chip = useRef<THREE.Group>(null)
@@ -118,6 +125,7 @@ export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?
   const label = useRef<ComponentRef<typeof Text>>(null)
   const sub = useRef<ComponentRef<typeof Text>>(null)
   const widths = useRef([0, 0])
+  const lab = useRef(labelled ? 1 : 0) // eases toward labelled, so a chip grows out of its dot on focus
   const [w, setW] = useState(180)
   const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera
   const size = useThree((s) => s.size)
@@ -154,11 +162,13 @@ export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?
   useFrame(({ clock }) => {
     // never toggle visibility: hidden objects skip text layout and shader compile, which then hitch on reveal
     const v = Math.max(reveal.v, 1e-4)
-    base.current!.scale.setScalar(v)
-    stem.current!.scale.y = Math.min(1, v * 1.6) // the stem draws first, the chip follows
-    const cv = Math.max(0, (v - 0.3) / 0.7)
+    lab.current += ((labelled ? 1 : 0) - lab.current) * (reduce ? 1 : 0.14)
+    const l = lab.current
+    const pxPerUnit = (2 * base.current!.getWorldPosition(world).distanceTo(camera.position) * Math.tan((camera.fov * Math.PI) / 360)) / size.height
+    base.current!.scale.setScalar(v * Math.max(1, (DOT_PX * pxPerUnit) / 0.7))
+    stem.current!.scale.y = Math.max(1e-4, Math.min(1, v * 1.6) * l) // the stem draws first, the chip follows
+    const cv = Math.max(0, (v - 0.3) / 0.7) * Math.max(0, (l - 0.3) / 0.7)
     chip.current!.getWorldPosition(world)
-    const pxPerUnit = (2 * world.distanceTo(camera.position) * Math.tan((camera.fov * Math.PI) / 360)) / size.height
     chip.current!.scale.setScalar(pxPerUnit * (0.85 + 0.15 * cv))
     ndc.copy(world).project(camera)
     if (!slot.on && cv > 0) slot.fresh = true
@@ -168,11 +178,12 @@ export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?
     pos.setXYZ(1, slot.x < 0 ? slot.x + w : slot.x, slot.y, 0)
     pos.needsUpdate = true
     const a = cv * fade.a * slot.show // focus dims the chips of faded floors with their slabs
-    mats.border.opacity = mats.bg.opacity = mats.dot.opacity = (leader.material as THREE.LineBasicMaterial).opacity = a
+    mats.border.opacity = mats.dot.opacity = (leader.material as THREE.LineBasicMaterial).opacity = a
+    mats.bg.opacity = 0.9 * a
     label.current!.fillOpacity = sub.current!.fillOpacity = a
     if (glow.current) {
       const beat = reduce ? 0 : Math.sin((clock.elapsedTime * 2 * Math.PI) / 1.2) // design.md: 1.2 s danger pulse
-      glow.current.scale.setScalar(16 * (1 + 0.12 * beat) * v)
+      glow.current.scale.setScalar(Math.max(16, 26 * pxPerUnit) * (1 + 0.12 * beat) * v)
       glow.current.material.opacity = (0.8 + 0.2 * beat) * v * fade.a
     }
   })
@@ -202,8 +213,8 @@ export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?
             <Text
               ref={label}
               font={sansBold}
-              fontSize={12.5}
-              letterSpacing={0.04}
+              fontSize={13}
+              letterSpacing={-0.005}
               color={fs.ink}
               anchorX="left"
               anchorY="top"
@@ -213,7 +224,7 @@ export function PinMarker({ pin, more = 0, at, reveal, fade }: { pin: Pin; more?
               onSync={measure(0)}
             >
               {/* ponytail: fixed cut so a chip fits a 360 px phone; the full label goes on the provenance card */}
-              {pin.label.length > 30 ? `${pin.label.slice(0, 29).trimEnd()}…` : pin.label}
+              {(l => (l.length > 30 ? `${l.slice(0, 29).trimEnd()}…` : l))(displayLabel(pin.label))}
             </Text>
             <Text
               ref={sub}

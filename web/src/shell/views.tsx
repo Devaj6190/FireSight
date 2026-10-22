@@ -4,7 +4,7 @@ import { Boxes, Check, ChevronRight, CircleDashed, ClipboardCheck, Database, Fla
 import type { Answer, Building, Pin } from '../../../shared/building.ts'
 import { SUGGESTED_QUESTIONS } from '../../../shared/client.ts'
 import { ComplianceStrip } from './panels/index.ts'
-import { FloorPanel } from './Floors.tsx'
+import { FloorPanel, displayLabel } from './Floors.tsx'
 import { BUILDINGS, floorLabel, localTime } from './model.ts'
 import { bySeverity, counts, dispatchFloor, dispatchOf, floorName, floorSummaries, roofPins, siteOf, occupancyOf, type SiteItem } from './facts.ts'
 import { tap, useCountUp } from './motion.ts'
@@ -17,23 +17,23 @@ export function PinRow({ pin: p, i = 0, isNew, onPin }: { pin: Pin; i?: number; 
     <button className={`fs-pin ${p.severity}`} onClick={() => onPin(p)}>
       <span className="fs-sev" aria-hidden />
       <span className="fs-pin-main">
-        <strong>{p.label}</strong>
+        <strong>{displayLabel(p.label)}</strong>
         <small>{floorLabel(p)} · {e?.source.replace(/^DataSF\s+/, '') ?? (p.origin === 'public' ? 'no record' : `${p.origin} note`)} · {e?.asOf.slice(0, 10) ?? 'user supplied'}</small>
       </span>
       <span className="fs-pin-tags">
-        {isNew && <i className="new">NEW</i>}
-        {p.stale && <i className="stale">STALE</i>}
-        {p.claim === 'conflict' && <i className="conflict">CONFLICT</i>}
-        {p.claim === 'unverifiable' && <i className="unverifiable">UNVERIFIED</i>}
+        {isNew && <i className="new">New</i>}
+        {p.stale && <i className="stale">Stale</i>}
+        {p.claim === 'conflict' && <i className="conflict">Conflict</i>}
+        {p.claim === 'unverifiable' && <i className="unverifiable">Unverified</i>}
       </span>
       <ChevronRight className="fs-chev" size={18} aria-hidden />
     </button>
   </li>
 }
 
-function Stat({ n, label, tone, on, onClick }: { n: number; label: string; tone: string; on: boolean; onClick: () => void }) {
-  const v = useCountUp(n)
-  return <button className={`fs-stat ${tone}`} aria-pressed={on} onClick={() => { tap(); onClick() }}>
+function Stat({ n, of, label, tone, on, onClick, id }: { n: number; of: number; label: string; tone: string; on: boolean; onClick: () => void; id: string }) {
+  const v = useCountUp(n, 650, `${id}-${tone}`)
+  return <button className={`fs-stat ${tone}`} style={{ '--share': of ? Math.min(1, n / of) : 0 } as CSSProperties} aria-pressed={on} onClick={() => { tap(); onClick() }}>
     <b>{v}</b><span>{label}</span>
   </button>
 }
@@ -49,14 +49,14 @@ export function HazardsView({ b, arrival, filter, setFilter, onPin, onPins, onFl
   return <>
     {d && <div className="fs-dispatch fs-rise">
       <Siren size={22} aria-hidden />
-      <div><small>DISPATCH · SIMULATED</small><strong>{d.label}</strong></div>
+      <div><small>Dispatch · simulated</small><strong>{displayLabel(d.label)}</strong></div>
       {df !== null && <button className="fs-btn amber" onClick={() => { tap(); onFloor(df); onOpen('floors') }}>Floor {floorName(df)}</button>}
     </div>}
     {arrival}
     <div className="fs-stats" role="group" aria-label="Filter hazards">
-      <Stat n={c.danger} label="Danger" tone="danger" on={filter === 'danger'} onClick={() => setFilter('danger')} />
-      <Stat n={c.caution} label="Caution" tone="caution" on={filter === 'caution'} onClick={() => setFilter('caution')} />
-      <Stat n={c.unknown} label="Unknown" tone="unknown" on={filter === 'unknown'} onClick={() => setFilter('unknown')} />
+      <Stat id={b.id} n={c.danger} of={c.total} label="Danger" tone="danger" on={filter === 'danger'} onClick={() => setFilter('danger')} />
+      <Stat id={b.id} n={c.caution} of={c.total} label="Caution" tone="caution" on={filter === 'caution'} onClick={() => setFilter('caution')} />
+      <Stat id={b.id} n={c.unknown} of={c.unknown + c.total} label="Unknown" tone="unknown" on={filter === 'unknown'} onClick={() => setFilter('unknown')} />
     </div>
     <div className="fs-substats">
       <button aria-pressed={filter === 'stale'} onClick={() => setFilter('stale')}><History size={14} aria-hidden />{c.stale} stale</button>
@@ -64,7 +64,7 @@ export function HazardsView({ b, arrival, filter, setFilter, onPin, onPins, onFl
       <span>{c.total} records{occupancyOf(b) ? ` · ${occupancyOf(b)}` : ''}</span>
     </div>
     {filter === 'unknown'
-      ? <ul className="fs-list">{b.unknowns.map((u, i) => <li key={u} className="fs-rise fs-unknown" style={at(i)}><CircleDashed size={18} aria-hidden /><span>{u}</span><i>NO RECORD</i></li>)}</ul>
+      ? <ul className="fs-list">{b.unknowns.map((u, i) => <li key={u} className="fs-rise fs-unknown" style={at(i)}><CircleDashed size={18} aria-hidden /><span>{u}</span><i>No record</i></li>)}</ul>
       : <ul className="fs-list" key={filter}>{list.map((p, i) => <PinRow key={p.id} pin={p} i={i} isNew={newIds.has(p.id)} onPin={onPin} />)}{!list.length && <li className="fs-empty">None on record.</li>}</ul>}
     <button className="fs-link" onClick={() => onOpen('records')}>All {c.total} records <ChevronRight size={16} aria-hidden /></button>
     <ComplianceStrip building={b} onSelectPins={onPins} />
@@ -121,8 +121,8 @@ function SiteCard({ s, i, onPin, big }: { s: SiteItem; i: number; onPin: (p: Pin
   return <li className="fs-rise" style={at(i)}>
     <button className={`fs-site ${s.pin.severity}${big ? ' big' : ''}`} onClick={() => onPin(s.pin)}>
       <Dial deg={s.bearingDeg} size={big ? 60 : 48} />
-      <span className="fs-site-main"><strong>{s.title}</strong><small>{s.pin.evidence[0]?.asOf.slice(0, 4) ?? 'model'}{s.pin.stale ? ' · STALE, check on arrival' : ''}</small></span>
-      <span className="fs-dist"><b>{s.distanceM}</b><small>M {s.dir}</small></span>
+      <span className="fs-site-main"><strong>{displayLabel(s.title)}</strong><small>{s.pin.evidence[0]?.asOf.slice(0, 4) ?? 'model'}{s.pin.stale ? ' · stale, check on arrival' : ''}</small></span>
+      <span className="fs-dist"><b>{s.distanceM}</b><small>m {s.dir}</small></span>
     </button>
   </li>
 }
@@ -133,11 +133,11 @@ export function WaterView({ b, onPin }: { b: Building; onPin: (p: Pin) => void }
   return <>
     {wind && <button className="fs-wind fs-rise" onClick={() => onPin(wind.pin)}>
       <Dial deg={wind.bearingDeg} size={72} />
-      <span><small><Wind size={14} aria-hidden /> {from}</small><b>{to?.replace(/^SMOKE TO\s*/, 'Smoke → ') ?? wind.title}</b><em>Exposure side · forecast model</em></span>
+      <span><small><Wind size={14} aria-hidden /> {from}</small><b>{to ? displayLabel(to).replace(/^Smoke to\s*/i, 'Smoke → ') : displayLabel(wind.title)}</b><em>Exposure side · forecast model</em></span>
     </button>}
     <h3 className="fs-h3">Water supply</h3>
     <ul className="fs-list">{water.map((s, i) => <SiteCard key={s.pin.id} s={s} i={i} onPin={onPin} big={i === 0} />)}{!water.length && <li className="fs-empty">No hydrant on record nearby.</li>}</ul>
-    {missing.length > 0 && <ul className="fs-list">{missing.map((u, i) => <li key={u} className="fs-rise fs-unknown" style={at(i)}><CircleDashed size={18} aria-hidden /><span>{u}</span><i>NO RECORD</i></li>)}</ul>}
+    {missing.length > 0 && <ul className="fs-list">{missing.map((u, i) => <li key={u} className="fs-rise fs-unknown" style={at(i)}><CircleDashed size={18} aria-hidden /><span>{u}</span><i>No record</i></li>)}</ul>}
     {station && <><h3 className="fs-h3">First due</h3><ul className="fs-list"><SiteCard s={station} i={0} onPin={onPin} /></ul></>}
     {around.length > 0 && <><h3 className="fs-h3">Around the building</h3><ul className="fs-list">{around.map((s, i) => <SiteCard key={s.pin.id} s={s} i={i} onPin={onPin} />)}</ul></>}
   </>
@@ -155,9 +155,9 @@ export function AskView({ b, asking, answer, answerSource, onAsk, onPin }: {
     </form>
     {asking && <div className="fs-thinking" role="status"><i /><i /><i /><span>Checking cited records</span></div>}
     {answer && !asking && <div className="fs-answer fs-rise" role="status">
-      <span className={`fs-claim ${answer.claim}`}>{answer.claim.toUpperCase()} · {answerSource === 'fallback' ? 'SAVED ANSWER' : 'MODEL ANSWER'}</span>
+      <span className={`fs-claim ${answer.claim}`}>{answer.claim[0].toUpperCase() + answer.claim.slice(1)} · {answerSource === 'fallback' ? 'saved answer' : 'model answer'}</span>
       <p>{answer.text}</p>
-      {answer.unknowns.length > 0 && <div className="fs-tags">{answer.unknowns.map(u => <span key={u} className="fs-claim unverifiable">{u}: UNVERIFIABLE</span>)}</div>}
+      {answer.unknowns.length > 0 && <div className="fs-tags">{answer.unknowns.map(u => <span key={u} className="fs-claim unverifiable">{u}: unverifiable</span>)}</div>}
       <ul className="fs-list">{answer.pinIds.map((id, i) => { const p = b.pins.find(v => v.id === id); return p && <PinRow key={id} pin={p} i={i} onPin={onPin} /> })}</ul>
     </div>}
     <h3 className="fs-h3">{answer || asking ? 'Ask another' : 'Suggested'}</h3>

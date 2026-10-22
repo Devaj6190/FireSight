@@ -6,10 +6,14 @@ export const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-
 // a light tick on Android when a control commits; iOS ignores it
 export const tap = (ms = 8) => { try { navigator.vibrate?.(ms) } catch { /* not allowed in this frame */ } }
 
-// counts from the previous value to the new one, ease-out, so a changed number reads as a change
-export function useCountUp(value: number, ms = 650) {
-  const [shown, setShown] = useState(reduced ? value : 0)
-  const from = useRef(reduced ? value : 0)
+const counted = new Set<string>()
+// counts from the previous value to the new one, ease-out, so a changed number reads as a change.
+// With a key, the count up from zero plays once (per building); revisiting the tab shows the number straight away
+export function useCountUp(value: number, ms = 650, key?: string) {
+  const [first] = useState(() => !reduced && !(key && counted.has(key)))
+  const [shown, setShown] = useState(first ? 0 : value)
+  const from = useRef(first ? 0 : value)
+  useEffect(() => void (key && counted.add(key)), [key])
   useEffect(() => {
     if (reduced) return
     const start = performance.now(), a = from.current

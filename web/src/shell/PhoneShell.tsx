@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
 import { ChevronDown, ChevronLeft, ClipboardCheck, Crosshair, Droplet, Ellipsis, Expand, Flame, Layers, MessageCircleQuestion, PenLine, RotateCcw, Shrink, TriangleAlert, X } from 'lucide-react'
 import type { Answer, BriefLine, Building, Pin } from '../../../shared/building.ts'
 import { ask } from '../../../shared/client.ts'
@@ -29,6 +29,24 @@ const PARENT: Record<Sub, Tab | null> = { records: 'more', sources: 'more', limi
 const TITLE: Record<Page, string> = { hazards: 'Hazards', floors: 'Floors', water: 'Water & site', ask: 'Ask the records', brief: 'Size-up brief', note: 'Crew note', more: 'More', records: 'All records', sources: 'Sources', limits: 'Limits', changes: 'Changes', resolution: 'Address resolution', eval: 'Eval', crew: 'Crew radio card', respond: 'Responding to' }
 const isTab = (p: Page): p is Tab => TABS.some(t => t[0] === p)
 const wide = () => matchMedia('(min-width: 900px)').matches
+// ?glass=0 / ?glass=1 force it; otherwise a phone with few cores, or one that can't hold 45 fps after load, gets solid panels
+const glassParam = new URLSearchParams(location.search).get('glass')
+function useSolid() {
+  const [solid, setSolid] = useState(glassParam === '0' || (glassParam !== '1' && (navigator.hardwareConcurrency ?? 8) <= 4))
+  useEffect(() => {
+    if (solid || glassParam === '1') return
+    let raf = 0, n = 0, t0 = 0
+    const count = (t: number) => {
+      if (!t0) t0 = t
+      n++
+      if (t - t0 < 2000) raf = requestAnimationFrame(count)
+      else if (n / ((t - t0) / 1000) < 45) setSolid(true)
+    }
+    const id = setTimeout(() => (raf = requestAnimationFrame(count)), 1500) // after the first paint and shader compile
+    return () => { clearTimeout(id); cancelAnimationFrame(raf) }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  return solid
+}
 
 export function PhoneShell({ building: b, children, phase, selectedPin, onBuilding, onDispatch, onToggle, onSelectPin, onHighlight, onFocusFloor, onAddPin }: Props) {
   const { target, lit, rooms, toggleRooms, resetView } = useStore()
@@ -42,8 +60,14 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   const [asking, setAsking] = useState(false)
   const [approved, setApproved] = useState<BriefLine[]>([])
   const [query, setQuery] = useState('')
+  const app = useRef<HTMLDivElement>(null)
+  const topBar = useRef<HTMLElement>(null)
+  const nav = useRef<HTMLElement>(null)
   const sheet = useRef<HTMLElement>(null)
-  const drag = useRef<{ y: number; dy: number } | null>(null)
+  const drag = useRef<{ y: number; dy: number; t: number; v: number } | null>(null)
+  const solid = useSolid()
+  const [intro, setIntro] = useState(true) // entrance cascades play for the first moments of a building, never on a tab revisit
+  useEffect(() => { const id = setTimeout(() => setIntro(false), 1600); return () => clearTimeout(id) }, [])
   const active = useRef(true)
   const quiet = useRef(false) // a focus this shell asked for while showing a record: stay on the record's page
   useEffect(() => { active.current = true; return () => { active.current = false } }, [])
@@ -66,6 +90,26 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   const focused = target === null ? lit : [target, ...lit.filter(f => f !== target)]
 
   const isOpen = open || !!selectedPin // a pin tapped in the 3D opens the panel on its record
+
+  // the canvas stays full-screen; tell the camera what the chrome covers so it frames the building in the rest
+  useLayoutEffect(() => {
+    const el = app.current!, sh = sheet.current!
+    const measure = () => {
+      const w = wide(), topH = topBar.current!.offsetHeight, navBox = nav.current!.getBoundingClientRect()
+      const peek = parseFloat(getComputedStyle(el).getPropertyValue('--peek')) || 176
+      const inset = w
+        ? { top: topH, right: navBox.width + (isOpen ? sh.offsetWidth + 24 : 0), bottom: 0, left: 0 }
+        : { top: topH, right: 0, bottom: navBox.height + (isOpen ? sh.offsetHeight : peek) - 20, left: 0 }
+      el.style.setProperty('--top-h', `${topH}px`)
+      el.style.setProperty('--nav-w', `${w ? navBox.width : 0}px`)
+      el.style.setProperty('--inset-b', `${inset.bottom}px`)
+      useStore.getState().setInset(inset)
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el); ro.observe(topBar.current!)
+    return () => ro.disconnect()
+  }, [isOpen])
   const close = () => { setOpen(false); if (selectedPin) onSelectPin(undefined) }
   const say = (text: string) => setToast({ id: Date.now(), text })
   function go(next: Page) {
@@ -94,22 +138,31 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   }
   async function dispatch(text: string) { await onDispatch(text); quiet.current = true; setPage('hazards'); setFilter('danger'); setOpen(true) } // the arrival brief leads
 
-  // phone: drag the sheet header up or down; a short drag snaps back
+  // phone: drag the sheet header; a flick (> 0.5 px/ms) goes its way, a slow drag past 64 px commits, a short one snaps back.
+  // Past the open or closed end the sheet rubber-bands at 0.3
   const onDown = (e: PointerEvent) => {
     if (wide() || (e.target as HTMLElement).closest('button:not(.fs-grip)')) return
-    drag.current = { y: e.clientY, dy: 0 }
+    drag.current = { y: e.clientY, dy: 0, t: e.timeStamp, v: 0 }
     sheet.current?.setPointerCapture(e.pointerId); sheet.current?.classList.add('dragging')
   }
   const onMove = (e: PointerEvent) => {
-    if (!drag.current || !sheet.current) return
-    drag.current.dy = e.clientY - drag.current.y
-    sheet.current.style.setProperty('--drag', `${isOpen ? Math.max(-8, drag.current.dy) : Math.min(8, drag.current.dy)}px`)
+    const d = drag.current
+    if (!d || !sheet.current) return
+    const dy = e.clientY - d.y
+    d.v = 0.6 * ((dy - d.dy) / Math.max(1, e.timeStamp - d.t)) + 0.4 * d.v
+    d.dy = dy; d.t = e.timeStamp
+    const travel = sheet.current.offsetHeight - (parseFloat(getComputedStyle(sheet.current).getPropertyValue('--peek')) || 176)
+    const free = isOpen ? Math.min(Math.max(dy, 0), travel) : Math.max(Math.min(dy, 0), -travel)
+    sheet.current.style.setProperty('--drag', `${free + (dy - free) * 0.3}px`)
   }
   const onUp = () => {
     const d = drag.current; drag.current = null
     if (!d || !sheet.current) return
     sheet.current.classList.remove('dragging'); sheet.current.style.setProperty('--drag', '0px')
-    if (Math.abs(d.dy) < 6) { tap(); if (isOpen) close(); else setOpen(true) } else if (d.dy < -40) { tap(); setOpen(true) } else if (d.dy > 40) { tap(); close() }
+    if (Math.abs(d.dy) < 6) { tap(); if (isOpen) close(); else setOpen(true); return }
+    const up = d.v < -0.5 || (Math.abs(d.v) <= 0.5 && d.dy < -64)
+    const down = d.v > 0.5 || (Math.abs(d.v) <= 0.5 && d.dy > 64)
+    if (up && !isOpen) { tap(); setOpen(true) } else if (down && isOpen) { tap(); close() }
   }
 
   const crewText = `${b.address}\nOFFICER-APPROVED SIZE-UP\n${approved.map(l => `[${l.claim.toUpperCase()}] ${l.text}`).join('\n')}\nSource records: ${[...new Set(approved.flatMap(l => l.pinIds).flatMap(id => b.pins.find(p => p.id === id)?.evidence.map(e => `${e.datasetId}/${e.recordId} (${e.asOf})`) ?? []))].join('; ')}`
@@ -117,44 +170,42 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   const title = selectedPin ? 'Source record' : TITLE[page]
   const facts = keyFacts(b)
 
-  return <div className={`fs-app${isOpen ? ' is-open' : ''}`}>
-    <header className="fs-top">
-      <span className="fs-brand" aria-label="FireSight"><Flame size={20} aria-hidden /><b>FIRE<span>SIGHT</span></b></span>
+  return <div ref={app} className={`fs-app${isOpen ? ' is-open' : ''}${intro ? ' intro' : ''}${solid ? ' solid' : ''}`}>
+    <main className="fs-stage" aria-label="Building model">{children}</main>
+    <header ref={topBar} className="fs-top">
+      <span className="fs-brand" aria-label="FireSight"><Flame size={18} aria-hidden /><b>Fire<span>Sight</span></b></span>
       <button className="fs-address" onClick={() => go('respond')} aria-label={`Responding to ${b.address}. Change address or paste dispatch`}>
-        <small>RESPONDING TO <ChevronDown size={12} aria-hidden /></small>
+        <small>Responding to <ChevronDown size={12} aria-hidden /></small>
         <strong>{b.address}</strong>
       </button>
       <ul className="fs-facts" aria-label="Key facts">
-        {df !== null && <li className="fs-fact fire" style={{ '--i': 0 } as CSSProperties}><button onClick={() => { onFocusFloor(df); go('floors') }}><Flame size={13} aria-hidden />FL {floorName(df)}</button></li>}
+        {df !== null && <li className="fs-fact fire" style={{ '--i': 0 } as CSSProperties}><button onClick={() => { onFocusFloor(df); go('floors') }}><Flame size={13} aria-hidden />Floor {floorName(df)}</button></li>}
         {facts.map((f, i) => <li key={f.id} className={`fs-fact ${f.tone ?? ''}`} style={{ '--i': i + 1 } as CSSProperties}>{f.text}</li>)}
       </ul>
       <button className={`fs-badge ${c.danger ? 'danger' : 'caution'}`} key={`${b.id}-${c.danger}`} onClick={() => { setFilter(c.danger ? 'danger' : 'caution'); if (page !== 'hazards' || !isOpen) go('hazards') }} aria-label={`${c.danger || c.caution} ${c.danger ? 'danger' : 'caution'} records`}>
-        <TriangleAlert size={18} aria-hidden /><b>{c.danger || c.caution}</b><small>{c.danger ? 'DANGER' : 'CAUTION'}</small>
+        <TriangleAlert size={18} aria-hidden /><b key={c.danger || c.caution}>{c.danger || c.caution}</b><small>{c.danger ? 'danger' : 'caution'}</small>
       </button>
       <VoiceCommand building={b} phase={phase} onDispatch={onDispatch} onHighlight={onHighlight} onToggle={onToggle} onAddPin={onAddPin} />
     </header>
 
     <div className="fs-body">
-      <main className="fs-stage" aria-label="Building model">
-        {children}
-        <div className="fs-stage-meta">
-          <p className="fs-notice">Not for operational use · records may be incomplete</p>
-          <p className="fs-credit">DataSF footprints · © OpenStreetMap contributors</p>
-        </div>
-      </main>
+      <div className="fs-stage-meta">
+        <p className="fs-notice">Not for operational use · records may be incomplete</p>
+        <p className="fs-credit">DataSF footprints · © OpenStreetMap contributors</p>
+      </div>
 
       <div className="fs-dock" aria-label="Model controls">
         <div className="fs-dock-chips">
-          {focused.length > 0 && <button className="fs-chip on" key={focused.join()} onClick={() => { tap(); onFocusFloor(null) }}><Crosshair size={16} aria-hidden />FL {focused.map(floorName).join(', ')}<X size={16} aria-label="Clear focus" /></button>}
-          {phase === 'exploded' && target !== null && <button className="fs-chip" aria-pressed={rooms === 'on'} disabled={rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); toggleRooms() }}>{rooms === 'off' ? `Rooms · FL ${floorName(target)}` : 'Back to floors'}</button>}
+          {focused.length > 0 && <button className="fs-chip on" key={focused.join()} onClick={() => { tap(); onFocusFloor(null) }}><Crosshair size={16} aria-hidden />{focused.length > 1 ? 'Floors' : 'Floor'} {focused.map(floorName).join(', ')}<X size={16} aria-label="Clear focus" /></button>}
+          {phase === 'exploded' && target !== null && <button className="fs-chip" aria-pressed={rooms === 'on'} disabled={rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); toggleRooms() }}>{rooms === 'off' ? `Rooms · floor ${floorName(target)}` : 'Back to floors'}</button>}
         </div>
         <div className="fs-dock-row">
-          <button className={`fs-explode${busy ? ' busy' : ''}`} disabled={busy} onClick={() => { tap(20); onToggle() }}>
-            {phase === 'exploded' || phase === 'collapsing' ? <Shrink size={22} aria-hidden /> : <Expand size={22} aria-hidden />}
+          <button className={`fs-explode${busy ? ' busy' : ''}${phase === 'exploded' || phase === 'collapsing' ? ' out' : ''}`} disabled={busy} onClick={() => { tap(20); onToggle() }}>
+            {phase === 'exploded' || phase === 'collapsing' ? <Shrink size={18} aria-hidden /> : <Expand size={18} aria-hidden />}
             <span key={phase}>{busy ? phase === 'exploding' ? 'Opening…' : 'Closing…' : phase === 'exploded' ? 'Collapse' : 'Explode'}</span>
           </button>
           <ArButton building={b} />
-          <button className="fs-round" aria-label="Reset view" title="Reset view" disabled={busy || rooms !== 'off'} onClick={() => { tap(); resetView() }}><RotateCcw size={22} /></button>
+          <button className="fs-round" aria-label="Reset view" title="Reset view" disabled={busy || rooms !== 'off'} onClick={() => { tap(); resetView() }}><RotateCcw size={20} /></button>
         </div>
       </div>
 
@@ -167,7 +218,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
             <div className="fs-sheet-title">
               {showBack && <button className="fs-icon-btn" onClick={back} aria-label="Back"><ChevronLeft size={22} /></button>}
               <h2 key={title}>{title}</h2>
-              {page === 'hazards' && !selectedPin && <span className="fs-count">{c.total} RECORDS</span>}
+              {page === 'hazards' && !selectedPin && <span className="fs-count">{c.total} records</span>}
               <button className="fs-icon-btn fs-fold" onClick={() => { tap(); close() }} aria-label="Hide panel"><ChevronDown size={22} /></button>
             </div>
           </div>
@@ -202,10 +253,10 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
       </section>
     </div>
 
-    <nav className="fs-nav" aria-label="Panels" style={{ '--i': Math.max(0, tabIndex), '--n': TABS.length } as CSSProperties}>
+    <nav ref={nav} className="fs-nav" aria-label="Panels" style={{ '--i': Math.max(0, tabIndex), '--n': TABS.length } as CSSProperties}>
       <span className="fs-nav-pill" aria-hidden data-hidden={tabIndex < 0 || !isOpen || undefined} />
       {TABS.map(([id, label, Icon]) => <button key={id} aria-current={tab === id && isOpen ? 'page' : undefined} onClick={() => go(id)}>
-        <Icon size={24} strokeWidth={2.25} aria-hidden />
+        <Icon size={22} strokeWidth={1.75} aria-hidden />
         <span>{label}</span>
         {id === 'hazards' && c.danger > 0 && <i className="fs-nav-dot">{c.danger}</i>}
       </button>)}

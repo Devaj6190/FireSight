@@ -9,14 +9,14 @@ import { compass, constructionFact, counts, floorSummaries, keyFacts, siteOf } f
 const hero = JSON.parse(readFileSync(new URL('../../public/buildings/sf-3722080.json', import.meta.url), 'utf8')) as Building
 
 test('construction code reads as a fire type, wood frame flagged', () => {
-  assert.deepEqual(constructionFact('1 (permits, constr type 1)'), { id: 'type', text: 'TYPE I', tone: undefined })
-  assert.equal(constructionFact('5 (permits, wood frame (5)); D (assessor)').text, 'TYPE V WOOD')
+  assert.deepEqual(constructionFact('1 (permits, constr type 1)'), { id: 'type', text: 'Type I', tone: undefined })
+  assert.equal(constructionFact('5 (permits, wood frame (5)); D (assessor)').text, 'Type V wood')
   assert.equal(constructionFact('5 (permits)').tone, 'danger')
   assert.equal(constructionFact(null).tone, 'unknown')
 })
 
 test('header facts come from the snapshot only', () => {
-  assert.deepEqual(keyFacts(hero).map(f => f.text), ['26 FL', 'TYPE I', '90% SPRINKLERED', '115 M', 'BUILT 1925', 'B1'])
+  assert.deepEqual(keyFacts(hero).map(f => f.text), ['26 fl', 'Type I', '90% sprinklered', '115 m', 'Built 1925', 'B1'])
 })
 
 test('counts and the elevator panel', () => {

@@ -1,7 +1,7 @@
 /* z-index 4: under the expanded sheet (5), so the mic never covers card text; voice keeps talking underneath. */
 .voice-wrap { position: absolute; left: 16px; bottom: 68px; z-index: 4; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: calc(100% - 140px); pointer-events: none; }
 .voice-wrap > * { pointer-events: auto; }
-.voice-mic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--fs-action, #ff9f1c); color: var(--fs-action-ink, #0d0f12); cursor: pointer; box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.6), 0 6px 18px rgba(0, 0, 0, 0.45); transition: transform 0.15s ease, background 0.2s ease; }
+.voice-mic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--fs-action, #ff9f1c); color: var(--fs-action-ink, #0d0f12); cursor: pointer; box-shadow: 0 0 0 0 rgba(61, 139, 255, 0.5), 0 6px 18px rgba(0, 0, 0, 0.45); transition: transform 0.15s ease, background 0.2s ease; }
 .voice-mic:active { transform: scale(0.94); }
 .voice-mic:focus-visible { outline: 2px solid var(--fs-ink, #f4f3ee); outline-offset: 3px; }
 .voice-mic.listening { background: var(--fs-ink, #f4f3ee); color: var(--fs-bg, #0d0f12); animation: voice-pulse 1.2s ease-out infinite; }
@@ -12,14 +12,14 @@
 .voice-bars i:nth-child(2) { animation-delay: 0.15s; }
 .voice-bars i:nth-child(3) { animation-delay: 0.3s; }
 .voice-bars i:nth-child(4) { animation-delay: 0.45s; }
-.voice-caption { margin: 0; padding: 8px 10px 9px; border-radius: 10px; min-width: 240px; background: rgba(23, 26, 31, 0.94); border: 1px solid var(--fs-line, #2a2f37); border-left-width: 3px; color: var(--fs-ink, #f4f3ee); font: 500 15px/21px 'IBM Plex Sans', system-ui, sans-serif; backdrop-filter: blur(6px); animation: voice-in 0.18s ease-out; }
-.voice-who { display: block; margin-bottom: 2px; font: 600 10px/14px 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: 0.08em; color: var(--fs-muted, #9aa3ad); }
+.voice-caption { margin: 0; padding: 8px 10px 9px; border-radius: 10px; min-width: 240px; background: rgba(23, 26, 31, 0.94); border: 1px solid var(--fs-line, #2a2f37); border-left-width: 3px; color: var(--fs-ink, #f4f3ee); font: 400 15px/21px var(--fs-sans); backdrop-filter: blur(6px); animation: voice-in 0.18s ease-out; }
+.voice-who { display: block; margin-bottom: 2px; font: 500 10px/14px var(--fs-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--fs-muted, #9aa3ad); }
 .voice-caption.listening { border-color: var(--fs-ink, #f4f3ee); }
 .voice-caption.listening .voice-who { color: var(--fs-ink, #f4f3ee); }
 .voice-caption.speaking { border-color: var(--fs-action, #ff9f1c); }
 .voice-caption.speaking .voice-who { color: var(--fs-action, #ff9f1c); }
 @keyframes voice-pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 243, 238, 0.5); } 100% { box-shadow: 0 0 0 16px rgba(244, 243, 238, 0); } }
-@keyframes voice-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(255, 159, 28, 0.12); } }
+@keyframes voice-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(61, 139, 255, 0.5); } 50% { box-shadow: 0 0 0 8px rgba(61, 139, 255, 0.12); } }
 @keyframes voice-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
 @keyframes voice-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .voice-mic, .voice-bars i, .voice-caption { animation: none !important; } }

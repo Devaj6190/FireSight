@@ -1,32 +1,30 @@
 :root {
-  /* Night Watch, warmed to soot (docs/design.md s2): surfaces lean brown-black like turnout gear, not blue */
-  --fs-bg: #0f0e0c;
-  --fs-surface: #191715;
-  --fs-line: #36312b;
-  --fs-ink: #f5f1e8;
-  --fs-muted: #a39b8f;
-  --fs-action: #ff9f1c;
-  --fs-action-ink: #160e02;
-  --fs-danger: #e5261f;
+  /* Night Glass (docs/handoff/design-v2.md s3): graphite under frosted glass. Blue is the only interactive colour;
+     red and amber mean hazards only. Keep in step with tokens.ts */
+  --fs-bg: #05070a;
+  --fs-surface: rgba(14, 18, 24, 0.62);
+  --fs-surface-strong: rgba(12, 15, 20, 0.86);
+  --fs-solid: #0c0f14;
+  --fs-raise: rgba(255, 255, 255, 0.05);
+  --fs-raise-hover: rgba(255, 255, 255, 0.08);
+  --fs-line: rgba(255, 255, 255, 0.09);
+  --fs-line-strong: rgba(255, 255, 255, 0.16);
+  --fs-ink: #eef2f6;
+  --fs-muted: #8b95a3;
+  --fs-faint: #5b6573;
+  --fs-action: #3d8bff;
+  --fs-action-ink: #ffffff;
+  --fs-action-glow: rgba(61, 139, 255, 0.35);
+  --fs-danger: #ff4d4f;
+  --fs-danger-text: #ff6b6d;
   --fs-caution: #ffb020;
-  --fs-info: #8ecae6;
+  --fs-info: #5ee1ff;
+  --fs-dept: #7c9cff;
+  --fs-crew: #c48bff;
+  --fs-verified: #4ade80;
+  --fs-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fs-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
   color-scheme: dark;
 }
-html, body { margin: 0; height: 100%; background: var(--fs-bg); color: var(--fs-ink); font-family: system-ui, sans-serif; }
+html, body { margin: 0; height: 100%; background: var(--fs-bg); color: var(--fs-ink); font-family: var(--fs-sans); -webkit-font-smoothing: antialiased; }
 #root { height: 100%; display: flex; flex-direction: column; }
-
-.stage { flex: 1; position: relative; min-height: 0; }
-.status { position: absolute; top: 12px; left: 16px; font: 11px/14px ui-monospace, monospace; color: var(--fs-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-
-/* bottom bar, design.md s5 */
-.bar { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--fs-bg); border-top: 1px solid var(--fs-line); }
-.action {
-  width: 100%; height: 52px; border: 0; border-radius: 14px;
-  background: var(--fs-action); color: var(--fs-action-ink);
-  font: 700 16px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
-  cursor: pointer; transition: transform 120ms ease, opacity 120ms ease;
-}
-.action:active { transform: scale(0.98); }
-.action:disabled { opacity: 0.5; cursor: default; }
-.action:focus-visible { outline: 2px solid var(--fs-action); outline-offset: 3px; }
-

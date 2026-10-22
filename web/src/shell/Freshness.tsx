@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Building } from '../../../shared/building.ts'
 import { localTime, type RefreshRun } from './model.ts'
+import { displayLabel } from './Floors.tsx'
 
 export function useRefreshRuns() {
   const [runs, setRuns] = useState<RefreshRun[]>([])
@@ -26,7 +27,7 @@ export function Freshness({ building, runs, unavailable }: { building: Building;
     <ul className="phone-records">{own.slice(0, 6).map((r, i) => <li key={`${r.at}-${i}`}><div className="phone-row"><strong>{localTime(r.at)}</strong><span className="phone-mono">{r.note.startsWith('error:') ? 'FAILED ATTEMPT' : r.sourcesFailed ? 'PARTIAL' : 'CHECKED'}</span></div>
       <p>{r.note.startsWith('error:') ? 'Rebuild failed. The previous building snapshot is retained.' : r.note}</p>
       <span className="phone-muted">{r.sourcesQueried} sources queried · {r.sourcesFailed} failed</span>
-      {(['added', 'changed', 'removed'] as const).map(kind => r[kind]?.length > 0 && <p key={kind}>{kind.toUpperCase()}: {r[kind].map(p => p.label).join('; ')}</p>)}
+      {(['added', 'changed', 'removed'] as const).map(kind => r[kind]?.length > 0 && <p key={kind}>{kind.toUpperCase()}: {r[kind].map(p => displayLabel(p.label)).join('; ')}</p>)}
     </li>)}</ul>
   </section>
 }
