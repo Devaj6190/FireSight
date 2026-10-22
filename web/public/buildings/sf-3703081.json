@@ -341,9 +341,9 @@
    "evidence": [
     {
      "source": "SF city SRO layer",
-     "datasetId": "sro_city",
-     "recordId": "None",
-     "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/sro_city",
+     "datasetId": "City_Funded_or_Operated_SROs_List_/0",
+     "recordId": "331",
+     "url": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/City_Funded_or_Operated_SROs_List_/FeatureServer/0/query?where=ObjectId=331&outFields=*&f=json",
      "asOf": "2026-01-16",
      "rule": "point within 30 m"
     }

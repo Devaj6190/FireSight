@@ -541,17 +541,22 @@ def build(bid):
               [ev("ClaritiMapLayers2_WFL1/63", a.get("FID"), agol_url("ClaritiMapLayers2_WFL1/63", "FID", a.get("FID")), "2026-01-27", "segment within 40 m", "SF Public Works")])
 
     # ---- SRO (occupancy) and exposures
+    SRO_LAYERS = {"sro_city": ("City_Funded_or_Operated_SROs_List_/0", "OBJECTID", "2026-01-16"), "sro_cmtl": ("CMTL_SROs/0", "OBJECTID", "2016-12-16"),
+                  "sro_all": ("all_sro_point_wEHD/0", "OBJECTID", "2020-02-26")}
     for key in ("sro_city", "sro_cmtl", "sro_all"):
         if any(p["layer"] == "occupancy" and p["label"].startswith("SRO") for p in P.items):
             break
         for f in feats(bdir, key)[:1]:
             a = f["attributes"]
+            oidf = next((k for k in a if k.lower() in ("objectid", "fid", "objectid_1")), "OBJECTID")
+            SRO_LAYERS[key] = (SRO_LAYERS[key][0], oidf, SRO_LAYERS[key][2])
+            oid = a.get(oidf)
             elev = next((a[k] for k in a if "elev" in k.lower()), None)
             rooms_k = next((a[k] for k in a if re.search(r"(room|unit)", k, re.I) and isinstance(a[k], (int, float))), None)
             P.add("occupancy", f"{key}", "danger" if str(elev).upper().startswith("N") else "caution",
                   "SRO HOTEL" + (", NO ELEVATOR" if str(elev).upper().startswith("N") else ""),
                   f"Listed on the city's SRO inventory ({key})" + (f", elevator: {elev}" if elev is not None else "") + (f", {rooms_k} rooms/units" if rooms_k else "") + ": dense sleeping occupancy.", BLDG,
-                  [ev(key, a.get("OBJECTID") or a.get("objectid") or a.get("FID"), AGOL + key, "2026-01-16" if key == "sro_city" else "2016-12-16", "point within 30 m", "SF city SRO layer")])
+                  [ev(SRO_LAYERS[key][0], oid, agol_url(SRO_LAYERS[key][0], SRO_LAYERS[key][1], oid), SRO_LAYERS[key][2], "point within 30 m", "SF city SRO layer")])
             break
     for key, layer, label, sev in [("adult_residential", "Mass_Care_Housing_Human_Services_ESF_6/2", "EXPOSURE: RESIDENTIAL CARE", "caution"),
                                    ("rcfe", "Mass_Care_Housing_Human_Services_ESF_6/5", "EXPOSURE: ELDER CARE", "caution"),
