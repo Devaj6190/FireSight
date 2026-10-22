@@ -1,0 +1,28 @@
+name: Refresh public data
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # GitHub may start scheduled runs a few minutes late
+  workflow_dispatch: {}       # "Run workflow" button: use it on stage to show a refresh happening
+permissions:
+  contents: write
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install certifi
+      - run: python scripts/refresh.py --once
+      - name: Commit if changed
+        run: |
+          git config user.name "firesight-refresh"
+          git config user.email "firesight-refresh@users.noreply.github.com"
+          git add web/public/buildings web/public/refresh
+          git diff --cached --quiet || git commit -m "data: refresh $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase origin main   # main may have moved while the job ran
+          git push
