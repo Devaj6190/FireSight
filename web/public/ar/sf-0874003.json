@@ -1,0 +1,40 @@
+{
+ "id": "sf-0874003",
+ "address": "400 Duboce Ave",
+ "fireFloor": null,
+ "scale": 0.0033333333333333335,
+ "hotspots": [
+  {
+   "id": "people-1",
+   "text": "9 units · floor 1",
+   "tone": "people",
+   "position": "0.1074 0.0263 0.0654",
+   "normal": "0.7 0 0.7",
+   "floor": 1
+  },
+  {
+   "id": "people-2",
+   "text": "5 units · floor 2",
+   "tone": "people",
+   "position": "-0.0860 0.0458 -0.1042",
+   "normal": "-0.7 0 0.7",
+   "floor": 2
+  },
+  {
+   "id": "people-3",
+   "text": "8 units · floor 3",
+   "tone": "people",
+   "position": "0.1074 0.0654 0.0654",
+   "normal": "0.7 0 0.7",
+   "floor": 3
+  },
+  {
+   "id": "people-4",
+   "text": "10 units · floor 4",
+   "tone": "people",
+   "position": "-0.0860 0.0849 -0.1042",
+   "normal": "-0.7 0 0.7",
+   "floor": 4
+  }
+ ]
+}
