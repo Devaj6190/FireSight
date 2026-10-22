@@ -16,48 +16,56 @@
   .top > * { pointer-events: auto; }
   .title b { display: block; font-size: 18px; } .title span { font: 500 11px/1.4 'IBM Plex Mono', monospace; letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
   a.back { color: var(--ink); text-decoration: none; border: 1px solid var(--line); background: rgba(13,15,18,.8); border-radius: 10px; padding: 10px 14px; min-height: 44px; box-sizing: border-box; }
-  .legend { position: fixed; left: 16px; bottom: 92px; display: flex; flex-direction: column; gap: 3px; font-size: 11px; background: rgba(13,15,18,.8); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .seg { position: fixed; left: 16px; top: 92px; display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: rgba(13,15,18,.85); }
+  .seg[hidden] { display: none; }
+  .seg button { border: 0; background: transparent; color: var(--ink); font: 600 13px/1 'IBM Plex Sans', system-ui, sans-serif; padding: 0 14px; min-height: 44px; }
+  .seg button[aria-pressed="true"] { background: var(--amber); color: var(--bg); }
+  .legend { position: fixed; left: 16px; bottom: 92px; display: flex; flex-direction: column; gap: 3px; font-size: 11px; background: rgba(13,15,18,.8); border: 1px solid var(--line); border-radius: 10px; padding: 6px 8px; }
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
   .btn { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); border: 0; border-radius: 12px; padding: 16px 26px; min-height: 52px; background: var(--amber); color: var(--bg); font: 700 16px/1 'IBM Plex Sans', system-ui, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
   /* shown instead of the AR button when this browser cannot place models on a table */
   .btn.off { background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-weight: 600; font-size: 14px; line-height: 1.3; width: max-content; max-width: min(92vw, 420px); box-sizing: border-box; text-align: center; box-shadow: none; pointer-events: none; }
   .btn[hidden] { display: none; }
-  .note { position: fixed; left: 16px; top: 96px; max-width: 260px; margin: 0; font-size: 12px; color: var(--dim); }
+  .note { position: fixed; left: 16px; right: 16px; top: 144px; max-width: 300px; margin: 0; font-size: 12px; color: var(--dim); }
   #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--dim); }
   #msg { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); max-width: min(92vw, 420px); margin: 0; padding: 10px 14px; border-radius: 10px; background: rgba(13,15,18,.92); border: 1px solid var(--red); color: var(--ink); font-size: 13px; text-align: center; }
   #msg[hidden] { display: none; }
   /* hotspot labels, pinned to the floors in the model */
-  .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 5px 9px; background: rgba(13,15,18,.9); color: var(--ink); font: 600 12px/1.2 'IBM Plex Sans', system-ui, sans-serif; white-space: nowrap; pointer-events: none; transition: opacity .25s; }
-  .hs.fire { border-left-color: var(--red); } .hs.battery { border-left-color: var(--amber); } .hs.people { border-left-color: var(--blue); }
+  .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 5px 9px; background: rgba(13,15,18,.9); color: var(--ink); font: 600 12px/1.2 'IBM Plex Sans', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
+  .hs.fire, .hs.danger { border-left-color: #ff4a1c; } .hs.battery, .hs.caution { border-left-color: var(--amber); } .hs.people { border-left-color: var(--blue); } .hs.unknown { border-left-color: var(--dim); color: #c9ccd1; }
+  .hs.fire { border-left-color: var(--red); }
   .hs:not([data-visible]) { opacity: 0; }
-  @media (max-width: 480px) { .hs { font-size: 11px; padding: 4px 7px; } .note { display: none; } }
+  @media (max-width: 480px) { .hs { font-size: 11px; padding: 4px 7px; max-width: 160px; } }
 </style>
 </head>
 <body>
-<model-viewer id="mv" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" interaction-prompt="auto" camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1.1" camera-orbit="25deg 72deg 125%" alt="Tower with floors separated, from city records: fire floor in red, floors above it in amber, floors with recorded people in blue">
+<model-viewer id="mv" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="auto" interaction-prompt="auto" camera-controls touch-action="pan-y" shadow-intensity="1" exposure="1.1" camera-orbit="25deg 72deg 125%" alt="Tower with floors separated, from city records">
   <button slot="ar-button" class="btn" id="arbtn" type="button">Place on the table</button>
   <div id="status" slot="poster">Loading the building…</div>
   <div class="btn off" id="noar" hidden>AR needs Chrome on an ARCore phone · rotate the 3D model instead</div>
 </model-viewer>
 <div class="top"><div class="title"><b id="name">FireSight</b><span id="sub">1:300 · from city records</span></div><a class="back" href="/">← Back</a></div>
-<div class="legend" id="legend"><div id="lg-fire"><i style="background:#e5261f"></i>Fire floor</div><div id="lg-exp"><i style="background:#ff9f1c"></i>Floors above the fire</div><div><i style="background:#3b82f6"></i>People on record</div></div>
-<p class="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
+<div class="seg" id="seg" role="group" aria-label="Model" hidden><button type="button" id="v-tower" aria-pressed="true">Tower</button><button type="button" id="v-floor" aria-pressed="false">Inside floor</button></div>
+<div class="legend" id="legend"></div>
+<p class="note" id="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
 <p id="msg" role="status" hidden></p>
 <script>
   // ?b=<building id>; only buildings with a generated model (web/scripts/ar-model.mts) are linked.
+  // A building with an "inside floor" model (web/scripts/ar-floor.mts) also gets the Tower / Inside floor toggle.
   const id = (new URLSearchParams(location.search).get('b') || 'sf-3722080').replace(/[^\w-]/g, '');
   const mv = document.getElementById('mv');
-  const msg = document.getElementById('msg');
-  const say = (t) => { msg.textContent = t; msg.hidden = !t; };
-  mv.src = `/ar/${id}.glb`;
-  mv.addEventListener('error', () => { document.getElementById('status').textContent = 'Could not load the model.'; });
+  const $ = (i) => document.getElementById(i);
+  const say = (t) => { $('msg').textContent = t; $('msg').hidden = !t; };
+  const dot = (c, t) => `<div><i style="background:${c}"></i>${t}</div>`;
+  const ORBIT = { tower: '25deg 72deg 125%', floor: '20deg 48deg 105%' };
+  const cache = {};
+  const get = (key) => (cache[key] ??= fetch(`/ar/${key}.json`).then((r) => (r.ok ? r.json() : Promise.reject(r.status))));
+  mv.addEventListener('error', () => { $('status').textContent = 'Could not load the model.'; });
 
-  // Labels: positions come from the JSON the model script writes next to the GLB (model coordinates, metres).
-  fetch(`/ar/${id}.json`).then((r) => (r.ok ? r.json() : Promise.reject(r.status))).then((m) => {
-    document.getElementById('name').textContent = m.address;
-    const fire = m.fireFloor != null;
-    document.getElementById('sub').textContent = (fire ? `Fire floor ${m.fireFloor} · ` : '') + '1:300 · from city records';
-    if (!fire) { document.getElementById('lg-fire').remove(); document.getElementById('lg-exp').remove(); }
+  // Labels: positions come from the JSON the model scripts write next to each GLB (model coordinates, metres).
+  function show(m, view) {
+    $('name').textContent = m.address;
+    mv.querySelectorAll('.hs').forEach((e) => e.remove());
     for (const h of m.hotspots) {
       const el = document.createElement('div');
       el.slot = `hotspot-${h.id}`;
@@ -68,10 +76,45 @@
       el.textContent = h.text;
       mv.appendChild(el);
     }
-  }).catch(() => { /* labels are optional; the model still shows */ });
+    if (view === 'floor') {
+      $('sub').textContent = `Inside floor ${m.floor} · 1:${Math.round(1 / m.scale)} · estimated`;
+      $('legend').innerHTML = dot('#ff4a1c', 'Hazard room (spot estimated)') + dot('#ff9f1c', 'Cooking (spot estimated)') + dot('#7d838c', 'Stairs: not on record');
+      $('note').textContent = m.banner;
+      mv.alt = `Floor ${m.floor} of ${m.address}: schematic layout with hazard rooms glowing. No public floor plan exists.`;
+    } else {
+      const fire = m.fireFloor != null;
+      $('sub').textContent = (fire ? `Fire floor ${m.fireFloor} · ` : '') + '1:300 · from city records';
+      $('legend').innerHTML = (fire ? dot('#e5261f', 'Fire floor') + dot('#ff9f1c', 'Floors above the fire') : '') + dot('#3b82f6', 'People on record');
+      $('note').textContent = 'Not for operational use. Floors from footprint and height records; no interior is shown.';
+      mv.alt = 'Tower with floors separated, from city records: fire floor in red, floors above it in amber, floors with recorded people in blue';
+    }
+  }
+  let current = null;
+  function setView(view, floorKey) {
+    const key = view === 'floor' ? floorKey : id;
+    if (current === key) return;
+    current = key;
+    $('v-tower').setAttribute('aria-pressed', String(view === 'tower'));
+    $('v-floor').setAttribute('aria-pressed', String(view === 'floor'));
+    mv.setAttribute('camera-orbit', ORBIT[view]);
+    mv.src = `/ar/${key}.glb`;
+    get(key).then((m) => { if (current === key) show(m, view); }).catch(() => { /* labels are optional; the model still shows */ });
+  }
+  setView('tower');
+  get(id).then((m) => {
+    if (m.fireFloor == null) return;
+    const fk = `${id}-f${m.fireFloor}`;
+    // the toggle appears only when an inside-floor model exists
+    get(fk).then((f) => {
+      $('v-floor').textContent = `Inside floor ${f.floor}`;
+      $('seg').hidden = false;
+      $('v-tower').onclick = () => setView('tower');
+      $('v-floor').onclick = () => setView('floor', fk);
+    }).catch(() => {});
+  }).catch(() => {});
 
   // model-viewer shows its own button only when this browser can place models; otherwise say what is needed.
-  const noar = document.getElementById('noar');
+  const noar = $('noar');
   const check = () => { noar.hidden = !!mv.canActivateAR; };
   mv.addEventListener('load', () => { check(); setTimeout(check, 1500); });
   mv.addEventListener('ar-status', (e) => {
@@ -79,7 +122,6 @@
     if (s === 'failed') say('AR could not start. Update "Google Play Services for AR" in the Play Store, then reload this page.');
     else if (s === 'session-started' || s === 'object-placed') say('');
   });
-  // Scene Viewer / Quick Look hand-off does not report a status; tapping again after a failure just retries.
 </script>
 </body>
 </html>

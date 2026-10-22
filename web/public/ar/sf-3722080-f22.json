@@ -1,0 +1,34 @@
+{
+ "id": "sf-3722080-f22",
+ "address": "140 New Montgomery St",
+ "view": "floor",
+ "floor": 22,
+ "scale": 0.01,
+ "banner": "Schematic layout · no public floor plan · columns follow the structural system (SF Tall Building Inventory)",
+ "hotspots": [
+  {
+   "id": "battery-room",
+   "text": "Battery room · spot estimated",
+   "tone": "danger",
+   "position": "0.1009 0.0340 -0.0993",
+   "normal": "0 1 0",
+   "source": "fire_permit-76784-f22"
+  },
+  {
+   "id": "kitchen",
+   "text": "Cafeteria (cooking) · spot estimated",
+   "tone": "caution",
+   "position": "-0.0308 0.0340 -0.1410",
+   "normal": "0 1 0",
+   "source": "g8m3-pdis:1379488-01-251-0046324"
+  },
+  {
+   "id": "stairs",
+   "text": "Stairs: not on public record · verify on arrival",
+   "tone": "unknown",
+   "position": "0.0652 0.0180 -0.0454",
+   "normal": "0 1 0",
+   "source": "floorFacts.notOnRecord"
+  }
+ ]
+}
