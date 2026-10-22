@@ -23,6 +23,11 @@ const RANK = { danger: 0, caution: 1, info: 2 } as const;
 export function spokenSource(p: Pin): string {
   const e = p.evidence[0];
   if (!e) return p.origin === "public" ? "" : `per ${p.origin}`;
+  // the wind is a forecast snapshot from the last refresh, not a dated record: say its time
+  if (p.layer === "wind") {
+    const m = e.recordId.match(/T(\d{2}):(\d{2})/);
+    if (m) return `forecast at ${((Number(m[1]) + 11) % 12) + 1}:${m[2]} ${Number(m[1]) < 12 ? "A M" : "P M"}`;
+  }
   const name = SPOKEN_SOURCE[e.datasetId] ?? SPOKEN_SOURCE[e.datasetId.split("/")[0]] ?? e.source.replace(/^DataSF\s+/, "").replace(/^(SFFD|DBI)\s+/, "").toLowerCase();
   return `per ${name} ${e.asOf.slice(0, 4)}`;
 }
@@ -93,17 +98,27 @@ function peopleBeats(b: Building, verified: Pin[], fire: number | null, reports:
   const placed = counts.filter((p) => floorOf(p) !== null).slice(0, 3);
   const loose = counts.filter((p) => floorOf(p) === null).slice(0, 1);
   const count = (p: Pin) => p.label.match(/(\d[\d,]*)\s+(people|persons|occupants|units|rooms)/i);
+  // Permits give unit counts as a lower bound ("9 units known on floor 1"), so say "at least".
+  const amount = (p: Pin, m: RegExpMatchArray) => `${/known|lower bound|at least/i.test(p.label) ? "at least " : ""}${m[1]} ${m[2].toLowerCase()}`;
   const parts = placed.map((p) => {
     const m = count(p);
-    return m ? `${m[1]} ${m[2].toLowerCase()} on ${floorName(floorOf(p)!)}` : speakable(p.label);
+    return { pin: p, text: m ? `${amount(p, m)} on ${floorName(floorOf(p)!)}` : speakable(p.label) };
   });
   for (const p of loose) {
     const m = count(p);
-    parts.push(p.claim === "conflict" || !m ? `${speakable(p.label).replace(/(,\s*records disagree)?$/i, " in total$1")}` : `${m[1]} more ${m[2].toLowerCase()}, floor not stated`);
+    parts.push({ pin: p, text: p.claim === "conflict" || !m ? `${speakable(p.label).replace(/(,\s*records disagree)?$/i, " in total$1")}` : `${m[1]} more ${m[2].toLowerCase()}, floor not stated` });
   }
   if (parts.length) {
-    const src = spokenSource(placed[0] ?? loose[0]);
-    out.push(beat(`People on record: ${join(parts)}${src ? `, ${src}` : ""}.`, [...placed, ...loose]));
+    // each source and year once, after the counts it covers
+    const groups: { src: string; texts: string[] }[] = [];
+    for (const x of parts) {
+      const src = spokenSource(x.pin);
+      const g = groups.at(-1);
+      if (g && g.src === src) g.texts.push(x.text);
+      else groups.push({ src, texts: [x.text] });
+    }
+    const said = groups.map((g) => `${join(g.texts)}${g.src ? `, ${g.src}` : ""}`).join("; ");
+    out.push(beat(`People on record: ${said}.`, [...placed, ...loose]));
   }
   return out;
 }
@@ -130,9 +145,15 @@ export function bringBeat(b: Building, verified: Pin[], fire: number | null): Be
   const build = verified.filter((p) => /build-out|tenant improvement/i.test(p.label) && near(p));
   if (build.length) items.push({ text: `layout may have changed, recent build-out on ${floorsText(floorsOf(build))}`, pins: build });
   if (!items.length) return null;
-  const pins = items.flatMap((i) => i.pins);
+  const pins = items.slice(0, 4).flatMap((i) => i.pins);
   const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
   return beat(`Bring and check: ${items.slice(0, 4).map((i) => cap(i.text)).join(". ")}.`, pins, [], "bring");
+}
+
+// The closest hydrant of any kind, by the distance in its label ("HYDRANT 40 M NNW").
+function nearestHydrant(verified: Pin[]): Pin | undefined {
+  const dist = (p: Pin) => Number(p.label.match(/(\d+(?:\.\d+)?)\s*M\b/i)?.[1] ?? Infinity);
+  return verified.filter((p) => p.layer === "water" && /hydrant/i.test(p.label)).sort((x, y) => dist(x) - dist(y))[0];
 }
 
 // One beat per spoken sentence; each carries the floors and pins it talks about, so the model lights up as it is read.
@@ -169,7 +190,7 @@ export function spokenBeats(b: Building, max = 8): Beat[] {
     // What occupies the fire floor and the floor above, by type only (business licenses, OpenStreetMap indoor levels).
     const uses = [fire, fire + 1].flatMap((f) => {
       const occ = b.floorFacts?.find((x) => x.floor === f)?.occupants ?? [];
-      return occ.slice(0, 2).map((o) => `${floorName(f)}, ${o.kind.toLowerCase()}${o.hazard ? `, ${o.hazard.toLowerCase()}` : ""}, per ${o.source.replace(/\s*\(.*\)$/, "").replace(/^SF /, "S F ")}`);
+      return occ.slice(0, 2).map((o) => `${floorName(f)}, ${o.kind.toLowerCase()}, per ${o.source.replace(/\s*\(.*\)$/, "").replace(/^SF /, "S F ")}`);
     });
     const useText = uses.length ? `Use on record: ${uses.join(". ")}. ` : "";
     out.push(
@@ -186,7 +207,7 @@ export function spokenBeats(b: Building, max = 8): Beat[] {
   const access = [
     pick(/sprinklered/i),
     pick(/fire pump|standpipe|\bfdc\b/i),
-    pick(/high-pressure hydrant/i, ["water"]) ?? pick(/hydrant/i, ["water"]),
+    nearestHydrant(verified),
     pick(/^wind\b/i, ["wind"]),
   ].filter((p): p is Pin => !!p);
   if (access.length) out.push(beat(`Water and access: ${access.map(cite).join(". ")}.`, access, [], "access"));
@@ -225,7 +246,7 @@ function shortPeople(b: Building, verified: Pin[], fire: number | null, reports:
   const disputed = counts.find((p) => p.claim === "conflict");
   if (here) {
     const m = countOf(here);
-    return beat(`${m ? `${m[1]} ${m[2].toLowerCase()} on ${floorName(fire)}` : speakable(here.label)}${disputed ? "; records disagree on the total" : ""}.`, [here, ...(disputed ? [disputed] : [])]);
+    return beat(`${m ? `${/known|lower bound|at least/i.test(here.label) ? "at least " : ""}${m[1]} ${m[2].toLowerCase()} on ${floorName(fire)}` : speakable(here.label)}${disputed ? "; records disagree on the total" : ""}.`, [here, ...(disputed ? [disputed] : [])]);
   }
   const load = officeLoadPerFloor(b);
   const upTo = fire < b.floors ? `${fire} or above` : String(fire);

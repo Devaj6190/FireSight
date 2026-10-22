@@ -27,7 +27,8 @@ export function parseDispatchText(text: string): ParsedDispatch {
   const addr = t.match(ADDRESS_RE);
   const address = addr ? addr[0].replace(/\s+/g, " ").replace(/\.$/, "") : null;
   const afterAddr = addr ? t.slice((addr.index ?? 0) + addr[0].length) : t;
-  const unitM = afterAddr.match(UNIT_RE);
+  // the unit can come before the address too: "Smoke from unit 311, 400 Duboce Ave"
+  const unitM = afterAddr.match(UNIT_RE) ?? t.match(UNIT_RE);
   const unit = unitM ? unitM[1] : null;
 
   let floor: number | null = null;
