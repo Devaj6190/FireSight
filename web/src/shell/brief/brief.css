@@ -59,3 +59,15 @@
 .fse-num.bad { color: var(--b-danger); }
 .fse-label { font: 500 10px/12px var(--b-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--b-muted); }
 .fse-rows { font: 400 12px/18px var(--b-mono); color: var(--b-muted); margin: 0; padding: 0; list-style: none; }
+/* Arrival card: one row per spoken beat; the left rule colour says what kind of line it is. */
+.fsa { border-radius: 14px; padding: 10px 0 4px; background: transparent; }
+.fsa-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.fsa-row button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--b-bg); border: 1px solid var(--b-line); border-left: 3px solid var(--b-muted); color: var(--b-ink); font: 400 14px/19px var(--b-sans); cursor: pointer; }
+.fsa-row button:disabled { cursor: default; opacity: 1; }
+.fsa-sec { font: 600 10px/13px var(--b-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--b-muted); }
+.fsa-row.people button { border-left-color: var(--b-danger); }
+.fsa-row.people .fsa-sec { color: var(--b-danger); }
+.fsa-row.fire button, .fsa-row.bring button { border-left-color: var(--b-action); }
+.fsa-row.fire .fsa-sec, .fsa-row.bring .fsa-sec { color: var(--b-action); }
+.fsa-row.access button { border-left-color: var(--b-info); }
+.fsa-row.verify button { border-left-style: dashed; }

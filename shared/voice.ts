@@ -49,8 +49,10 @@ const cite = (p: Pin) => [speakable(p.label), spokenSource(p)].filter(Boolean).j
 const floorName = (f: number) => (f === 0 ? "basement level B 1" : `floor ${f}`);
 const isPeople = (p: Pin) => /\b(people|persons|occupants|units|rooms)\b/i.test(p.label);
 
-export type Beat = { text: string; floors: number[]; pinIds: string[] };
-const beat = (text: string, pins: Pin[] = [], extra: number[] = []): Beat => ({
+export type Section = "call" | "people" | "fire" | "bring" | "access" | "verify";
+export type Beat = { text: string; floors: number[]; pinIds: string[]; section?: Section };
+const beat = (text: string, pins: Pin[] = [], extra: number[] = [], section?: Section): Beat => ({
+  section,
   text,
   floors: [...new Set([...extra, ...pins.flatMap((p) => (p.anchor.kind === "floor" ? [p.anchor.floor] : []))])],
   pinIds: pins.map((p) => p.id),
@@ -105,8 +107,35 @@ function peopleBeats(b: Building, verified: Pin[], fire: number | null, reports:
   return out;
 }
 
+const floorsOf = (ps: Pin[]) => [...new Set(ps.map(floorOf).filter((f): f is number => f !== null))].sort((x, y) => x - y);
+const floorsText = (fs: number[]) => (fs.length === 1 ? floorName(fs[0]) : `floors ${join(fs.map((f) => (f === 0 ? "B 1" : String(f))))}`);
+
+// What the records say to bring or check: each item names its records, never an order.
+export function bringBeat(b: Building, verified: Pin[], fire: number | null): Beat | null {
+  const near = (p: Pin) => fire === null || (floorOf(p) !== null && Math.abs(floorOf(p)! - fire) <= 1);
+  const items: { text: string; pins: Pin[] }[] = [];
+  const energy = verified.filter((p) => /battery|energy storage|electrolyte|\bups\b/i.test(p.label) && near(p));
+  if (energy.length) items.push({ text: `battery and electrolyte hazard on ${floorsText(floorsOf(energy))}`, pins: energy });
+  const haz = verified.filter((p) => p.layer === "hazmat" && floorOf(p) !== null && near(p));
+  if (haz.length) items.push({ text: `hazardous materials on ${floorsText(floorsOf(haz))}`, pins: haz });
+  const fuel = verified.filter((p) => /diesel|fuel|propane|lpg|gasoline/i.test(p.label));
+  const fuelAt = floorsOf(fuel.slice(0, 1));
+  if (fuel.length) items.push({ text: `fuel on site${fuelAt.length ? `, ${fuelAt[0] === 0 ? "basement B 1" : floorsText(fuelAt)}` : ""}`, pins: fuel.slice(0, 1) });
+  const high = b.floors >= 7 || b.heightM > 22.86;
+  const stories = verified.find((p) => /stories/i.test(p.label));
+  if (high) items.push({ text: "high-rise, plan on standpipe operations; standpipe outlets are not on public record", pins: stories ? [stories] : [] });
+  const lift = verified.find((p) => /elevator rescue/i.test(p.label));
+  if (lift) items.push({ text: speakable(lift.label).toLowerCase(), pins: [lift] });
+  const build = verified.filter((p) => /build-out|tenant improvement/i.test(p.label) && near(p));
+  if (build.length) items.push({ text: `layout may have changed, recent build-out on ${floorsText(floorsOf(build))}`, pins: build });
+  if (!items.length) return null;
+  const pins = items.flatMap((i) => i.pins);
+  const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
+  return beat(`Bring and check: ${items.slice(0, 4).map((i) => cap(i.text)).join(". ")}.`, pins, [], "bring");
+}
+
 // One beat per spoken sentence; each carries the floors and pins it talks about, so the model lights up as it is read.
-export function spokenBeats(b: Building, max = 6): Beat[] {
+export function spokenBeats(b: Building, max = 8): Beat[] {
   const out: Beat[] = [];
   const dispatches = b.pins.filter((p) => p.origin === "dispatch");
   const call = dispatches.find((p) => !REPORT.test(p.label)) ?? dispatches[0];
@@ -120,12 +149,14 @@ export function spokenBeats(b: Building, max = 6): Beat[] {
     beat(
       `${b.address}. ${b.floors} stories${type ? `, type ${type}` : ""}.${call ? ` Dispatch: ${said === "building" ? "fire reported" : said.replace(/:\s*/g, ", ")}${fire !== null && !/\bfloor\b/.test(said) ? `, ${floorName(fire)}` : ""}.` : ""}`,
       call ? [call] : [],
+      [],
+      "call",
     ),
   );
 
   const verified = b.pins.filter((p) => p.origin === "public" && p.claim !== "unverifiable" && p.evidence.length);
   // 2. Life.
-  out.push(...peopleBeats(b, verified, fire, reports));
+  out.push(...peopleBeats(b, verified, fire, reports).map((x) => ({ ...x, section: "people" as const })));
 
   // 3. Fire floor, one above, one below: only what changes the job.
   if (fire !== null) {
@@ -134,8 +165,20 @@ export function spokenBeats(b: Building, max = 6): Beat[] {
       .filter((p) => floorOf(p) !== null && Math.abs(floorOf(p)! - fire) <= 1)
       .sort((x, y) => RANK[x.severity] - RANK[y.severity] || Math.abs(floorOf(x)! - fire) - Math.abs(floorOf(y)! - fire))
       .slice(0, 3);
-    out.push(near.length ? beat(`Near the fire floor: ${near.map(cite).join(". ")}.`, near) : beat(`No public record places a hazard on ${floorName(fire)} or the floors beside it.`, [], [fire]));
+    // What occupies the fire floor and the floor above, by type only (business licenses, OpenStreetMap indoor levels).
+    const uses = [fire, fire + 1].flatMap((f) => {
+      const occ = b.floorFacts?.find((x) => x.floor === f)?.occupants ?? [];
+      return occ.slice(0, 2).map((o) => `${floorName(f)}, ${o.kind.toLowerCase()}${o.hazard ? `, ${o.hazard.toLowerCase()}` : ""}, per ${o.source.replace(/\s*\(.*\)$/, "").replace(/^SF /, "S F ")}`);
+    });
+    const useText = uses.length ? `Use on record: ${uses.join(". ")}. ` : "";
+    out.push(
+      near.length
+        ? beat(`${useText}Near the fire floor: ${near.map(cite).join(". ")}.`, near, [fire], "fire")
+        : beat(`${useText}No public record places a hazard on ${floorName(fire)} or the floors beside it.`, [], [fire], "fire"),
+    );
   }
+  const bring = bringBeat(b, verified, fire);
+  if (bring) out.push(bring);
 
   // 4. Water and access.
   const pick = (re: RegExp, layers?: string[]) => verified.find((p) => re.test(p.label) && (!layers || layers.includes(p.layer)));
@@ -143,18 +186,17 @@ export function spokenBeats(b: Building, max = 6): Beat[] {
     pick(/sprinklered/i),
     pick(/fire pump|standpipe|\bfdc\b/i),
     pick(/high-pressure hydrant/i, ["water"]) ?? pick(/hydrant/i, ["water"]),
-    pick(/elevator rescue/i, ["incident"]),
     pick(/^wind\b/i, ["wind"]),
   ].filter((p): p is Pin => !!p);
-  if (access.length) out.push(beat(`Water and access: ${access.map(cite).join(". ")}.`, access));
+  if (access.length) out.push(beat(`Water and access: ${access.map(cite).join(". ")}.`, access, [], "access"));
 
   // 5. Verify on arrival.
   const unknowns = b.unknowns.slice(0, 3).map(unknownName);
-  if (unknowns.length) out.push(beat(`No public record, verify on arrival: ${join(unknowns)}.`));
+  if (unknowns.length) out.push(beat(`No public record, verify on arrival: ${join(unknowns)}.`, [], [], "verify"));
   return out.slice(0, max);
 }
 
-export function spokenSizeUp(b: Building, max = 6): string[] {
+export function spokenSizeUp(b: Building, max = 8): string[] {
   return spokenBeats(b, max).map((x) => x.text);
 }
 
