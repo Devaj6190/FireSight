@@ -3,7 +3,7 @@
 import type { Answer, Brief, BriefLine, Building, ComplianceRow } from "./building.ts";
 import { evaluateCompliance } from "./compliance.ts";
 
-export type Source = "model" | "fallback";
+export type Source = "model" | "fallback" | "records";
 export interface Dropped { text: string; pinIds: string[]; claim: string; reason: string }
 
 const BASE = "/api";
@@ -23,10 +23,22 @@ async function post<T>(path: string, body: unknown, timeoutMs: number): Promise<
 export async function fetchBrief(building: Building, timeoutMs = 25_000): Promise<{ brief: Brief; dropped: Dropped[]; source: Source }> {
   try {
     return await post("/brief", { building }, timeoutMs);
-  } catch (err) {
+  } catch {
     if (building.fallback) return { brief: building.fallback.brief, dropped: [], source: "fallback" };
-    throw err;
+    return { brief: briefFromRecords(building), dropped: [], source: "records" };
   }
+}
+
+// Last resort with no network and no saved brief: one line per cited record, danger first. No model, nothing added.
+export function briefFromRecords(b: Building, max = 10): Brief {
+  const rank = { danger: 0, caution: 1, info: 2 } as const;
+  const lines: BriefLine[] = b.pins
+    .filter((p) => p.claim !== "unverifiable" && (p.origin !== "public" || p.evidence.length > 0))
+    .sort((x, y) => rank[x.severity] - rank[y.severity])
+    .slice(0, max)
+    .map((p, i) => ({ id: `r${i + 1}`, text: `${p.label.charAt(0)}${p.label.slice(1).toLowerCase()}.`, pinIds: [p.id], claim: p.claim, status: "pending" }));
+  if (b.unknowns.length) lines.push({ id: `r${lines.length + 1}`, text: `Unknown: ${b.unknowns.slice(0, 4).join(", ")}.`, pinIds: [], claim: "unverifiable", status: "pending" });
+  return { buildingId: b.id, lines, unknowns: b.unknowns, model: "none (records only)", createdAt: new Date().toISOString() };
 }
 
 export async function ask(building: Building, question: string, timeoutMs = 20_000): Promise<{ answer: Answer; dropped: Dropped | null; source: Source }> {
