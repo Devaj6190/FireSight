@@ -295,5 +295,59 @@
    }
   ],
   "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:00+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 88,
+  "sourcesFailed": 2,
+  "ms": 44250,
+  "added": [
+   {
+    "pinId": "aerial-osm-entrance-4915914627",
+    "label": "ENTRANCE (MAIN) 5 M"
+   }
+  ],
+  "removed": [],
+  "changed": [],
+  "note": "+1 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:00+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 41213,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:41+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 56342,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-22T21:37:44+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 88,
+  "sourcesFailed": 1,
+  "ms": 45840,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
