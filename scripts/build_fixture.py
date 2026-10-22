@@ -716,6 +716,12 @@ def build(bid):
     }
     os.makedirs(OUT, exist_ok=True)
     out = os.path.join(OUT, bid + ".json")
+    if os.path.exists(out):  # keep Lane C's precomputed brief/answers across rebuilds
+        prev = json.load(open(out, encoding="utf-8"))
+        if prev.get("fallback"):
+            building["fallback"] = prev["fallback"]
+    building["meta"]["lotAreaM2"] = round(num(a0.get("lot_area")) * 0.0929) if num(a0.get("lot_area")) else None
+    building["meta"]["buildingAreaM2"] = round(num(a0.get("property_area")) * 0.0929) if num(a0.get("property_area")) else None
     json.dump(building, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print(f"{bid}: {floors} floors, {height} m, {len(pins)} pins ({Counter(p['severity'] for p in pins)}), {len(conflicts)} conflicts, {len(links)} links -> {out}")
     return building

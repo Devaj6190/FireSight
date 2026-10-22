@@ -3056,6 +3056,8 @@
   "footprintAreaM2": 1790,
   "sourcesQueried": 88,
   "sourcesWithRecords": 55,
-  "fetchWallMs": 4304
+  "fetchWallMs": 4304,
+  "lotAreaM2": 1978,
+  "buildingAreaM2": 5705
  }
 }
