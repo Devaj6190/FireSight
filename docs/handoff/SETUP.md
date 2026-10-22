@@ -2,7 +2,7 @@
 
 For the coding agent in each lane. Read your lane's handoff first (`docs/handoff/lane-X.md`), then the sections of this file it points to. Updated 12:30 PDT Oct 22 2026. If this file and your lane handoff disagree, this file is newer.
 
-Contents: 1 tools · 2 git workflow · 3 repo layout and ports · 4 running the API · 5 building files · 6 calling the API from the web app · 7 compliance strip · 8 eval screen · 9 MCP server · 10 deploying for the phone · 11 secrets and data rules · 12 status of each piece
+Contents: 0 auto-refresh (docs/handoff/refresh.md) · 1 tools · 2 git workflow · 3 repo layout and ports · 4 running the API · 5 building files · 6 calling the API from the web app · 7 compliance strip · 8 eval screen · 9 MCP server · 10 deploying for the phone · 11 secrets and data rules · 12 status of each piece
 
 ---
 
@@ -165,17 +165,55 @@ Wording on screen and in the pitch comes from `wording`: show "Meets H&SC 13146.
 
 See `mcp/README.md`. Short version: `cd mcp && npm ci && npm run inspect` opens the MCP Inspector. For the Claude Desktop demo, the presenter's laptop gets a `firesight` entry in `~/Library/Application Support/Claude/claude_desktop_config.json` (back the file up first, merge, do not overwrite), then restart Claude Desktop. **Only with Vidyut's OK, on the presenting laptop, after CP2.** If anything fails, play the recorded clip.
 
-## 10. Deploying for the phone (Lane D, Vidyut decides the account)
+## 10. Deploying for the phone (Vercel; Lane D with Vidyut's Claude)
 
-Requirements:
-- HTTPS (WebXR AR and the camera need a secure origin).
-- `/api/*` on the same origin as the web app, so `shared/client.ts` needs no URL changes.
-- The Anthropic key only as a server-side environment variable on the host (Vidyut enters it), never in web code or `VITE_*` variables.
-- `FIRESIGHT_CASES_DIR=/tmp/cases` on serverless hosts (their disk is read-only; struck cases there last only while the function is warm, so the on-stage eval runs on the laptop).
+Researched 12:42 against vercel.com docs and the vercel/vercel source, and simulated locally. Not yet run on a real Vercel build. Vidyut picks the account and enters the key himself.
 
-Recommended: Vercel (ask Vidyut which account before any signup). The web app is a static Vite build (`web/dist`). For the API, `api/src/index.ts` exports the Hono `app` as default; on Vercel wrap it with `import { handle } from "hono/vercel"`. Watch out: Vercel treats every file in a top-level `api/` folder as a function. Either set the Vercel project's root directory to `web/` and add one function file there that imports `../api/src/index.ts`, or deploy the API separately and add a `/api/*` rewrite to it in `vercel.json`. Test the function locally with `vercel dev` before the phone run.
+**Security first:** `api/.env` holds the key. The Vercel CLI uploads `.env` files unless ignored. The repo-root `.vercelignore` (on main) excludes them. Prefer deploying from Git (connect the GitHub repo), where gitignored files never upload.
 
-Fallback if the API deploy is not working by CP2: deploy only the web app. The phone still works fully on the precomputed brief and canned answers (the client falls back automatically), and live questions run from the laptop.
+**Layout:** one Vercel project, Root Directory `web`, Vite preset, plus a single function that runs our Hono app.
+
+1. `api/src/index.ts` must not listen on Vercel. Lane C moves `serve()` into `api/src/server.ts`; `npm run dev` points at it. (Lane C PR.)
+2. New `web/api/index.ts`. Vercel makes every file in `web/api/` a function, so keep exactly one:
+```ts
+// The only Vercel Function: every /api/* request is rewritten here (see web/vercel.json).
+import app from "../../api/src/index.ts";
+export default { fetch(request: Request) { return app.fetch(request); } };
+```
+3. New `web/api/tsconfig.json`. This is required: without `rewriteRelativeImportExtensions`, the `.ts` import paths survive into the output and the function crashes.
+```json
+{ "compilerOptions": { "target": "ES2023", "module": "ESNext", "moduleResolution": "Bundler",
+    "rewriteRelativeImportExtensions": true, "esModuleInterop": true, "skipLibCheck": true, "strict": true, "types": ["node"] },
+  "include": ["./**/*.ts", "../../api/src/**/*.ts", "../../shared/**/*.ts"] }
+```
+4. New `shared/package.json`: `{ "type": "module" }`.
+5. New `web/vercel.json`:
+```json
+{ "$schema": "https://openapi.vercel.sh/vercel.json", "framework": "vite",
+  "installCommand": "npm install && npm ci --prefix ../api --omit=dev",
+  "buildCommand": "npm run build", "outputDirectory": "dist",
+  "functions": { "api/index.ts": { "maxDuration": 60 } },
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }] }
+```
+6. Vercel project settings:
+   - Root Directory: `web`.
+   - "Include files outside the root directory in the Build Step": ON.
+   - Node 22.x.
+   - Env vars, Production and Preview: `ANTHROPIC_API_KEY` (entered by Vidyut, marked Sensitive) and `FIRESIGHT_CASES_DIR=/tmp/cases`.
+   - Dependencies stay in `api/package.json`: the install command installs them.
+   - `web` needs `typescript` 5.7 or newer: it has 6.0.
+
+**Test, in order:**
+1. `vercel dev` from the repo root. Check `curl localhost:3000/api/health` returns `{"ok":true}`. This also confirms the rewrite keeps the `/api/...` path.
+2. A preview deploy, opened on the phone over HTTPS.
+3. POST `/api/brief` with a building. It should return `source: "model"`, or `"fallback"` without a key.
+
+**Likely failures and their fixes:**
+- `ERR_MODULE_NOT_FOUND ... .ts`: the tsconfig from step 3 is missing.
+- `Cannot find package 'hono'`: the install command or the "outside root" toggle.
+- `/api/*` returns 404: check the function list in the build log. If the path is lost after the rewrite, rename the file to `web/api/[...route].ts`.
+
+**Fallback if the API deploy fails by CP2:** deploy the web app only. The phone runs on the precomputed brief and canned answers, and live questions run from the laptop.
 
 ## 11. Secrets and data rules
 

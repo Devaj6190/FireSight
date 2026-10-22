@@ -128,3 +128,5 @@ Run `date`, `git fetch && git checkout lane-a-3d`, read the files listed above, 
 5. Store API others call: `addPin(pin)` (from `parseDispatch` in `shared/dispatch.ts`), `explode()`, `collapse()`, `focus(target)`, `highlight({ floors, pinIds })` (from `answer.highlight`, SETUP.md section 6), `selectPin(id)`.
 6. Check the 400 Duboce footprint: it measures about 53 x 59 m (174 x 193 ft), large for 79 units. If the model looks wrong, tell Rishit (it may include a neighbour).
 7. Phone over HTTPS: SETUP.md section 10. For local phone tests, `npm run dev -- --host` works for model mode on the same Wi-Fi, but WebXR AR needs HTTPS (Lane D's deploy).
+
+8. New (12:45): pins listed in `building.meta.changesSinceLast.added` get a NEW marker (`docs/handoff/refresh.md`).
