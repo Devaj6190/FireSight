@@ -63,10 +63,10 @@ describe("office tower (140 New Montgomery shape)", () => {
   };
   it("shows C7 instead of C1, and C5 for battery storage", () => {
     const rows = evaluateCompliance(tower(), today);
-    expect(rows.map((r) => r.id)).toEqual(["C7", "C3", "C4", "C5", "C8"]);
+    expect(rows.map((r) => r.id)).toEqual(["C7", "C3", "C5", "C8"]);
     expect(rows[0]).toMatchObject({ result: "pass", pinIds: ["inspection-hr"] });
-    expect(rows[3]).toMatchObject({ result: "unknown", pinIds: ["firepermit-76784-f22"] });
-    expect(rows[3].summary).toContain("floor 22");
+    expect(rows[2]).toMatchObject({ result: "unknown", pinIds: ["firepermit-76784-f22"] });
+    expect(rows[2].summary).toContain("floor 22");
   });
   it("keeps C1 for apartments and has no C7 below 75 ft", () => {
     expect(evaluateCompliance(hero(), today).map((r) => r.id)).toEqual(["C1", "C3", "C4", "C8"]);

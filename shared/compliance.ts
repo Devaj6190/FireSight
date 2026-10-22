@@ -85,11 +85,11 @@ export function footprintAxesM(footprint: [number, number][]): [number, number] 
   return best;
 }
 
-export function solarPathways(b: Building): ComplianceRow {
+export function solarPathways(b: Building): ComplianceRow | null {
   const base = { id: "C4" as const, rule: "Rooftop solar access pathways", citation: "CA Fire Code 2025 §1205", wording: "rule logic meets" as const };
   const solar = b.pins.filter((p) => p.layer === "permit" && SOLAR.test(text(p)));
   if (!solar.length) {
-    return { ...base, result: "pass", summary: "Not triggered: no solar permit on record.", pinIds: [] };
+    return null; // not triggered: no solar permit on record, so the row is hidden
   }
   const [shortFt, longFt] = footprintAxesM(b.footprint).map((m) => Math.round(m * 3.28084));
   const perimeter = shortFt <= 250 ? "4 ft" : "6 ft";
@@ -138,7 +138,7 @@ export function highRiseInspection(b: Building, today: Date): ComplianceRow {
   const base = {
     id: "C7" as const,
     rule: "High-rise annual inspection",
-    citation: "SFFD High Rise Annual Inspection program; high-rise over 75 ft",
+    citation: "SFFD High Rise Annual Inspection program; 75 ft high-rise rule (REPORTED)",
     wording: "rule logic meets" as const,
   };
   const hr = b.pins
@@ -178,8 +178,8 @@ export function evaluateCompliance(b: Building, today = new Date()): ComplianceR
     isResidential(b) ? annualInspection(b, today) : null,
     b.heightM > HIGH_RISE_M ? highRiseInspection(b, today) : null,
     openViolations(b),
-    solarPathways(b),
     energyStorage(b),
+    solarPathways(b),
     c8,
   ];
   return rows.filter((r): r is ComplianceRow => r !== null);
