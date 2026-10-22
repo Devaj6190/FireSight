@@ -111,3 +111,5 @@ Run `date`, `git fetch && git checkout lane-c-ai`, read the files listed above, 
 
 ## Setup and integration checklist (added 12:30; details in docs/handoff/SETUP.md)
 Built on `lane-c-ai`: API (section 4), `shared/client.ts` (section 6), compliance (section 7), eval (section 8), precompute (section 5), MCP (section 9). Remaining: put the key in `api/.env`, run the first live brief, `npm run precompute`, `npm run eval`, PR after review, MCP on the presenting laptop after CP2 with Vidyut's OK, and the API deploy with Lane D (section 10).
+
+New (12:45): auto-refresh. The brief leads with "New since last refresh" lines when `meta.changesSinceLast.added` is not empty (`docs/handoff/refresh.md` section 4). Vercel: move `serve()` into `api/src/server.ts` (SETUP.md section 10).

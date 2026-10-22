@@ -127,3 +127,5 @@ Run `date`, `git fetch && git checkout lane-d-phone`, read the files listed abov
 5. Sources drawer: from `building.layers` (each has `datasetId`, `source`, `records`, `asOf`, `status`) and `building.resolution.links`. Limits panel text: hub Final plan.
 6. Deploy: SETUP.md section 10. Ask Vidyut which account before any signup. The key goes only into the host's environment settings, entered by Vidyut. Fallback plan if the API deploy fails: web-only deploy works on precomputed answers.
 7. Claude Desktop MCP on the presenting laptop (yours or Devaj's): `mcp/README.md` and SETUP.md section 9, only with Vidyut's OK, after CP2.
+
+8. **New roadmap item (12:45): auto-refresh every 30 minutes.** Show "Refreshed HH:MM · every 30 min", a change feed card, NEW tags on new pins and per-source as-of dates (`docs/handoff/refresh.md` section 3). Deploy recipe: SETUP.md section 10 (updated 12:45).

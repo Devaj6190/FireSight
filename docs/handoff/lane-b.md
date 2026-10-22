@@ -129,3 +129,5 @@ Run `date`, `git fetch && git checkout lane-b-data`, read the files listed above
 4. Pin formats the compliance strip reads are in SETUP.md section 5; your current files already match (C1 PASS 79 days, C3 PASS, C4 UNKNOWN 4 ft rule, C8 7/9/5 of 21 on 400 Duboce).
 5. Check the 400 Duboce footprint: about 53 x 59 m (174 x 193 ft) for 79 units on 4 floors looks large. Compare with the assessor lot area; if it includes a neighbour, pick the ring by `mblr` or the largest ring containing the parcel centroid.
 6. Your shared files import without extensions (`"./building"`): fine, Lane C switched to bundler resolution.
+
+8. **New roadmap item (12:45): auto-refresh every 30 minutes.** You own `scripts/refresh.py` and `.github/workflows/refresh.yml`. Full spec, wording rules and done list: `docs/handoff/refresh.md`. Target CP2 (14:45). Never say "live".
