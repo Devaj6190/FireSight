@@ -131,3 +131,5 @@ Run `date`, `git fetch && git checkout lane-b-data`, read the files listed above
 6. Your shared files import without extensions (`"./building"`): fine, Lane C switched to bundler resolution.
 
 8. **New roadmap item (12:45): auto-refresh every 30 minutes.** You own `scripts/refresh.py` and `.github/workflows/refresh.yml`. Full spec, wording rules and done list: `docs/handoff/refresh.md`. Target CP2 (14:45). Never say "live".
+
+9. **Rebalance (12:57):** after `scripts/refresh.py` and the workflow, build `<LimitsPanel/>`, `<SourcesDrawer/>` and `<ComplianceStrip/>` in `web/src/shell/panels/` (SETUP.md "Rebalance"; content in SETUP.md sections 7 and 10 of the hub Final plan; compliance rows from `compliance(building)` in `shared/client.ts`).
