@@ -5,13 +5,17 @@ import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import { collapse, explode, focus, reduce, type Ctx, type Pose } from './explode'
 import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
+import { Rooms, RoomsOverlay } from './Rooms.tsx'
 import { useStore, type Phase } from './store'
+import { City } from './City'
+import { facade } from './cityMesh'
 import { fs } from './tokens'
 import type { Building } from '../../shared/building'
 import { PhoneShell } from './shell/PhoneShell'
 import { BUILDINGS, dispatchBuilding, dispatchPin } from './shell/model'
 
 const GAP = 0.15 // between slabs, plan.md s3
+const INTRO = 4.2 // s, the opening fly-in from over the city
 const SOLID = { a: 1 }
 
 function spanOf(b: Building) {
@@ -24,7 +28,7 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, lit, setPhase } = useStore()
+  const { phase, target, lit, rooms, setPhase, toggleRooms } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -44,13 +48,17 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   // per floor (index = contract floor number): its own materials, so focus can fade it
   const levels = useMemo(
     () =>
-      Array.from({ length: b.floors + 1 }, () => ({
-        fade: { a: 1 },
-        top: new THREE.MeshStandardMaterial({ color: fs.slabTop, roughness: 0.9, transparent: true }),
-        side: new THREE.MeshStandardMaterial({ color: fs.slab, roughness: 0.9, transparent: true }),
-        edge: new THREE.LineBasicMaterial({ color: fs.line, transparent: true }),
-      })),
-    [b.floors],
+      Array.from({ length: b.floors + 1 }, (_, f) => {
+        const side = new THREE.MeshStandardMaterial({ roughness: 0.8, transparent: true })
+        facade(side, f, b.floorHeightM - GAP)
+        return {
+          fade: { a: 1 },
+          top: new THREE.MeshStandardMaterial({ color: fs.slabTop, roughness: 0.9, transparent: true }),
+          side,
+          edge: new THREE.LineBasicMaterial({ color: fs.line, transparent: true }),
+        }
+      }),
+    [b.floors, b.floorHeightM],
   )
   // ponytail: at most one chip per floor (the most severe pin, "+N" for the rest); expand on tap comes with selectPin
   const groups = useMemo(() => {
@@ -75,9 +83,36 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   useEffect(() => {
     const f = new URLSearchParams(location.search).get('focus')
     if (f === null) return
-    const id = setTimeout(() => useStore.getState().focus(Number(f)), 600)
+    const id = setTimeout(() => useStore.getState().focus(Number(f)), reduce ? 600 : INTRO * 1000 + 300)
     return () => clearTimeout(id)
   }, [])
+
+  // open over the city and fly down to the hero; any explode or dispatch takes the camera over from wherever it is
+  const intro = useRef<{ tl: gsap.core.Tween; end: Pose } | null>(null)
+  useEffect(() => {
+    const c = controls.current
+    if (reduce || !c) return
+    const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(c.target))
+    const end: Pose = { r: s.radius, phi: s.phi, theta: s.theta, tx: c.target.x, ty: c.target.y, tz: c.target.z }
+    const pose = { ...end, r: Math.max(6 * end.r, 1400), phi: 0.42, theta: end.theta - 1.1, ty: 0 }
+    const apply = () => {
+      c.target.set(pose.tx, pose.ty, pose.tz)
+      camera.position.setFromSpherical(new THREE.Spherical(pose.r, pose.phi, pose.theta)).add(c.target)
+      c.update()
+    }
+    apply()
+    c.enabled = false
+    const tl = gsap.to(pose, { ...end, duration: INTRO, ease: 'power2.inOut', onUpdate: apply, onComplete: () => void ((c.enabled = true), (intro.current = null)) })
+    intro.current = { tl, end }
+    return () => { // StrictMode re-runs this: put the camera back so the second run reads the same end pose
+      if (!intro.current) return
+      tl.kill()
+      Object.assign(pose, end)
+      apply()
+      c.enabled = true
+      intro.current = null
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useFrame(() => {
     for (const l of levels) l.top.opacity = l.side.opacity = l.edge.opacity = l.fade.a
@@ -87,7 +122,9 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     const c = controls.current!
     const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(c.target))
     const pose: Pose = { r: s.radius, phi: s.phi, theta: s.theta, tx: c.target.x, ty: c.target.y, tz: c.target.z }
-    if (next === 'exploded') home.current = { ...pose }
+    if (next === 'exploded') home.current = { ...(intro.current?.end ?? pose) } // collapse lands on the hero, not mid-flight
+    intro.current?.tl.kill()
+    intro.current = null
     c.enabled = false
     const tl = gsap.timeline({
       onUpdate: () => {
@@ -134,24 +171,30 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       return marker(g, [x, top, -y])
     })
 
-  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y
+  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y. Tapping the focused floor opens its rooms
   const slab = (f: number) => (
-    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]}>
+    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={f === target && phase === 'exploded' ? (e) => (e.stopPropagation(), toggleRooms()) : undefined}>
       <lineSegments geometry={edges} material={levels[f].edge} />
     </mesh>
   )
+  const roomsOf = (f: number) =>
+    f === target && rooms !== 'off' && (
+      <Rooms b={b} floor={f} height={top} level={levels[f]} chips={groups.map((g) => g.reveal)} play={play} onSelectPin={onSelectPin} />
+    )
   return (
     <>
       {hasB1 && (
         <group ref={basement} position-y={-b.floorHeightM}>
           {slab(0)}
           {onSlab(0, 1)}
+          {roomsOf(0)}
         </group>
       )}
       {Array.from({ length: b.floors }, (_, i) => (
         <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM}>
           {slab(i + 1)}
           {onSlab(i + 1, i)}
+          {roomsOf(i + 1)}
           {i === 0 && groups.filter((g) => g.key === 'site').map((g) => marker(g, [west[0], top, -west[1]]))}
           {i === b.floors - 1 && groups.filter((g) => g.key === 'roof').map((g) => marker(g, [0, top, 0]))}
         </group>
@@ -163,7 +206,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
         maxPolarAngle={Math.PI / 2 - 0.05}
         enableDamping
         dampingFactor={0.05}
-        autoRotate={!reduce && (phase === 'assembled' || phase === 'exploded')}
+        autoRotate={!reduce && (phase === 'assembled' || phase === 'exploded') && rooms === 'off'}
         autoRotateSpeed={0.35}
       />
     </>
@@ -238,16 +281,19 @@ export default function App() {
     onSelectPin={setSelectedPin}
     onHighlight={(floors, pinIds) => (floors.length || pinIds.length ? highlight({ floors, pinIds }) : focus(null))}
     onAddPin={pin => setB({ ...b, pins: [...b.pins, pin] })}>
-    <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
-      <color attach="background" args={[fs.bg]} />
-      <fog attach="fog" args={[fs.bg, d * 1.2, d * 5]} />
-      <hemisphereLight args={[fs.ink, fs.ground, 0.7]} />
-      <directionalLight position={[60, 90, 40]} intensity={1.4} />
+    <p className="phone-credit">DataSF footprints · © OpenStreetMap contributors</p>
+    <Canvas key={b.id} dpr={[1, 2]} camera={{ fov: 40, far: 8000, position: [d * 0.6, mid + d * 0.45, d * 0.65] }}>
+      <color attach="background" args={[fs.sky]} />
+      <fog attach="fog" args={[fs.sky, d * 1.2, d * 5]} />
+      <hemisphereLight args={['#ffffff', fs.sidewalk, 1.1]} />
+      <directionalLight position={[80, 140, 60]} intensity={1.7} />
+      <City id={b.id} />
       <Slabs b={b} onSelectPin={setSelectedPin} />
       <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
         <circleGeometry args={[1.4 * span, 64]} />
-        <meshStandardMaterial color={fs.ground} transparent opacity={0.75} depthWrite={false} />
+        <meshStandardMaterial color={fs.sidewalk} transparent opacity={0.75} depthWrite={false} />
       </mesh>
     </Canvas>
+    <RoomsOverlay />
   </PhoneShell>
 }
