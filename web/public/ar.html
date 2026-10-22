@@ -64,6 +64,8 @@
   .hs { display: block; border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px; padding: 5px 9px; background: var(--strong); color: var(--ink); font: 500 12px/1.25 'Geist', system-ui, sans-serif; max-width: 190px; pointer-events: none; transition: opacity .25s; }
   .hs.fire, .hs.battery, .hs.danger { border-left-color: var(--danger); } .hs.caution { border-left-color: var(--caution); } .hs.people, .hs.info { border-left-color: var(--info); } .hs.unit { border-left-color: #8b95a3; } .hs.unknown { border-left-color: var(--muted); color: #c3cad3; }
   .hs:not([data-visible]) { opacity: 0; }
+  .pill.ghost { background: transparent; box-shadow: none; color: var(--muted); }
+  .pill.ghost[aria-pressed="true"] { color: var(--action); border-color: var(--action); }
   body.floor .hs { white-space: nowrap; max-width: none; font-size: 10.5px; padding: 3px 7px; }
   body.pulled .hs, body.pulled .legend, body.pulled #seg, body.pulled #explode, body.pulled .note { display: none; }
   .legend .nb { color: var(--muted); margin-top: 2px; }
@@ -83,6 +85,7 @@
 <div class="tools">
   <div class="seg glass" id="seg" role="group" aria-label="Model" hidden><button type="button" id="v-tower" aria-pressed="true">Tower</button><button type="button" id="v-floor" aria-pressed="false">Inside floor</button></div>
   <button type="button" class="pill glass" id="explode" aria-pressed="true" hidden>Assemble</button>
+  <button type="button" class="pill glass ghost" id="labels" aria-pressed="false" hidden>All labels</button>
   <button type="button" class="pill glass" id="back-tower" hidden>← Back to tower</button>
   <button type="button" class="pill glass" id="go-floor" hidden>Inside floor →</button>
   <p class="note" id="note">Not for operational use. Floors from footprint and height records; no interior is shown.</p>
@@ -107,9 +110,14 @@
   const floorName = (n) => (n === 0 ? 'B1' : `Floor ${n}`);
 
   // ---- labels: positions come from the JSON the model scripts write next to each GLB (model coordinates, metres) ----
+  // Inside view: only the 6 highest-priority labels (JSON "pri": danger rooms, people, stairs note, hydrant, entrance streets);
+  // the rest sit behind the "All labels" toggle. The tower view always shows all of its few labels.
+  let allLabels = false, lastList = [];
   function showHotspots(list) {
+    lastList = list;
     mv.querySelectorAll('.hs').forEach((e) => e.remove());
-    for (const h of list) {
+    const shown = view === 'floor' && !allLabels ? [...list].filter((h) => (h.pri || 9) <= 6).sort((a, b) => a.pri - b.pri).slice(0, 6) : list;
+    for (const h of shown) {
       const el = document.createElement('div');
       el.slot = `hotspot-${h.id}`;
       el.className = `hs ${h.tone}`;
@@ -276,6 +284,7 @@
     $('rail').hidden = view !== 'tower' || !M;
     $('explode').hidden = view !== 'tower' || !M;
     $('seg').hidden = view === 'tower' && !fk;
+    $('labels').hidden = view !== 'floor';
     if (view === 'floor') { const fl = Number(/-f(\d+)$/.exec(key)[1]); $('v-floor').textContent = fl === 0 ? 'Inside B1' : `Inside floor ${fl}`; }
     else if (fk) $('v-floor').textContent = `Inside floor ${fk.split('-f')[1]}`;
     if (view === 'floor') { sel = null; card(null); }
@@ -289,6 +298,7 @@
     }).catch(() => { /* labels are optional; the model still shows */ });
   }
   $('back-tower').onclick = () => select(null);
+  $('labels').onclick = () => { allLabels = !allLabels; $('labels').setAttribute('aria-pressed', String(allLabels)); showHotspots(lastList); };
   $('explode').onclick = () => {
     assembled = !assembled;
     $('explode').textContent = assembled ? 'Explode' : 'Assemble';

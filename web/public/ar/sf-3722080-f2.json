@@ -12,7 +12,8 @@
    "tone": "info",
    "position": "-0.0349 0.0360 0.4647",
    "normal": "0 1 0",
-   "source": "https://www.openstreetmap.org/node/8324272536"
+   "source": "https://www.openstreetmap.org/node/8324272536",
+   "pri": 9
   },
   {
    "id": "street-1",
@@ -20,7 +21,8 @@
    "tone": "unknown",
    "position": "-0.2516 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 5
   },
   {
    "id": "street-2",
@@ -28,7 +30,8 @@
    "tone": "unknown",
    "position": "0.2606 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-3",
@@ -36,7 +39,8 @@
    "tone": "unknown",
    "position": "0.2606 0.0300 0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-4",
@@ -44,7 +48,8 @@
    "tone": "unknown",
    "position": "0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-5",
@@ -52,7 +57,8 @@
    "tone": "unknown",
    "position": "0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "street-6",
@@ -60,7 +66,8 @@
    "tone": "unknown",
    "position": "-0.2698 0.0300 -0.2606",
    "normal": "0 1 0",
-   "source": "OpenStreetMap"
+   "source": "OpenStreetMap",
+   "pri": 9
   },
   {
    "id": "hydrant-water-esf4_hydrants_hp-1143",
@@ -68,15 +75,17 @@
    "tone": "info",
    "position": "0.2802 0.0460 -0.2108",
    "normal": "0 1 0",
-   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json"
+   "source": "https://services.arcgis.com/Zs2aNLFN00jrS4gG/arcgis/rest/services/Firefighting_ESF_4/FeatureServer/3/query?where=objectid=1143&outFields=*&f=json",
+   "pri": 4
   },
   {
    "id": "wind",
    "text": "Wind 6 mph from WSW · forecast",
    "tone": "caution",
-   "position": "-0.3220 0.1360 0.1367",
+   "position": "-0.3220 0.1360 0.1570",
    "normal": "0 1 0",
-   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph"
+   "source": "https://api.open-meteo.com/v1/forecast?latitude=37.7866&longitude=-122.4&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph",
+   "pri": 9
   },
   {
    "id": "room-0",
@@ -84,7 +93,8 @@
    "tone": "caution",
    "position": "-0.1135 0.2420 -0.0579",
    "normal": "0 1 0",
-   "source": "https://data.sf.gov/resource/893e-xam6.json?permit_number=142618"
+   "source": "https://data.sf.gov/resource/893e-xam6.json?permit_number=142618",
+   "pri": 9
   },
   {
    "id": "unit-1",
@@ -92,7 +102,8 @@
    "tone": "caution",
    "position": "0.2707 0.3360 0.1088",
    "normal": "0 1 0",
-   "source": "i98e-djp9 202112023542"
+   "source": "i98e-djp9 202112023542",
+   "pri": 9
   },
   {
    "id": "unit-2",
@@ -100,7 +111,8 @@
    "tone": "caution",
    "position": "-0.2452 0.4260 0.1084",
    "normal": "0 1 0",
-   "source": "i98e-djp9 202001021181"
+   "source": "i98e-djp9 202001021181",
+   "pri": 9
   },
   {
    "id": "crowd",
@@ -108,7 +120,8 @@
    "tone": "people",
    "position": "0.0071 0.5120 0.0169",
    "normal": "0 1 0",
-   "source": "SFFD assembly permit"
+   "source": "SFFD assembly permit",
+   "pri": 2
   },
   {
    "id": "open",
@@ -116,7 +129,8 @@
    "tone": "caution",
    "position": "0.0652 0.0620 -0.0454",
    "normal": "0 1 0",
-   "source": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202404198178"
+   "source": "https://data.sf.gov/resource/ftty-kx6y.json?permit_number=EW202404198178",
+   "pri": 9
   },
   {
    "id": "stairs",
@@ -124,7 +138,8 @@
    "tone": "unknown",
    "position": "0.0652 0.2620 -0.0454",
    "normal": "0 1 0",
-   "source": "floorFacts.notOnRecord"
+   "source": "floorFacts.notOnRecord",
+   "pri": 3
   }
  ]
 }

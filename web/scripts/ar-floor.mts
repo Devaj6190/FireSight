@@ -13,7 +13,7 @@ import type { Building, Pin } from '../../shared/building.ts'
 import { archPlan, type Rect, type Seg } from '../src/archPlan.ts'
 import { floorViz, scatter, WORK } from '../src/floorViz.ts'
 import { planFloor } from '../src/roomPlan.ts'
-import { hydrantOf, shortStreet, windOf } from '../src/shell/siteCard.ts'
+import { entrances as entranceLines, hydrantOf, shortStreet, windOf } from '../src/shell/siteCard.ts'
 
 // GLTFExporter reads blobs with FileReader, which Node lacks.
 class NodeFileReader {
@@ -44,7 +44,7 @@ const ABBR = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW'
 const abbr = (deg: number) => ABBR[Math.round((((deg % 360) + 360) % 360) / 22.5) % 16]!
 const dirOf = (deg: number) => ({ x: Math.sin((deg * Math.PI) / 180), y: Math.cos((deg * Math.PI) / 180) }) // plan coords, 0 = north
 
-type Hot = { id: string; text: string; tone: 'danger' | 'caution' | 'unknown' | 'info' | 'people' | 'unit'; position: string; normal: string; source?: string }
+type Hot = { id: string; text: string; tone: 'danger' | 'caution' | 'unknown' | 'info' | 'people' | 'unit'; position: string; normal: string; source?: string; pri?: number }
 const xs = b.footprint.map((p) => p[0]), ys = b.footprint.map((p) => p[1])
 const [minX, maxX, minY, maxY] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)]
 const [cx, cy] = [(minX + maxX) / 2, (minY + maxY) / 2]
@@ -239,6 +239,13 @@ async function buildFloor(floor: number) {
   scene.add(root)
   const glb = (await new GLTFExporter().parseAsync(scene, { binary: true })) as ArrayBuffer
   void gy
+  // label priority for ar.html's default view (at most 6 shown): 1 fire / danger rooms, 2 people, 3 stairs note,
+  // 4 nearest hydrant, 5 the two streets whose faces have an entrance; everything else is 9 (behind "All labels")
+  const entStreets = [...new Set(entranceLines(b).map((l) => /\bon (.+)$/.exec(l.text)?.[1]).filter((s): s is string => !!s))].slice(0, 2)
+  const firstHydrant = hot.find((h) => h.id.startsWith('hydrant-'))
+  for (const h of hot) {
+    h.pri = h.id === 'fire' || (h.id.startsWith('room-') && h.tone === 'danger') ? 1 : h.id === 'crowd' ? 2 : h.id === 'stairs' ? 3 : h === firstHydrant ? 4 : h.id.startsWith('street-') && entStreets.includes(h.text) && !hot.some((o) => o !== h && o.text === h.text && (o.pri ?? 9) === 5) ? 5 : 9
+  }
   const key = `${id}-f${floor}`
   writeFileSync(new URL(`../public/ar/${key}.glb`, import.meta.url), Buffer.from(glb))
   const banner = `Schematic layout · no public floor plan${b.structure ? ' · columns follow the structural system (SF Tall Building Inventory)' : ''}`
