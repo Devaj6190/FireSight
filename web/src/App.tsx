@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import { collapse, explode, reduce, type Pose } from './explode'
-import { PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
+import { Declutter, PinMarker, SEVERITY_ORDER, type Pin } from './Pins'
 import { fs } from './tokens'
 
 // ponytail: local slice of the Building contract until Lane B lands shared/building.ts
@@ -41,7 +41,8 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
   const edgeMat = useMemo(() => new THREE.LineBasicMaterial({ color: fs.line }), [])
   const pins = useMemo(() => [...b.pins].sort((p, q) => SEVERITY_ORDER[p.severity] - SEVERITY_ORDER[q.severity]), [b])
   const reveals = useMemo(() => pins.map(() => ({ v: 0 })), [pins])
-  // ponytail: pins sit on the east edge of their floor (building pins: west edge of the ground floor); no in-floor position in the data yet
+  // ponytail: no in-floor position in the data yet, so pins sit on the floor's east or west edge, alternating by floor;
+  // building pins and the basement (floor 0) go on the ground floor
   const [east, west] = useMemo(() => {
     const byX = [...b.footprint].sort((p, q) => p[0] - q[0])
     return [byX.at(-1)!, byX[0]]
@@ -90,13 +91,14 @@ function Slabs({ b, phase, setPhase }: { b: Building; phase: Phase; setPhase: (p
           </mesh>
           {pins
             .map((p, k) => ({ p, k }))
-            .filter(({ p }) => (p.anchor.kind === 'floor' ? p.anchor.floor - 1 : 0) === i)
-            .map(({ p, k }, j) => {
-              const [x, y] = p.anchor.kind === 'floor' ? east : west
-              return <PinMarker key={p.id} pin={p} at={[x, b.floorHeightM - GAP, -y]} stack={j} side={p.anchor.kind === 'floor' ? 'left' : 'right'} reveal={reveals[k]} />
+            .filter(({ p }) => (p.anchor.kind === 'floor' ? Math.max(p.anchor.floor - 1, 0) : 0) === i)
+            .map(({ p, k }) => {
+              const [x, y] = i % 2 ? west : east
+              return <PinMarker key={p.id} pin={p} at={[x, b.floorHeightM - GAP, -y]} reveal={reveals[k]} />
             })}
         </group>
       ))}
+      <Declutter />
       <OrbitControls
         ref={controls}
         target={[0, b.heightM / 2, 0]}
@@ -114,7 +116,8 @@ export default function App() {
   const [b, setB] = useState<Building>()
   const [phase, setPhase] = useState<Phase>('assembled')
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}buildings/sf-0874003.json`).then((r) => r.json()).then(setB)
+    const id = new URLSearchParams(location.search).get('building') ?? 'sf-3722080' // 140 New Montgomery St
+    fetch(`${import.meta.env.BASE_URL}buildings/${id}.json`).then((r) => r.json()).then(setB)
   }, [])
   if (!b) return null
 

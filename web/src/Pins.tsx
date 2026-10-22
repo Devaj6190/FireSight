@@ -3,7 +3,7 @@
 // They are re-scaled every frame to a constant pixel size and drawn over the floors so they never hide.
 import { Billboard, Line, Text } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useMemo, useRef, useState, type ComponentRef } from 'react'
+import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
 import * as THREE from 'three'
 import sansBold from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff?url'
 import monoMedium from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff?url'
@@ -26,8 +26,15 @@ export type Reveal = { v: number } // 0 hidden .. 1 shown, tweened by the explod
 
 export const SEVERITY_ORDER = { danger: 0, caution: 1, info: 2 }
 const SEV_COLOR = { danger: fs.danger, caution: fs.caution, info: fs.ink }
-const SOURCE: Record<string, string> = { permit: 'PERMIT', incident: 'SFFD INCIDENT', softstory: 'SOFT-STORY LIST' }
-const SNAPSHOT = new Set(['softstory']) // lists, not events: their date is when the list was read
+// chip source name by dataset; snapshots (lists, inventories) are dated by when they were read, not an event
+const SOURCE: Record<string, string> = {
+  'i98e-djp9': 'PERMIT',
+  '893e-xam6': 'FIRE PERMIT',
+  'wr8u-xric': 'SFFD INCIDENT',
+  'beah-shgi': 'SOFT-STORY LIST',
+  '5kya-mfst': 'TALL BLDG INVENTORY',
+}
+const SNAPSHOT = new Set(['beah-shgi', '5kya-mfst'])
 
 const STEM = 9 // m, leader height above the slab
 // chip layout in px (the chip group is scaled to 1 unit = 1 screen px)
@@ -35,7 +42,42 @@ const PAD_X = 10
 const PAD_Y = 8
 const TEXT_X = PAD_X + 14 // after the severity dot
 const CHIP_H = 44
-const STACK = CHIP_H + 6
+const GAP = 6
+const TOP = 36 // px reserved for the status row
+
+// Screen-space declutter. Every pin reports its stem top in screen px and its chip width; one pass per frame picks
+// the chip's side (toward screen centre), clamps it on screen, pushes overlapping chips up, and glides them there.
+// Pins read last frame's result: one frame of lag is invisible. ponytail: greedy O(n^2), fine under the 40-pin cap.
+type Slot = { ax: number; ay: number; w: number; on: boolean; x: number; y: number; fresh: boolean } // x, y: chip offset from stem top, px, y up
+const slots = new Map<string, Slot>()
+
+export function Declutter() {
+  const size = useThree((s) => s.size)
+  useFrame(() => {
+    const placed: { x0: number; x1: number; top: number; bottom: number }[] = []
+    for (const s of [...slots.values()].filter((s) => s.on).sort((a, b) => b.ay - a.ay)) {
+      const x0 = Math.min(Math.max(s.ax < size.width / 2 ? s.ax + 8 : s.ax - 8 - s.w, 8), size.width - 8 - s.w)
+      let bottom = s.ay - GAP // screen y grows down; the chip sits just above its stem top
+      for (let moved = true; moved; ) {
+        moved = false
+        for (const p of placed)
+          if (x0 < p.x1 + GAP && x0 + s.w > p.x0 - GAP && bottom > p.top - GAP && bottom - CHIP_H < p.bottom + GAP) {
+            bottom = p.top - GAP
+            moved = true
+          }
+      }
+      bottom = Math.max(bottom, TOP + CHIP_H) // stay below the status row
+      placed.push({ x0, x1: x0 + s.w, top: bottom - CHIP_H, bottom })
+      const tx = x0 - s.ax
+      const ty = s.ay - bottom
+      const k = s.fresh || reduce ? 1 : 0.16 // glide, except on first show
+      s.x += (tx - s.x) * k
+      s.y += (ty - s.y) * k
+      s.fresh = false
+    }
+  })
+  return null
+}
 
 const date = (iso: string) =>
   new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase()
@@ -73,18 +115,18 @@ const glowMap = (() => {
 
 const overlay = (color: string) => new THREE.MeshBasicMaterial({ color, transparent: true, depthTest: false, depthWrite: false, fog: false, toneMapped: false })
 
-// side: which way the chip extends from its stem, so it stays on screen
-export function PinMarker({ pin, at, stack, side, reveal }: { pin: Pin; at: [number, number, number]; stack: number; side: 'left' | 'right'; reveal: Reveal }) {
+export function PinMarker({ pin, at, reveal }: { pin: Pin; at: [number, number, number]; reveal: Reveal }) {
   const base = useRef<THREE.Mesh>(null)
   const stem = useRef<THREE.Group>(null)
   const chip = useRef<THREE.Group>(null)
+  const content = useRef<THREE.Group>(null)
   const glow = useRef<THREE.Sprite>(null)
   const label = useRef<ComponentRef<typeof Text>>(null)
   const sub = useRef<ComponentRef<typeof Text>>(null)
   const widths = useRef([0, 0])
   const [w, setW] = useState(180)
   const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera
-  const height = useThree((s) => s.size.height)
+  const size = useThree((s) => s.size)
 
   const color = SEV_COLOR[pin.severity]
   const danger = pin.severity === 'danger'
@@ -95,6 +137,18 @@ export function PinMarker({ pin, at, stack, side, reveal }: { pin: Pin; at: [num
   const geo = useMemo(() => ({ border: roundedRect(w + 2, CHIP_H + 2, 9), bg: roundedRect(w, CHIP_H, 8) }), [w])
   const dot = useMemo(() => new THREE.CircleGeometry(4, 20), [])
   const world = useMemo(() => new THREE.Vector3(), [])
+  const ndc = useMemo(() => new THREE.Vector3(), [])
+  const slot = useMemo<Slot>(() => ({ ax: 0, ay: 0, w: 180, on: false, x: 0, y: 0, fresh: true }), [])
+  // register in the effect, not the memo: StrictMode's mount/unmount/mount would otherwise leave it deleted
+  useEffect(() => {
+    slots.set(pin.id, slot)
+    return () => void slots.delete(pin.id)
+  }, [pin.id, slot])
+  // thin leader from the stem top to the chip's nearest bottom corner, in chip px space
+  const leader = useMemo(() => {
+    const g = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(6, 3))
+    return new THREE.Line(g, new THREE.LineBasicMaterial({ color: pin.severity === 'danger' ? fs.danger : fs.muted, transparent: true, depthTest: false, fog: false }))
+  }, [pin.severity])
 
   const measure = (i: number) => (m: { textRenderInfo?: { blockBounds: number[] } }) => {
     const b = m.textRenderInfo?.blockBounds
@@ -110,9 +164,16 @@ export function PinMarker({ pin, at, stack, side, reveal }: { pin: Pin; at: [num
     stem.current!.scale.y = Math.min(1, v * 1.6) // the stem draws first, the chip follows
     const cv = Math.max(0, (v - 0.3) / 0.7)
     chip.current!.getWorldPosition(world)
-    const pxPerUnit = (2 * world.distanceTo(camera.position) * Math.tan((camera.fov * Math.PI) / 360)) / height
+    const pxPerUnit = (2 * world.distanceTo(camera.position) * Math.tan((camera.fov * Math.PI) / 360)) / size.height
     chip.current!.scale.setScalar(pxPerUnit * (0.85 + 0.15 * cv))
-    mats.border.opacity = mats.bg.opacity = mats.dot.opacity = cv
+    ndc.copy(world).project(camera)
+    if (!slot.on && cv > 0) slot.fresh = true
+    Object.assign(slot, { ax: ((ndc.x + 1) / 2) * size.width, ay: ((1 - ndc.y) / 2) * size.height, w, on: cv > 0 })
+    content.current!.position.set(slot.x, slot.y, 0)
+    const pos = leader.geometry.attributes.position as THREE.BufferAttribute
+    pos.setXYZ(1, slot.x < 0 ? slot.x + w : slot.x, slot.y, 0)
+    pos.needsUpdate = true
+    mats.border.opacity = mats.bg.opacity = mats.dot.opacity = (leader.material as THREE.LineBasicMaterial).opacity = cv
     label.current!.fillOpacity = sub.current!.fillOpacity = cv
     if (glow.current) {
       const beat = reduce ? 0 : Math.sin((clock.elapsedTime * 2 * Math.PI) / 1.2) // design.md: 1.2 s danger pulse
@@ -138,7 +199,8 @@ export function PinMarker({ pin, at, stack, side, reveal }: { pin: Pin; at: [num
       </group>
       <Billboard position-y={STEM}>
         <group ref={chip}>
-          <group position={[side === 'right' ? 6 : -6 - w, stack * STACK, 0]}>
+          <primitive object={leader} renderOrder={9} />
+          <group ref={content}>
             <mesh geometry={geo.border} material={mats.border} position={[-1, -1, 0]} renderOrder={10} />
             <mesh geometry={geo.bg} material={mats.bg} renderOrder={11} />
             <mesh geometry={dot} material={mats.dot} position={[PAD_X + 4, CHIP_H - PAD_Y - 7, 0]} renderOrder={12} />
@@ -169,7 +231,7 @@ export function PinMarker({ pin, at, stack, side, reveal }: { pin: Pin; at: [num
               renderOrder={13}
               onSync={measure(1)}
             >
-              {`${SOURCE[pin.layer] ?? pin.layer.toUpperCase()} · ${SNAPSHOT.has(pin.layer) ? 'AS OF ' : ''}${date(ev.asOf)}`}
+              {`${SOURCE[ev.datasetId] ?? ev.source.toUpperCase()} · ${SNAPSHOT.has(ev.datasetId) ? 'AS OF ' : ''}${date(ev.asOf)}`}
             </Text>
           </group>
         </group>
