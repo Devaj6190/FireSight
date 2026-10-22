@@ -252,7 +252,7 @@ export function FloorPanel({ building: b, floor, onSelectPin }: { building: Buil
           )}
           {canRooms && (
             <button type="button" className="floor-action" onClick={() => useStore.getState().toggleRooms()} aria-pressed={roomsOn}>
-              {roomsOn ? 'Hide rooms' : 'Show rooms'} · schematic
+              {roomsOn ? 'Close cutaway' : 'Explore floor'} · illustrative shell
             </button>
           )}
         </div>

@@ -90,6 +90,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
   const focused = target === null ? lit : [target, ...lit.filter(f => f !== target)]
 
   const isOpen = open || !!selectedPin // a pin tapped in the 3D opens the panel on its record
+  const cutaway = rooms !== 'off' // the floor cutaway's heading and incident card (rooms.css) take the left column; on a phone the top, and the dock the bottom
 
   // the canvas stays full-screen; tell the camera what the chrome covers so it frames the building in the rest
   useLayoutEffect(() => {
@@ -98,18 +99,19 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
       const w = wide(), topH = topBar.current!.offsetHeight, navBox = nav.current!.getBoundingClientRect()
       const peek = parseFloat(getComputedStyle(el).getPropertyValue('--peek')) || 176
       const inset = w
-        ? { top: topH, right: navBox.width + (isOpen ? sh.offsetWidth + 24 : 0), bottom: 0, left: 0 }
-        : { top: topH, right: 0, bottom: navBox.height + (isOpen ? sh.offsetHeight : peek) - 20, left: 0 }
+        ? { top: topH, right: navBox.width + (isOpen ? sh.offsetWidth + 24 : 0), bottom: 0, left: cutaway ? 340 : 0 }
+        : { top: topH + (cutaway ? 140 : 0), right: 0, bottom: navBox.height + (isOpen ? sh.offsetHeight : peek) - 20 + (cutaway ? 110 : 0), left: 0 }
       el.style.setProperty('--top-h', `${topH}px`)
       el.style.setProperty('--nav-w', `${w ? navBox.width : 0}px`)
       el.style.setProperty('--inset-b', `${inset.bottom}px`)
+      el.style.setProperty('--inset-r', `${inset.right}px`)
       useStore.getState().setInset(inset)
     }
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(el); ro.observe(topBar.current!)
     return () => ro.disconnect()
-  }, [isOpen])
+  }, [isOpen, cutaway])
   const close = () => { setOpen(false); if (selectedPin) onSelectPin(undefined) }
   const say = (text: string) => setToast({ id: Date.now(), text })
   function go(next: Page) {
@@ -197,7 +199,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
       <div className="fs-dock" aria-label="Model controls">
         <div className="fs-dock-chips">
           {focused.length > 0 && <button className="fs-chip on" key={focused.join()} onClick={() => { tap(); onFocusFloor(null) }}><Crosshair size={16} aria-hidden />{focused.length > 1 ? 'Floors' : 'Floor'} {focused.map(floorName).join(', ')}<X size={16} aria-label="Clear focus" /></button>}
-          {phase === 'exploded' && target !== null && <button className="fs-chip" aria-pressed={rooms === 'on'} disabled={rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); toggleRooms() }}>{rooms === 'off' ? `Rooms · floor ${floorName(target)}` : 'Back to floors'}</button>}
+          {phase === 'exploded' && target !== null && <button className="fs-chip" aria-pressed={rooms === 'on'} disabled={rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); toggleRooms() }}>{rooms === 'off' ? `Explore floor ${floorName(target)}` : 'Back to floors'}</button>}
         </div>
         <div className="fs-dock-row">
           <button className={`fs-explode${busy ? ' busy' : ''}${phase === 'exploded' || phase === 'collapsing' ? ' out' : ''}`} disabled={busy} onClick={() => { tap(20); onToggle() }}>

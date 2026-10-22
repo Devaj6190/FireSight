@@ -97,7 +97,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       m.get(k)!.push(p)
     }
     return [...m]
-      .map(([key, ps]) => ({ key, pins: ps, reveal: { v: phase === 'exploded' ? 1 : 0 } }))
+      .map(([key, ps]) => ({ key, pins: ps, reveal: { v: phase === 'exploded' && rooms === 'off' ? 1 : 0 } })) // a pin added under the cutaway stays hidden
       .sort((g, h) => SEVERITY_ORDER[g.pins[0].severity] - SEVERITY_ORDER[h.pins[0].severity])
   }, [pins, b.floors])
   // ponytail: no in-floor position in the data yet, so pins sit on the floor's east or west edge, alternating by floor
@@ -223,6 +223,8 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       <lineSegments geometry={edges} material={levels[f].edge} />
     </mesh>
   )
+  // the cutaway hides every other floor outright: faded to zero they still wrote depth and occluded it
+  const shows = (f: number) => rooms === 'off' || rooms === 'closing' || f === target
   const roomsOf = (f: number) =>
     f === target && rooms !== 'off' && (
       <Rooms b={b} floor={f} height={top} level={levels[f]} chips={groups.map((g) => g.reveal)} play={play} onSelectPin={onSelectPin} />
@@ -230,14 +232,14 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
   return (
     <>
       {hasB1 && (
-        <group ref={basement} position-y={-b.floorHeightM}>
+        <group ref={basement} position-y={-b.floorHeightM} visible={shows(0)}>
           {slab(0)}
           {onSlab(0, 1)}
           {roomsOf(0)}
         </group>
       )}
       {Array.from({ length: b.floors }, (_, i) => (
-        <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM}>
+        <group key={i} ref={(g) => void (slabs.current[i] = g!)} position-y={i * b.floorHeightM} visible={shows(i + 1)}>
           {slab(i + 1)}
           {onSlab(i + 1, i)}
           {roomsOf(i + 1)}
