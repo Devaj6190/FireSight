@@ -14,6 +14,7 @@ type Store = {
   lit: number[] // floors an answer names, sorted; shown full alongside target
   rooms: RoomsPhase
   collapseAfterRooms: boolean // collapse asked while rooms were open: rooms close first, then the floors
+  view: number // bumped by resetView: the scene flies the camera back to the framing for the current phase
   setBuilding: (b: Building) => void
   setPhase: (p: Phase) => void
   explode: () => void
@@ -22,6 +23,7 @@ type Store = {
   highlight: (h: Answer['highlight']) => void
   toggleRooms: () => void
   setRooms: (r: RoomsPhase) => void
+  resetView: () => void
 }
 
 export const useStore = create<Store>((set, get) => ({
@@ -30,6 +32,7 @@ export const useStore = create<Store>((set, get) => ({
   lit: [],
   rooms: 'off',
   collapseAfterRooms: false,
+  view: 0,
   setBuilding: (building) => set({ building }),
   setPhase: (phase) => set({ phase }),
   explode: () => void (get().phase === 'assembled' && set({ phase: 'exploding' })),
@@ -63,4 +66,5 @@ export const useStore = create<Store>((set, get) => ({
       get().collapse()
     }
   },
+  resetView: () => set({ view: get().view + 1 }),
 }))

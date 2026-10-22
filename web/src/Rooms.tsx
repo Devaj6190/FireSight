@@ -216,21 +216,13 @@ export function Rooms({ b, floor, height, level, chips, play, onSelectPin }: {
   )
 }
 
-// DOM over the stage: the Rooms toggle and, while the plan shows, the estimate note (never off while the plan is up)
+// DOM over the stage: while the plan shows, the estimate note (never off while the plan is up). The Rooms toggle lives in the shell dock
 export function RoomsOverlay() {
-  const { phase, target, rooms, toggleRooms } = useStore()
-  if (phase !== 'exploded' || target === null) return null
-  const busy = rooms === 'opening' || rooms === 'closing'
+  const { phase, target, rooms } = useStore()
+  if (phase !== 'exploded' || target === null || rooms === 'off') return null
   return (
-    <>
-      {rooms !== 'off' && (
-        <p className="rooms-banner" role="note" title="No public floor plan exists. Column spacing follows the structural system recorded in the SF Tall Building Inventory (5kya-mfst). Corridor and room grid are schematic. Stairs are not drawn: their location is not public. Hazard rooms are named in cited records; their spot on the floor is estimated.">
-          {useStore.getState().building?.structure ? 'Columns: structural system per SF Tall Building Inventory · ' : ''}Corridor and rooms schematic · stairs not drawn
-        </p>
-      )}
-      <button className="rooms-toggle" disabled={busy} aria-pressed={rooms === 'on'} onClick={toggleRooms}>
-        {rooms === 'off' ? `Rooms · floor ${target === 0 ? 'B1' : target}` : busy ? '…' : 'Back to floors'}
-      </button>
-    </>
+    <p className="rooms-banner" role="note" title="No public floor plan exists. Column spacing follows the structural system recorded in the SF Tall Building Inventory (5kya-mfst). Corridor and room grid are schematic. Stairs are not drawn: their location is not public. Hazard rooms are named in cited records; their spot on the floor is estimated.">
+      {useStore.getState().building?.structure ? 'Columns: structural system per SF Tall Building Inventory · ' : ''}Corridor and rooms schematic · stairs not drawn
+    </p>
   )
 }

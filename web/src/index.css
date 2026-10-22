@@ -1,11 +1,15 @@
 :root {
-  --fs-bg: #0d0f12;
-  --fs-surface: #171a1f;
-  --fs-line: #2a2f37;
-  --fs-ink: #f4f3ee;
-  --fs-muted: #9aa0a8;
+  /* Night Watch, warmed to soot (docs/design.md s2): surfaces lean brown-black like turnout gear, not blue */
+  --fs-bg: #0f0e0c;
+  --fs-surface: #191715;
+  --fs-line: #36312b;
+  --fs-ink: #f5f1e8;
+  --fs-muted: #a39b8f;
   --fs-action: #ff9f1c;
-  --fs-action-ink: #0d0f12;
+  --fs-action-ink: #160e02;
+  --fs-danger: #e5261f;
+  --fs-caution: #ffb020;
+  --fs-info: #8ecae6;
   color-scheme: dark;
 }
 html, body { margin: 0; height: 100%; background: var(--fs-bg); color: var(--fs-ink); font-family: system-ui, sans-serif; }

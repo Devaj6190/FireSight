@@ -68,6 +68,13 @@ export function explode(c: Ctx) {
   if (c.basement) c.tl.to(c.basement.position, { z: step, y: -rise, duration: t(1.4), ease: 'power3.inOut' }, t(0.1))
 }
 
+// reset view on the open fan: the same framing explode lands on
+export function frame(c: Ctx) {
+  const { n, step, rise } = fan(c)
+  const fanLen = Math.hypot(n * step, n * rise + c.floorH)
+  c.tl.to(c.pose, { phi: 62 * DEG, theta: near(c.pose.theta, 30 * DEG), r: 1.6 * fit(c) * Math.max(fanLen, c.span), tx: 0, ty: 0.4 * n * rise + c.floorH / 2, tz: -0.4 * n * step, duration: t(1.1), ease: 'power3.inOut' }, 0)
+}
+
 // runs once the fan has landed (and again whenever the target changes): fade floors, frame the target
 export function focus(c: Ctx) {
   c.tl.to(c.fades, { a: (f: number) => fadeFor(f, c), duration: t(0.8), ease: 'sine.inOut' }, 0)
