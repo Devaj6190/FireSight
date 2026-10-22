@@ -11,7 +11,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,7 +22,16 @@ jobs:
         run: |
           git config user.name "firesight-refresh"
           git config user.email "firesight-refresh@users.noreply.github.com"
-          git add web/public/buildings web/public/refresh
-          git diff --cached --quiet || git commit -m "data: refresh $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase origin main   # main may have moved while the job ran
-          git push
+          # If main moves while the job runs (a PR merges), rebuilding on top of it is safer than
+          # rebasing generated JSON: reset to the new main, re-run the refresh, try again.
+          for attempt in 1 2 3; do
+            git add web/public/buildings web/public/refresh
+            if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+            git commit -q -m "data: refresh $(date -u +%Y-%m-%dT%H:%MZ)"
+            if git push; then exit 0; fi
+            echo "main moved (attempt $attempt): rebuilding on the new main"
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python scripts/refresh.py --once
+          done
+          echo "could not push after 3 attempts"; exit 1
