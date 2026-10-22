@@ -1,0 +1,325 @@
+<title>FireSight Field Preview</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a single readable column for fire service readers; the live phone prototype sits beside the opening; a feedback form closes the page. */
+:root{
+  --bg:#f4f4f2; --surface:#ffffff; --ink:#16191d; --muted:#5b6169; --line:#d9dbde; --accent:#c4321c; --accent-ink:#ffffff;
+  --phone:#0e1114; --phone-ink:#eef1f4; --phone-muted:#8b939d;
+  --danger:#e5261f; --caution:#f2a51a; --info:#e8ecf0; --unknown:#8b939d; --dept:#5aa9ff; --ok:#2f8f55;
+  --display:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111417;--surface:#1a1e23;--ink:#eceff2;--muted:#9aa2ac;--line:#2c323a;--accent:#ff6b4f;--accent-ink:#111417;--ok:#5fcf8a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111417;--surface:#1a1e23;--ink:#eceff2;--muted:#9aa2ac;--line:#2c323a;--accent:#ff6b4f;--accent-ink:#111417;--ok:#5fcf8a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(2.6rem,7vw,4rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.75rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .72rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:64ch}
+section{display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:12px}
+.notice{border:1px solid var(--line);border-left:4px solid var(--caution);background:var(--surface);border-radius:6px;padding:12px 14px;font-size:.92rem}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:36px;align-items:start}
+.hero-text{display:flex;flex-direction:column;gap:18px;min-width:0}
+.big{font-size:1.25rem;max-width:56ch}
+.cta{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);font:700 1rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:14px 18px;border-radius:8px;text-decoration:none}
+.cta:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--caution);outline-offset:2px}
+blockquote{margin:0;border-left:4px solid var(--accent);padding:4px 0 4px 16px;display:flex;flex-direction:column;gap:6px}
+blockquote p{font-size:1.1rem}
+blockquote cite{font:500 .8rem/1.4 var(--mono);color:var(--muted);font-style:normal}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.step::before{counter-increment:s;content:"STEP " counter(s);font:600 .7rem/1 var(--mono);letter-spacing:.1em;color:var(--accent)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.94rem;min-width:620px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .72rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+.lab{display:inline-block;font:600 .7rem/1 var(--mono);padding:5px 7px;border-radius:4px;letter-spacing:.04em;white-space:nowrap}
+.lab.v{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.lab.u{border:1px dashed var(--muted);color:var(--muted)}
+.lab.c{background:color-mix(in srgb,var(--caution) 22%,transparent);color:color-mix(in srgb,var(--caution) 60%,var(--ink))}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.box ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:5px;font-size:.95rem}
+
+/* phone */
+.phone{width:100%;max-width:330px;aspect-ratio:9/18.5;background:var(--phone);border-radius:36px;padding:11px;box-shadow:0 0 0 2px #2b3138,0 22px 50px rgba(0,0,0,.3);position:relative;justify-self:center}
+.screen{position:absolute;inset:11px;border-radius:27px;overflow:hidden;background:radial-gradient(120% 70% at 50% 35%,#1b2128 0%,var(--phone) 70%);color:var(--phone-ink)}
+.topbar{position:absolute;top:0;left:0;right:0;padding:15px 15px 0;display:flex;justify-content:space-between;gap:8px;z-index:3}
+.addr b{display:block;font:700 1.1rem/1 var(--display);text-transform:uppercase}
+.addr span{font:500 .58rem/1.4 var(--mono);color:var(--phone-muted)}
+.sim{font:600 .58rem/1 var(--mono);color:var(--caution);border:1px solid var(--caution);padding:5px 6px;border-radius:4px;white-space:nowrap;align-self:flex-start}
+#stage{position:absolute;inset:0}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#pins{position:absolute;inset:0;pointer-events:none;z-index:2}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;gap:5px;align-items:center;font:600 .56rem/1.15 var(--mono);text-transform:uppercase;padding:4px 6px;border-radius:4px;background:rgba(14,17,20,.9);border:1px solid currentColor;white-space:nowrap;opacity:0}
+.pin i{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.pin small{display:block;font-weight:500;opacity:.7;font-size:.5rem}
+.pin.danger{color:var(--danger)}.pin.caution{color:var(--caution)}.pin.info{color:var(--info)}.pin.unknown{color:var(--unknown);border-style:dashed}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:4;background:rgba(22,27,32,.97);border-top:1px solid #2c333b;border-radius:16px 16px 0 0;padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px}
+.pbtn{font:700 .95rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;min-height:46px;border-radius:10px;border:0;cursor:pointer;background:var(--danger);color:#fff;width:100%}
+.brief{display:none;flex-direction:column;gap:5px;max-height:190px;overflow:auto}
+.brief.show{display:flex}
+.bl{font-size:.72rem;line-height:1.35;padding:6px 8px;border-radius:6px;background:#1f262e}
+.bl cite{display:block;font:500 .54rem/1.3 var(--mono);color:var(--phone-muted);font-style:normal}
+.phonenote{font:500 .74rem/1.45 var(--mono);color:var(--muted);text-align:center;max-width:330px;justify-self:center}
+
+/* form */
+form{display:flex;flex-direction:column;gap:18px}
+fieldset{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:14px 16px;margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+legend{font:700 1.02rem/1.3 var(--display);padding:0 6px}
+label{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;cursor:pointer}
+input[type=radio],input[type=checkbox]{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--accent)}
+input[type=text],textarea,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%}
+textarea{min-height:92px;resize:vertical}
+.scale{display:flex;flex-wrap:wrap;gap:8px}
+.scale label{border:1px solid var(--line);border-radius:6px;padding:8px 12px;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 16px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:700 1rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:14px 18px;border-radius:8px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+#out{display:none;font:500 .85rem/1.5 var(--mono);white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;min-height:120px}
+#out.show{display:block}
+#status{font-size:.92rem;color:var(--ok);font-weight:600}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-text">
+    <span class="eyebrow">A prototype · asking for fire service feedback</span>
+    <h1>FireSight</h1>
+    <p class="big">Know what's inside before the wheels stop. FireSight takes a dispatched address and shows the officer the building in 3D, floor by floor, with what the public record says about it. Every fact shows its source and date, and anything unknown is labelled unknown.</p>
+    <div class="notice"><b>Please read:</b> this is an independent prototype built by a team of four on Oct 22, 2026 at a San Francisco hackathon. It is <b>not affiliated with SFFD or any fire department</b>, it is <b>not for operational use</b>, and the example call below is <b>simulated</b>. We want to hear from people who do the job: what's useful, what's missing, and what would be dangerous.</div>
+    <a class="cta" href="#feedback">Give feedback (3 min) ↓</a>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div class="phone" aria-label="Interactive prototype screen">
+      <div class="screen">
+        <div class="topbar">
+          <div class="addr"><b>400 Duboce Ave</b><span>EXAMPLE · ENGINE 4 MIN OUT</span></div>
+          <span class="sim">SIMULATED CALL</span>
+        </div>
+        <div id="stage"></div>
+        <div id="pins"></div>
+        <div class="sheet">
+          <button class="pbtn" id="explode" type="button">Explode floors</button>
+          <div class="brief" id="brief"></div>
+        </div>
+      </div>
+    </div>
+    <p class="phonenote">Drag to turn. Tap "Explode floors". The facts come from SF public records for this real building. The building's shape here is simplified.</p>
+  </div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Why we're building it</span><h2>The problem, in the fire service's own words</h2></div>
+  <p class="eyebrow">Published investigations and firefighters' own words (not our interviews)</p>
+  <blockquote><p>"We definitely would have looked at things a lot different. If we had known that the roof structure in that building was of lightweight construction."</p><cite>Ed Smith, North Perth Fire Department, on the 2011 Listowel collapse that killed two firefighters · CTV News, Aug 19 2016</cite></blockquote>
+  <blockquote><p>"The fire department had not conducted a formal pre-incident inspection of this facility nor developed a formal pre-incident plan."</p><cite>NIOSH Fire Fighter Fatality Investigation F2021-10, Spring Valley NY · Dec 2024</cite></blockquote>
+  <p class="lede">Much of what changes tactics already exists in public records: construction type, soft-story status, rooftop solar, unit counts, open fire code violations and past fires. But it's spread across many city websites that nobody can search on the way to a call. Hand-built pre-plans take time and go stale.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">What it does</span><h2>From dispatch to a briefed crew</h2></div>
+  <div class="steps">
+    <div class="step"><h3>Address in</h3><p>Dispatch gives an address. FireSight matches every city record to the one building, even when the records use different addresses for it.</p></div>
+    <div class="step"><h3>Building in 3D</h3><p>The real footprint and measured height, split into floors. One tap separates the floors so the hazards show where they sit.</p></div>
+    <div class="step"><h3>Facts pinned in place</h3><p>Construction, units per floor, soft-story, rooftop solar, violations, past fires, the nearest hydrant and cistern. Each one is dated and sourced.</p></div>
+    <div class="step"><h3>Gaps said out loud</h3><p>Stairs, standpipes and anything with no public record are shown as unknown. FireSight doesn't guess.</p></div>
+    <div class="step"><h3>Officer approves</h3><p>The officer approves or strikes each line of the size-up summary before it goes to the crew. Nothing goes out without a human.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Example: 400 Duboce Ave, San Francisco</span><h2>What the record shows for one real building</h2></div>
+  <p class="lede">Each fact gets one of three labels: <span class="lab v">VERIFIED</span> means a public record says it, <span class="lab u">UNVERIFIABLE</span> means no public record covers it, and <span class="lab c">CONFLICT</span> means records disagree. When they disagree, FireSight shows both.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Fact</th><th>Label</th><th>Source</th><th>As of</th></tr></thead>
+    <tbody>
+      <tr><td>4 stories, wood frame (Type V), apartments</td><td><span class="lab v">VERIFIED</span></td><td>SF building permits; property tax roll (class D, wood frame)</td><td>2024 permit; 2025 roll</td></tr>
+      <tr><td>Residential units: 78 or 79</td><td><span class="lab c">CONFLICT</span></td><td>Tax roll says 78; permits say 79</td><td>2025 / 2024</td></tr>
+      <tr><td>The same building is listed as "50 Church St" in the tax roll and "400 Duboce Ave" in permits</td><td><span class="lab v">MATCHED</span></td><td>Matched on parcel 0874/003</td><td>2025</td></tr>
+      <tr><td>Soft-story building, retrofit work complete</td><td><span class="lab v">VERIFIED</span></td><td>SF soft-story program list</td><td>Oct 2026</td></tr>
+      <tr><td>Solar hot-water panels on roof (36 modules, not PV)</td><td><span class="lab v">VERIFIED</span></td><td>Building permit</td><td>2019</td></tr>
+      <tr><td>Fire alarm upgraded to NFPA 72 (2022)</td><td><span class="lab v">VERIFIED</span></td><td>Building permit</td><td>2024</td></tr>
+      <tr><td>Sprinkler activation due to malfunction</td><td><span class="lab v">VERIFIED</span></td><td>SFFD fire incidents</td><td>2023</td></tr>
+      <tr><td>Building fire at this address</td><td><span class="lab v">VERIFIED</span></td><td>SFFD fire incidents</td><td>2003</td></tr>
+      <tr><td>Hydrant about 27 m away; cistern about 156 m; Station 6 about 306 m</td><td><span class="lab v">VERIFIED</span></td><td>SF Dept. of Emergency Management map layer</td><td>2018 snapshot</td></tr>
+      <tr><td>Annual R-2 fire inspection on record</td><td><span class="lab v">VERIFIED</span></td><td>SFFD inspections, completed 2026-08-04</td><td>2026</td></tr>
+      <tr><td>Stair and standpipe locations</td><td><span class="lab u">UNVERIFIABLE</span></td><td>No public floor plans</td><td>n/a</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Honest limits</span><h2>What FireSight doesn't know, and doesn't do</h2></div>
+  <div class="two">
+    <div class="box"><h3>Data limits</h3><ul>
+      <li>Building heights come from 2010 laser scans; footprints are from Sept 2023.</li>
+      <li>Hydrant and cistern positions are from a 2018 city snapshot.</li>
+      <li>City fire incident data runs about 4 weeks behind, and calls about 8 hours. It is <b>never live</b>.</li>
+      <li>Unit counts per floor come only from unit numbers mentioned in permits, so treat them as a minimum.</li>
+      <li>There are no interior floor plans, so stairs, standpipes and layouts are unknown.</li>
+      <li>Public records can be wrong or out of date. Your eyes and your department's pre-plan come first.</li>
+    </ul></div>
+    <div class="box"><h3>What it doesn't do</h3><ul>
+      <li>It doesn't replace your size-up, your 360 or your department's pre-plans. It's a head start on the way there.</li>
+      <li>It doesn't predict fire behavior or make tactical decisions.</li>
+      <li>It doesn't show personal information about occupants or building managers.</li>
+      <li>It doesn't send anything to a crew without an officer approving it.</li>
+      <li>It only covers San Francisco today, using the city's public data.</li>
+    </ul></div>
+  </div>
+  <div class="box"><h3>Code checks, with citations</h3><p class="lede">FireSight checks some rules against the public record and shows pass, fail or unknown with the citation. Examples: the California annual fire inspection for apartments and hotels (Health and Safety Code 13146.2); rooftop solar access pathways (CA Fire Code 1205), which show as unknown when there's no roof layout; and how many of the standard pre-incident plan elements (NFPA 1620, now NFPA 1660) public data can fill. For 400 Duboce that's 7 of 21 filled, 9 partly.</p></div>
+</section>
+
+<section id="feedback">
+  <div class="sec-head"><span class="eyebrow">About 3 minutes · every question is optional</span><h2>Your feedback</h2></div>
+  <p class="lede">Answer what you like, then tap <b>Copy my answers</b> and paste them into a reply to whoever sent you this link. Your draft stays only in this browser. Nothing is sent anywhere automatically.</p>
+  <form id="fb">
+    <fieldset><legend>About you</legend>
+      <div class="grid2">
+        <label for="role" style="flex-direction:column;gap:4px">Role<select id="role"><option value="">Choose</option><option>Firefighter</option><option>Engineer / driver</option><option>Company officer</option><option>Battalion / chief officer</option><option>Fire prevention / inspector</option><option>Dispatch</option><option>Other</option></select></label>
+        <label for="years" style="flex-direction:column;gap:4px">Years in the fire service<select id="years"><option value="">Choose</option><option>Under 5</option><option>5 to 15</option><option>15+</option></select></label>
+        <label for="dept" style="flex-direction:column;gap:4px">Department type<select id="dept"><option value="">Choose</option><option>Career</option><option>Combination</option><option>Volunteer</option></select></label>
+        <label for="tool" style="flex-direction:column;gap:4px">Pre-plan tool you use today<input id="tool" type="text" placeholder="e.g. paper binder, First Due, none"></label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>1. How useful would this be on the way to a structure fire?</legend>
+      <div class="scale" role="radiogroup">
+        <label><input type="radio" name="useful" value="1">1 Not at all</label><label><input type="radio" name="useful" value="2">2</label><label><input type="radio" name="useful" value="3">3</label><label><input type="radio" name="useful" value="4">4</label><label><input type="radio" name="useful" value="5">5 Very</label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>2. Which three facts would change your tactics most?</legend>
+      <div class="grid2" id="facts">
+        <label><input type="checkbox" value="Construction type">Construction type</label>
+        <label><input type="checkbox" value="Occupancy and unit count">Occupancy and unit count</label>
+        <label><input type="checkbox" value="Rooftop solar / batteries / EV">Rooftop solar, batteries, EV chargers</label>
+        <label><input type="checkbox" value="Sprinklers / standpipes / FDC">Sprinklers, standpipes, FDC</label>
+        <label><input type="checkbox" value="Soft-story / collapse risk">Soft-story or collapse risk</label>
+        <label><input type="checkbox" value="Open fire code violations">Open fire code violations</label>
+        <label><input type="checkbox" value="Past fires at the address">Past fires at the address</label>
+        <label><input type="checkbox" value="Hydrants and water supply">Hydrants and water supply</label>
+        <label><input type="checkbox" value="Hazmat / tanks / LPG">Hazmat, tanks, LPG</label>
+        <label><input type="checkbox" value="Access: wires, sidewalks, key box">Access: overhead wires, hollow sidewalks, key box</label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>3. Would you trust a line on screen if it showed its source and date?</legend>
+      <div class="scale"><label><input type="radio" name="trust" value="Yes">Yes</label><label><input type="radio" name="trust" value="It depends">It depends</label><label><input type="radio" name="trust" value="No">No</label></div>
+      <textarea id="trustwhy" aria-label="Why"></textarea>
+    </fieldset>
+
+    <fieldset><legend>4. Where would you want to see it?</legend>
+      <div class="grid2" id="where">
+        <label><input type="checkbox" value="Rig MDT / tablet">Rig MDT or tablet</label>
+        <label><input type="checkbox" value="Phone">Phone</label>
+        <label><input type="checkbox" value="Command / battalion tablet">Command or battalion tablet</label>
+        <label><input type="checkbox" value="Inside our pre-plan software">Inside our pre-plan software</label>
+        <label><input type="checkbox" value="Printed pre-plan">Printed pre-plan</label>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>5. What's missing or wrong?</legend><textarea id="missing" aria-label="What's missing or wrong"></textarea></fieldset>
+    <fieldset><legend>6. Could anything here be dangerous or misleading on a real call?</legend><textarea id="danger" aria-label="Dangerous or misleading"></textarea></fieldset>
+    <fieldset><legend>Optional</legend>
+      <label for="contact" style="flex-direction:column;gap:4px">Name or contact, if you'd like a follow-up<input id="contact" type="text"></label>
+      <label><input type="checkbox" id="quote">You may quote my answers without my name</label>
+    </fieldset>
+
+    <div class="actions">
+      <button class="btn" type="submit">Copy my answers</button>
+      <button class="btn ghost" type="button" id="clear">Clear</button>
+      <span id="status" role="status"></span>
+    </div>
+    <pre id="out" aria-label="Your answers as text"></pre>
+  </form>
+</section>
+
+<footer>
+  <p>FireSight is an independent prototype from a hackathon team, built on Oct 22, 2026. It is not affiliated with, endorsed by or reviewed by SFFD or any public agency, and it is not for operational use.</p>
+  <p>Data: DataSF (San Francisco open data, public domain), SFFD open data, SF Department of Emergency Management public map layers (as of their dates), © OpenStreetMap contributors. Quotes are reproduced from the published sources cited above.</p>
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+(function(){
+  const stage=document.getElementById("stage"),pinLayer=document.getElementById("pins");
+  if(!window.THREE){stage.innerHTML='<p style="padding:110px 20px;color:#8b939d;font:12px monospace">3D view could not load.</p>';return;}
+  const FLOORS=4,FH=3.45,GAP=2.6;
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));stage.appendChild(r.domElement);
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(38,1,.1,500);
+  scene.add(new THREE.HemisphereLight(0xdfe6ee,0x0e1114,.9));const dl=new THREE.DirectionalLight(0xffffff,.7);dl.position.set(20,40,15);scene.add(dl);
+  const pv=new THREE.Group();scene.add(pv);
+  const disc=new THREE.Mesh(new THREE.CircleGeometry(26,64),new THREE.MeshBasicMaterial({color:0x161b21}));disc.rotation.x=-Math.PI/2;disc.position.y=-.05;pv.add(disc);
+  const s=new THREE.Shape();[[-11,-8],[11,-8],[11,3],[2,3],[2,8],[-11,8]].forEach((p,i)=>i?s.lineTo(p[0],p[1]):s.moveTo(p[0],p[1]));
+  const fl=[];for(let i=0;i<FLOORS;i++){const g=new THREE.ExtrudeGeometry(s,{depth:FH-.25,bevelEnabled:false});g.rotateX(-Math.PI/2);
+    const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x1f262e,roughness:.85}));m.position.y=i*FH;
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:i===0?0xe5261f:0xe8ecf0})));pv.add(m);fl.push({m,b:i*FH});}
+  const top=()=>fl[FLOORS-1].m.position.y+FH, fy=i=>fl[i].m.position.y+1.6;
+  const P=[
+    ["info","Type V wood · 4 stories","Permits + tax roll",()=>[0,top()+5,0]],
+    ["danger","Soft-story · retrofit done","Soft-story list",()=>[-12,fy(0),-4]],
+    ["caution","Units 78 or 79 · conflict","Tax roll vs permits",()=>[13,fy(1),-3]],
+    ["caution","Solar hot water · roof","Permit 2019",()=>[6,top()+.5,-2]],
+    ["caution","Sprinkler malfunction","Incident 2023",()=>[-7,fy(1),-9]],
+    ["info","Building fire 2003","SFFD incidents",()=>[-15,.6,10]],
+    ["info","Hydrant ~27 m","DEM layer 2018",()=>[16,.6,9]],
+    ["unknown","Stairs: unverifiable","No public plans",()=>[1,fy(2),9]]
+  ].map(a=>{const d=document.createElement("div");d.className="pin "+a[0];d.innerHTML='<i></i><span>'+a[1]+'<small>'+a[2]+'</small></span>';pinLayer.appendChild(d);return{el:d,a:a[3],v:0};});
+  let yaw=.7,pitch=.5,auto=true,drag=null,ex=false;const c=r.domElement;
+  c.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,yaw,pitch};auto=false;c.setPointerCapture(e.pointerId);});
+  c.addEventListener("pointermove",e=>{if(!drag)return;yaw=drag.yaw-(e.clientX-drag.x)*.01;pitch=Math.max(.15,Math.min(1.2,drag.pitch+(e.clientY-drag.y)*.006));});
+  c.addEventListener("pointerup",()=>drag=null);
+  function size(){const b=stage.getBoundingClientRect();r.setSize(b.width,b.height,false);cam.aspect=b.width/Math.max(1,b.height);cam.updateProjectionMatrix();}
+  new ResizeObserver(size).observe(stage);size();
+  const v=new THREE.Vector3();
+  (function f(){if(auto)yaw+=.0025;const ty=ex?9:5,d=62;cam.position.set(Math.sin(yaw)*Math.cos(pitch)*d,ty+Math.sin(pitch)*d,Math.cos(yaw)*Math.cos(pitch)*d);cam.lookAt(0,ty,0);r.render(scene,cam);
+    const b=stage.getBoundingClientRect();P.forEach(p=>{const a=p.a();v.set(a[0],a[1],a[2]);pv.localToWorld(v);v.project(cam);p.el.style.left=((v.x+1)/2*b.width)+"px";p.el.style.top=((1-v.y)/2*b.height-18)+"px";p.el.style.opacity=p.v;});requestAnimationFrame(f);})();
+  const G=window.gsap,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,btn=document.getElementById("explode"),brief=document.getElementById("brief");
+  [["4-story Type V wood frame, apartments.","Permits 2024 · tax roll 2025"],["78 or 79 units: records disagree.","Tax roll vs permits"],["Ground floor soft-story, retrofit complete.","Soft-story list"],["Roof: solar hot-water panels (not PV).","Permit 2019"],["Stairs and standpipes: unknown.","No public record"]].forEach(([t,s])=>{const d=document.createElement("div");d.className="bl";d.innerHTML=t+"<cite>"+s+"</cite>";brief.appendChild(d);});
+  btn.addEventListener("click",()=>{ex=!ex;
+    if(G&&!reduce){const tl=G.timeline();
+      if(ex){fl.slice().reverse().forEach((o,k)=>{const i=FLOORS-1-k;tl.to(o.m.position,{y:o.b+i*GAP,duration:1,ease:"power3.out"},.2+k*.08);});P.forEach((p,k)=>tl.to(p,{v:1,duration:.3},1+k*.07));}
+      else{P.forEach(p=>tl.to(p,{v:0,duration:.15},0));fl.forEach(o=>tl.to(o.m.position,{y:o.b,duration:.7,ease:"back.out(1.4)"},.15));}}
+    else{fl.forEach((o,i)=>o.m.position.y=ex?o.b+i*GAP:o.b);P.forEach(p=>p.v=ex?1:0);}
+    btn.textContent=ex?"Collapse":"Explode floors";brief.classList.toggle("show",ex);});
+})();
+
+(function(){
+  const f=document.getElementById("fb"),out=document.getElementById("out"),status=document.getElementById("status"),KEY="firesight-feedback-draft";
+  const ids=["role","years","dept","tool","trustwhy","missing","danger","contact"];
+  function collect(){const d={};ids.forEach(i=>d[i]=document.getElementById(i).value.trim());
+    d.useful=(f.querySelector('input[name=useful]:checked')||{}).value||"";d.trust=(f.querySelector('input[name=trust]:checked')||{}).value||"";
+    d.facts=[...document.querySelectorAll('#facts input:checked')].map(x=>x.value);d.where=[...document.querySelectorAll('#where input:checked')].map(x=>x.value);d.quote=document.getElementById("quote").checked;return d;}
+  function restore(d){ids.forEach(i=>{if(d[i]!=null)document.getElementById(i).value=d[i];});
+    ["useful","trust"].forEach(n=>{const el=d[n]&&f.querySelector('input[name='+n+'][value="'+d[n]+'"]');if(el)el.checked=true;});
+    document.querySelectorAll('#facts input').forEach(x=>x.checked=(d.facts||[]).includes(x.value));document.querySelectorAll('#where input').forEach(x=>x.checked=(d.where||[]).includes(x.value));document.getElementById("quote").checked=!!d.quote;}
+  try{const s=localStorage.getItem(KEY);if(s)restore(JSON.parse(s));}catch(e){}
+  f.addEventListener("input",()=>{try{localStorage.setItem(KEY,JSON.stringify(collect()));}catch(e){}});
+  f.addEventListener("submit",e=>{e.preventDefault();const d=collect();
+    const txt=["FireSight feedback","Role: "+(d.role||"-")+" | Years: "+(d.years||"-")+" | Dept: "+(d.dept||"-"),"Pre-plan tool today: "+(d.tool||"-"),
+      "1. Useful en route (1-5): "+(d.useful||"-"),"2. Top facts: "+(d.facts.join("; ")||"-"),"3. Trust a sourced, dated line: "+(d.trust||"-")+(d.trustwhy?" ("+d.trustwhy+")":""),
+      "4. Where: "+(d.where.join("; ")||"-"),"5. Missing or wrong: "+(d.missing||"-"),"6. Dangerous or misleading: "+(d.danger||"-"),
+      "Contact: "+(d.contact||"-")+" | OK to quote without name: "+(d.quote?"yes":"no")].join("\n");
+    out.textContent=txt;out.classList.add("show");
+    const done=()=>{status.textContent="Copied. Paste it into your reply.";};
+    const fallback=()=>{const sel=getSelection(),rg=document.createRange();rg.selectNodeContents(out);sel.removeAllRanges();sel.addRange(rg);status.textContent="Your answers are selected below. Copy them and paste into your reply.";};
+    try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(err){fallback();}});
+  document.getElementById("clear").addEventListener("click",()=>{f.reset();out.classList.remove("show");status.textContent="";try{localStorage.removeItem(KEY);}catch(e){}});
+})();
+</script>

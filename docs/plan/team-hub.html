@@ -1,0 +1,636 @@
+<title>FireSight Build Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one reading column. Hero = live phone prototype beside the BLUF; then screens, lanes, schedule, data, demo, cuts. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#151a21; --muted:#5d6672; --line:#dadee4; --accent:#d9381e;
+  --phone:#0b0e12; --phone-2:#141a21; --phone-ink:#eef2f6; --phone-muted:#8b95a3;
+  --danger:#ff4d3d; --caution:#ffb020; --info:#e8edf3; --unknown:#8b95a3; --dept:#5aa9ff;
+  --display:"Barlow Condensed",system-ui,sans-serif; --body:"Barlow",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--surface:#171c23;--ink:#e9edf2;--muted:#98a2af;--line:#2a323d;--accent:#ff6a4d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--surface:#171c23;--ink:#e9edf2;--muted:#98a2af;--line:#2a323d;--accent:#ff6a4d;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body)}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:800;text-transform:uppercase}
+h2{font-size:1.7rem;font-weight:700;text-transform:uppercase}
+h3{font-size:1.2rem;font-weight:700;text-transform:uppercase}
+p{margin:0}
+.eyebrow{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:62ch}
+section{display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--ink);padding-top:12px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:36px;align-items:start}
+.hero-text{display:flex;flex-direction:column;gap:16px;min-width:0}
+.bluf{font-size:1.12rem;max-width:58ch}
+.tag{display:inline-flex;gap:8px;align-items:center;font:500 .75rem/1 var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+.tag::before{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%}
+.changes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.change{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.change b{font-family:var(--display);font-size:1.05rem;text-transform:uppercase}
+.change span{font-size:.92rem;color:var(--muted)}
+.decided{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .74rem/1 var(--mono);padding:6px 9px;border-radius:99px;border:1px solid var(--line);background:var(--surface);white-space:nowrap}
+.chip.ok{border-color:#2e8b57;color:#2e8b57}
+.chip.wait{border-color:#b7791f;color:#b7791f}
+
+/* phone */
+.phone{width:100%;max-width:340px;aspect-ratio:9/18.5;background:var(--phone);border-radius:38px;padding:12px;box-shadow:0 0 0 2px #2b323b,0 24px 60px rgba(0,0,0,.35);position:relative;justify-self:center}
+.screen{position:absolute;inset:12px;border-radius:28px;overflow:hidden;background:radial-gradient(120% 70% at 50% 35%,#1a222c 0%,var(--phone) 70%);color:var(--phone-ink);font-family:var(--body)}
+.topbar{position:absolute;top:0;left:0;right:0;padding:16px 16px 0;display:flex;justify-content:space-between;align-items:flex-start;z-index:3;gap:8px}
+.addr{display:flex;flex-direction:column;gap:2px;min-width:0}
+.addr b{font:700 1.15rem/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.addr span{font:500 .62rem/1.3 var(--mono);color:var(--phone-muted)}
+.eta{font:700 .7rem/1 var(--mono);color:var(--caution);border:1px solid var(--caution);padding:5px 7px;border-radius:5px;white-space:nowrap}
+#stage{position:absolute;inset:0}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#pins{position:absolute;inset:0;pointer-events:none;z-index:2}
+.pin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:5px;font:700 .58rem/1.1 var(--mono);text-transform:uppercase;padding:4px 6px;border-radius:4px;background:rgba(11,14,18,.88);border:1px solid currentColor;white-space:nowrap;opacity:0;transition:opacity .25s}
+.pin i{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.pin.danger{color:var(--danger)} .pin.caution{color:var(--caution)} .pin.info{color:var(--info)} .pin.unknown{color:var(--unknown);border-style:dashed} .pin.dept{color:var(--dept)}
+.pin small{display:block;font-weight:500;opacity:.7;font-size:.5rem}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:4;background:rgba(20,26,33,.97);border-top:1px solid #2b333d;border-radius:18px 18px 0 0;padding:10px 14px 14px;display:flex;flex-direction:column;gap:8px;transform:translateY(calc(100% - 66px));transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.sheet.open{transform:translateY(0)}
+.grab{width:36px;height:4px;border-radius:2px;background:#3a4450;margin:0 auto}
+.btnrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pbtn{font:700 .95rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;min-height:44px;border-radius:10px;border:0;cursor:pointer;color:#0b0e12;background:var(--phone-ink)}
+.pbtn.hot{background:var(--danger);color:#fff}
+.pbtn.ghost{background:transparent;color:var(--phone-ink);border:1px solid #3a4450}
+.pbtn:focus-visible{outline:2px solid var(--caution);outline-offset:2px}
+.brief{display:flex;flex-direction:column;gap:6px;max-height:210px;overflow:auto}
+.bl{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;font-size:.76rem;line-height:1.35;padding:6px 8px;border-radius:6px;background:#1b222b}
+.bl.struck span{text-decoration:line-through;opacity:.45}
+.bl button{font:700 .62rem/1 var(--mono);border:1px solid #3a4450;background:transparent;color:var(--phone-muted);border-radius:5px;padding:5px 6px;cursor:pointer}
+.bl cite{display:block;font:500 .56rem/1.3 var(--mono);color:var(--phone-muted);font-style:normal;margin-top:2px}
+.answer{font-size:.76rem;line-height:1.35;padding:8px;border-radius:6px;background:#1d2a1f;border:1px solid #2e5b3a;display:none}
+.answer.show{display:block}
+.sent{font:700 .7rem/1.4 var(--mono);color:#7be08f;display:none}
+.sent.show{display:block}
+.mocknote{font:500 .7rem/1.4 var(--mono);color:var(--muted);text-align:center;max-width:340px;justify-self:center}
+
+/* screens row */
+.screens{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.mini{background:var(--phone);color:var(--phone-ink);border-radius:22px;padding:14px;aspect-ratio:9/15;display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:0 0 0 2px #2b323b}
+.mini h4{margin:0;font:700 .95rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.mini .k{font:500 .58rem/1.3 var(--mono);color:var(--phone-muted);text-transform:uppercase;letter-spacing:.06em}
+.mini svg{width:100%;flex:1;min-height:0}
+.cap{display:flex;flex-direction:column;gap:6px;min-width:0}
+.cap p{font-size:.9rem;color:var(--muted)}
+.callcard{background:#1b222b;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;font-size:.72rem}
+.callcard .big{font:700 1.3rem/1 var(--display);text-transform:uppercase}
+.radio{font:500 .7rem/1.5 var(--mono);background:#1b222b;border-left:3px solid var(--danger);padding:8px 10px;border-radius:4px}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+th{font:500 .7rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+td.t{font:500 .8rem/1.3 var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+tr.cp td{background:color-mix(in srgb,var(--accent) 10%,transparent);font-weight:600}
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lane{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.lane .eyebrow{color:var(--accent)}
+.lane ul{margin:0;padding-left:1.1em;font-size:.9rem;display:flex;flex-direction:column;gap:3px}
+.sev{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+pre{margin:0;font:500 .78rem/1.5 var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto}
+details summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.log{list-style:none;padding:0!important}
+.log li{border-left:2px solid var(--line);padding-left:10px}
+.log li:first-child{border-left-color:var(--accent)}
+.logt{min-width:0}.logt td{padding:7px 11px;font-size:.88rem}.logt td.t{width:64px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.box ol,.box ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px;font-size:.92rem}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-text">
+    <span class="tag">super{set} hackathon · Track 1 · Thu Oct 22</span>
+    <h1>FireSight</h1>
+    <p class="bluf"><b>Size-up starts before the wheels stop.</b> In the 4 minutes the engine is driving to the call, the officer gets a 3D view of the exact building, cited from San Francisco's public records and joined with the department's own pre-plans. The building explodes floor by floor so danger is visible at a glance. A radio-ready brief cites every line and says "unknown" when the data doesn't know. The captain approves or strikes each line before it goes to the crew.</p>
+    <div class="changes">
+      <div class="change"><b>En route, not on scene</b><span>Nobody holds a phone up at a working fire. It's built for the rig's tablet and phone during the drive.</span></div>
+      <div class="change"><b>Own the geometry</b><span>Built from DataSF building outlines and laser-measured heights, extruded per floor. Google's 3D tiles can't be split into floors.</span></div>
+      <div class="change"><b>AR on the table</b><span>Android Chrome places the building on the judges' table at 1:100. iPhone gets a labelled camera view.</span></div>
+    </div>
+    <div class="decided">
+      <span class="chip ok">Android phone: yes, AR in scope</span>
+      <span class="chip ok">Hero: 400 Duboce · second call: 1018 Mission</span>
+      <span class="chip ok">Final plan locked 11:40 (see the Final plan section)</span>
+      <span class="chip wait">HTTPS deploy target: pick now</span>
+      <span class="chip wait">Data contract frozen 12:15</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div class="phone" aria-label="Interactive prototype of the FireSight phone screen">
+      <div class="screen">
+        <div class="topbar">
+          <div class="addr"><b>400 Duboce Ave</b><span>BLK 0874 LOT 003 · STRUCTURE FIRE</span></div>
+          <span class="eta">ETA 4:00</span>
+        </div>
+        <div id="stage"></div>
+        <div id="pins"></div>
+        <div class="sheet" id="sheet">
+          <div class="grab"></div>
+          <div class="btnrow">
+            <button class="pbtn hot" id="explode" type="button">Explode</button>
+            <button class="pbtn ghost" id="ask" type="button">Where are the people?</button>
+          </div>
+          <div class="answer" id="answer"><b>Floors 1–4:</b> unit numbers 101–145, 212, 313, 314, 408–418 appear in permits (lower bound). 79 units total (2024 permit). <b>Stair locations: unknown.</b></div>
+          <div class="brief" id="brief"></div>
+          <button class="pbtn" id="send" type="button">Send to crew</button>
+          <div class="sent" id="sent">SENT · Engine 6 · approved lines only</div>
+        </div>
+      </div>
+    </div>
+    <p class="mocknote">Drag to spin. Tap Explode. Pin text comes from real DataSF rows read at 11:09. The outline shape and wind are placeholders until Lane B wires them up.</p>
+  </div>
+</div>
+
+<section id="final">
+  <div class="sec-head"><span class="eyebrow">Final plan · locked 11:40 · this overrides anything below it</span><h2>Final plan</h2></div>
+  <p class="bluf" style="font-size:1.2rem;max-width:72ch"><b>FireSight turns any San Francisco address into a cited, floor-by-floor 3D pre-plan in seconds, so the officer on a responding engine knows what's inside before the wheels stop.</b> One hero building (400 Duboce), built from 12 public datasets resolved to one parcel. Every claim is labelled and dated, checked against named regulations, and the captain approves each line before it goes to the crew.</p>
+
+  <h3>How we score on the official rubric (100 points)</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Criterion</th><th>Pts</th><th>What earns it</th><th>Proof on stage</th></tr></thead>
+    <tbody>
+      <tr><td><b>User value &amp; impact</b><br><span class="eyebrow">clear problem, specific user</span></td><td class="t">25</td><td>One user: the company officer on the first-due engine, en route. The problem is in their own words (the NIOSH Spring Valley report: "no formal pre-incident plan"). Modern rooms flash over in under 5 minutes (UL). First payer: pre-plan vendors (First Due, Tablet Command, ESO) buy the data layer, so there's no public procurement.</td><td>The quote slide, then the dispatch call "smoke from unit 311".</td></tr>
+      <tr><td><b>Technical execution</b><br><span class="eyebrow">working core, effective build</span></td><td class="t">25</td><td>12 city datasets fused in about 2.4 s. <b>Identity resolution:</b> "50 Church St" (tax roll) and "400 Duboce Ave" (permits) become one parcel. A real 3D model from the building outline and laser-measured height, exploded by floor, in AR on Android. The validator rejects any line without a citation. A real MCP server.</td><td>Everything runs live on the phone and in Claude Desktop, with no slides for the product.</td></tr>
+      <tr><td><b>Originality &amp; creativity</b></td><td class="t">20</td><td>Not a chatbot or a map dashboard. An exploded 3D pre-plan with markers in NFPA 170 symbol style, a compliance strip against named regulations, and three claim labels: VERIFIED, UNVERIFIABLE, CONFLICT. Unlike God's Eye View it's one building and one decision; unlike First Due it fills itself in and stays current.</td><td>The explode on the judges' table, plus the CONFLICT label: 78 vs 79 units.</td></tr>
+      <tr><td><b>Track alignment &amp; responsible data</b></td><td class="t">20</td><td><b>Shows how public data powers it:</b> a sources drawer listing every dataset and the record counts used. <b>Acknowledges limits:</b> a "What we don't know" panel (below). No personal data (managers' names and phones are dropped). Licenses and attribution shown. The MCP server is read-only. The officer approves or strikes each line.</td><td>15 seconds on the limits panel, said out loud.</td></tr>
+      <tr><td><b>Usability &amp; demo clarity</b></td><td class="t">10</td><td>One thumb, dark and high contrast, 3 severity colors, one tap to explode. The brief is read aloud, with typed fallback. A 3-minute script and a backup video.</td><td>Two rehearsed dry runs before submitting.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="two">
+    <div class="box" style="border-color:var(--accent)">
+      <h3>Track requirement: "What we don't know" panel</h3>
+      <p class="lede">An in-app screen and a demo beat. Each row gives the layer, its as-of date and the gap.</p>
+      <ul>
+        <li><b>Building heights:</b> from 2010 laser scans; outlines as of 2023-09.</li>
+        <li><b>Hydrants and cisterns:</b> a 2018 SF DEM snapshot; positions may have changed.</li>
+        <li><b>Fire incidents:</b> about 4 weeks behind. <b>Calls:</b> about 8 hours behind. Never shown as "live".</li>
+        <li><b>Units per floor:</b> unit numbers mentioned in permits only, a lower bound.</li>
+        <li><b>No floor plans:</b> stairs and standpipe locations are UNVERIFIABLE.</li>
+        <li><b>Sources disagree:</b> the tax roll says 78 units, permits say 79, marked CONFLICT.</li>
+        <li><b>Inspection to statute:</b> linking SFFD inspection types to the California law is our own inference.</li>
+        <li><b>NFPA 1660:</b> mapped from the earlier 1620 text; 1660 itself is paywalled.</li>
+        <li><b>City map layers:</b> state no license, so each pin carries its source and date.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Responsible data practices</h3>
+      <ul>
+        <li>Public records only, with no personal data. Fields with names, phones or emails are dropped at load.</li>
+        <li>Every pin carries its source, dataset ID, record ID and as-of date.</li>
+        <li>The AI sees only the fused building JSON. The validator drops uncited lines, and unknowns are said aloud.</li>
+        <li>The human approves or strikes each line before it's sent, and struck lines become regression tests.</li>
+        <li>The MCP server is read-only and returns typed, cited answers.</li>
+        <li>Attribution: DataSF (public domain), "© OpenStreetMap contributors" (ODbL), and SF DEM layers as of their dates.</li>
+      </ul>
+      <h3>Wording</h3>
+      <ul><li>Say "meets" only for California's inspection law (H&amp;SC 13146.2) and the solar-pathway rule logic. Say "maps to NFPA 1660".</li><li>Say "published quotes", never "we interviewed".</li></ul>
+    </div>
+  </div>
+
+  <h3>Scope</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tier</th><th>Items</th><th>Done by</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip ok">MUST · core</span></td><td>Hero JSON for 400 Duboce (resolved, labelled, dated) · 3D model from the outline and height · explode and collapse on the phone · pins by severity · cited brief plus validator</td><td class="t">13:30 CP1</td></tr>
+      <tr><td><span class="chip ok">MUST · scoring</span></td><td>"Where are the people?" lights the floors · compliance strip (inspection, violations, solar, NFPA 7 of 21) · "What we don't know" panel · sources drawer · resolution view (2 addresses become 1 parcel) · approve/strike and Send to crew</td><td class="t">14:45 CP2</td></tr>
+      <tr><td><span class="chip wait">SHOULD</span></td><td>AR on the Android table · live MCP in Claude Desktop · grounding test screen (measured counts) · water pins (hydrant 27 m, cistern, Station 6) · trolley wires and hollow sidewalks · second call, 1018 Mission</td><td class="t">16:00 freeze</td></tr>
+      <tr><td><span class="chip">CUT</span></td><td>Google photoreal tiles · live lookup of any address · voice input (keep the readout) · iOS camera-mode polish · neighbor buildings</td><td class="t">not building</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Lanes and deliverables</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Lane</th><th>By 13:30 (CP1)</th><th>By 14:45 (CP2)</th><th>By 16:00 (freeze)</th></tr></thead>
+    <tbody>
+      <tr><td><b>A · 3D</b><br>______</td><td>Floors extruded from the hero outline; explode and collapse with <code>design.md</code> timings; pins as 3D text</td><td>Highlight the floors an answer refers to; drill into a floor; markers in NFPA 170 style</td><td>Place on the table in AR (Android); performance on the phone</td></tr>
+      <tr><td><b>B · Data</b><br>______</td><td><code>sf-0874003.json</code> with resolution, labels and dates; both permit datasets; fire violations, soft-story, incidents</td><td>Compliance inputs (SFFD inspections <code>wb4c-6hwj</code>); water layer (ESF_4); sources and limits data</td><td>1018 Mission and 1433 Haight cached; trolley wires and hollow sidewalks</td></tr>
+      <tr><td><b>C · AI + rules</b><br>______</td><td>Brief prompt plus validator; precomputed fallback</td><td><code>/ask</code> with highlight; compliance rules C1, C3, C4, C8</td><td>MCP server (stdio, read-only); grounding test screen; struck lines saved as tests</td></tr>
+      <tr><td><b>D · Phone + pitch</b><br>______</td><td>HTTPS deploy; phone shell (Night Watch); explode button</td><td>Approve/strike, Send to crew, sources drawer, limits panel, resolution view</td><td>Pitch slides (quotes, business), dry run, backup video, submit at 16:45</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede">Checkpoints: <b>12:15</b> contract frozen and AR label test · <b>13:30</b> CP1 · <b>14:45</b> CP2 · <b>16:00</b> freeze · <b>16:00–16:45</b> dry runs 1 and 2, backup video · <b>16:45</b> submit · <b>17:00</b> demos. If CP1 slips, cut the SHOULD row from the top down.</p>
+
+  <h3>Demo script (3:00)</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Time</th><th>Say</th><th>Show</th><th>Rubric</th></tr></thead>
+    <tbody>
+      <tr><td class="t">0:00</td><td>"The fire department had not … developed a formal pre-incident plan." NIOSH, Spring Valley. Then the one-line pitch.</td><td>Quote slide</td><td>User value</td></tr>
+      <tr><td class="t">0:15</td><td>"Dispatch: smoke from unit 311, 400 Duboce. Engine 4 minutes out."</td><td>The building appears on the judges' table (AR)</td><td>Usability</td></tr>
+      <tr><td class="t">0:30</td><td>"The city calls this building two things." 50 Church St and 400 Duboce Ave become one parcel across 12 datasets. "And they disagree: 78 units or 79."</td><td>Resolution view, CONFLICT chip</td><td>Technical</td></tr>
+      <tr><td class="t">0:45</td><td>Tap Explode. It jumps to floor 3, where a 2019 permit records structural work in unit 311.</td><td>Soft-story retrofit, solar thermal, 2023 sprinkler malfunction, 2003 fire, hydrant 27 m</td><td>Originality</td></tr>
+      <tr><td class="t">1:05</td><td>"Where are the people?"</td><td>Floors 1–4 light up; "stairs: UNVERIFIABLE"</td><td>Technical</td></tr>
+      <tr><td class="t">1:20</td><td>"It checks the building against the law."</td><td>Compliance strip: annual inspection PASS (H&amp;SC 13146.2), solar pathways UNKNOWN, NFPA elements 7 of 21</td><td>Originality</td></tr>
+      <tr><td class="t">1:35</td><td>"And it tells you what it doesn't know."</td><td>Limits panel, then the sources drawer</td><td>Track + data</td></tr>
+      <tr><td class="t">1:50</td><td>"The captain stays in charge." Strike one line, approve the rest, send. "Every struck line becomes a test."</td><td>Radio card, then the grounding test (measured counts)</td><td>Responsible data</td></tr>
+      <tr><td class="t">2:10</td><td>"Any agent can use it."</td><td>Claude Desktop calls <code>get_size_up_brief("0874003")</code> and gets a typed, cited answer</td><td>Technical</td></tr>
+      <tr><td class="t">2:25</td><td>Business: vendors buy the resolved building layer; a one-city pilot; 177,023 SF buildings covered today.</td><td>One slide</td><td>User value</td></tr>
+      <tr><td class="t">2:45</td><td>Second call, 1018 Mission (if time). Collapse. "Size-up starts before the wheels stop."</td><td>Collapse</td><td>Usability</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede"><b>Backups:</b> model mode if AR fails · cached JSON plus a hotspot if the Wi-Fi drops · a precomputed brief and 5 answers if the AI call fails · the recorded video as a last resort.</p>
+</section>
+
+<section id="idea">
+  <div class="sec-head"><span class="eyebrow">Read this first</span><h2>The idea</h2></div>
+  <p class="bluf" style="font-size:1.25rem;max-width:70ch"><b>FireSight turns any San Francisco address into a cited, floor-by-floor 3D pre-plan in seconds, so the officer on a responding engine knows what's inside before the wheels stop.</b></p>
+  <div class="tablewrap"><table style="min-width:0">
+    <tbody>
+      <tr><td style="width:150px"><b>For who</b></td><td>The company officer (captain) on the first-due engine, reading the rig's tablet or a phone during the drive. <b>First payer:</b> pre-plan software vendors (First Due, Tablet Command, ESO). They buy our resolved building data over the API and MCP, so there's no slow public procurement.</td></tr>
+      <tr><td><b>Problem</b></td><td>What changes tactics is scattered across a dozen city datasets nobody can read en route: construction type, soft-story status, rooftop solar, unit counts, open fire violations, past fires. Pre-plans are drawn by hand and go stale. Modern rooms reach flashover in under 5 minutes, against about 29 for older rooms (UL), so there's no time to look things up.</td></tr>
+      <tr><td><b>Why now</b></td><td>New hazards like rooftop solar, battery storage and EV chargers show up only in permit text. SF publishes laser-measured heights for all 177,023 buildings. NFPA folded its pre-incident planning standard into NFPA 1660 in 2024 (reported; we read the earlier 1620 text). California requires annual fire inspections of every apartment building and hotel (H&amp;SC 13146.2). And coding agents can resolve city records into one building in seconds, which wasn't practical before.</td></tr>
+      <tr><td><b>Why us</b></td><td>We've already joined 10 city datasets to one building in 2.4 s and found its first real conflict: "50 Church St" with 78 units in the tax roll, "400 Duboce Ave" with 79 units in permits. We build the way Checksum ships: every claim cited, every struck line becomes a test, and only measured numbers on stage.</td></tr>
+      <tr><td><b>Why it isn't generic</b></td><td>It isn't a chatbot. It checks each building against named regulations and shows pass, fail or unknown, and every claim is marked VERIFIED, UNVERIFIABLE or CONFLICT. The building explodes in 3D on the judges' table.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="start">
+  <div class="sec-head"><span class="eyebrow">Don't wait for 12:15</span><h2>Start now</h2></div>
+  <div class="lanes">
+    <div class="lane"><span class="eyebrow">Lane A · 3D + explode</span><ol style="margin:0;padding-left:1.2em;font-size:.9rem;display:flex;flex-direction:column;gap:4px">
+      <li><code>npm create vite@latest firesight -- --template react-ts</code></li>
+      <li><code>npm i three @react-three/fiber @react-three/drei @react-three/xr gsap zustand</code></li>
+      <li>Extrude a hardcoded L-shape into 4 floor slabs, each <code>heightM / floors</code> tall.</li>
+      <li>Build the explode with GSAP to the timings in <code>design.md</code>: roof first, 80 ms between floors, collapse at 1.5x speed.</li>
+      <li>Open it on the Android phone over HTTPS, and test a 3D <code>Text</code> label inside AR.</li>
+    </ol></div>
+    <div class="lane"><span class="eyebrow">Lane B · Data fusion</span><ol style="margin:0;padding-left:1.2em;font-size:.9rem;display:flex;flex-direction:column;gap:4px">
+      <li>Write <code>shared/building.ts</code> from the contract below, adding the VERIFIED / UNVERIFIABLE / CONFLICT label.</li>
+      <li>Run <code>plan/firesight/datasf_probe.py</code> on parcel <code>0874003</code> to produce <code>public/buildings/sf-0874003.json</code>.</li>
+      <li>Footprint: <code>ynuv-fyni</code> where <code>mblr='SF0874003'</code>. Take the largest outer ring and the <code>hgt_median_m</code> height.</li>
+      <li>Resolution: tax roll "50 CHURCH ST" plus permits "400 DUBOCE AVE" give one parcel. Record the 78 versus 79 units as a CONFLICT.</li>
+      <li>Water: query <code>Firefighting_ESF_4</code> (see the 11:34 log entry) instead of OSM. Query both permit datasets, <code>i98e-djp9</code> and <code>tyz3-vt28</code>.</li>
+      <li>Push the fixture to main by 12:15 so A and C can build on it.</li>
+    </ol></div>
+    <div class="lane"><span class="eyebrow">Lane C · Brief, compliance, MCP</span><ol style="margin:0;padding-left:1.2em;font-size:.9rem;display:flex;flex-direction:column;gap:4px">
+      <li>Get the Anthropic key and confirm the model ID with one call.</li>
+      <li>Write a prompt that takes only the Building JSON and returns Brief lines, each citing pin IDs and carrying a label.</li>
+      <li>Write a validator that drops any line without a valid pin, and count the drops (that's the on-screen test).</li>
+      <li>Start an MCP server (stdio) with <code>@modelcontextprotocol/sdk</code>: <code>get_size_up_brief(parcel)</code>, read-only, cited.</li>
+      <li>Leave a slot for the compliance rules (research lands 11:55).</li>
+    </ol></div>
+    <div class="lane"><span class="eyebrow">Lane D · Phone, demo, pitch</span><ol style="margin:0;padding-left:1.2em;font-size:.9rem;display:flex;flex-direction:column;gap:4px">
+      <li>Create the repo with the lane branches. Pick the HTTPS host (Vercel) and say the account to use; signups need Vidyut's OK.</li>
+      <li>Deploy a hello page and open it on the Android phone.</li>
+      <li>Build the phone shell in Night Watch tokens: address bar, bottom sheet, Explode button, approve/strike.</li>
+      <li>Draft the pitch: this section is slide 1 to 3. Firefighter quotes land at 11:55.</li>
+      <li>Fill in the lane owner names below.</li>
+    </ol></div>
+  </div>
+</section>
+
+<section id="compliance">
+  <div class="sec-head"><span class="eyebrow">Vidit's "build regulated stuff" · Lane C owns · spec in research-regs.md</span><h2>Compliance strip</h2></div>
+  <p class="lede">A strip under the building with one row per rule: the result, the evidence and the citation. Four rows for the demo:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Rule</th><th>400 Duboce today</th><th>Evidence</th><th>Say</th></tr></thead>
+    <tbody>
+      <tr><td><b>C1 · Annual fire inspection</b> for apartments and hotels (Cal. H&amp;SC 13146.2)</td><td><span class="chip ok">PASS · 79 days ago</span></td><td>SFFD inspections <code>wb4c-6hwj</code>, "R2 Company Inspection" completed 2026-08-04</td><td>"meets"</td></tr>
+      <tr><td><b>C3 · Open fire code violations</b></td><td><span class="chip ok">Live result</span></td><td>DataSF fire violations <code>4zuq-2cbe</code></td><td>"meets"</td></tr>
+      <tr><td><b>C4 · Rooftop solar access pathways</b> (CA Fire Code 1205: 36 in, or a 4 ft or 6 ft perimeter)</td><td><span class="chip wait">UNKNOWN</span></td><td>Solar thermal permit on file, but no roof layout. This is the honest "unknown" example.</td><td>"rule logic meets"</td></tr>
+      <tr><td><b>C8 · Pre-plan coverage</b> of the NFPA pre-incident plan elements</td><td><span class="chip wait">7 filled · 9 partial · 5 officer · of 21</span></td><td>NFPA 1620-2020 element list, mapped to SF datasets</td><td>"maps to NFPA 1660", never "meets"</td></tr>
+    </tbody>
+  </table></div>
+  <div class="two">
+    <div class="box"><h3>Wording rules</h3><ul>
+      <li>Say <b>"meets"</b> only for the California inspection check and the solar-pathway rule logic.</li>
+      <li>Say <b>"maps to NFPA 1660"</b>: we read the earlier 1620 text, and 1660 itself is paywalled.</li>
+      <li>Linking SFFD inspection types to the statute is our own inference, so label the row with its source.</li>
+    </ul></div>
+    <div class="box"><h3>Also usable</h3><ul>
+      <li><b>Symbols:</b> markers modeled on NFPA 170 Chapter 7, the pre-plan sketch symbols. No open set exists, so we draw our own and label them "modeled on".</li>
+      <li><b>Insurance rating:</b> the ISO rating schedule gives up to 12 of 100 training points for annual pre-fire planning, but SF already scores 12/12. Pitch "audit-ready records", not "lower premiums".</li>
+      <li><b>Fire code quotes ready:</b> 506.1 key box, 912 fire department connection, 1205 solar, 1207 battery storage over 20 kWh. No personal data shown; CJIS doesn't apply; WCAG 2.1 AA.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="updates">
+  <div class="sec-head"><span class="eyebrow">Team hub · newest first</span><h2>Updates</h2></div>
+  <div class="tablewrap"><table class="logt"><tbody>
+    <tr><td class="t">11:54</td><td><b>Repo:</b> <a href="https://github.com/Devaj6190/FireSight">Devaj6190/FireSight</a>. Team: Devaj, Rohan, Rishit, Vidyut. A README is being written now; the field preview is in <code>docs/</code>. The field preview is going out to fire stations.</td></tr><tr><td class="t">11:52</td><td><b>Fire station page ready:</b> <a href="https://claude.ai/artifact/58t4TUvtTNziCrPDz2jgGX">FireSight Field Preview</a> (share it from its Share menu before sending). Plain language, labelled "independent prototype, not affiliated, simulated call". It covers a live 3D example, the facts with their labels, honest limits, and a 3-minute feedback form. Answers come back as pasted replies to whoever sent the link. Lane D collects them and adds the best to the pitch.</td></tr><tr><td class="t">11:47</td><td><b>Idea shoot-out: stay with FireSight</b> (both judges, 14 ideas, official rubric). FireSight scored 79 with both. Next best: Cursed Storefronts 74 or 67, ParcelScope 70, Recall Radar 66 or 69. The other team's own scores were 15 to 21 points high. Live checks sank 3 rivals: Ticket Oracle rows carry license plates, the soft-story list is 4,715 of 4,958 complete, and Ghost Bus starts too late. <b>Now: start code on the core.</b> AR and MCP are stretch; technical execution is our biggest risk.</td></tr><tr><td class="t">11:40</td><td><b>Final plan locked</b> to the official rubric. The limits panel and sources drawer are now MUST items.</td></tr><tr><td class="t">11:34</td><td><b>Data sweep:</b> the SF DEM hydrant layer (0.4 s) replaces OSM. New: fire permits (battery storage, LPG, tanks), trolley wires, hollow sidewalks. Query both permit datasets. Never show managers' personal details.</td></tr><tr><td class="t">11:33</td><td><b>Regulations:</b> compliance strip spec. Annual inspection PASS, solar pathways UNKNOWN, NFPA elements 7 of 21 (say "maps to").</td></tr><tr><td class="t">11:32</td><td><b>Firefighter quotes:</b> 6 found, 5 verified. The top 2 are on the opening slide.</td></tr>
+  </tbody></table></div>
+  <details><summary>Earlier (9)</summary>
+  <div class="tablewrap" style="margin-top:8px"><table class="logt"><tbody>
+    <tr><td class="t">11:30</td><td><b>Hero records verified:</b> 50 Church St and 400 Duboce Ave are one parcel. CONFLICT: 78 vs 79 units.</td></tr><tr><td class="t">11:29</td><td><b>Plan v3:</b> claim labels; first payer is pre-plan vendors; MCP live; resolution view.</td></tr><tr><td class="t">11:24</td><td><b>Vidit (judge) in person:</b> don't be generic; meeting regulations is what makes public data cool.</td></tr><tr><td class="t">11:19</td><td><b>Plan v2:</b> hero 400 Duboce; the dispatch call "unit 311" jumps to floor 3.</td></tr><tr><td class="t">11:17</td><td><b>Design:</b> Night Watch picked.</td></tr><tr><td class="t">11:16</td><td><b>Judge on the plan:</b> 19/25, about 23 with the fixes (all folded in).</td></tr><tr><td class="t">11:15</td><td><b>Red team:</b> 3 high-risk fixes folded in.</td></tr><tr><td class="t">11:14</td><td><b>Data:</b> 10 sources in 2.4 s. The feeds lag, so never say "live".</td></tr><tr><td class="t">11:12</td><td><b>Android phone confirmed:</b> AR is in scope.</td></tr>
+  </tbody></table></div></details>
+  <div class="two">
+    <div class="box" style="border-color:var(--accent)">
+      <h3>Opening slide: the user's voice</h3>
+      <p class="eyebrow">From published investigations and firefighters' own words (not our interviews)</p>
+      <p>"We definitely would have looked at things a lot different. If we had known that the roof structure in that building was of lightweight construction."<br><span class="lede">Ed Smith, North Perth Fire Department, on the 2011 Listowel collapse that killed two firefighters (CTV News, Aug 19 2016). The article gives no title for him, so don't print "chief".</span></p>
+      <p>"The fire department had not conducted a formal pre-incident inspection of this facility nor developed a formal pre-incident plan."<br><span class="lede">NIOSH report F2021-10, Spring Valley NY (Dec 2024). The same report calls records of the building's renovations "limited or non-existent". Crews already knew the building, so don't claim they had never seen it.</span></p>
+      <p class="lede">More quotes are in <code>research-voices.md</code>. No verbatim quote was found on solar, hoarding or trust in data, so don't claim one.</p>
+    </div>
+    <div class="box">
+      <h3>Next checkpoints</h3>
+      <ul>
+        <li><b>11:45</b> Lanes start (owners below)</li>
+        <li><b>12:15</b> Data contract frozen · AR label test on the Android phone</li>
+        <li><b>13:30</b> CP1: the real hero building explodes on the phone</li>
+        <li><b>14:45</b> CP2: full demo path on the phone</li>
+        <li><b>16:00</b> Feature freeze</li>
+        <li><b>16:45</b> Submit · <b>17:00</b> demos</li>
+      </ul>
+      <h3 style="margin-top:6px">Lane owners</h3>
+      <ul>
+        <li><b>A · 3D + explode:</b> ______</li>
+        <li><b>B · Data fusion:</b> ______</li>
+        <li><b>C · AI brief, compliance, MCP:</b> ______</li>
+        <li><b>D · Phone, demo, pitch:</b> ______</li>
+      </ul>
+      <p class="lede"><b>Team:</b> Devaj, Rohan, Rishit, Vidyut. <b>Repo:</b> <a href="https://github.com/Devaj6190/FireSight">github.com/Devaj6190/FireSight</a> (private). Lanes still need names: tell Vidyut's Claude who has each one.</p>
+    </div>
+  
+  </div>
+</section>
+
+<section id="judges">
+  <div class="sec-head"><span class="eyebrow">Who we are pitching to</span><h2>Judges</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Judge</th><th>What they do and care about</th><th>How FireSight hits it</th></tr></thead>
+    <tbody>
+      <tr><td><b>Vidit Naik</b><br><span class="eyebrow">Checksum · talked to us</span></td><td>A forward deployed engineer who uses Claude to repair broken Playwright tests automatically. Built a retrieval pipeline that cut hallucination in a drone-control project. Has an MCP repo. Told us: be specific, and meeting regulations is what makes public data cool.</td><td>A compliance engine that shows pass, fail or unknown against named codes; a grounding test on screen; every struck line becomes a test.</td></tr>
+      <tr><td><b>Harshal Hirpara</b><br><span class="eyebrow">Checksum · lead engineer</span></td><td>Built <b>Kip</b>, a fact-checker that labels claims "unverifiable". Checksum's motto is "every bug becomes a test".</td><td>Every claim labelled VERIFIED, UNVERIFIABLE or CONFLICT; a test run on screen with measured counts only.</td></tr>
+      <tr><td><b>Vignesh Sreedhar</b><br><span class="eyebrow">Meta · CalHacks judge</span></td><td>Builds checkout and payment systems that AI agents use, helps write the industry protocols for them, and writes about AI governance.</td><td>An MCP tool that returns a typed, read-only, cited answer; the human approve-or-strike step.</td></tr>
+      <tr><td><b>Aaron Morris · Zara Paul</b><br><span class="eyebrow">Bigged CTO · CEO</span></td><td>Paid-social ad analytics: "decisions with data, not guesswork". They bootstrapped Choppity to about $150k a year and sold it. Zara is also an event host.</td><td>A fast payer with a path to first revenue, not "fire departments someday". Only measured numbers: 177,023 buildings covered, fused in 2.4 s.</td></tr>
+      <tr><td><b>Rachana Mansinghka</b><br><span class="eyebrow">PM · stealth AI founder</span></td><td>Spent 10 years on identity resolution at Meta and Wayfair. Her latest course is called "problem-first".</td><td>The resolution view: "50 Church St" and "400 Duboce Ave" become one building, with match confidence. A firefighter quote up front.</td></tr>
+      <tr><td><b>Kanika Gupta</b><br><span class="eyebrow">Engineer · Fricative · host</span></td><td>Possibly builds voice agents (her GitHub matched by handle only, not confirmed).</td><td>The voice readout works, and there's a typed fallback for the question.</td></tr>
+      <tr><td><b>Triyansha Vijayvargiya</b><br><span class="eyebrow">VC · 2x AI founder</span></td><td>Market, wedge, moat. Won her VC case study by calling people in the industry rather than reading reports.</td><td>Keeps the pre-plans departments already have current; the department's corrections compound over time.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="rules">
+  <div class="sec-head"><span class="eyebrow">Vidit's bar</span><h2>Not generic</h2></div>
+  <div class="two">
+    <div class="box"><h3>Do</h3><ul>
+      <li><b>Regulation is the feature.</b> Every building gets pass, fail or unknown against named codes, each with its citation.</li>
+      <li>The output is a pre-plan in the format the standard defines, not a chat answer.</li>
+      <li>Markers drawn in NFPA 170 fire-safety symbol style (our own drawings), like a real pre-plan sheet.</li>
+      <li>Every number on screen is measured or sourced and dated.</li>
+      <li>One cinematic motion, the explode. Everything else holds still.</li>
+    </ul></div>
+    <div class="box"><h3>Don't</h3><ul>
+      <li>No chat box, and no "AI assistant" framing. The AI stays invisible.</li>
+      <li>No purple gradients, frosted-glass cards or "Powered by AI" badges.</li>
+      <li>Never say "live" for feeds that lag.</li>
+      <li>No made-up floors, prices or percentages.</li>
+      <li>No generic map dashboard: one building, one decision.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Ideal visuals</span><h2>The five screens</h2></div>
+  <div class="screens">
+    <div class="cap">
+      <div class="mini">
+        <span class="k">1 · Dispatch</span>
+        <div class="callcard"><span class="k">Structure fire · Box 6</span><span class="big">400 Duboce Ave</span><span>Reported: smoke from unit 311</span><span style="color:var(--caution)">Engine 6 · ETA 4 min</span></div>
+        <svg viewBox="0 0 200 120" aria-hidden="true"><rect x="70" y="30" width="60" height="70" fill="none" stroke="#e8edf3" stroke-width="2"/><line x1="70" y1="47" x2="130" y2="47" stroke="#3a4450"/><line x1="70" y1="64" x2="130" y2="64" stroke="#3a4450"/><line x1="70" y1="81" x2="130" y2="81" stroke="#3a4450"/><text x="100" y="116" fill="#8b95a3" font-size="8" text-anchor="middle" font-family="monospace">FUSED IN 1.8 s · CACHED OFFLINE</text></svg>
+      </div>
+      <p>The call arrives and the building is fetched and cached right away, so the basement and the hills don't matter.</p>
+    </div>
+    <div class="cap">
+      <div class="mini">
+        <span class="k">2 · Explode</span>
+        <svg viewBox="0 0 200 220" aria-hidden="true">
+          <g fill="#1b222b" stroke="#e8edf3" stroke-width="1.5">
+            <polygon points="60,40 120,25 160,45 100,60"/>
+            <polygon points="60,80 120,65 160,85 100,100"/><polygon points="60,120 120,105 160,125 100,140"/><polygon points="60,160 120,145 160,165 100,180"/>
+          </g>
+          <polygon points="60,160 120,145 160,165 100,180" fill="none" stroke="#ff4d3d" stroke-width="2.5"/>
+          <rect x="4" y="150" width="58" height="16" rx="3" fill="#0b0e12" stroke="#ff4d3d"/><text x="33" y="161" fill="#ff4d3d" font-size="7" text-anchor="middle" font-family="monospace" font-weight="700">SOFT-STORY</text>
+          <rect x="128" y="18" width="68" height="16" rx="3" fill="#0b0e12" stroke="#ffb020"/><text x="162" y="29" fill="#ffb020" font-size="7" text-anchor="middle" font-family="monospace" font-weight="700">SOLAR · 36</text>
+          <rect x="140" y="98" width="56" height="16" rx="3" fill="#0b0e12" stroke="#e8edf3"/><text x="168" y="109" fill="#e8edf3" font-size="7" text-anchor="middle" font-family="monospace" font-weight="700">UNITS 313</text>
+          <rect x="4" y="198" width="70" height="16" rx="3" fill="#0b0e12" stroke="#8b95a3" stroke-dasharray="3 2"/><text x="39" y="209" fill="#8b95a3" font-size="7" text-anchor="middle" font-family="monospace" font-weight="700">STAIRS: UNKNOWN</text>
+        </svg>
+      </div>
+      <p>The hero moment. Floors lift apart from the roof down, and pins fly out with the most severe first: red danger, amber caution, white info, dashed for unknown.</p>
+    </div>
+    <div class="cap">
+      <div class="mini">
+        <span class="k">3 · Ask</span>
+        <div class="callcard"><span class="k">Voice question</span><span>"Where are the people?"</span></div>
+        <svg viewBox="0 0 200 110" aria-hidden="true"><g stroke-width="1.5"><polygon points="50,20 110,8 150,24 90,36" fill="#3a2a10" stroke="#ffb020"/><polygon points="50,45 110,33 150,49 90,61" fill="#3a2a10" stroke="#ffb020"/><polygon points="50,70 110,58 150,74 90,86" fill="#3a2a10" stroke="#ffb020"/><polygon points="50,95 110,83 150,99 90,111" fill="#141a21" stroke="#3a4450"/></g></svg>
+        <div class="radio">Floors 1–4 · units from permits · stairs UNKNOWN</div>
+      </div>
+      <p>The answer lights up the matching floors in 3D and is read aloud with its sources. Anything not in the data comes back as "unknown".</p>
+    </div>
+    <div class="cap">
+      <div class="mini">
+        <span class="k">4 · Brief + approve</span>
+        <div class="radio">E6 TO COMMAND: 4-STORY TYPE 5 WOOD, 79 UNITS. GROUND FLOOR SOFT-STORY, RETROFIT DONE. ROOF SOLAR THERMAL. PRIOR FIRE 2003. STAIRS UNKNOWN.</div>
+        <div class="callcard"><span>✓ 4 lines approved</span><span style="color:var(--danger)">✕ 1 line struck</span><span style="color:var(--dept)">DEPT pre-plan 2019 conflicts: alarm panel replaced 2024</span></div>
+      </div>
+      <p>The Equalizer: the captain approves or strikes each line. Conflicts with the department's own pre-plan are highlighted in blue.</p>
+    </div>
+    <div class="cap">
+      <div class="mini">
+        <span class="k">5 · AR on the table</span>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><ellipse cx="100" cy="150" rx="80" ry="24" fill="#1b222b" stroke="#3a4450"/><g fill="#141a21" stroke="#e8edf3" stroke-width="1.5"><polygon points="75,135 110,127 132,138 97,146"/><polygon points="75,112 110,104 132,115 97,123"/><polygon points="75,89 110,81 132,92 97,100"/><polygon points="75,66 110,58 132,69 97,77"/></g><circle cx="100" cy="150" r="5" fill="none" stroke="#ffb020"/><text x="100" y="188" fill="#8b95a3" font-size="8" text-anchor="middle" font-family="monospace">1:100 · ANDROID CHROME WEBXR</text></svg>
+      </div>
+      <p>For judges: tap the table and the building appears there at 1:100 and explodes in the room. iPhone gets the camera view.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Four lanes, one contract</span><h2>Who builds what</h2></div>
+  <div class="lanes">
+    <div class="lane"><span class="eyebrow">Lane A · 3D</span><h3>Scene + explode</h3><ul><li>R3F scene, floors extruded from the building outline</li><li>GSAP explode and collapse timeline</li><li>Pins, drill-in, <code>highlight()</code></li><li>WebXR table AR, iPhone camera view</li></ul></div>
+    <div class="lane"><span class="eyebrow">Lane B · Data</span><h3>Fusion API</h3><ul><li>Pick the hero building with a query script</li><li>DataSF fetchers: outlines, permits, violations, soft-story, incidents, complaints</li><li>Permit tagger: solar PV, battery storage, alarm, sprinkler</li><li>Wind; cache 3 buildings</li></ul></div>
+    <div class="lane"><span class="eyebrow">Lane C · AI</span><h3>Brief + MCP</h3><ul><li>Claude, given only the building JSON</li><li>Validator drops any line without a pin citation</li><li><code>/ask</code> returns which floors and pins to highlight</li><li>Voice readout; MCP <code>get_size_up_brief</code></li></ul></div>
+    <div class="lane"><span class="eyebrow">Lane D · Phone + pitch</span><h3>Shell, demo, business</h3><ul><li>Phone shell, approve/strike UI, Send to crew</li><li>Pre-plan and crew-note inputs (the user's own data)</li><li>HTTPS deploy, merges, dry runs</li><li>Pitch, business slide, backup video, submit</li></ul></div>
+  </div>
+  <details><summary>Shared building contract (shared/building.ts, frozen 12:15)</summary>
+<pre>type Severity = "danger" | "caution" | "info" | "unknown";
+type Anchor = { kind:"building" } | { kind:"floor"; floor:number } | { kind:"roof" }
+            | { kind:"ground"; bearingDeg:number; distanceM:number };
+interface Pin { id; layer; origin:"public"|"department"|"crew"|"dispatch";
+  severity; label /*3-5 words*/; detail; anchor; evidence:Evidence[]; stale:boolean;
+  status?:"approved"|"struck"|"pending" }
+interface Building { id:"sf-&lt;blklot&gt;"; address; centroid; footprint:[x,y][] /*local m*/;
+  heightM; floors; yearBuilt|null; constructionType|null; units|null; pins:Pin[];
+  unknowns:string[]; fetchedAt }
+interface Brief  { lines:{ text; pinIds:string[] }[]; unknowns:string[] }
+interface Answer { text; highlight:{ floors:number[]; pinIds:string[] }; pinIds:string[] }
+API: GET /api/building?address=  ·  POST /api/brief  ·  POST /api/ask</pre>
+  </details>
+</section>
+
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Ranked by what changes tactics</span><h2>Data on the building</h2></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Layer</th><th>Why the crew cares</th><th>Source</th><th>Pins to</th></tr></thead>
+    <tbody>
+      <tr><td class="t">1</td><td><span class="sev" style="background:var(--danger)"></span>Construction type, stories, occupancy</td><td>Wood vs concrete: collapse, spread, safe interior time</td><td>DataSF permits <code>i98e-djp9</code></td><td>Building</td></tr>
+      <tr><td class="t">2</td><td><span class="sev" style="background:var(--danger)"></span>Units and use</td><td>Life hazard, search priority</td><td>Permits (unit numbers give floors)</td><td>Floors</td></tr>
+      <tr><td class="t">3</td><td><span class="sev" style="background:var(--caution)"></span>Solar PV, battery storage, alarm, sprinkler permits</td><td>De-energize before roof ops; lithium runaway</td><td>Permit text, tagged</td><td>Roof / floor</td></tr>
+      <tr><td class="t">4</td><td><span class="sev" style="background:var(--caution)"></span>Fire code violations</td><td>Blocked exits, impaired alarms</td><td>DataSF <code>4zuq-2cbe</code></td><td>Floor / ground</td></tr>
+      <tr><td class="t">5</td><td><span class="sev" style="background:var(--danger)"></span>Soft-story status</td><td>Weak ground floor, collapse zone</td><td>DataSF <code>beah-shgi</code></td><td>Floor 1</td></tr>
+      <tr><td class="t">6</td><td><span class="sev" style="background:var(--info)"></span>Prior fires at the address</td><td>Repeat location, known problem</td><td>DataSF <code>wr8u-xric</code></td><td>History ring</td></tr>
+      <tr><td class="t">7</td><td><span class="sev" style="background:var(--info)"></span>Building complaints</td><td>Illegal units, hoarding</td><td>DataSF <code>gm2e-bten</code></td><td>Floor if stated</td></tr>
+      <tr><td class="t">8</td><td><span class="sev" style="background:var(--info)"></span>Outline + laser-measured height</td><td>The model itself</td><td>DataSF <code>ynuv-fyni</code> (177k)</td><td>Geometry</td></tr>
+      <tr><td class="t">9</td><td><span class="sev" style="background:var(--info)"></span>Hydrants (high and low pressure), cisterns, first-due station</td><td>Water supply: hydrant 27 m and cistern 156 m from 400 Duboce, Station 6 at 306 m</td><td>SF DEM <code>Firefighting_ESF_4</code> ArcGIS layer (2018 snapshot, 0.4 s)</td><td>Ground ring</td></tr>
+      <tr><td class="t">9b</td><td><span class="sev" style="background:var(--caution)"></span>Overhead trolley wires, hollow sidewalks</td><td>Where the aerial ladder can set up</td><td>Public Works emergency map layers</td><td>Street, in 3D</td></tr>
+      <tr><td class="t">9c</td><td><span class="sev" style="background:var(--caution)"></span>Fire permits: battery storage, LPG, tanks, in-building radio</td><td>Hazards and in-building radio coverage</td><td>SFFD fire permits <code>893e-xam6</code></td><td>Building or floor</td></tr>
+      <tr><td class="t">10</td><td><span class="sev" style="background:var(--info)"></span>Wind now</td><td>Exposure side, smoke</td><td>Open-Meteo</td><td>Ground arrow</td></tr>
+      <tr><td class="t">+</td><td><span class="sev" style="background:var(--dept)"></span>Dept pre-plan, crew notes, dispatch</td><td>The user's own data that super{set}'s "Daylight" test asks for; conflicts with public data</td><td>The department's own data</td><td>Blue pins</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede">Rule: if a layer has no floor, pin it to the building or the ground. Never invent a floor. Use <code>data.sf.gov</code>, not <code>data.sfgov.org</code> (its redirect breaks browser requests). Credit "© OpenStreetMap contributors".</p>
+</section>
+
+
+<section>
+  <div class="sec-head"><span class="eyebrow">Visual direction</span><h2>Look and motion</h2></div>
+  <p class="lede">Three directions side by side: <b>Night Watch</b> (recommended: charcoal with amber for actions, IBM Plex), <b>Turnout</b> (safety yellow on navy) and <b>Blueprint</b> (drafting blue). Each shows the exploded building, marker chips by severity and the brief sheet. <a href="https://claude.ai/artifact/4hVj62qmU4PKHieTUVkbzL">Open the design directions</a>. Lane A builds from <code>design.md</code>, which has the color tokens, the icon set, the explode timings (roof first, 80 ms between floors, red pins first, collapse at 1.5x speed) and the rules for the brief's wording.</p>
+</section>
+
+<p class="eyebrow">Plan files: ~/projects/superset-hack/plan/firesight/ · plan.md · design.md · board.md · research-*.md</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+(function(){
+  const stage=document.getElementById("stage"), pinLayer=document.getElementById("pins");
+  if(!window.THREE){stage.innerHTML='<p style="padding:90px 20px;color:#8b95a3;font:12px monospace">3D could not load (offline).</p>';return;}
+  const FLOORS=4, FH=3.0, GAP=2.4;
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  stage.appendChild(renderer.domElement);
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(38,1,0.1,500);
+  scene.add(new THREE.HemisphereLight(0xdfe8f2,0x0b0e12,0.9));
+  const dl=new THREE.DirectionalLight(0xffffff,0.7); dl.position.set(20,40,15); scene.add(dl);
+  const pivot=new THREE.Group(); scene.add(pivot);
+
+  // ground disc + grid feel
+  const disc=new THREE.Mesh(new THREE.CircleGeometry(26,64),new THREE.MeshBasicMaterial({color:0x141a21}));
+  disc.rotation.x=-Math.PI/2; disc.position.y=-0.05; pivot.add(disc);
+  const ring=new THREE.Mesh(new THREE.RingGeometry(25.6,26,64),new THREE.MeshBasicMaterial({color:0x2b333d}));
+  ring.rotation.x=-Math.PI/2; pivot.add(ring);
+  // wind arrow (placeholder value)
+  const arrow=new THREE.ArrowHelper(new THREE.Vector3(1,0,0.3).normalize(),new THREE.Vector3(-22,0.2,-6),9,0xffb020,2.2,1.4); pivot.add(arrow);
+
+  // illustrative L-shaped footprint (meters)
+  const s=new THREE.Shape();
+  [[-11,-8],[11,-8],[11,3],[2,3],[2,8],[-11,8]].forEach((p,i)=>i?s.lineTo(p[0],p[1]):s.moveTo(p[0],p[1]));
+  const floors=[];
+  for(let i=0;i<FLOORS;i++){
+    const g=new THREE.ExtrudeGeometry(s,{depth:FH-0.25,bevelEnabled:false}); g.rotateX(-Math.PI/2);
+    const m=new THREE.MeshStandardMaterial({color:0x1d252f,roughness:.85,metalness:.05,emissive:0x000000,transparent:true,opacity:1});
+    const mesh=new THREE.Mesh(g,m); mesh.position.y=i*FH;
+    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:i===0?0xff4d3d:0xe8edf3}));
+    mesh.add(edges); pivot.add(mesh); floors.push({mesh,edges,base:i*FH});
+  }
+  const roofY=()=>floors[FLOORS-1].mesh.position.y+FH;
+
+  // pins: anchor fn returns local position
+  const PINS=[
+    {sev:"info",t:"Type 5 wood · 79 units",s:"Permit 2024",a:()=>[0,roofY()+5,0],o:0},
+    {sev:"danger",t:"Soft-story · retrofit done",s:"Soft-story list",a:()=>[-12,floors[0].mesh.position.y+1.5,-4],o:1},
+    {sev:"caution",t:"Solar thermal · 36",s:"Permit",a:()=>[6,roofY()+0.5,-2],o:2},
+    {sev:"info",t:"Units 101 · 109",s:"Permits · floor 1",a:()=>[12,floors[0].mesh.position.y+1.5,-6],o:5},
+    {sev:"info",t:"Unit 212",s:"Permits · floor 2",a:()=>[12,floors[1].mesh.position.y+1.5,-2],o:6},
+    {sev:"info",t:"Units 313 · 314",s:"Permits · floor 3",a:()=>[12,floors[2].mesh.position.y+1.5,-6],o:7},
+    {sev:"info",t:"Units 408–418",s:"Permits · floor 4",a:()=>[-12,floors[3].mesh.position.y+1.5,4],o:8},
+    {sev:"info",t:"Building fire 2003",s:"Fire incidents",a:()=>[-16,0.6,10],o:3},
+    {sev:"info",t:"Alarm upgraded NFPA 72",s:"Permit 2024",a:()=>[2,floors[1].mesh.position.y+1.5,9],o:9},
+    {sev:"caution",t:"Sprinkler malfunction 2023",s:"Fire incidents",a:()=>[-6,floors[1].mesh.position.y+1.5,-9],o:2.5},
+    {sev:"danger",t:"Unit 311 · smoke reported",s:"Dispatch",a:()=>[-12,floors[2].mesh.position.y+1.5,-4],o:0.5},
+    {sev:"unknown",t:"Stairs: unknown",s:"No source",a:()=>[0,floors[2].mesh.position.y+1.5,9],o:10},
+    {sev:"dept",t:"Pre-plan 2019 (sample)",s:"Department",a:()=>[16,0.6,10],o:4},
+    {sev:"caution",t:"Wind (live at demo)",s:"Open-Meteo",a:()=>[-20,0.6,-12],o:11}
+  ].sort((a,b)=>a.o-b.o);
+  PINS.forEach(p=>{const d=document.createElement("div");d.className="pin "+p.sev;d.innerHTML='<i></i><span>'+p.t+'<small>'+p.s+'</small></span>';pinLayer.appendChild(d);p.el=d;p.vis=0;});
+
+  // camera orbit
+  let yaw=0.7,pitch=0.5,dist=62,auto=true,drag=null;
+  const c=renderer.domElement;
+  c.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,yaw,pitch};auto=false;c.setPointerCapture(e.pointerId);});
+  c.addEventListener("pointermove",e=>{if(!drag)return;yaw=drag.yaw-(e.clientX-drag.x)*0.01;pitch=Math.max(0.15,Math.min(1.2,drag.pitch+(e.clientY-drag.y)*0.006));});
+  c.addEventListener("pointerup",()=>{drag=null;});
+  function size(){const r=stage.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/Math.max(1,r.height);camera.updateProjectionMatrix();}
+  new ResizeObserver(size).observe(stage); size();
+
+  const v=new THREE.Vector3(); let exploded=false;
+  function frame(){
+    if(auto) yaw+=0.0025;
+    const ty=exploded?9:5;
+    camera.position.set(Math.sin(yaw)*Math.cos(pitch)*dist,ty+Math.sin(pitch)*dist,Math.cos(yaw)*Math.cos(pitch)*dist);
+    camera.lookAt(0,ty,0);
+    renderer.render(scene,camera);
+    const r=stage.getBoundingClientRect();
+    PINS.forEach(p=>{const a=p.a();v.set(a[0],a[1],a[2]);pivot.localToWorld(v);v.project(camera);
+      p.el.style.left=((v.x+1)/2*r.width)+"px";p.el.style.top=((1-v.y)/2*r.height-18)+"px";p.el.style.opacity=p.vis;});
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const G=window.gsap;
+  function explode(){
+    exploded=true;
+    floors.forEach(f=>{f.edges.material.color.setHex(f===floors[0]?0xff4d3d:0xffb020);});
+    if(G&&!reduce){
+      const tl=G.timeline();
+      tl.to({},{duration:.35});
+      floors.slice().reverse().forEach((f,k)=>{const i=FLOORS-1-k;tl.to(f.mesh.position,{y:f.base+i*GAP,duration:1,ease:"power3.out"},.35+k*.08);tl.to(f.mesh.rotation,{y:(i%2?1:-1)*0.07,duration:1,ease:"power3.out"},.35+k*.08);});
+      PINS.forEach((p,k)=>tl.to(p,{vis:1,duration:.3},1.2+k*.07));
+      tl.add(()=>floors.forEach((f,i)=>f.edges.material.color.setHex(i===0?0xff4d3d:0xe8edf3)));
+    } else { floors.forEach((f,i)=>{f.mesh.position.y=f.base+i*GAP;}); PINS.forEach(p=>p.vis=1); }
+    document.getElementById("sheet").classList.add("open");
+    btn.textContent="Collapse";
+  }
+  function collapse(){
+    exploded=false; clearHighlight();
+    if(G&&!reduce){const tl=G.timeline();PINS.forEach(p=>tl.to(p,{vis:0,duration:.15},0));floors.forEach(f=>{tl.to(f.mesh.position,{y:f.base,duration:.7,ease:"back.out(1.4)"},.15);tl.to(f.mesh.rotation,{y:0,duration:.7},.15);});}
+    else { floors.forEach(f=>{f.mesh.position.y=f.base;f.mesh.rotation.y=0;}); PINS.forEach(p=>p.vis=0); }
+    document.getElementById("sheet").classList.remove("open"); document.getElementById("answer").classList.remove("show");
+    btn.textContent="Explode";
+  }
+  function clearHighlight(){floors.forEach(f=>{f.mesh.material.emissive.setHex(0);f.mesh.material.opacity=1;});}
+  const btn=document.getElementById("explode");
+  btn.addEventListener("click",()=>exploded?collapse():explode());
+  document.getElementById("ask").addEventListener("click",()=>{
+    if(!exploded) explode();
+    floors.forEach(f=>{f.mesh.material.emissive.setHex(0x5a3a00);f.mesh.material.opacity=1;});
+    document.getElementById("answer").classList.add("show");
+  });
+
+  const LINES=[
+    ["4-story Type 5 wood frame, 79 units.","Permit 2024 · i98e-djp9"],
+    ["Ground floor soft-story, retrofit complete.","Soft-Story Properties · beah-shgi"],
+    ["Roof: solar thermal hot water, 36 modules (not PV).","Permit · i98e-djp9"],
+    ["Prior building fire at this address, 2003.","Fire Incidents · wr8u-xric"],
+    ["Stair locations: unknown. Standpipe: unknown.","No source"]
+  ];
+  const brief=document.getElementById("brief");
+  LINES.forEach(([t,src])=>{const d=document.createElement("div");d.className="bl";d.innerHTML='<span>'+t+'<cite>'+src+'</cite></span><button type="button">STRIKE</button>';
+    d.querySelector("button").addEventListener("click",e=>{d.classList.toggle("struck");e.target.textContent=d.classList.contains("struck")?"UNDO":"STRIKE";});brief.appendChild(d);});
+  document.getElementById("send").addEventListener("click",()=>document.getElementById("sent").classList.add("show"));
+  document.getElementById("sheet").addEventListener("click",e=>{if(e.target.classList.contains("grab"))e.currentTarget.classList.toggle("open");});
+})();
+</script>
