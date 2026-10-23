@@ -19,3 +19,16 @@ test('highlight lights answer floors and cited pin floors, keeps target, focus c
   useStore.getState().focus(10)
   assert.deepEqual(useStore.getState().lit, [])
 })
+
+test('openFloor focuses a floor and opens its cutaway, only on the exploded building with no cutaway open', () => {
+  useStore.setState({ building: b, phase: 'assembled', target: null, lit: [], rooms: 'off' })
+  useStore.getState().openFloor(22)
+  assert.equal(useStore.getState().rooms, 'off') // assembled: the tap explodes instead (App.tsx)
+  useStore.setState({ phase: 'exploded', target: 7, lit: [3] })
+  useStore.getState().openFloor(22)
+  assert.equal(useStore.getState().target, 22)
+  assert.deepEqual(useStore.getState().lit, [])
+  assert.equal(useStore.getState().rooms, 'opening')
+  useStore.getState().openFloor(10) // already opening: stays on 22
+  assert.equal(useStore.getState().target, 22)
+})

@@ -24,6 +24,7 @@ type Store = {
   focus: (floor: number | null) => void
   highlight: (h: Answer['highlight']) => void
   toggleRooms: () => void
+  openFloor: (floor: number) => void
   setRooms: (r: RoomsPhase) => void
   resetView: () => void
   setInset: (inset: Inset) => void
@@ -62,6 +63,11 @@ export const useStore = create<Store>((set, get) => ({
     const { phase, target, rooms } = get()
     if (rooms === 'off' && phase === 'exploded' && target !== null) set({ rooms: 'opening' })
     else if (rooms === 'on' || rooms === 'opening') set({ rooms: 'closing', collapseAfterRooms: false })
+  },
+  // one tap on a floor of the exploded building: focus it and open its cutaway in one move (Rooms.tsx frames it)
+  openFloor: (floor) => {
+    const { phase, rooms } = get()
+    if (phase === 'exploded' && rooms === 'off') set({ target: floor, lit: [], rooms: 'opening', collapseAfterRooms: false })
   },
   setRooms: (rooms) => {
     set({ rooms })

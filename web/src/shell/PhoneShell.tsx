@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
-import { ChevronDown, ChevronLeft, Crosshair, Droplet, Ellipsis, Expand, Flame, Layers, MessageCircleQuestion, PenLine, RotateCcw, Shrink, TriangleAlert, X } from 'lucide-react'
+import { ChevronDown, ChevronLeft, Crosshair, Droplet, Ellipsis, Expand, Flame, Layers, MessageCircleQuestion, PenLine, Pointer, RotateCcw, Shrink, TriangleAlert, X } from 'lucide-react'
 import type { Answer, BriefLine, Building, Pin } from '../../../shared/building.ts'
 import { ask } from '../../../shared/client.ts'
 import { useStore } from '../store.ts'
@@ -199,6 +199,7 @@ export function PhoneShell({ building: b, children, phase, selectedPin, onBuildi
       <div className="fs-dock" aria-label="Model controls">
         <div className="fs-dock-chips">
           {focused.length > 0 && <button className="fs-chip on" key={focused.join()} onClick={() => { tap(); onFocusFloor(null) }}><Crosshair size={16} aria-hidden />{focused.length > 1 ? 'Floors' : 'Floor'} {focused.map(floorName).join(', ')}<X size={16} aria-label="Clear focus" /></button>}
+          {rooms === 'off' && (phase === 'assembled' || (phase === 'exploded' && target === null)) && <p className="fs-hint" key={phase}><Pointer size={15} aria-hidden />{phase === 'assembled' ? 'Tap the building to open it' : 'Tap a floor to look inside'}</p>}
           {phase === 'exploded' && target !== null && <button className="fs-chip" aria-pressed={rooms === 'on'} disabled={rooms === 'opening' || rooms === 'closing'} onClick={() => { tap(); toggleRooms() }}>{rooms === 'off' ? `Explore floor ${floorName(target)}` : 'Back to floors'}</button>}
         </div>
         <div className="fs-dock-row">

@@ -93,6 +93,7 @@
 .is-open .fs-dock > * > * { pointer-events: none; }
 .fs-dock-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .fs-dock-chips:empty { display: none; }
+.fs-hint { margin: 0; height: 32px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; background: var(--glass); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--fs-line); color: var(--fs-muted); font: 500 13px/1 var(--sans); pointer-events: none; animation: fs-pop .24s var(--ease) both; }
 .fs-dock-row { display: flex; gap: 8px; padding: 4px; border-radius: 18px; background: var(--glass); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid var(--fs-line); box-shadow: var(--hi), var(--shadow); }
 .fs-dock-row > * { pointer-events: auto; }
 .is-open .fs-dock-row > * { pointer-events: none; }

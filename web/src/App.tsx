@@ -1,4 +1,4 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
 import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react'
@@ -55,7 +55,7 @@ function spanOf(b: Building) {
 const groupKey = (p: Pin, floors: number) => (p.anchor.kind === 'floor' ? Math.min(p.anchor.floor, floors) : p.anchor.kind === 'ground' ? 'site' : 'roof')
 
 function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => void }) {
-  const { phase, target, lit, rooms, view, setPhase, toggleRooms } = useStore()
+  const { phase, target, lit, rooms, view, setPhase, explode: openBuilding, openFloor } = useStore()
   const slabs = useRef<THREE.Group[]>([])
   const basement = useRef<THREE.Group>(null)
   const controls = useRef<ComponentRef<typeof OrbitControls>>(null)
@@ -190,6 +190,7 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
     }
     if (phase === 'collapsing') return play(collapse, 'assembled')
     if (phase === 'exploded') {
+      if (useStore.getState().rooms !== 'off') return // a tapped floor opens straight into its cutaway: Rooms.tsx moves the camera
       if (target !== null || lit.length) navigator.vibrate?.(20)
       return play(focus)
     }
@@ -217,9 +218,24 @@ function Slabs({ b, onSelectPin }: { b: Building; onSelectPin: (pin: Pin) => voi
       return marker(g, [x, top, -y])
     })
 
-  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y. Tapping the focused floor opens its rooms
+  // the model is the control: tap the building to explode it, then tap any floor to open its cutaway.
+  // Not while it moves or a cutaway is open, and a drag to orbit (pointer moved more than a few px) is not a tap
+  const tappable = rooms === 'off' && (phase === 'assembled' || phase === 'exploded')
+  const tapFloor = (f: number) => (e: ThreeEvent<MouseEvent>) => {
+    if (!tappable || e.delta > 6) return
+    e.stopPropagation()
+    if (phase === 'assembled') openBuilding()
+    else openFloor(f)
+  }
+  const hover = (on: boolean) => (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation()
+    document.body.style.cursor = on && tappable ? 'pointer' : ''
+  }
+  useEffect(() => void (document.body.style.cursor = ''), [tappable])
+
+  // rotation -90 deg on x: shape x -> x, shape y (north) -> -z, extrusion -> +y
   const slab = (f: number) => (
-    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={f === target && phase === 'exploded' ? (e) => (e.stopPropagation(), toggleRooms()) : undefined}>
+    <mesh geometry={geo} rotation-x={-Math.PI / 2} material={[levels[f].top, levels[f].side]} onClick={tapFloor(f)} onPointerOver={hover(true)} onPointerOut={hover(false)}>
       <lineSegments geometry={edges} material={levels[f].edge} />
     </mesh>
   )
