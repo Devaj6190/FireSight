@@ -1154,5 +1154,63 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-24T12:20:39+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 43132,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "257 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-24T12:20:39+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 43016,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-24T12:21:22+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 45206,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "478 SFFD CALLS NEAR BLOCK, 12 MO"
+   },
+   {
+    "pinId": "hazmat-epa-frs",
+    "label": "35 EPA-REGISTERED FACILITIES <160 M"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-10-24T12:21:22+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 43236,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
