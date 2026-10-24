@@ -1212,5 +1212,71 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-24T16:08:21+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 46836,
+  "added": [],
+  "removed": [
+   {
+    "pinId": "complaint-202658959",
+    "label": "OPEN DBI COMPLAINT 2026"
+   }
+  ],
+  "changed": [
+   {
+    "pinId": "nov-open",
+    "label": "1 OPEN DBI NOTICES"
+   },
+   {
+    "pinId": "permit-boilers",
+    "label": "4 BOILERS IN OPERATION"
+   },
+   {
+    "pinId": "occupancy-floor1-units",
+    "label": "8 UNITS KNOWN ON FLOOR 1"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -1 ~4 pins"
+ },
+ {
+  "at": "2026-10-24T16:08:21+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 47547,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-24T16:09:08+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 42405,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-24T16:09:09+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40220,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:993: The handshake operation timed out>\n"
  }
 ]
