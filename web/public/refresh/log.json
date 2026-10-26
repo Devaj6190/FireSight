@@ -1958,5 +1958,58 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-26T19:39:37+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 45664,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-10-26T19:39:37+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 44583,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-26T19:40:22+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 1635,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 500 {'error': True, 'message': 'Internal error', 'status': 500}\n"
+ },
+ {
+  "at": "2026-10-26T19:40:23+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 759,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 500 {'error': True, 'message': 'Internal error', 'status': 500}\n"
  }
 ]
