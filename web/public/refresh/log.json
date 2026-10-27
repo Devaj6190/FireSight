@@ -2293,5 +2293,54 @@
    }
   ],
   "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-27T23:21:07+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 41354,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-27T23:21:07+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 44308,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-27T23:21:49+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 0,
+  "ms": 41776,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-27T23:21:52+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 52410,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
