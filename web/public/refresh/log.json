@@ -3264,5 +3264,54 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-31T20:33:56+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 41147,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-10-31T20:33:56+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 41325,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-10-31T20:34:37+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40363,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 TimeoutError: The read operation timed out\n"
+ },
+ {
+  "at": "2026-10-31T20:34:37+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 123196,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
