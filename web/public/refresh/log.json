@@ -4418,5 +4418,59 @@
   ],
   "changed": [],
   "note": "+0 -1 ~0 pins"
+ },
+ {
+  "at": "2026-11-06T10:06:52+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 56927,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-06T10:06:52+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 56876,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-06T10:07:49+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 101507,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-06T10:07:49+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 110339,
+  "added": [
+   {
+    "pinId": "construction-height",
+    "label": "HEIGHT 114.8 M OR 125.9 M: RECORDS DISAGREE"
+   }
+  ],
+  "removed": [],
+  "changed": [],
+  "note": "+1 -0 ~0 pins"
  }
 ]
