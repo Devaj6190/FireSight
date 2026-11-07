@@ -4693,5 +4693,72 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-07T15:48:07+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 43982,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   },
+   {
+    "pinId": "permit-boilers",
+    "label": "4 BOILERS IN OPERATION"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~3 pins"
+ },
+ {
+  "at": "2026-11-07T15:48:07+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 43057,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-07T15:48:50+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 108002,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "458 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-07T15:48:51+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 110963,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "183 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
