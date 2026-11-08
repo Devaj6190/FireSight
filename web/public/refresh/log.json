@@ -4892,5 +4892,54 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-08T09:41:48+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40280,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:994: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-11-08T09:41:48+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 41317,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-08T09:42:29+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 7,
+  "ms": 45561,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "3 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-08T09:42:30+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 44646,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
