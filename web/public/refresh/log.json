@@ -4999,5 +4999,54 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-08T20:40:18+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 41227,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-08T20:40:18+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 40710,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-08T20:40:59+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 101724,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-08T20:41:00+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 134538,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
