@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-22T20:35:24+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 88,
-  "sourcesFailed": 5,
-  "ms": 41850,
-  "added": [
-   {
-    "pinId": "aerial-osm-entrance-4915914627",
-    "label": "ENTRANCE (MAIN) 5 M"
-   }
-  ],
-  "removed": [],
-  "changed": [],
-  "note": "+1 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T20:35:24+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 88,
-  "sourcesFailed": 4,
-  "ms": 41835,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T20:36:06+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 88,
-  "sourcesFailed": 3,
-  "ms": 44157,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T20:36:06+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 88,
-  "sourcesFailed": 3,
-  "ms": 114580,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-22T20:50:49+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 88,
@@ -5046,6 +4997,60 @@
    {
     "pinId": "calls-12mo",
     "label": "184 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-10T00:46:31+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 46440,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-10T00:46:31+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 52377,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-10T00:47:17+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 113805,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-10T00:47:23+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 106495,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "permit-permitsf-active",
+    "label": "11 OPEN PERMITS: WORK IN PROGRESS"
    }
   ],
   "note": "+0 -0 ~1 pins"
