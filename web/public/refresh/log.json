@@ -1,49 +1,5 @@
 [
  {
-  "at": "2026-10-22T23:05:18+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 41454,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:05:18+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 42225,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:05:59+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 41110,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:06:00+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 48946,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-22T23:29:07+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5126,6 +5082,50 @@
   "sourcesQueried": 89,
   "sourcesFailed": 1,
   "ms": 41344,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T03:57:39+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 41053,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T03:57:39+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 42466,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T03:58:20+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 40718,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T03:58:21+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 44154,
   "added": [],
   "removed": [],
   "changed": [],
