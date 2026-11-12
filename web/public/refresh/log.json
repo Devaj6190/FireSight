@@ -1,62 +1,5 @@
 [
  {
-  "at": "2026-10-22T23:36:51+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 44878,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "occupancy-floor1-units",
-    "label": "9 UNITS KNOWN ON FLOOR 1"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "10 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~3 pins"
- },
- {
-  "at": "2026-10-22T23:36:51+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 0,
-  "ms": 30854,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:37:22+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 0,
-  "ms": 33453,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "no changes"
- },
- {
-  "at": "2026-10-22T23:37:36+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 41093,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-23T00:05:30+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5135,5 +5078,77 @@
    }
   ],
   "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-12T20:13:05+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 46409,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "permit-boilers",
+    "label": "4 BOILERS IN OPERATION"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-12T20:13:05+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40401,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:994: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-11-12T20:13:45+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 52618,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "456 SFFD CALLS NEAR BLOCK, 12 MO"
+   },
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "3 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-12T20:13:51+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 51610,
+  "added": [],
+  "removed": [
+   {
+    "pinId": "construction-height",
+    "label": "HEIGHT 114.8 M OR 125.9 M: RECORDS DISAGREE"
+   }
+  ],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "MINNA ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -1 ~1 pins"
  }
 ]
