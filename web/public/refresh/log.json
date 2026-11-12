@@ -1,58 +1,5 @@
 [
  {
-  "at": "2026-10-22T23:29:07+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 7,
-  "ms": 41590,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-floor1-units",
-    "label": "8 UNITS KNOWN ON FLOOR 1"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "8 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~2 pins"
- },
- {
-  "at": "2026-10-22T23:29:07+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41602,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:29:49+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 0,
-  "ms": 36625,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-22T23:29:49+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 44335,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-22T23:36:51+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5130,5 +5077,63 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T12:09:04+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 41498,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "281 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-12T12:09:04+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 44080,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T12:09:46+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 8,
+  "ms": 106271,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-12T12:09:48+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 105451,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   },
+   {
+    "pinId": "calls-12mo",
+    "label": "186 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
  }
 ]
