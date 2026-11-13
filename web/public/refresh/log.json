@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-23T01:45:25+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 0,
-  "ms": 55357,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-23T01:45:25+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 44321,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-23T01:46:09+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 43955,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-23T01:46:20+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 76805,
-  "added": [],
-  "removed": [
-   {
-    "pinId": "construction-height",
-    "label": "HEIGHT 114.8 M OR 125.9 M: RECORDS DISAGREE"
-   }
-  ],
-  "changed": [],
-  "note": "+0 -1 ~0 pins"
- },
- {
   "at": "2026-10-23T06:44:12+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5169,5 +5120,54 @@
    }
   ],
   "note": "+1 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-13T08:18:15+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 48820,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-13T08:18:15+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 51731,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-13T08:19:04+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 111022,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-13T08:19:07+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 120350,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
