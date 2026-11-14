@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-23T23:40:02+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 41145,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-23T23:40:02+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41041,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-23T23:40:43+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 6,
-  "ms": 40932,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-floor2-units",
-    "label": "4 UNITS KNOWN ON FLOOR 2"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-23T23:40:43+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 40859,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-24T02:30:30+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5168,5 +5119,68 @@
    }
   ],
   "note": "+1 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-14T16:14:57+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 41532,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor1-units",
+    "label": "8 UNITS KNOWN ON FLOOR 1"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-14T16:14:57+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 44273,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "196 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-14T16:15:38+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 104798,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "463 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-14T16:15:41+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 102082,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
