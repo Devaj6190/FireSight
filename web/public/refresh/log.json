@@ -1,49 +1,5 @@
 [
  {
-  "at": "2026-10-24T18:53:57+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 41278,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-24T18:53:57+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 41158,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-24T18:54:38+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 8,
-  "ms": 49843,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-24T18:54:38+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 40825,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-24T21:19:22+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5177,6 +5133,60 @@
    {
     "pinId": "aerial-undergrounded",
     "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-15T20:02:14+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 42208,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-15T20:02:14+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 46522,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-15T20:02:56+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 41144,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-15T20:03:01+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 43637,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "MINNA ST: UTILITIES UNDERGROUNDED"
    }
   ],
   "note": "+0 -0 ~1 pins"
