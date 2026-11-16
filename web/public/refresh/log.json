@@ -1,62 +1,5 @@
 [
  {
-  "at": "2026-10-25T01:25:38+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 41871,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "occupancy-floor1-units",
-    "label": "9 UNITS KNOWN ON FLOOR 1"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "10 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~3 pins"
- },
- {
-  "at": "2026-10-25T01:25:38+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 44916,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-25T01:26:19+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 41268,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-25T01:26:22+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 41190,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-25T06:25:52+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5173,5 +5116,63 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-16T16:40:25+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40337,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:994: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-11-16T16:40:25+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 69001,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-16T16:41:06+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 122448,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "460 SFFD CALLS NEAR BLOCK, 12 MO"
+   },
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "4 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-16T16:41:34+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 134776,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
