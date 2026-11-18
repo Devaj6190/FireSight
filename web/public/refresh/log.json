@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-25T23:24:12+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 6,
-  "ms": 43979,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-25T23:24:12+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 40950,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-25T23:24:53+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 0,
-  "sourcesFailed": 0,
-  "ms": 40134,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:993: The handshake operation timed out>\n"
- },
- {
-  "at": "2026-10-25T23:24:56+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 76694,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-26T01:25:54+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5198,5 +5149,76 @@
    }
   ],
   "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-18T17:24:46+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 108620,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-trees",
+    "label": "5 STREET TREES AT CURB"
+   },
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "DUBOCE AVE: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-18T17:24:46+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 105893,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-18T17:26:32+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 50050,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "462 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-18T17:26:34+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 90368,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "permit-boilers",
+    "label": "3 BOILERS IN OPERATION"
+   },
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   },
+   {
+    "pinId": "permit-permitsf-active",
+    "label": "9 OPEN PERMITS: WORK IN PROGRESS"
+   }
+  ],
+  "note": "+0 -0 ~3 pins"
  }
 ]
