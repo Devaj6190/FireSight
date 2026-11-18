@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-25T21:18:41+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 40900,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-25T21:18:41+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 44575,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-25T21:19:22+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 44370,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-25T21:19:26+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 4060,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-25T23:24:12+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5198,5 +5149,54 @@
   "removed": [],
   "changed": [],
   "note": "+1 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-18T08:03:48+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40320,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:994: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-11-18T08:03:48+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 44126,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-18T08:04:29+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 38384,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-18T08:04:33+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 49601,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "MINNA ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
