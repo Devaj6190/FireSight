@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-26T06:36:14+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41543,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "permit-boilers",
-    "label": "4 BOILERS IN OPERATION"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-26T06:36:14+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 41051,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-26T06:36:55+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 80143,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-26T06:36:55+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 0,
-  "ms": 26591,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-26T13:44:42+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5216,6 +5167,55 @@
   "sourcesQueried": 89,
   "sourcesFailed": 2,
   "ms": 125657,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-19T04:21:45+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40354,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:994: The handshake operation timed out>\n"
+ },
+ {
+  "at": "2026-11-19T04:21:45+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 43261,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-19T04:22:26+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 43691,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-19T04:22:29+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 45515,
   "added": [],
   "removed": [],
   "changed": [],
