@@ -1,63 +1,5 @@
 [
  {
-  "at": "2026-10-26T13:44:42+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 6,
-  "ms": 48971,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "9 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~2 pins"
- },
- {
-  "at": "2026-10-26T13:44:42+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 0,
-  "sourcesFailed": 0,
-  "ms": 40465,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:993: The handshake operation timed out>\n"
- },
- {
-  "at": "2026-10-26T13:45:23+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 52572,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "482 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-26T13:45:31+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 66576,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-26T19:39:37+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5216,6 +5158,68 @@
   "sourcesQueried": 89,
   "sourcesFailed": 4,
   "ms": 45515,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-19T13:38:56+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 12488,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor1-units",
+    "label": "8 UNITS KNOWN ON FLOOR 1"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-19T13:38:56+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 44881,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-19T13:39:08+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 106940,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "467 SFFD CALLS NEAR BLOCK, 12 MO"
+   },
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "3 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-19T13:39:40+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 197974,
   "added": [],
   "removed": [],
   "changed": [],
