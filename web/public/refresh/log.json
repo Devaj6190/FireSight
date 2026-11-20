@@ -1,54 +1,5 @@
 [
  {
-  "at": "2026-10-26T23:27:44+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 42102,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-26T23:27:44+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 50110,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-26T23:28:26+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 44468,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-26T23:28:34+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 43762,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-27T02:17:13+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5225,5 +5176,63 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-20T02:45:14+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 148621,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor1-units",
+    "label": "9 UNITS KNOWN ON FLOOR 1"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-20T02:45:14+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 148469,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-20T02:47:42+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 0,
+  "sourcesFailed": 0,
+  "ms": 40311,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "error: fetch failed: EAS lookup failed: 0 TimeoutError: The read operation timed out\n"
+ },
+ {
+  "at": "2026-11-20T02:47:43+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 1,
+  "ms": 143118,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "MINNA ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
