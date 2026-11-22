@@ -1,76 +1,5 @@
 [
  {
-  "at": "2026-10-28T15:37:29+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 5,
-  "ms": 46848,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "calls-12mo",
-    "label": "262 SFFD CALLS NEAR BLOCK, 12 MO"
-   },
-   {
-    "pinId": "occupancy-floor1-units",
-    "label": "8 UNITS KNOWN ON FLOOR 1"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "9 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~4 pins"
- },
- {
-  "at": "2026-10-28T15:37:29+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 54906,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "191 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-28T15:38:16+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 41358,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "476 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-28T15:38:24+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 45881,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
   "at": "2026-10-28T20:41:30+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5223,6 +5152,64 @@
   "sourcesQueried": 89,
   "sourcesFailed": 1,
   "ms": 5696,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-22T08:27:52+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 44077,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-trees",
+    "label": "5 STREET TREES AT CURB"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "9 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-22T08:27:52+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 42242,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-22T08:28:34+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 43761,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-22T08:28:36+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 43906,
   "added": [],
   "removed": [],
   "changed": [],
