@@ -1,66 +1,5 @@
 [
  {
-  "at": "2026-10-28T20:41:30+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41350,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "permit-boilers",
-    "label": "4 BOILERS IN OPERATION"
-   },
-   {
-    "pinId": "occupancy-floor1-units",
-    "label": "9 UNITS KNOWN ON FLOOR 1"
-   },
-   {
-    "pinId": "occupancy-floor4-units",
-    "label": "10 UNITS KNOWN ON FLOOR 4"
-   }
-  ],
-  "note": "+0 -0 ~4 pins"
- },
- {
-  "at": "2026-10-28T20:41:30+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 41541,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-28T20:42:12+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 6,
-  "ms": 41750,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-28T20:42:12+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 0,
-  "sourcesFailed": 0,
-  "ms": 40219,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "error: fetch failed: EAS lookup failed: 0 URLError: <urlopen error _ssl.c:993: The handshake operation timed out>\n"
- },
- {
   "at": "2026-10-29T00:31:27+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5214,5 +5153,76 @@
   "removed": [],
   "changed": [],
   "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-22T16:31:44+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 106835,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-trees",
+    "label": "5 STREET TREES AT CURB"
+   },
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "DUBOCE AVE: UTILITIES UNDERGROUNDED"
+   },
+   {
+    "pinId": "calls-12mo",
+    "label": "286 SFFD CALLS NEAR BLOCK, 12 MO"
+   },
+   {
+    "pinId": "occupancy-floor4-units",
+    "label": "10 UNITS KNOWN ON FLOOR 4"
+   }
+  ],
+  "note": "+0 -0 ~4 pins"
+ },
+ {
+  "at": "2026-11-22T16:31:44+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 44751,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-22T16:32:29+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 184922,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "calls-12mo",
+    "label": "476 SFFD CALLS NEAR BLOCK, 12 MO"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-22T16:33:31+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 98830,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
