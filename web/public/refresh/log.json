@@ -1,82 +1,5 @@
 [
  {
-  "at": "2026-10-29T13:50:27+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41411,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "permit-boilers",
-    "label": "4 BOILERS IN OPERATION"
-   },
-   {
-    "pinId": "calls-12mo",
-    "label": "264 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~2 pins"
- },
- {
-  "at": "2026-10-29T13:50:27+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 43987,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "occupancy-units",
-    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
-   },
-   {
-    "pinId": "calls-12mo",
-    "label": "192 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~2 pins"
- },
- {
-  "at": "2026-10-29T13:51:09+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 41142,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "463 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-29T13:51:11+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41819,
-  "added": [
-   {
-    "pinId": "permit-buildout-f9",
-    "label": "RECENT BUILD-OUT, FLOOR 9"
-   }
-  ],
-  "removed": [
-   {
-    "pinId": "permit-buildout-f6",
-    "label": "RECENT BUILD-OUT, FLOOR 6"
-   }
-  ],
-  "changed": [],
-  "note": "+1 -1 ~0 pins"
- },
- {
   "at": "2026-10-29T19:21:00+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5230,5 +5153,64 @@
    }
   ],
   "note": "+1 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-23T11:34:50+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 6,
+  "ms": 51879,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-23T11:34:50+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 120875,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-23T11:35:42+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 102967,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-floor2-units",
+    "label": "3 UNITS KNOWN ON FLOOR 2"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-23T11:36:51+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 138546,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
