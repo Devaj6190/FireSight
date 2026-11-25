@@ -1,68 +1,5 @@
 [
  {
-  "at": "2026-10-30T16:05:52+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 2,
-  "ms": 41487,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "permit-boilers",
-    "label": "4 BOILERS IN OPERATION"
-   },
-   {
-    "pinId": "calls-12mo",
-    "label": "266 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~2 pins"
- },
- {
-  "at": "2026-10-30T16:05:52+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 42119,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-30T16:06:33+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 41648,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "464 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-30T16:06:34+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 1,
-  "ms": 43900,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "178 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
   "at": "2026-10-30T20:56:21+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5252,5 +5189,59 @@
   "removed": [],
   "changed": [],
   "note": "error: fetch failed: EAS lookup failed: 0 TimeoutError: The read operation timed out\n"
+ },
+ {
+  "at": "2026-11-25T11:53:13+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 41143,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-25T11:53:13+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 101240,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-25T11:53:54+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 106360,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-25T11:54:54+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 4,
+  "ms": 106403,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "aerial-undergrounded",
+    "label": "NEW MONTGOMERY ST: UTILITIES UNDERGROUNDED"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
  }
 ]
