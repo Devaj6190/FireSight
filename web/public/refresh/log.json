@@ -1,59 +1,5 @@
 [
  {
-  "at": "2026-10-31T12:52:40+00:00",
-  "buildingId": "sf-0874003",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 47157,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "267 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
-  "at": "2026-10-31T12:52:40+00:00",
-  "buildingId": "sf-1244030",
-  "sourcesQueried": 89,
-  "sourcesFailed": 4,
-  "ms": 44044,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-31T12:53:24+00:00",
-  "buildingId": "sf-3703081",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 40875,
-  "added": [],
-  "removed": [],
-  "changed": [],
-  "note": "+0 -0 ~0 pins"
- },
- {
-  "at": "2026-10-31T12:53:27+00:00",
-  "buildingId": "sf-3722080",
-  "sourcesQueried": 89,
-  "sourcesFailed": 3,
-  "ms": 45824,
-  "added": [],
-  "removed": [],
-  "changed": [
-   {
-    "pinId": "calls-12mo",
-    "label": "179 SFFD CALLS NEAR BLOCK, 12 MO"
-   }
-  ],
-  "note": "+0 -0 ~1 pins"
- },
- {
   "at": "2026-10-31T17:26:46+00:00",
   "buildingId": "sf-0874003",
   "sourcesQueried": 89,
@@ -5281,5 +5227,59 @@
    }
   ],
   "note": "+0 -0 ~2 pins"
+ },
+ {
+  "at": "2026-11-26T22:05:37+00:00",
+  "buildingId": "sf-0874003",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 44580,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "78 OR 79 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-26T22:05:37+00:00",
+  "buildingId": "sf-1244030",
+  "sourcesQueried": 89,
+  "sourcesFailed": 5,
+  "ms": 41666,
+  "added": [],
+  "removed": [],
+  "changed": [
+   {
+    "pinId": "occupancy-units",
+    "label": "4 OR 5 UNITS: RECORDS DISAGREE"
+   }
+  ],
+  "note": "+0 -0 ~1 pins"
+ },
+ {
+  "at": "2026-11-26T22:06:19+00:00",
+  "buildingId": "sf-3703081",
+  "sourcesQueried": 89,
+  "sourcesFailed": 3,
+  "ms": 43812,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
+ },
+ {
+  "at": "2026-11-26T22:06:22+00:00",
+  "buildingId": "sf-3722080",
+  "sourcesQueried": 89,
+  "sourcesFailed": 2,
+  "ms": 70533,
+  "added": [],
+  "removed": [],
+  "changed": [],
+  "note": "+0 -0 ~0 pins"
  }
 ]
